@@ -1,0 +1,21 @@
+server:
+  port: 8022
+
+#eureka:
+#  #spring boot admin设置权限，故需要通过账号密码获取注册信息
+#  instance:
+#    metadata-map:
+#      user.name: admin
+#      user.password: admin
+
+spring:
+  #spring boot admin的登陆账号和密码配置
+  security:
+    user:
+      name: admin
+      password: admin
+  #通过rabbit MQ将日志发给zipkin
+  zipkin:
+    enabled: true
+    sender:
+      type: rabbit

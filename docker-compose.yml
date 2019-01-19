@@ -1,0 +1,142 @@
+version: '2.1'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 15672:15672
+    volumes:
+      - ./data/logs/rabbitmq:/var/log/rabbitmq
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  mysql:
+    image: mysql:5
+    restart: always
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./data/logs/mysql:/var/logs
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  config:
+    volumes:
+      - ./data/logs/config:/var/logs
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  registry:
+    volumes:
+      - ./data/logs/registry:/var/logs
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    #image: sqshq/piggymetrics-registry
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    ports:
+      - 8761:8761
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  gateway:
+    volumes:
+      - ./data/logs/gateway:/var/logs
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    #image: sqshq/piggymetrics-gateway
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    ports:
+      - 8080:4000
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  auth-service:
+    volumes:
+      - ./data/logs/auth-service:/var/logs
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      #NOTIFICATION_SERVICE_PASSWORD: $NOTIFICATION_SERVICE_PASSWORD
+      #STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
+      #ACCOUNT_SERVICE_PASSWORD: $ACCOUNT_SERVICE_PASSWORD
+      #MONGODB_PASSWORD: $MONGODB_PASSWORD
+    #image: sqshq/piggymetrics-auth-service
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  monitor-admin:
+    volumes:
+      - ./data/logs/monitor/admin:/var/logs
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    #image: sqshq/piggymetrics-monitoring
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    ports:
+      - 8022:8022
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  monitor-hystrix:
+    volumes:
+      - ./data/logs/monitor/hystrix:/var/logs
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    #image: sqshq/piggymetrics-monitoring
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    ports:
+      - 8021:8021
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  monitor-turbine-stream:
+    volumes:
+      - ./data/logs/monitor/turbine-system:/var/logs
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    #image: sqshq/piggymetrics-turbine-stream-service
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    ports:
+    - 8989:8989
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"

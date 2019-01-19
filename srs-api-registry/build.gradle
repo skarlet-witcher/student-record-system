@@ -1,0 +1,5 @@
+dependencies {
+    compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
+    compile("org.springframework.cloud:spring-cloud-starter-config")
+    compile "javax.xml.bind:jaxb-api:2.3.1"
+}

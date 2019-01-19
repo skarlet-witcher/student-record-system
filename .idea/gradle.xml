@@ -8,13 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/srs-api-config" />
-            <option value="$PROJECT_DIR$/srs-api-gateway" />
-            <option value="$PROJECT_DIR$/srs-api-registry" />
-            <option value="$PROJECT_DIR$/srs-auth-service" />
-            <option value="$PROJECT_DIR$/srs-monitor-admin" />
-            <option value="$PROJECT_DIR$/srs-monitor-hystrix" />
-            <option value="$PROJECT_DIR$/srs-monitor-turbine-stream" />
+            <option value="$PROJECT_DIR$/cloud-auth" />
+            <option value="$PROJECT_DIR$/cloud-auth/srs-auth-service" />
+            <option value="$PROJECT_DIR$/cloud-config" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />

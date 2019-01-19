@@ -153,20 +153,34 @@
       <module name="cc.orangejuice.sockjs-client.test" target="11" />
       <module name="cc.orangejuice.sprintf-js.main" target="11" />
       <module name="cc.orangejuice.sprintf-js.test" target="11" />
+      <module name="cc.orangejuice.srs-api-config.main" target="11" />
+      <module name="cc.orangejuice.srs-api-config.test" target="11" />
       <module name="cc.orangejuice.srs-api-discovery.main" target="11" />
       <module name="cc.orangejuice.srs-api-discovery.test" target="11" />
+      <module name="cc.orangejuice.srs-api-gateway.main" target="11" />
+      <module name="cc.orangejuice.srs-api-gateway.test" target="11" />
       <module name="cc.orangejuice.srs-api-monitoring.main" target="11" />
       <module name="cc.orangejuice.srs-api-monitoring.test" target="11" />
       <module name="cc.orangejuice.srs-api-provider.main" target="11" />
       <module name="cc.orangejuice.srs-api-provider.test" target="11" />
       <module name="cc.orangejuice.srs-api-register.main" target="11" />
       <module name="cc.orangejuice.srs-api-register.test" target="11" />
+      <module name="cc.orangejuice.srs-api-registry.main" target="11" />
+      <module name="cc.orangejuice.srs-api-registry.test" target="11" />
       <module name="cc.orangejuice.srs-api-turbine-stream-service.main" target="11" />
       <module name="cc.orangejuice.srs-api-turbine-stream-service.test" target="11" />
+      <module name="cc.orangejuice.srs-auth-service.main" target="11" />
+      <module name="cc.orangejuice.srs-auth-service.test" target="11" />
       <module name="cc.orangejuice.srs-config.main" target="11" />
       <module name="cc.orangejuice.srs-config.test" target="11" />
       <module name="cc.orangejuice.srs-monitering.main" target="11" />
       <module name="cc.orangejuice.srs-monitering.test" target="11" />
+      <module name="cc.orangejuice.srs-monitor-admin.main" target="11" />
+      <module name="cc.orangejuice.srs-monitor-admin.test" target="11" />
+      <module name="cc.orangejuice.srs-monitor-hystrix.main" target="11" />
+      <module name="cc.orangejuice.srs-monitor-hystrix.test" target="11" />
+      <module name="cc.orangejuice.srs-monitor-turbine-stream.main" target="11" />
+      <module name="cc.orangejuice.srs-monitor-turbine-stream.test" target="11" />
       <module name="cc.orangejuice.srs-monitoring.main" target="11" />
       <module name="cc.orangejuice.srs-monitoring.test" target="11" />
       <module name="cc.orangejuice.srs-turbine-service.main" target="11" />

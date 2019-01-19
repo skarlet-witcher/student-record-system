@@ -1,0 +1,1683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1b17203e-71b5-4f2c-956d-080443729568" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/docker-compose.dev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-config/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-config/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/java/cc/orangejuice/srs/config/ConfigApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/java/cc/orangejuice/srs/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/api-gateway.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/api-registry.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/auth-service.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-admin.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-hystrix.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-turbine-stream.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-gateway/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-gateway/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-gateway/src/main/java/cc/orangejuice/api/gateway/GatewayApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-gateway/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-registry/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-registry/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-registry/src/main/java/cc/orangejuice/api/register/RegistryApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-api-registry/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/AuthServiceApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/AuthenticationFailureHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/AuthenticationSuccessHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/EntryPointUnauthorizedHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/JsonAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/JwtAuthenticationTokenFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/RestAccessDeniedHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/WebSecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/Hero.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/HeroNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/JwtAuthenticationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/UserNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/init/InitDatabase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/HeroRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/SysResourceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/SysRoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/SysUserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/HeroService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/MailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/SysResourceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/SysUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/util/JwtHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/util/Response.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/AccountResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/HeroController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/test/java/cc/orangejuice/srs/auth/AuthServiceApplicationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/test/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/test/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-admin/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-admin/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-admin/src/main/java/cc/orangejuice/srs/monitor/BootAdminApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-admin/src/main/java/cc/orangejuice/srs/monitor/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-admin/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-hystrix/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-hystrix/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-hystrix/src/main/java/cc/orangejuice/srs/monitor/HystrixDashboardApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-hystrix/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-turbine-stream/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-turbine-stream/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-turbine-stream/src/main/java/cc/orangejuice/srs/monitor/TurbineStreamServiceApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srs-monitor-turbine-stream/src/main/resources/bootstrap.yml" beforeDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/.gradle/" />
+    <ignored path="$PROJECT_DIR$/build/" />
+    <ignored path="$PROJECT_DIR$/srs-api-register/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-api-register/build/" />
+    <ignored path="$PROJECT_DIR$/srs-api-register/out/" />
+    <ignored path="$PROJECT_DIR$/srs-api-provider/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-api-provider/build/" />
+    <ignored path="$PROJECT_DIR$/srs-api-provider/out/" />
+    <ignored path="$PROJECT_DIR$/srs-api-gateway/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-api-gateway/build/" />
+    <ignored path="$PROJECT_DIR$/srs-api-gateway/out/" />
+    <ignored path="$PROJECT_DIR$/srs-api-discovery/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-api-discovery/build/" />
+    <ignored path="$PROJECT_DIR$/srs-api-registry/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-api-registry/build/" />
+    <ignored path="$PROJECT_DIR$/srs-api-registry/out/" />
+    <ignored path="$PROJECT_DIR$/srs-user-web-service/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-user-web-service/build/" />
+    <ignored path="$PROJECT_DIR$/srs-user-web-service/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/e2e/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/e2e/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/e2e/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@babel/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@babel/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@babel/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@ngtools/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@ngtools/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@ngtools/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@webassemblyjs/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@webassemblyjs/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@webassemblyjs/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@xtuc/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@xtuc/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@xtuc/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/acorn-dynamic-import/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/acorn-dynamic-import/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/acorn-dynamic-import/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/browserify-zlib/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/browserify-zlib/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/browserify-zlib/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/codelyzer/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/codelyzer/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/codelyzer/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io-client/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io-client/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io-client/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/follow-redirects/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/follow-redirects/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/follow-redirects/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/http-proxy-agent/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/http-proxy-agent/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/http-proxy-agent/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/https-proxy-agent/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/https-proxy-agent/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/https-proxy-agent/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/istanbul-lib-source-maps/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/istanbul-lib-source-maps/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/istanbul-lib-source-maps/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine-core/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine-core/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine-core/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma-coverage-istanbul-reporter/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma-coverage-istanbul-reporter/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma-coverage-istanbul-reporter/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma-jasmine-html-reporter/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma-jasmine-html-reporter/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma-jasmine-html-reporter/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/log4js/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/log4js/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/log4js/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/mime/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/mime/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/mime/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/nice-try/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/nice-try/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/nice-try/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/node-fetch-npm/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/node-fetch-npm/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/node-fetch-npm/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/node-gyp/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/node-gyp/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/node-gyp/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/node-sass/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/node-sass/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/node-sass/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/performance-now/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/performance-now/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/performance-now/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/postcss-load-config/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/postcss-load-config/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/postcss-load-config/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/postcss-loader/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/postcss-loader/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/postcss-loader/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/promise/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/promise/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/promise/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/rxjs/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/rxjs/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/rxjs/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/schema-utils/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/schema-utils/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/schema-utils/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/shelljs/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/shelljs/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/shelljs/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-client/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-client/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-client/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-parser/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-parser/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-parser/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/sockjs-client/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/sockjs-client/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/sockjs-client/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/sprintf-js/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/sprintf-js/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/sprintf-js/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/streamroller/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/streamroller/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/streamroller/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/uglifyjs-webpack-plugin/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/uglifyjs-webpack-plugin/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/uglifyjs-webpack-plugin/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/uri-js/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/uri-js/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/uri-js/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-middleware/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-middleware/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-middleware/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-server/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-server/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-server/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-log/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-log/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-log/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/xregexp/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/xregexp/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/xregexp/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler-cli/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler-cli/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler-cli/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/forms/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/forms/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/forms/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/language-service/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/language-service/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/language-service/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/architect/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/architect/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/architect/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/build-angular/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/build-angular/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/build-angular/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/build-optimizer/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/build-optimizer/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/build-optimizer/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/build-webpack/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/build-webpack/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/build-webpack/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/core/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/core/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/core/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/schematics/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/schematics/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular-devkit/schematics/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@babel/traverse/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@babel/traverse/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@babel/traverse/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@ngtools/webpack/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@ngtools/webpack/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@ngtools/webpack/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@webassemblyjs/helper-module-context/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@webassemblyjs/helper-module-context/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@webassemblyjs/helper-module-context/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@webassemblyjs/ieee754/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@webassemblyjs/ieee754/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@webassemblyjs/ieee754/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@webassemblyjs/utf8/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@webassemblyjs/utf8/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@webassemblyjs/utf8/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@xtuc/long/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@xtuc/long/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@xtuc/long/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/codelyzer/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/codelyzer/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/codelyzer/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io-client/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io-client/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io-client/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/follow-redirects/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/follow-redirects/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/follow-redirects/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/http-proxy-agent/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/http-proxy-agent/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/http-proxy-agent/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/https-proxy-agent/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/https-proxy-agent/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/https-proxy-agent/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/istanbul-lib-source-maps/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/istanbul-lib-source-maps/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/istanbul-lib-source-maps/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine-core/lib/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine-core/lib/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine-core/lib/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/log4js/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/log4js/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/log4js/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-client/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-client/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-client/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-parser/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-parser/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-parser/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/sockjs-client/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/sockjs-client/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/sockjs-client/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/streamroller/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/streamroller/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/streamroller/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/uglifyjs-webpack-plugin/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/uglifyjs-webpack-plugin/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/uglifyjs-webpack-plugin/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-middleware/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-middleware/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-middleware/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-server/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-server/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-server/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/browser/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/browser/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/browser/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm2015/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm2015/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm2015/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm5/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm5/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm5/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm2015/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm2015/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm2015/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm5/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm5/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm5/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/http/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/http/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/http/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/esm2015/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/esm2015/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/esm2015/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/esm5/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/esm5/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/esm5/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/esm2015/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/esm2015/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/esm2015/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/esm5/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/esm5/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/esm5/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/forms/esm2015/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/forms/esm2015/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/forms/esm2015/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/forms/esm5/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/forms/esm5/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/forms/esm5/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/animations/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/animations/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/animations/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm2015/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm2015/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm2015/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm5/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm5/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm5/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/esm2015/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/esm2015/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/esm2015/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/esm5/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/esm5/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/esm5/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm2015/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm2015/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm2015/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm5/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm5/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm5/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/upgrade/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/upgrade/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/upgrade/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@babel/traverse/node_modules/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@babel/traverse/node_modules/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@babel/traverse/node_modules/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/application/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/application/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/application/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/e2e/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/e2e/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/e2e/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/library/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/library/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/library/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/universal/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/universal/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/universal/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/codelyzer/node_modules/sprintf-js/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/codelyzer/node_modules/sprintf-js/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/codelyzer/node_modules/sprintf-js/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io-client/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io-client/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/engine.io-client/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/follow-redirects/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/follow-redirects/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/follow-redirects/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/http-proxy-agent/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/http-proxy-agent/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/http-proxy-agent/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/https-proxy-agent/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/https-proxy-agent/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/https-proxy-agent/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/istanbul-lib-source-maps/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/istanbul-lib-source-maps/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/istanbul-lib-source-maps/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/jasmine-core/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/jasmine-core/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/jasmine-core/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine-core/lib/jasmine-core/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine-core/lib/jasmine-core/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine-core/lib/jasmine-core/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma/node_modules/mime/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma/node_modules/mime/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/karma/node_modules/mime/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/log4js/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/log4js/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/log4js/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-client/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-client/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-client/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-parser/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-parser/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/socket.io-parser/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/sockjs-client/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/sockjs-client/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/sockjs-client/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/streamroller/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/streamroller/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/streamroller/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/uglifyjs-webpack-plugin/node_modules/schema-utils/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/uglifyjs-webpack-plugin/node_modules/schema-utils/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/uglifyjs-webpack-plugin/node_modules/schema-utils/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack/node_modules/schema-utils/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack/node_modules/schema-utils/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack/node_modules/schema-utils/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-middleware/node_modules/mime/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-middleware/node_modules/mime/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-middleware/node_modules/mime/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-server/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-server/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/webpack-dev-server/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/browser/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/browser/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/browser/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm2015/browser/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm2015/browser/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm2015/browser/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm5/browser/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm5/browser/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm5/browser/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm2015/http/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm2015/http/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm2015/http/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm2015/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm2015/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm2015/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm5/http/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm5/http/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm5/http/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm5/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm5/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm5/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/http/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/http/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/http/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/esm2015/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/esm2015/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/esm2015/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/esm5/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/esm5/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/compiler/esm5/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/esm2015/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/esm2015/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/esm2015/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/esm5/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/esm5/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/core/esm5/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm2015/animations/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm2015/animations/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm2015/animations/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm2015/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm2015/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm2015/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm5/animations/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm5/animations/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm5/animations/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm5/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm5/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser/esm5/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/esm2015/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/esm2015/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/esm2015/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/esm5/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/esm5/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/platform-browser-dynamic/esm5/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm2015/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm2015/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm2015/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm2015/upgrade/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm2015/upgrade/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm2015/upgrade/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm5/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm5/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm5/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm5/upgrade/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm5/upgrade/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/router/esm5/upgrade/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@babel/traverse/node_modules/debug/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@babel/traverse/node_modules/debug/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@babel/traverse/node_modules/debug/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/application/files/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/application/files/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/application/files/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/e2e/files/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/e2e/files/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/e2e/files/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/library/files/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/library/files/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/library/files/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/universal/files/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/universal/files/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/universal/files/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/jasmine-core/lib/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/jasmine-core/lib/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/jasmine-core/lib/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine-core/lib/jasmine-core/example/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine-core/lib/jasmine-core/example/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine-core/lib/jasmine-core/example/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm2015/browser/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm2015/browser/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm2015/browser/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm5/browser/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm5/browser/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/animations/esm5/browser/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm2015/http/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm2015/http/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm2015/http/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm5/http/testing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm5/http/testing/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@angular/common/esm5/http/testing/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/library/files/__projectRoot__/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/library/files/__projectRoot__/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/@schematics/angular/library/files/__projectRoot__/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/jasmine-core/lib/jasmine-core/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/jasmine-core/lib/jasmine-core/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/jasmine-core/lib/jasmine-core/out/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/jasmine-core/lib/jasmine-core/example/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/jasmine-core/lib/jasmine-core/example/build/" />
+    <ignored path="$PROJECT_DIR$/srs-web/node_modules/jasmine/node_modules/jasmine-core/lib/jasmine-core/example/out/" />
+    <ignored path="$PROJECT_DIR$/srs-auth-service/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-auth-service/build/" />
+    <ignored path="$PROJECT_DIR$/srs-auth-service/out/" />
+    <ignored path="$PROJECT_DIR$/srs-turbine-service/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-turbine-service/build/" />
+    <ignored path="$PROJECT_DIR$/srs-turbine-service/out/" />
+    <ignored path="$PROJECT_DIR$/srs-config/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-config/build/" />
+    <ignored path="$PROJECT_DIR$/srs-config/out/" />
+    <ignored path="$PROJECT_DIR$/srs-monitering/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-monitering/build/" />
+    <ignored path="$PROJECT_DIR$/srs-monitering/out/" />
+    <ignored path="$PROJECT_DIR$/srs-monitoring/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-monitoring/build/" />
+    <ignored path="$PROJECT_DIR$/srs-monitoring/out/" />
+    <ignored path="$PROJECT_DIR$/srs-turbine-stream-service/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-turbine-stream-service/build/" />
+    <ignored path="$PROJECT_DIR$/srs-turbine-stream-service/out/" />
+    <ignored path="$PROJECT_DIR$/srs-api-config/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-api-config/build/" />
+    <ignored path="$PROJECT_DIR$/srs-api-config/out/" />
+    <ignored path="$PROJECT_DIR$/srs-api-monitoring/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-api-monitoring/build/" />
+    <ignored path="$PROJECT_DIR$/srs-api-monitoring/out/" />
+    <ignored path="$PROJECT_DIR$/srs-api-turbine-stream-service/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-api-turbine-stream-service/build/" />
+    <ignored path="$PROJECT_DIR$/srs-api-turbine-stream-service/out/" />
+    <ignored path="$PROJECT_DIR$/srs-monitor-hystrix/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-monitor-hystrix/build/" />
+    <ignored path="$PROJECT_DIR$/srs-monitor-hystrix/out/" />
+    <ignored path="$PROJECT_DIR$/srs-monitor-turbine-stream/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-monitor-turbine-stream/build/" />
+    <ignored path="$PROJECT_DIR$/srs-monitor-turbine-stream/out/" />
+    <ignored path="$PROJECT_DIR$/srs-monitor-admin/.gradle/" />
+    <ignored path="$PROJECT_DIR$/srs-monitor-admin/build/" />
+    <ignored path="$PROJECT_DIR$/srs-monitor-admin/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/srs-auth-service">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/srs-api-config">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/srs-api-gateway">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/srs-api-registry">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/srs-monitor-admin">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/srs-monitor-hystrix">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/srs-monitor-turbine-stream">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="student-record-system" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit4 Test Class" />
+        <option value="Class" />
+        <option value="package-info" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>local</find>
+      <find>haspermission</find>
+      <find>User</find>
+      <find>erase</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+      <replace>SysUser</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/SysUserRepository.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/ResponseMsg.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/Response.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/util/ErrorMessage.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/SysUserNotFoundException.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/UserNotFoundException.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/JsonUsernamePasswordAuthenticationFilter.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/JsonAuthenticationFilter.java" />
+        <option value="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/gateway.yml" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/EntryPointUnauthorizedHandler.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/JwtAuthenticationTokenFilter.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/util/Response.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/SysResourceService.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysResource.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysRole.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/AuthenticationSuccessHandler.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/WebSecurityConfig.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/SysUserService.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysUser.java" />
+        <option value="$PROJECT_DIR$/settings.gradle" />
+        <option value="$PROJECT_DIR$/srs-api-config/Dockerfile" />
+        <option value="$PROJECT_DIR$/srs-auth-service/Dockerfile" />
+        <option value="$PROJECT_DIR$/srs-api-registry/Dockerfile" />
+        <option value="$PROJECT_DIR$/srs-monitor-admin/src/main/java/cc/orangejuice/srs/monitor/BootAdminApplication.java" />
+        <option value="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-hydrix.yml" />
+        <option value="$PROJECT_DIR$/srs-monitor-hystrix/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-hystrix.yml" />
+        <option value="$PROJECT_DIR$/srs-api-gateway/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/srs-api-registry/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/gradle.build.dat" />
+        <option value="$PROJECT_DIR$/srs-api-gateway/Dockerfile" />
+        <option value="$PROJECT_DIR$/srs-monitor-admin/Dockerfile" />
+        <option value="$PROJECT_DIR$/srs-monitor-hystrix/Dockerfile" />
+        <option value="$PROJECT_DIR$/srs-monitor-turbine-stream/Dockerfile" />
+        <option value="$PROJECT_DIR$/srs-api-gateway/build.gradle" />
+        <option value="$PROJECT_DIR$/docker-compose.dev.yml" />
+        <option value="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-turbine-stream.yml" />
+        <option value="$PROJECT_DIR$/srs-api-registry/build.gradle" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/gradle.properties" />
+        <option value="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/auth-service.yml" />
+        <option value="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-admin.yml" />
+        <option value="$PROJECT_DIR$/srs-monitor-hystrix/src/main/java/cc/orangejuice/srs/monitor/HystrixDashboardApplication.java" />
+        <option value="$PROJECT_DIR$/srs-monitor-admin/build.gradle" />
+        <option value="$PROJECT_DIR$/srs-monitor-hystrix/build.gradle" />
+        <option value="$PROJECT_DIR$/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/application.yml" />
+        <option value="$PROJECT_DIR$/srs-auth-service/build.gradle" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/AccountResource.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/MailService.java" />
+        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/AuthServiceApplication.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="570" />
+    <option name="y" value="642" />
+    <option name="width" value="2152" />
+    <option name="height" value="1612" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="cloud-auth" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547936886935" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/srs-user-web-service/src/main/java/cc/orangejuice" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="C:\Cherry\Projects\student-record-system\srs-web\node_modules\tslint" />
+    <property name="nodejs.protractor.protractor_package" value="$PROJECT_DIR$/srs-web/node_modules/protractor" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="C:/Program Files/nodejs/node" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="C:\Cherry\Projects\student-record-system\srs-web\node_modules\typescript\lib" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/SysUserRepository.java" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="cc.orangejuice.srs.auth" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cc.orangejuice.srs.auth.exception" />
+      <recent name="cc.orangejuice.srs.auth.repository" />
+      <recent name="cc.orangejuice.srs.monitor" />
+      <recent name="cc.orangejuice.srs.monitoring" />
+      <recent name="cc.orangejuice.srs.config" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Cherry\Projects\student-record-system\srs-monitor-turbine-stream" />
+      <recent name="C:\Cherry\Projects\student-record-system\srs-monitor-hystrix" />
+      <recent name="C:\Cherry\Projects\student-record-system\srs-monitor-admin" />
+      <recent name="C:\Cherry\Projects\student-record-system\srs-api-registry" />
+      <recent name="C:\Cherry\Projects\student-record-system\srs-api-config" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="cc.orangejuice.srs.auth.domain" />
+      <recent name="cc.orangejuice.srs.auth.service" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Docker.Docker">
+    <configuration name="student-record-system [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="assemble" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="student-record-system [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="student-record-system:srs-api-config [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/srs-api-config" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="assemble" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="student-record-system:srs-api-config [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/srs-api-config" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="E2E Tests (srs-web)" type="JavaScriptTestRunnerProtractor">
+      <config-file value="$PROJECT_DIR$/srs-web/e2e/protractor.conf.js" />
+      <node-interpreter value="project" />
+      <protractor-package value="$PROJECT_DIR$/srs-web/node_modules/protractor" />
+      <protractor-options value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular Application (srs-web)" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="cc.orangejuice.srs-auth-service.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cc.orangejuice.srs.auth.AuthServiceApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <additionalParameters>
+        <param>
+          <option name="enabled" value="true" />
+          <option name="name" value="" />
+          <option name="value" value="" />
+        </param>
+      </additionalParameters>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BootAdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="cc.orangejuice.srs-monitor-admin.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cc.orangejuice.srs.monitor.BootAdminApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="cc.orangejuice.srs-api-config.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cc.orangejuice.srs.config.ConfigApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="cc.orangejuice.srs-api-registry.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cc.orangejuice.api.register.RegistryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="cc.orangejuice.srs-api-gateway.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cc.orangejuice.api.gateway.GatewayApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HystrixDashboardApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="cc.orangejuice.srs-monitor-hystrix.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cc.orangejuice.srs.monitor.HystrixDashboardApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TurbineStreamServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="cc.orangejuice.srs-monitor-turbine-stream.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cc.orangejuice.srs.monitor.TurbineStreamServiceApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ZuulApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="cc.orangejuice.srs-api-gateway.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cc.orangejuice.api.gateway.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Docker" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envVars">
+            <list>
+              <DockerEnvVarImpl>
+                <option name="name" value="CONFIG_SERVICE_PASSWORD" />
+                <option name="value" value="123456" />
+              </DockerEnvVarImpl>
+            </list>
+          </option>
+          <option name="secondarySourceFiles">
+            <list>
+              <option value="docker-compose.dev.yml" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.mysql: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="mysql" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server (srs-web)" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/srs-web/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.Docker" />
+      <item itemvalue="Docker.docker-compose.yml.mysql: Compose Deployment" />
+      <item itemvalue="Gradle.student-record-system [assemble]" />
+      <item itemvalue="Gradle.student-record-system [clean]" />
+      <item itemvalue="Gradle.student-record-system:srs-api-config [clean]" />
+      <item itemvalue="Gradle.student-record-system:srs-api-config [assemble]" />
+      <item itemvalue="JavaScript Debug.Angular Application (srs-web)" />
+      <item itemvalue="npm.Angular CLI Server (srs-web)" />
+      <item itemvalue="Protractor.E2E Tests (srs-web)" />
+      <item itemvalue="Spring Boot.BootAdminApplication" />
+      <item itemvalue="Spring Boot.HystrixDashboardApplication" />
+      <item itemvalue="Spring Boot.TurbineStreamServiceApplication" />
+      <item itemvalue="Spring Boot.ZuulApplication" />
+      <item itemvalue="Spring Boot.ConfigApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+      <item itemvalue="Spring Boot.AuthServiceApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.student-record-system:srs-api-config [assemble]" />
+        <item itemvalue="Gradle.student-record-system:srs-api-config [clean]" />
+        <item itemvalue="Gradle.student-record-system [assemble]" />
+        <item itemvalue="Docker.docker-compose.yml.mysql: Compose Deployment" />
+        <item itemvalue="Gradle.student-record-system [clean]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpringGeneralSettings">
+    <option name="allowAutoConfigurationMode" value="true" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1b17203e-71b5-4f2c-956d-080443729568" name="Default Changelist" comment="" />
+      <created>1546781006610</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1546781006610</updated>
+      <workItem from="1546781011086" duration="16823000" />
+      <workItem from="1546856152576" duration="56302000" />
+      <workItem from="1547064740882" duration="7181000" />
+      <workItem from="1547074227179" duration="20169000" />
+      <workItem from="1547207359814" duration="1288000" />
+      <workItem from="1547291057053" duration="1190000" />
+      <workItem from="1547933888641" duration="1679000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="AuthServiceApplicationTest - 2019.01.09 at 15h 16m 57s.xml">
+      <configuration name="AuthServiceApplicationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AuthServiceApplicationTest - 2019.01.09 at 15h 18m 27s.xml">
+      <configuration name="AuthServiceApplicationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AuthServiceApplicationTest - 2019.01.09 at 15h 20m 16s.xml">
+      <configuration name="AuthServiceApplicationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AuthServiceApplicationTest - 2019.01.09 at 15h 21m 07s.xml">
+      <configuration name="AuthServiceApplicationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AuthServiceApplicationTest - 2019.01.09 at 15h 22m 17s.xml">
+      <configuration name="AuthServiceApplicationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AuthServiceApplicationTest - 2019.01.09 at 15h 23m 15s.xml">
+      <configuration name="AuthServiceApplicationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AuthServiceApplicationTest - 2019.01.09 at 15h 25m 36s.xml">
+      <configuration name="AuthServiceApplicationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AuthServiceApplicationTest - 2019.01.09 at 15h 28m 17s.xml">
+      <configuration name="AuthServiceApplicationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AuthServiceApplicationTest - 2019.01.09 at 15h 34m 02s.xml">
+      <configuration name="AuthServiceApplicationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AuthServiceApplicationTest - 2019.01.09 at 15h 36m 18s.xml">
+      <configuration name="AuthServiceApplicationTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="104632000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-6" y="-6" width="1513" height="983" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20274915" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="npm" order="7" side_tool="true" />
+      <window_info id="Web" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49896908" weight="0.27198124" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="TypeScript" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32942554" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010309" side_tool="true" weight="0.25791326" />
+      <window_info anchor="bottom" id="Java Enterprise" order="11" />
+      <window_info anchor="bottom" id="Build" order="12" sideWeight="0.49965635" weight="0.1887456" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="bottom" id="Docker" order="15" sideWeight="0.49896908" visible="true" weight="0.25791326" />
+      <window_info anchor="bottom" id="Messages" order="16" sideWeight="0.49965635" weight="0.28956625" />
+      <window_info anchor="bottom" id="Run Dashboard" order="17" sideWeight="0.49896908" weight="0.36225086" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.17319588" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Gradle" order="7" visible="true" weight="0.14845361" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="Bean Validation" order="10" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/srs-web" />
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/notification-service.yml" />
+    <entry file="file://$PROJECT_DIR$/srs-web/README.md" />
+    <entry file="file://$PROJECT_DIR$/srs-api-registry/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle.build.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.0.7.RELEASE/spring-boot-autoconfigure-2.0.7.RELEASE.jar!/org/springframework/boot/autoconfigure/SpringBootApplication.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/src/main/java/cc/orangejuice/srs/monitor/SecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-registry/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-hystrix/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="53" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-turbine-stream/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-gateway/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-config/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-config/build.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-gateway/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/turbine-stream-service.yml" />
+    <entry file="file://$PROJECT_DIR$/srs-api-registry/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.gradle/wrapper/dists/gradle-4.10-all/54ye4nru8k2rpf7xwj15he4fo/gradle-4.10/src/core-api/org/gradle/api/Project.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="429" column="17" selection-start-line="429" selection-start-column="17" selection-end-line="429" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradlew">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-admin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-hystrix.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-turbine-stream.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/api-gateway.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-turbine-stream/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" selection-start-line="1" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-hystrix/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/rabbitmq/.erlang.cookie" />
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/auth-service.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="61" column="49" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/logs/auth-service/spring.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5307">
+          <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/Hero.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/HeroController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/util/Response.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/AuthServiceApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/WebSecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1482">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/src/main/java/cc/orangejuice/srs/monitor/BootAdminApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="59" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-hystrix/src/main/java/cc/orangejuice/srs/monitor/HystrixDashboardApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-hystrix/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/MailService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-gateway/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-gateway/src/main/java/cc/orangejuice/api/gateway/GatewayApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/AccountResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="gradleExecuteTaskHistory">
+    <option value="$PROJECT_DIR$/srs-api-gateway" />
+    <option value="bootJar" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Bundled Protobuf Distribution</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>srs-api-gateway|orangejuice</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Gradle: antlr:antlr:2.7.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

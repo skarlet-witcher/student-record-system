@@ -1,8 +1,0 @@
-server:
-  port: 8021
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'

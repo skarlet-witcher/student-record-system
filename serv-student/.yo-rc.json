@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "cc.orangejuice.srs",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.7.2",
+    "applicationType": "microservice",
+    "baseName": "srs",
+    "packageName": "cc.orangejuice.srs",
+    "packageFolder": "cc/orangejuice/srs",
+    "serverPort": "8081",
+    "authenticationType": "uaa",
+    "uaaBaseName": "srs",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NDExYzNkZDMzNmRhOTQ4OTdlNDcyMDAyNmFiNTU0MTRiMjZjMjY2MTM3MmFmMTM5NTQ5MDM4Nzg0ZWY0ODg0MmQ4NmNlNmFmMTQzNDljMTk0MGJiNDNjNDNhMjhlMGE5OWUwODI4Y2M4YTRkZjQ5YWRkOTgyNDVjOWU5Yzc1NWI=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "zh-cn"
+    ],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

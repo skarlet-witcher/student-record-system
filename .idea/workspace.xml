@@ -2,76 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b17203e-71b5-4f2c-956d-080443729568" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/docker-compose.dev.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-config/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-config/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/java/cc/orangejuice/srs/config/ConfigApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/java/cc/orangejuice/srs/config/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/api-gateway.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/api-registry.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/auth-service.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-admin.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-hystrix.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-turbine-stream.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-gateway/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-gateway/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-gateway/src/main/java/cc/orangejuice/api/gateway/GatewayApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-gateway/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-registry/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-registry/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-registry/src/main/java/cc/orangejuice/api/register/RegistryApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-api-registry/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/AuthServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/AuthenticationFailureHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/AuthenticationSuccessHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/Constants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/EntryPointUnauthorizedHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/JsonAuthenticationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/JwtAuthenticationTokenFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/RestAccessDeniedHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/WebSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/Hero.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysResource.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysRole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/HeroNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/JwtAuthenticationException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/UserNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/init/InitDatabase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/HeroRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/SysResourceRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/SysRoleRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/SysUserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/HeroService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/MailService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/SysResourceService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/SysUserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/util/JwtHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/util/Response.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/AccountResource.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/HeroController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/test/java/cc/orangejuice/srs/auth/AuthServiceApplicationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/test/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-auth-service/src/test/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-admin/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-admin/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-admin/src/main/java/cc/orangejuice/srs/monitor/BootAdminApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-admin/src/main/java/cc/orangejuice/srs/monitor/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-admin/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-hystrix/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-hystrix/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-hystrix/src/main/java/cc/orangejuice/srs/monitor/HystrixDashboardApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-hystrix/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-turbine-stream/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-turbine-stream/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-turbine-stream/src/main/java/cc/orangejuice/srs/monitor/TurbineStreamServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srs-monitor-turbine-stream/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/serv-auth/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/settings.gradle" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -672,6 +608,15 @@
     <ignored path="$PROJECT_DIR$/srs-monitor-admin/.gradle/" />
     <ignored path="$PROJECT_DIR$/srs-monitor-admin/build/" />
     <ignored path="$PROJECT_DIR$/srs-monitor-admin/out/" />
+    <ignored path="$PROJECT_DIR$/cloud-auth/.gradle/" />
+    <ignored path="$PROJECT_DIR$/cloud-auth/build/" />
+    <ignored path="$PROJECT_DIR$/cloud-auth/out/" />
+    <ignored path="$PROJECT_DIR$/cloud-config/.gradle/" />
+    <ignored path="$PROJECT_DIR$/cloud-config/build/" />
+    <ignored path="$PROJECT_DIR$/cloud-config/out/" />
+    <ignored path="$PROJECT_DIR$/cloud-auth/srs-auth-service/.gradle/" />
+    <ignored path="$PROJECT_DIR$/cloud-auth/srs-auth-service/build/" />
+    <ignored path="$PROJECT_DIR$/cloud-auth/srs-auth-service/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -725,7 +670,26 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/SrsApp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/serv-auth/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="232" column="5" lean-forward="true" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -755,7 +719,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/SysUserRepository.java" />
         <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/ResponseMsg.java" />
         <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/Response.java" />
         <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/util/ErrorMessage.java" />
@@ -806,6 +769,7 @@
         <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/AccountResource.java" />
         <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/MailService.java" />
         <option value="$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/AuthServiceApplication.java" />
+        <option value="$PROJECT_DIR$/serv-auth/build.gradle" />
       </list>
     </option>
   </component>
@@ -827,8 +791,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -839,12 +801,65 @@
             <path>
               <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
               <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="cloud-auth" type="462c0819:PsiDirectoryNode" />
+              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cc" type="462c0819:PsiDirectoryNode" />
+              <item name="orangejuice" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cc" type="462c0819:PsiDirectoryNode" />
+              <item name="orangejuice" type="462c0819:PsiDirectoryNode" />
+              <item name="srs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -855,7 +870,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547936886935" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547937523067" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="editor.config.ad.shown" value="true" />
@@ -1163,7 +1178,8 @@
       <workItem from="1547074227179" duration="20169000" />
       <workItem from="1547207359814" duration="1288000" />
       <workItem from="1547291057053" duration="1190000" />
-      <workItem from="1547933888641" duration="1679000" />
+      <workItem from="1547933888641" duration="2726000" />
+      <workItem from="1547938073342" duration="200000" />
     </task>
     <servers />
   </component>
@@ -1200,12 +1216,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104632000" />
+    <option name="totallyTimeSpent" value="105879000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="983" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20274915" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20549828" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1226,10 +1242,10 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32942554" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010309" side_tool="true" weight="0.25791326" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
-      <window_info anchor="bottom" id="Build" order="12" sideWeight="0.49965635" weight="0.1887456" />
+      <window_info anchor="bottom" id="Build" order="12" sideWeight="0.49965635" visible="true" weight="0.1887456" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="bottom" id="Version Control" order="14" />
-      <window_info anchor="bottom" id="Docker" order="15" sideWeight="0.49896908" visible="true" weight="0.25791326" />
+      <window_info anchor="bottom" id="Docker" order="15" sideWeight="0.49896908" weight="0.25791326" />
       <window_info anchor="bottom" id="Messages" order="16" sideWeight="0.49965635" weight="0.28956625" />
       <window_info anchor="bottom" id="Run Dashboard" order="17" sideWeight="0.49896908" weight="0.36225086" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1255,32 +1271,6 @@
     </ignored-roots>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/notification-service.yml" />
-    <entry file="file://$PROJECT_DIR$/srs-web/README.md" />
-    <entry file="file://$PROJECT_DIR$/srs-api-registry/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradle.build.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.0.7.RELEASE/spring-boot-autoconfigure-2.0.7.RELEASE.jar!/org/springframework/boot/autoconfigure/SpringBootApplication.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -1288,91 +1278,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/src/main/java/cc/orangejuice/srs/monitor/SecurityConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-registry/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-auth-service/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-monitor-hystrix/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="53" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-monitor-turbine-stream/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-gateway/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-config/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-config/build.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-gateway/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/src/main/java/cc/orangejuice/srs/monitor/SecurityConfig.java" />
+    <entry file="file://$PROJECT_DIR$/srs-api-registry/Dockerfile" />
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/Dockerfile" />
+    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/Dockerfile" />
+    <entry file="file://$PROJECT_DIR$/srs-monitor-hystrix/Dockerfile" />
+    <entry file="file://$PROJECT_DIR$/srs-monitor-turbine-stream/Dockerfile" />
+    <entry file="file://$PROJECT_DIR$/srs-api-gateway/Dockerfile" />
+    <entry file="file://$PROJECT_DIR$/srs-api-config/Dockerfile" />
+    <entry file="file://$PROJECT_DIR$/srs-api-config/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/srs-api-gateway/build.gradle" />
     <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/turbine-stream-service.yml" />
-    <entry file="file://$PROJECT_DIR$/srs-api-registry/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-api-registry/build.gradle" />
     <entry file="file://$USER_HOME$/.gradle/wrapper/dists/gradle-4.10-all/54ye4nru8k2rpf7xwj15he4fo/gradle-4.10/src/core-api/org/gradle/api/Project.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
           <caret line="429" column="17" selection-start-line="429" selection-start-column="17" selection-end-line="429" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1386,203 +1307,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-admin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-hystrix.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-turbine-stream.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/api-gateway.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-monitor-turbine-stream/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" selection-start-line="1" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-monitor-hystrix/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/src/main/resources/bootstrap.yml" />
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-admin.yml" />
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-hystrix.yml" />
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/monitor-turbine-stream.yml" />
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/api-gateway.yml" />
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/application.yml" />
+    <entry file="file://$PROJECT_DIR$/srs-monitor-turbine-stream/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/srs-monitor-hystrix/src/main/resources/bootstrap.yml" />
     <entry file="file://$PROJECT_DIR$/data/rabbitmq/.erlang.cookie" />
-    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/auth-service.yml">
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/auth-service.yml" />
+    <entry file="file://$PROJECT_DIR$/docker-compose.dev.yml" />
+    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/application.yml" />
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml" />
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysUser.java" />
+    <entry file="file://$PROJECT_DIR$/data/logs/auth-service/spring.log" />
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/Hero.java" />
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/HeroController.java" />
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/util/Response.java" />
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/AuthServiceApplication.java" />
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/WebSecurityConfig.java" />
+    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/src/main/java/cc/orangejuice/srs/monitor/BootAdminApplication.java" />
+    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/srs-monitor-hystrix/src/main/java/cc/orangejuice/srs/monitor/HystrixDashboardApplication.java" />
+    <entry file="file://$PROJECT_DIR$/srs-monitor-hystrix/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/MailService.java" />
+    <entry file="file://$PROJECT_DIR$/srs-api-gateway/src/main/resources/bootstrap.yml" />
+    <entry file="file://$PROJECT_DIR$/srs-api-gateway/src/main/java/cc/orangejuice/api/gateway/GatewayApplication.java" />
+    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/AccountResource.java" />
+    <entry file="file://$PROJECT_DIR$/serv-auth/.editorconfig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="133">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.dev.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-config/src/main/resources/shared/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="61" column="49" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/logs/auth-service/spring.log">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5307">
-          <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
+        <state relative-caret-position="551">
+          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/Hero.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-auth-service/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/HeroController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/util/Response.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/AuthServiceApplication.java">
+    <entry file="file://$PROJECT_DIR$/serv-auth/.yo-rc.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
-          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+          <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/WebSecurityConfig.java">
+    <entry file="file://$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/SrsApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1482">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        <state relative-caret-position="304">
+          <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/src/main/java/cc/orangejuice/srs/monitor/BootAdminApplication.java">
+    <entry file="file://$PROJECT_DIR$/serv-auth/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-monitor-admin/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="59" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-monitor-hystrix/src/main/java/cc/orangejuice/srs/monitor/HystrixDashboardApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-monitor-hystrix/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/MailService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-gateway/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-api-gateway/src/main/java/cc/orangejuice/api/gateway/GatewayApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/AccountResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="418">
+          <caret line="232" column="5" lean-forward="true" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="5" />
         </state>
       </provider>
     </entry>

@@ -16,7 +16,7 @@ allprojects {
     apply plugin: "io.spring.dependency-management"
 
     group 'cc.orangejuice'
-    version '1.0-SNAPSHOT'
+    version '0.0.1-SNAPSHOT'
     sourceCompatibility = 11
 
     repositories {

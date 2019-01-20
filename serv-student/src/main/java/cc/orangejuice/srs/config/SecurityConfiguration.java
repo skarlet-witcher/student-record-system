@@ -1,33 +1,30 @@
 package cc.orangejuice.srs.config;
 
-import cc.orangejuice.srs.config.oauth2.OAuth2JwtAccessTokenConverter;
-import cc.orangejuice.srs.config.oauth2.OAuth2Properties;
-import cc.orangejuice.srs.security.oauth2.OAuth2SignatureVerifierClient;
-import cc.orangejuice.srs.security.AuthoritiesConstants;
+import cc.orangejuice.srs.security.*;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cloud.client.loadbalancer.RestTemplateCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.client.OAuth2ClientContext;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
+import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.web.client.RestTemplate;
+import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 
 @Configuration
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+@Import(SecurityProblemSupport.class)
 public class SecurityConfiguration extends ResourceServerConfigurerAdapter {
-    private final OAuth2Properties oAuth2Properties;
 
-    public SecurityConfiguration(OAuth2Properties oAuth2Properties) {
-        this.oAuth2Properties = oAuth2Properties;
+    private final SecurityProblemSupport problemSupport;
+
+    public SecurityConfiguration(SecurityProblemSupport problemSupport) {
+        this.problemSupport = problemSupport;
     }
 
     @Override
@@ -35,6 +32,10 @@ public class SecurityConfiguration extends ResourceServerConfigurerAdapter {
         http
             .csrf()
             .disable()
+            .exceptionHandling()
+            .authenticationEntryPoint(problemSupport)
+            .accessDeniedHandler(problemSupport)
+        .and()
             .headers()
             .frameOptions()
             .disable()
@@ -47,29 +48,16 @@ public class SecurityConfiguration extends ResourceServerConfigurerAdapter {
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN);
+
     }
 
+    /**
+     * This OAuth2RestTemplate is only used by AuthorizationHeaderUtil that is currently used by TokenRelayRequestInterceptor
+     */
     @Bean
-    public TokenStore tokenStore(JwtAccessTokenConverter jwtAccessTokenConverter) {
-        return new JwtTokenStore(jwtAccessTokenConverter);
+    public OAuth2RestTemplate oAuth2RestTemplate(OAuth2ProtectedResourceDetails oAuth2ProtectedResourceDetails,
+        OAuth2ClientContext oAuth2ClientContext) {
+        return new OAuth2RestTemplate(oAuth2ProtectedResourceDetails, oAuth2ClientContext);
     }
 
-    @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter(OAuth2SignatureVerifierClient signatureVerifierClient) {
-        return new OAuth2JwtAccessTokenConverter(oAuth2Properties, signatureVerifierClient);
-    }
-
-    @Bean
-	@Qualifier("loadBalancedRestTemplate")
-    public RestTemplate loadBalancedRestTemplate(RestTemplateCustomizer customizer) {
-        RestTemplate restTemplate = new RestTemplate();
-        customizer.customize(restTemplate);
-        return restTemplate;
-    }
-
-    @Bean
-    @Qualifier("vanillaRestTemplate")
-    public RestTemplate vanillaRestTemplate() {
-        return new RestTemplate();
-    }
 }

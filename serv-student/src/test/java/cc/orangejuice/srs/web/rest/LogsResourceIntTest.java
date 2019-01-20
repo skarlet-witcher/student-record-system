@@ -1,7 +1,6 @@
 package cc.orangejuice.srs.web.rest;
 
 import cc.orangejuice.srs.SrsApp;
-import cc.orangejuice.srs.config.SecurityBeanOverrideConfiguration;
 import cc.orangejuice.srs.web.rest.vm.LoggerVM;
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.LoggerContext;
@@ -27,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see LogsResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {SecurityBeanOverrideConfiguration.class, SrsApp.class})
+@SpringBootTest(classes = SrsApp.class)
 public class LogsResourceIntTest {
 
     private MockMvc restLogsMockMvc;

@@ -147,6 +147,7 @@ liquibase {
             defaultSchemaName ''
             logLevel 'debug'
             classpath "$buildDir/classes/java/main"
+            excludeObjects 'oauth_access_token, oauth_approvals, oauth_client_details, oauth_client_token, oauth_code, oauth_refresh_token'
         }
     }
 
@@ -227,6 +228,7 @@ dependencies {
     compile "org.springframework.security:spring-security-data"
     compile "org.springframework.security:spring-security-web"
     compile "org.springframework.security.oauth:spring-security-oauth2"
+    compile "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure"
     compile "org.springframework.security:spring-security-jwt"
     compile ("io.springfox:springfox-swagger2") {
         exclude module: 'mapstruct'

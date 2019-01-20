@@ -1,7 +1,6 @@
 package cc.orangejuice.srs.web.rest.errors;
 
 import cc.orangejuice.srs.SrsApp;
-import cc.orangejuice.srs.config.SecurityBeanOverrideConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ExceptionTranslator
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {SecurityBeanOverrideConfiguration.class, SrsApp.class})
+@SpringBootTest(classes = SrsApp.class)
 public class ExceptionTranslatorIntTest {
 
     @Autowired

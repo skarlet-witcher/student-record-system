@@ -115,12 +115,6 @@ jhipster:
                 enabled: false
                 update-interval: 3
                 url:
-    security:
-        client-authorization:
-            access-token-uri: http://srs/oauth/token
-            token-service-id: srs
-            client-id: internal
-            client-secret: internal
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: srs@localhost
         base-url: http://my-server-url-to-change # Modify according to your server's URL
@@ -138,17 +132,6 @@ jhipster:
             host: localhost
             port: 5000
             queue-size: 512
-oauth2:
-    signature-verification:
-        public-key-endpoint-uri: http://srs/oauth/token_key
-        #ttl for public keys to verify JWT tokens (in ms)
-        ttl: 3600000
-        #max. rate at which public keys will be fetched (in ms)
-        public-key-refresh-rate-limit: 10000
-    web-client-configuration:
-        #change client secret in production, keep in sync with UAA configuration
-        client-id: web_app
-        secret: changeit
 
 # ===================================================================
 # Application specific properties

@@ -30,7 +30,8 @@
     "nativeLanguage": "en",
     "languages": [
       "en",
-      "zh-cn"
+      "zh-cn",
+      "vi"
     ],
     "skipClient": true
   }

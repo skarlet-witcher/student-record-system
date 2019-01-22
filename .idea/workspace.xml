@@ -2,7 +2,321 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b17203e-71b5-4f2c-956d-080443729568" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/.prettierignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/.yo-rc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/gradle/docker.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/gradle/profile_dev.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/gradle/profile_prod.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/gradle/sonar.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/gradle/zipkin.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/docker/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/docker/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/docker/app.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/docker/entrypoint.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/docker/hazelcast-management-center.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/docker/mysql.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/docker/sonar.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/ApplicationWebXml.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/SrsApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/aop/logging/LoggingAspect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/ApplicationProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/AsyncConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/CacheConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/CloudDatabaseConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/DatabaseConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/DateTimeFormatConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/DefaultProfileUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/JacksonConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/LiquibaseConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/LocaleConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/LoggingAspectConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/LoggingConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/MetricsConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/UaaConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/UaaProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/UaaWebSecurityConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/WebConfigurer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/audit/AuditEventConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/audit/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/config/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/domain/AbstractAuditingEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/domain/Authority.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/domain/PersistentAuditEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/domain/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/domain/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/repository/AuthorityRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/repository/CustomAuditEventRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/repository/PersistenceAuditEventRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/repository/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/security/AuthoritiesConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/security/DomainUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/security/IatTokenEnhancer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/security/SecurityUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/security/SpringSecurityAuditorAware.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/security/UserNotActivatedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/security/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/service/AuditEventService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/service/MailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/service/dto/PasswordChangeDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/service/dto/UserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/service/dto/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/service/mapper/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/service/mapper/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/service/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/service/util/RandomUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/AccountResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/AuditResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/LogsResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/UserResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/errors/BadRequestAlertException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/errors/CustomParameterizedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/errors/EmailAlreadyUsedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/errors/EmailNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/errors/ErrorConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/errors/ExceptionTranslator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/errors/FieldErrorVM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/errors/InternalServerErrorException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/errors/InvalidPasswordException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/errors/LoginAlreadyUsedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/errors/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/util/HeaderUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/util/PaginationUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/vm/KeyAndPasswordVM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/vm/LoggerVM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/vm/ManagedUserVM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/vm/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/jib/entrypoint.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/.h2.server.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/banner.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/config/application-dev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/config/application-prod.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/config/application-tls.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/config/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/config/liquibase/authorities.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/config/liquibase/changelog/00000000000000_initial_schema.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/config/liquibase/master.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/config/liquibase/users.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/config/liquibase/users_authorities.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/config/tls/keystore.p12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/i18n/messages.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/i18n/messages_en.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/i18n/messages_zh_cn.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/logback-spring.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/templates/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/templates/mail/activationEmail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/templates/mail/creationEmail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/main/resources/templates/mail/passwordResetEmail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/config/SecurityBeanOverrideConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/config/WebConfigurerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/config/WebConfigurerTestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/config/timezone/HibernateTimeZoneTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/repository/CustomAuditEventRepositoryIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/repository/timezone/DateTimeWrapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/repository/timezone/DateTimeWrapperRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/security/DomainUserDetailsServiceIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/security/OAuth2TokenMockUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/security/SecurityUtilsUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/service/MailServiceIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/service/UserServiceIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/service/mapper/UserMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/web/rest/AccountResourceIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/web/rest/AuditResourceIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/web/rest/LogsResourceIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/web/rest/TestUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/web/rest/UserResourceIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/web/rest/errors/ExceptionTranslatorIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/web/rest/errors/ExceptionTranslatorTestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/java/cc/orangejuice/srs/web/rest/util/PaginationUtilUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/resources/config/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/resources/i18n/messages_en.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/resources/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/src/test/resources/templates/mail/testEmail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/build/resources/main/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/AuthServiceApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/AuthenticationFailureHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/AuthenticationSuccessHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/EntryPointUnauthorizedHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/JsonAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/JwtAuthenticationTokenFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/RestAccessDeniedHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/config/WebSecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/Hero.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/domain/SysUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/HeroNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/JwtAuthenticationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/exception/UserNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/init/InitDatabase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/HeroRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/SysResourceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/SysRoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/repository/SysUserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/HeroService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/MailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/SysResourceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/service/SysUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/util/JwtHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/util/Response.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/AccountResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/java/cc/orangejuice/srs/auth/web/controller/HeroController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/test/java/cc/orangejuice/srs/auth/AuthServiceApplicationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/test/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-auth/srs-auth-service/src/test/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/.prettierignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/.yo-rc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/gradle/docker.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/gradle/profile_dev.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/gradle/profile_prod.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/gradle/sonar.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/gradle/zipkin.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/docker/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/docker/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/docker/app.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/docker/entrypoint.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/docker/hazelcast-management-center.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/docker/mysql.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/docker/sonar.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/ApplicationWebXml.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/SrsApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/aop/logging/LoggingAspect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/client/AuthorizedFeignClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/client/OAuth2InterceptedFeignConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/client/TokenRelayRequestInterceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/ApplicationProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/AsyncConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/CacheConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/CloudDatabaseConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/DatabaseConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/DateTimeFormatConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/DefaultProfileUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/FeignConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/JacksonConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/LiquibaseConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/LocaleConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/LoggingAspectConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/LoggingConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/MetricsConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/OAuth2TokenServicesConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/SecurityConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/WebConfigurer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/audit/AuditEventConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/audit/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/config/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/domain/AbstractAuditingEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/domain/Authority.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/domain/PersistentAuditEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/domain/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/domain/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/repository/AuthorityRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/repository/CustomAuditEventRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/repository/PersistenceAuditEventRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/repository/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/security/AuthoritiesConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/security/SecurityUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/security/SpringSecurityAuditorAware.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/security/oauth2/AuthorizationHeaderUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/security/oauth2/CachedUserInfoTokenServices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/security/oauth2/SimpleAuthoritiesExtractor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/security/oauth2/SimplePrincipalExtractor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/security/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/service/AuditEventService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/service/dto/UserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/service/dto/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/service/mapper/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/service/mapper/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/service/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/AuditResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/LogsResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/UserResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/errors/BadRequestAlertException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/errors/CustomParameterizedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/errors/EmailAlreadyUsedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/errors/EmailNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/errors/ErrorConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/errors/ExceptionTranslator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/errors/FieldErrorVM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/errors/InternalServerErrorException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/errors/InvalidPasswordException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/errors/LoginAlreadyUsedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/errors/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/util/HeaderUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/util/PaginationUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/vm/LoggerVM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/vm/ManagedUserVM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/java/cc/orangejuice/srs/web/rest/vm/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/jib/entrypoint.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/.h2.server.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/banner.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/config/application-dev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/config/application-prod.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/config/application-tls.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/config/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/config/liquibase/changelog/00000000000000_initial_schema.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/config/liquibase/master.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/i18n/messages.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/i18n/messages_en.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/i18n/messages_zh_cn.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/logback-spring.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/static/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/main/resources/templates/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/config/WebConfigurerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/config/WebConfigurerTestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/config/timezone/HibernateTimeZoneTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/repository/CustomAuditEventRepositoryIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/repository/timezone/DateTimeWrapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/repository/timezone/DateTimeWrapperRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/security/SecurityUtilsUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/service/UserServiceIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/service/mapper/UserMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/web/rest/AuditResourceIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/web/rest/LogsResourceIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/web/rest/TestUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/web/rest/UserResourceIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/web/rest/errors/ExceptionTranslatorIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/web/rest/errors/ExceptionTranslatorTestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/java/cc/orangejuice/srs/web/rest/util/PaginationUtilUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/resources/config/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serv-student/src/test/resources/logback.xml" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -665,40 +979,7 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/SrsApp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/serv-auth/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="232" column="5" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/AccountResource.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/UserResource.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -800,7 +1081,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -811,109 +1091,14 @@
             <path>
               <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
               <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cc" type="462c0819:PsiDirectoryNode" />
-              <item name="orangejuice" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cc" type="462c0819:PsiDirectoryNode" />
-              <item name="orangejuice" type="462c0819:PsiDirectoryNode" />
-              <item name="srs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cc" type="462c0819:PsiDirectoryNode" />
-              <item name="orangejuice" type="462c0819:PsiDirectoryNode" />
-              <item name="srs" type="462c0819:PsiDirectoryNode" />
-              <item name="domain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cc" type="462c0819:PsiDirectoryNode" />
-              <item name="orangejuice" type="462c0819:PsiDirectoryNode" />
-              <item name="srs" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cc" type="462c0819:PsiDirectoryNode" />
-              <item name="orangejuice" type="462c0819:PsiDirectoryNode" />
-              <item name="srs" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="rest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="student-record-system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="student-record-system" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="serv-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="svc-auth" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1235,6 +1420,7 @@
       <workItem from="1547933888641" duration="2726000" />
       <workItem from="1547938073342" duration="200000" />
       <workItem from="1547997577188" duration="1152000" />
+      <workItem from="1548172257601" duration="520000" />
     </task>
     <servers />
   </component>
@@ -1271,12 +1457,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107031000" />
+    <option name="totallyTimeSpent" value="107551000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="983" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20824742" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21099657" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1423,13 +1609,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/serv-auth/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
+        <state relative-caret-position="4408">
           <caret line="232" column="5" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="5" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/AccountResource.java">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/UserResource.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1437,6 +1620,9 @@
           <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serv-auth/src/main/java/cc/orangejuice/srs/web/rest/AccountResource.java">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="gradleExecuteTaskHistory">

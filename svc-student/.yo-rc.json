@@ -4,13 +4,14 @@
       "packageName": "cc.orangejuice.srs",
       "nativeLanguage": "en"
     },
-    "jhipsterVersion": "5.7.2",
+    "jhipsterVersion": "5.8.0",
     "applicationType": "microservice",
-    "baseName": "srs",
+    "baseName": "sturecsys",
     "packageName": "cc.orangejuice.srs",
     "packageFolder": "cc/orangejuice/srs",
     "serverPort": "8081",
-    "authenticationType": "oauth2",
+    "authenticationType": "uaa",
+    "uaaBaseName": "sturecsys",
     "cacheProvider": "hazelcast",
     "enableHibernateCache": true,
     "websocket": false,
@@ -22,16 +23,17 @@
     "serviceDiscoveryType": false,
     "buildTool": "gradle",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "ZTY5ZTQ5Y2JiOGUwMTJhYzAyMjI2MzhiOTJiYjk3ODJmMDZmZmRlZmNhYTM0ZTgwY2ExMGQwNWYwYmJhYTZmNmY2NDM1NzYwNmVkMDAyYzg0YzhjNzI0ZmU2MjhhY2JiNzdkMWRmM2UzZjg4MWZmYWQ1YTlmMTk5ZDJjYzE0YjQ=",
+    "jwtSecretKey": "MDAzNmUzYTEzNDUwMzQwMTdhOGNjNjUxY2E1ZTExZDljZjA2NzA0MzY0Mzk4YTQ4ZjNhMDc3M2MzZjgzMTMwOTk3ZWExMzIwNDg1NmFlNTQwZTdiMDc2NzI5ZTdkNGJlMmZiNzhmYTgzMjEwMmMwOTlmZjRiNDNlYTY1NTk3Yjc=",
     "testFrameworks": [],
     "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
     "otherModules": [],
     "enableTranslation": true,
     "clientPackageManager": "npm",
     "nativeLanguage": "en",
     "languages": [
-      "en",
-      "zh-cn"
+      "en"
     ],
     "skipClient": true,
     "skipUserManagement": true

@@ -1,5 +1,6 @@
 package cc.orangejuice.srs;
 
+import cc.orangejuice.srs.client.OAuth2InterceptedFeignConfiguration;
 import cc.orangejuice.srs.config.ApplicationProperties;
 import cc.orangejuice.srs.config.DefaultProfileUtil;
 
@@ -12,6 +13,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
@@ -20,20 +23,23 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 
+@ComponentScan(
+    excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = OAuth2InterceptedFeignConfiguration.class)
+)
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
-public class SrsApp {
+public class SturecsysApp {
 
-    private static final Logger log = LoggerFactory.getLogger(SrsApp.class);
+    private static final Logger log = LoggerFactory.getLogger(SturecsysApp.class);
 
     private final Environment env;
 
-    public SrsApp(Environment env) {
+    public SturecsysApp(Environment env) {
         this.env = env;
     }
 
     /**
-     * Initializes srs.
+     * Initializes sturecsys.
      * <p>
      * Spring profiles can be configured with a program argument --spring.profiles.active=your-active-profile
      * <p>
@@ -58,7 +64,7 @@ public class SrsApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(SrsApp.class);
+        SpringApplication app = new SpringApplication(SturecsysApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
         logApplicationStartup(env);

@@ -37,10 +37,11 @@ spring:
             indent-output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:file:./build/h2db/db/srs;DB_CLOSE_DELAY=-1
-        username: srs
+        url: jdbc:h2:file:./build/h2db/db/sturecsys;DB_CLOSE_DELAY=-1
+        username: sturecsys
         password:
         hikari:
+            poolName: Hikari
             auto-commit: false
     h2:
         console:
@@ -56,7 +57,7 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
-            hibernate.cache.hazelcast.instance_name: srs
+            hibernate.cache.hazelcast.instance_name: sturecsys
             hibernate.cache.use_minimal_puts: true
             hibernate.cache.hazelcast.use_lite_member: true
     liquibase:
@@ -109,15 +110,17 @@ jhipster:
         # exposed-headers: "Authorization,Link,X-Total-Count"
         # allow-credentials: true
         # max-age: 1800
+    security:
+        client-authorization:
+            access-token-uri: http://sturecsys/oauth/token
+            token-service-id: sturecsys
+            client-id: internal
+            client-secret: internal
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: srs@localhost
+        from: sturecsys@localhost
         base-url: http://127.0.0.1:8081
-    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
-        jmx:
-            enabled: true
-        prometheus:
-            enabled: false #expose metrics via prometheus
-        logs: # Reports Dropwizard metrics in the logs
+    metrics:
+        logs: # Reports metrics in the logs
             enabled: false
             report-frequency: 60 # in seconds
     logging:
@@ -126,6 +129,17 @@ jhipster:
             host: localhost
             port: 5000
             queue-size: 512
+oauth2:
+    signature-verification:
+        public-key-endpoint-uri: http://sturecsys/oauth/token_key
+        #ttl for public keys to verify JWT tokens (in ms)
+        ttl: 3600000
+        #max. rate at which public keys will be fetched (in ms)
+        public-key-refresh-rate-limit: 10000
+    web-client-configuration:
+        #keep in sync with UAA configuration
+        client-id: web_app
+        secret: changeit
 
 # ===================================================================
 # Application specific properties

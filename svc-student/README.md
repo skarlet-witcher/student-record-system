@@ -1,6 +1,6 @@
-# srs
+# sturecsys
 
-This application was generated using JHipster 5.7.2, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.7.2](https://www.jhipster.tech/documentation-archive/v5.7.2).
+This application was generated using JHipster 5.8.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.8.0](https://www.jhipster.tech/documentation-archive/v5.8.0).
 
 This is a "microservice" application intended to be part of a microservice architecture, please refer to the [Doing microservices with JHipster][] page of the documentation for more information.
 
@@ -16,7 +16,7 @@ For further instructions on how to develop with JHipster, have a look at [Using 
 
 ## Building for production
 
-To optimize the srs application for production, run:
+To optimize the sturecsys application for production, run:
 
     ./gradlew -Pprod clean bootWar
 
@@ -78,11 +78,11 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
 
 [jhipster homepage and latest documentation]: https://www.jhipster.tech
-[jhipster 5.7.2 archive]: https://www.jhipster.tech/documentation-archive/v5.7.2
-[doing microservices with jhipster]: https://www.jhipster.tech/documentation-archive/v5.7.2/microservices-architecture/
-[using jhipster in development]: https://www.jhipster.tech/documentation-archive/v5.7.2/development/
-[using docker and docker-compose]: https://www.jhipster.tech/documentation-archive/v5.7.2/docker-compose
-[using jhipster in production]: https://www.jhipster.tech/documentation-archive/v5.7.2/production/
-[running tests page]: https://www.jhipster.tech/documentation-archive/v5.7.2/running-tests/
-[code quality page]: https://www.jhipster.tech/documentation-archive/v5.7.2/code-quality/
-[setting up continuous integration]: https://www.jhipster.tech/documentation-archive/v5.7.2/setting-up-ci/
+[jhipster 5.8.0 archive]: https://www.jhipster.tech/documentation-archive/v5.8.0
+[doing microservices with jhipster]: https://www.jhipster.tech/documentation-archive/v5.8.0/microservices-architecture/
+[using jhipster in development]: https://www.jhipster.tech/documentation-archive/v5.8.0/development/
+[using docker and docker-compose]: https://www.jhipster.tech/documentation-archive/v5.8.0/docker-compose
+[using jhipster in production]: https://www.jhipster.tech/documentation-archive/v5.8.0/production/
+[running tests page]: https://www.jhipster.tech/documentation-archive/v5.8.0/running-tests/
+[code quality page]: https://www.jhipster.tech/documentation-archive/v5.8.0/code-quality/
+[setting up continuous integration]: https://www.jhipster.tech/documentation-archive/v5.8.0/setting-up-ci/

@@ -14,7 +14,7 @@ jib {
         image = 'openjdk:8-jre-alpine'
     }
     to {
-        image = 'srs:latest'
+        image = 'sturecsys:latest'
     }
     container {
         entrypoint = ['sh', '-c', 'chmod +x /entrypoint.sh && sync && /entrypoint.sh']

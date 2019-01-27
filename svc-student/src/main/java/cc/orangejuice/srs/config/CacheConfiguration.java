@@ -38,20 +38,19 @@ public class CacheConfiguration {
     @Bean
     public CacheManager cacheManager(HazelcastInstance hazelcastInstance) {
         log.debug("Starting HazelcastCacheManager");
-        CacheManager cacheManager = new com.hazelcast.spring.cache.HazelcastCacheManager(hazelcastInstance);
-        return cacheManager;
+        return new com.hazelcast.spring.cache.HazelcastCacheManager(hazelcastInstance);
     }
 
     @Bean
     public HazelcastInstance hazelcastInstance(JHipsterProperties jHipsterProperties) {
         log.debug("Configuring Hazelcast");
-        HazelcastInstance hazelCastInstance = Hazelcast.getHazelcastInstanceByName("srs");
+        HazelcastInstance hazelCastInstance = Hazelcast.getHazelcastInstanceByName("sturecsys");
         if (hazelCastInstance != null) {
             log.debug("Hazelcast already initialized");
             return hazelCastInstance;
         }
         Config config = new Config();
-        config.setInstanceName("srs");
+        config.setInstanceName("sturecsys");
         config.getNetworkConfig().setPort(5701);
         config.getNetworkConfig().setPortAutoIncrement(true);
 

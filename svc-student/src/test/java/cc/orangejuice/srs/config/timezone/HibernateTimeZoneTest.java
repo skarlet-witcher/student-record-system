@@ -1,6 +1,7 @@
 package cc.orangejuice.srs.config.timezone;
 
-import cc.orangejuice.srs.SrsApp;
+import cc.orangejuice.srs.SturecsysApp;
+import cc.orangejuice.srs.config.SecurityBeanOverrideConfiguration;
 import cc.orangejuice.srs.repository.timezone.DateTimeWrapper;
 import cc.orangejuice.srs.repository.timezone.DateTimeWrapperRepository;
 import org.junit.Before;
@@ -23,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Unit tests for the UTC Hibernate configuration.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SrsApp.class)
+@SpringBootTest(classes = {SecurityBeanOverrideConfiguration.class, SturecsysApp.class})
 public class HibernateTimeZoneTest {
 
     @Autowired

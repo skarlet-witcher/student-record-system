@@ -16,12 +16,12 @@
 
 spring:
     application:
-        name: srs
+        name: sturecsys
     cache:
         type: simple
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:srs;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        url: jdbc:h2:mem:sturecsys;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
         name:
         username:
         password:
@@ -42,7 +42,7 @@ spring:
             hibernate.connection.provider_disables_autocommit: true
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: true
+            hibernate.generate_statistics: false
             hibernate.hbm2ddl.auto: validate
             hibernate.jdbc.time_zone: UTC
     liquibase:
@@ -57,17 +57,6 @@ spring:
     thymeleaf:
         mode: HTML
 
-security:
-    oauth2:
-    # client configuration needed : for condition in Spring Boot
-        client:
-            access-token-uri: http://DO_NOT_CALL:9080/auth/realms/jhipster/protocol/openid-connect/token
-            user-authorization-uri: http://DO_NOT_CALL:9080/auth/realms/jhipster/protocol/openid-connect/auth
-            client-id: web_app
-            client-secret: web_app
-            scope: openid profile email
-        resource:
-            user-info-uri: http://DO_NOT_CALL:9080/auth/realms/jhipster/protocol/openid-connect/userinfo
 
 server:
     port: 10344
@@ -91,12 +80,20 @@ jhipster:
             host: localhost
             port: 5000
             queue-size: 512
-    mail:
-        from: test@localhost
-        base-url: http://127.0.0.1:8080
-    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
-        jmx.enabled: true
-        logs: # Reports Dropwizard metrics in the logs
+    security:
+        authentication:
+            jwt:
+                # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
+                base64-secret: MDAzNmUzYTEzNDUwMzQwMTdhOGNjNjUxY2E1ZTExZDljZjA2NzA0MzY0Mzk4YTQ4ZjNhMDc3M2MzZjgzMTMwOTk3ZWExMzIwNDg1NmFlNTQwZTdiMDc2NzI5ZTdkNGJlMmZiNzhmYTgzMjEwMmMwOTlmZjRiNDNlYTY1NTk3Yjc=
+                # Token is valid 24 hours
+                token-validity-in-seconds: 86400
+        client-authorization:
+            access-token-uri: http://sturecsys/oauth/token
+            token-service-id: sturecsys
+            client-id: internal
+            client-secret: internal
+    metrics:
+        logs: # Reports metrics in the logs
             enabled: true
             report-frequency: 60 # in seconds
 

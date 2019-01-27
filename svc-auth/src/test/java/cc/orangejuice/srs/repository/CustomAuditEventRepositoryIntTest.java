@@ -1,6 +1,6 @@
 package cc.orangejuice.srs.repository;
 
-import cc.orangejuice.srs.SrsApp;
+import cc.orangejuice.srs.SturecsysApp;
 import cc.orangejuice.srs.config.Constants;
 import cc.orangejuice.srs.config.audit.AuditEventConverter;
 import cc.orangejuice.srs.domain.PersistentAuditEvent;
@@ -31,7 +31,7 @@ import static cc.orangejuice.srs.repository.CustomAuditEventRepository.EVENT_DAT
  * @see CustomAuditEventRepository
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SrsApp.class)
+@SpringBootTest(classes = SturecsysApp.class)
 @Transactional
 public class CustomAuditEventRepositoryIntTest {
 

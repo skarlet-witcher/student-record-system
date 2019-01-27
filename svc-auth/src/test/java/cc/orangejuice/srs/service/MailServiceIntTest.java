@@ -1,7 +1,7 @@
 package cc.orangejuice.srs.service;
 import cc.orangejuice.srs.config.Constants;
 
-import cc.orangejuice.srs.SrsApp;
+import cc.orangejuice.srs.SturecsysApp;
 import cc.orangejuice.srs.domain.User;
 import io.github.jhipster.config.JHipsterProperties;
 import org.junit.Before;
@@ -30,7 +30,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SrsApp.class)
+@SpringBootTest(classes = SturecsysApp.class)
 public class MailServiceIntTest {
 
     @Autowired

@@ -1,7 +1,7 @@
 package cc.orangejuice.srs.service.mapper;
 
 
-import cc.orangejuice.srs.SrsApp;
+import cc.orangejuice.srs.SturecsysApp;
 import cc.orangejuice.srs.domain.User;
 import cc.orangejuice.srs.service.dto.UserDTO;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @see UserMapper
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SrsApp.class)
+@SpringBootTest(classes = SturecsysApp.class)
 public class UserMapperTest {
 
     private static final String DEFAULT_LOGIN = "johndoe";

@@ -1,6 +1,6 @@
 package cc.orangejuice.srs.security;
 
-import cc.orangejuice.srs.SrsApp;
+import cc.orangejuice.srs.SturecsysApp;
 import cc.orangejuice.srs.domain.User;
 import cc.orangejuice.srs.repository.UserRepository;
 
@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @see DomainUserDetailsService
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SrsApp.class)
+@SpringBootTest(classes = SturecsysApp.class)
 @Transactional
 public class DomainUserDetailsServiceIntTest {
 

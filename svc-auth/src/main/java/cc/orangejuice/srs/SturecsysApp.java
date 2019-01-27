@@ -22,18 +22,18 @@ import java.util.Collection;
 
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
-public class SrsApp {
+public class SturecsysApp {
 
-    private static final Logger log = LoggerFactory.getLogger(SrsApp.class);
+    private static final Logger log = LoggerFactory.getLogger(SturecsysApp.class);
 
     private final Environment env;
 
-    public SrsApp(Environment env) {
+    public SturecsysApp(Environment env) {
         this.env = env;
     }
 
     /**
-     * Initializes srs.
+     * Initializes sturecsys.
      * <p>
      * Spring profiles can be configured with a program argument --spring.profiles.active=your-active-profile
      * <p>
@@ -58,7 +58,7 @@ public class SrsApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(SrsApp.class);
+        SpringApplication app = new SpringApplication(SturecsysApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
         logApplicationStartup(env);

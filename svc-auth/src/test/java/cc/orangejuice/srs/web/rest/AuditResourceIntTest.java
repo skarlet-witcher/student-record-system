@@ -1,6 +1,6 @@
 package cc.orangejuice.srs.web.rest;
 
-import cc.orangejuice.srs.SrsApp;
+import cc.orangejuice.srs.SturecsysApp;
 import cc.orangejuice.srs.config.audit.AuditEventConverter;
 import cc.orangejuice.srs.domain.PersistentAuditEvent;
 import cc.orangejuice.srs.repository.PersistenceAuditEventRepository;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AuditResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SrsApp.class)
+@SpringBootTest(classes = SturecsysApp.class)
 @Transactional
 public class AuditResourceIntTest {
 

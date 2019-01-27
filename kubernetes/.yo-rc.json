@@ -1,0 +1,20 @@
+{
+  "generator-jhipster": {
+    "appsFolders": [
+      "cloud-gateway",
+      "svc-auth",
+      "svc-student"
+    ],
+    "directoryPath": "../",
+    "serviceDiscoveryType": false,
+    "jwtSecretKey": "ZmYwNjdlNTRkMjAzMWEzMTIyOTJhZWI1MzZlMGRiMzI3NmZiNWUxNGE3N2RmZjg4ZWExNDJlNzYxNDA3NmQyYWUwMWE3ODk2ZmU1ZDM1ZGY1ZjY3MDkyYzdkZTg2YmZkZGQ4OQ==",
+    "dockerRepositoryName": "",
+    "dockerPushCommand": "docker push",
+    "kubernetesNamespace": "default",
+    "kubernetesServiceType": "Ingress",
+    "ingressDomain": "default.192.168.99.100.nip.io",
+    "monitoring": "no",
+    "istio": "autoInjection",
+    "istioRoute": true
+  }
+}

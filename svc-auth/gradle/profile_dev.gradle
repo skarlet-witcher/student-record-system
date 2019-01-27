@@ -15,6 +15,14 @@ if (project.hasProperty('tls')) {
     profiles += ',tls'
 }
 
+springBoot {
+    buildInfo {
+		properties {
+			time = null
+		}
+	}
+}
+
 bootRun {
     args = []
 }

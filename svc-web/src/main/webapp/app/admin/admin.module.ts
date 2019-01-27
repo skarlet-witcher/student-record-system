@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core';
-import { SrsSharedModule } from 'app/shared';
+import { SturecsysSharedModule } from 'app/shared';
 /* jhipster-needle-add-admin-module-import - JHipster will add admin modules imports here */
 
 import {
@@ -13,7 +13,6 @@ import {
     UserMgmtUpdateComponent,
     UserMgmtDeleteDialogComponent,
     LogsComponent,
-    JhiMetricsMonitoringModalComponent,
     JhiMetricsMonitoringComponent,
     JhiHealthModalComponent,
     JhiHealthCheckComponent,
@@ -23,7 +22,7 @@ import {
 
 @NgModule({
     imports: [
-        SrsSharedModule,
+        SturecsysSharedModule,
         RouterModule.forChild(adminState)
         /* jhipster-needle-add-admin-module - JHipster will add admin modules here */
     ],
@@ -38,14 +37,13 @@ import {
         JhiHealthCheckComponent,
         JhiHealthModalComponent,
         JhiDocsComponent,
-        JhiMetricsMonitoringComponent,
-        JhiMetricsMonitoringModalComponent
+        JhiMetricsMonitoringComponent
     ],
     providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-    entryComponents: [UserMgmtDeleteDialogComponent, JhiHealthModalComponent, JhiMetricsMonitoringModalComponent],
+    entryComponents: [UserMgmtDeleteDialogComponent, JhiHealthModalComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class SrsAdminModule {
+export class SturecsysAdminModule {
     constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
         this.languageHelper.language.subscribe((languageKey: string) => {
             if (languageKey !== undefined) {

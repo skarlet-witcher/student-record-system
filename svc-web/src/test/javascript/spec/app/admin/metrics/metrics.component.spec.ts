@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
 
-import { SrsTestModule } from '../../../test.module';
+import { SturecsysTestModule } from '../../../test.module';
 import { JhiMetricsMonitoringComponent } from 'app/admin/metrics/metrics.component';
 import { JhiMetricsService } from 'app/admin/metrics/metrics.service';
 
@@ -14,7 +14,7 @@ describe('Component Tests', () => {
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
-                imports: [SrsTestModule],
+                imports: [SturecsysTestModule],
                 declarations: [JhiMetricsMonitoringComponent]
             })
                 .overrideTemplate(JhiMetricsMonitoringComponent, '')
@@ -49,15 +49,6 @@ describe('Component Tests', () => {
 
                 // THEN
                 expect(service.getMetrics).toHaveBeenCalled();
-                expect(comp.servicesStats).toEqual({ service: 'test' });
-                expect(comp.cachesStats).toEqual({ jcache: { name: 17, value: 2 } });
-            });
-        });
-
-        describe('isNan', () => {
-            it('should return if a variable is NaN', () => {
-                expect(comp.filterNaN(1)).toBe(1);
-                expect(comp.filterNaN('test')).toBe(0);
             });
         });
     });

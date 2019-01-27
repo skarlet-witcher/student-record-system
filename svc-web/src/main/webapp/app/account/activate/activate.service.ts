@@ -9,7 +9,7 @@ export class ActivateService {
     constructor(private http: HttpClient) {}
 
     get(key: string): Observable<any> {
-        return this.http.get(SERVER_API_URL + 'srs/api/activate', {
+        return this.http.get(SERVER_API_URL + 'sturecsys/api/activate', {
             params: new HttpParams().set('key', key)
         });
     }

@@ -10,12 +10,12 @@ import { NgJhipsterModule } from 'ng-jhipster';
 import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
-import { SrsSharedModule } from 'app/shared';
-import { SrsCoreModule } from 'app/core';
-import { SrsAppRoutingModule } from './app-routing.module';
-import { SrsHomeModule } from './home/home.module';
-import { SrsAccountModule } from './account/account.module';
-import { SrsEntityModule } from './entities/entity.module';
+import { SturecsysSharedModule } from 'app/shared';
+import { SturecsysCoreModule } from 'app/core';
+import { SturecsysAppRoutingModule } from './app-routing.module';
+import { SturecsysHomeModule } from './home/home.module';
+import { SturecsysAccountModule } from './account/account.module';
+import { SturecsysEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
@@ -23,7 +23,6 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
 @NgModule({
     imports: [
         BrowserModule,
-        SrsAppRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         NgJhipsterModule.forRoot({
             // set below to true to make alerts look like toast
@@ -32,12 +31,13 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
             i18nEnabled: true,
             defaultI18nLang: 'en'
         }),
-        SrsSharedModule.forRoot(),
-        SrsCoreModule,
-        SrsHomeModule,
-        SrsAccountModule,
+        SturecsysSharedModule.forRoot(),
+        SturecsysCoreModule,
+        SturecsysHomeModule,
+        SturecsysAccountModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
-        SrsEntityModule
+        SturecsysEntityModule,
+        SturecsysAppRoutingModule
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
     providers: [
@@ -59,7 +59,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
     ],
     bootstrap: [JhiMainComponent]
 })
-export class SrsAppModule {
+export class SturecsysAppModule {
     constructor(private dpConfig: NgbDatepickerConfig) {
         this.dpConfig.minDate = { year: moment().year() - 100, month: 1, day: 1 };
     }

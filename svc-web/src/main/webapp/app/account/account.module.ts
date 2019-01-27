@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { SrsSharedModule } from 'app/shared';
+import { SturecsysSharedModule } from 'app/shared';
 
 import {
     PasswordStrengthBarComponent,
@@ -15,7 +15,7 @@ import {
 } from './';
 
 @NgModule({
-    imports: [SrsSharedModule, RouterModule.forChild(accountState)],
+    imports: [SturecsysSharedModule, RouterModule.forChild(accountState)],
     declarations: [
         ActivateComponent,
         RegisterComponent,
@@ -27,4 +27,4 @@ import {
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class SrsAccountModule {}
+export class SturecsysAccountModule {}

@@ -14,11 +14,11 @@ export class AccountService {
     constructor(private http: HttpClient) {}
 
     fetch(): Observable<HttpResponse<Account>> {
-        return this.http.get<Account>(SERVER_API_URL + 'srs/api/account', { observe: 'response' });
+        return this.http.get<Account>(SERVER_API_URL + 'sturecsys/api/account', { observe: 'response' });
     }
 
     save(account: any): Observable<HttpResponse<any>> {
-        return this.http.post(SERVER_API_URL + 'srs/api/account', account, { observe: 'response' });
+        return this.http.post(SERVER_API_URL + 'sturecsys/api/account', account, { observe: 'response' });
     }
 
     authenticate(identity) {

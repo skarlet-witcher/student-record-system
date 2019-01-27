@@ -3,14 +3,14 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "srs": {
+        "sturecsys": {
             "root": "",
             "sourceRoot": "src/main/webapp",
             "projectType": "application",
             "architect": {}
         }
     },
-    "defaultProject": "srs",
+    "defaultProject": "sturecsys",
     "cli": {
         "packageManager": "npm"
     },

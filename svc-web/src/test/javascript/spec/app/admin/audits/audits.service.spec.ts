@@ -28,7 +28,7 @@ describe('Service Tests', () => {
                 service.query({}).subscribe(() => {});
 
                 const req = httpMock.expectOne({ method: 'GET' });
-                const resourceUrl = SERVER_API_URL + 'srs/management/audits';
+                const resourceUrl = SERVER_API_URL + 'sturecsys/management/audits';
                 expect(req.request.url).toEqual(resourceUrl);
             });
 

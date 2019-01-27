@@ -1,6 +1,6 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { ProdConfig } from './blocks/config/prod.config';
-import { SrsAppModule } from './app.module';
+import { SturecsysAppModule } from './app.module';
 
 ProdConfig();
 
@@ -9,6 +9,6 @@ if (module['hot']) {
 }
 
 platformBrowserDynamic()
-    .bootstrapModule(SrsAppModule, { preserveWhitespaces: true })
+    .bootstrapModule(SturecsysAppModule, { preserveWhitespaces: true })
     .then(success => console.log(`Application started`))
     .catch(err => console.error(err));

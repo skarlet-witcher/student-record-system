@@ -17,7 +17,7 @@ import locale from '@angular/common/locales/en';
         DatePipe
     ]
 })
-export class SrsCoreModule {
+export class SturecsysCoreModule {
     constructor() {
         registerLocaleData(locale);
     }

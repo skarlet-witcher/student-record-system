@@ -9,6 +9,6 @@ export class PasswordResetInitService {
     constructor(private http: HttpClient) {}
 
     save(mail: string): Observable<any> {
-        return this.http.post(SERVER_API_URL + 'srs/api/account/reset-password/init', mail);
+        return this.http.post(SERVER_API_URL + 'sturecsys/api/account/reset-password/init', mail);
     }
 }

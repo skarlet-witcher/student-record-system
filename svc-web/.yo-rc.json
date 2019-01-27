@@ -4,14 +4,14 @@
             "packageName": "cc.orangejuice.srs",
             "nativeLanguage": "en"
         },
-        "jhipsterVersion": "5.7.2",
+        "jhipsterVersion": "5.8.0",
         "applicationType": "gateway",
-        "baseName": "srs",
+        "baseName": "sturecsys",
         "packageName": "cc.orangejuice.srs",
         "packageFolder": "cc/orangejuice/srs",
         "serverPort": "8080",
         "authenticationType": "uaa",
-        "uaaBaseName": "srs",
+        "uaaBaseName": "sturecsys",
         "cacheProvider": "ehcache",
         "enableHibernateCache": true,
         "websocket": false,
@@ -28,9 +28,11 @@
         "clientPackageManager": "npm",
         "testFrameworks": [],
         "jhiPrefix": "jhi",
+        "entitySuffix": "",
+        "dtoSuffix": "DTO",
         "otherModules": [],
         "enableTranslation": true,
         "nativeLanguage": "en",
-        "languages": ["en", "zh-cn", "vi"]
+        "languages": ["en"]
     }
 }

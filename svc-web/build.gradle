@@ -20,7 +20,7 @@ plugins {
     id "net.ltgt.apt-eclipse" version "0.19"
     id "net.ltgt.apt-idea" version "0.19"
     id "net.ltgt.apt" version "0.19"
-    id "io.spring.dependency-management"// version "1.0.6.RELEASE"
+    id "io.spring.dependency-management" version "1.0.6.RELEASE"
     id "com.moowork.node" version "1.2.0"
     id 'org.liquibase.gradle' version '2.0.1'
     //jhipster-needle-gradle-plugins - JHipster will add additional gradle plugins here
@@ -40,6 +40,12 @@ apply plugin: 'com.moowork.node'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'idea'
 
+idea {
+  module {
+    excludeDirs += files('node_modules')
+  }
+}
+
 dependencyManagement {
   imports {
     mavenBom 'io.github.jhipster:jhipster-dependencies:' + jhipster_dependencies_version
@@ -55,18 +61,17 @@ version = '0.0.1-SNAPSHOT'
 description = ''
 
 bootWar {
-   mainClassName = 'cc.orangejuice.srs.SrsApp'
+    mainClassName = 'cc.orangejuice.srs.SturecsysApp'
 }
 
 war {
     webAppDirName = 'build/www/'
     enabled = true
-    classifier = 'original'
+    extension = 'war.original'
 }
 
 springBoot {
-    mainClassName = 'cc.orangejuice.srs.SrsApp'
-    buildInfo()
+    mainClassName = 'cc.orangejuice.srs.SturecsysApp'
 }
 
 if (OperatingSystem.current().isWindows()) {
@@ -132,8 +137,8 @@ liquibase {
     activities {
         main {
             driver 'org.h2.Driver'
-            url 'jdbc:h2:file:./target/h2db/db/srs'
-            username 'srs'
+            url 'jdbc:h2:file:./target/h2db/db/sturecsys'
+            username 'sturecsys'
             password ''
             changeLogFile 'src/main/resources/config/liquibase/master.xml'
             defaultSchemaName ''
@@ -142,8 +147,8 @@ liquibase {
         }
         diffLog {
             driver 'org.h2.Driver'
-            url 'jdbc:h2:file:./target/h2db/db/srs'
-            username 'srs'
+            url 'jdbc:h2:file:./target/h2db/db/sturecsys'
+            username 'sturecsys'
             password ''
             changeLogFile project.ext.diffChangelogFile
             referenceUrl 'hibernate:spring:cc.orangejuice.srs.domain?dialect=org.hibernate.dialect.H2Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy'
@@ -174,14 +179,7 @@ dependencies {
     compile group: "io.github.jhipster", name: "jhipster-framework"
     compile "org.springframework.boot:spring-boot-starter-cache"
     compile "io.dropwizard.metrics:metrics-core"
-    compile "io.dropwizard.metrics:metrics-jcache"
-    compile "io.dropwizard.metrics:metrics-json"
-    compile "io.dropwizard.metrics:metrics-jvm"
-    compile "io.dropwizard.metrics:metrics-servlet"
-    compile "io.dropwizard.metrics:metrics-servlets"
-    compile "io.prometheus:simpleclient"
-    compile "io.prometheus:simpleclient_dropwizard"
-    compile "io.prometheus:simpleclient_servlet"
+    compile 'io.micrometer:micrometer-registry-prometheus'
     compile "net.logstash.logback:logstash-logback-encoder"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-hppc"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
@@ -189,7 +187,6 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-annotations"
     compile "com.fasterxml.jackson.core:jackson-databind"
     compile "com.fasterxml.jackson.module:jackson-module-afterburner"
-    compile "com.ryantenney.metrics:metrics-spring"
     compile "org.apache.httpcomponents:httpclient"
     compile "com.hazelcast:hazelcast"
     compile "com.hazelcast:hazelcast-spring"
@@ -285,8 +282,3 @@ if (project.hasProperty('nodeInstall')) {
         download = true
     }
 }
-
-bootWar.dependsOn war
-compileJava.dependsOn processResources
-processResources.dependsOn cleanResources,bootBuildInfo
-bootBuildInfo.mustRunAfter cleanResources

@@ -20,7 +20,7 @@ plugins {
     id "net.ltgt.apt-eclipse" version "0.19"
     id "net.ltgt.apt-idea" version "0.19"
     id "net.ltgt.apt" version "0.19"
-    id "io.spring.dependency-management" version "1.0.6.RELEASE"
+    id "io.spring.dependency-management" //version "1.0.6.RELEASE"
     id 'org.liquibase.gradle' version '2.0.1'
     //jhipster-needle-gradle-plugins - JHipster will add additional gradle plugins here
 }
@@ -258,9 +258,9 @@ task cleanResources(type: Delete) {
     delete 'build/resources'
 }
 
-wrapper {
-    gradleVersion = '4.10.2'
-}
+//wrapper {
+//    gradleVersion = '4.10.2'
+//}
 
 task stage(dependsOn: 'bootWar') {
 }

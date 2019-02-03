@@ -23,6 +23,7 @@
     "websocket": false,
     "baseName": "cloudGateway",
     "authenticationType": "uaa",
+    "uaaBaseName": "./cloudAuth",
     "applicationType": "gateway",
     "buildTool": "gradle",
     "jhipsterVersion": "5.8.1",
@@ -31,8 +32,7 @@
     "cacheProvider": "ehcache",
     "serverPort": "8080",
     "clientFramework": "angularX",
-    "useSass": true,
-    "uaaBaseName": "./cloudAuth"
+    "useSass": true
   },
   "entities": []
 }

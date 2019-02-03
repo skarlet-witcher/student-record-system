@@ -27,7 +27,7 @@
     "jhipsterVersion": "5.8.1",
     "skipUserManagement": true,
     "clientPackageManager": "npm",
-    "authenticationType": "jwt",
+    "authenticationType": "uaa",
     "cacheProvider": "hazelcast",
     "jwtSecretKey": "OTU5NTRmZmIyNzdiMjY4ZmUwM2EwZWNjMWVjZjczZGMzMDUyYWRhMGRlY2IzNmE2MDVlOTUyYjU2ZTMwMWUwMjY2ZmNkMTczMTBiNmIzMThhZmJiNDA1MmI5OWE5OGI2MDYyZWRkMTViZWRiY2NlZWJmYjgxYmU4ZjkzMmQzZGE=",
     "entitySuffix": "",

@@ -56,6 +56,7 @@ application {
     config {
         baseName svcStudent
         packageName cc.orangejuice.srs.student
+        authenticationType uaa
         applicationType microservice
         buildTool gradle
         serverPort 8081
@@ -67,6 +68,7 @@ application {
     config {
         baseName svcUnivCourseModule
         packageName cc.orangejuice.srs.univ.course.module
+        authenticationType uaa
         applicationType microservice
         buildTool gradle
         serverPort 8082
@@ -78,6 +80,7 @@ application {
     config {
         baseName svcStudentResult
         packageName cc.orangejuice.srs.student.result
+        authenticationType uaa
         applicationType microservice
         buildTool gradle
         serverPort 8083
@@ -89,6 +92,7 @@ application {
     config {
         baseName cloudGateway
         packageName cc.orangejuice.srs.gateway
+        authenticationType uaa
         applicationType gateway
         buildTool gradle
     }

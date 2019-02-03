@@ -57,6 +57,7 @@ application {
         baseName svcStudent
         packageName cc.orangejuice.srs.student
         authenticationType uaa
+        uaaBaseName "./cloudAuth"
         applicationType microservice
         searchEngine elasticsearch
         serviceDiscoveryType eureka
@@ -71,6 +72,7 @@ application {
         baseName svcUnivCourseModule
         packageName cc.orangejuice.srs.univ.course.module
         authenticationType uaa
+        uaaBaseName "./cloudAuth"
         applicationType microservice
         searchEngine elasticsearch
         serviceDiscoveryType eureka
@@ -85,6 +87,7 @@ application {
         baseName svcStudentResult
         packageName cc.orangejuice.srs.student.result
         authenticationType uaa
+        uaaBaseName "./cloudAuth"
         applicationType microservice
         searchEngine elasticsearch
         serviceDiscoveryType eureka
@@ -99,6 +102,7 @@ application {
         baseName cloudGateway
         packageName cc.orangejuice.srs.gateway
         authenticationType uaa
+        uaaBaseName "./cloudAuth"
         applicationType gateway
         serviceDiscoveryType eureka
         buildTool gradle

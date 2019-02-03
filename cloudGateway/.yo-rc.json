@@ -31,7 +31,8 @@
     "cacheProvider": "ehcache",
     "serverPort": "8080",
     "clientFramework": "angularX",
-    "useSass": true
+    "useSass": true,
+    "uaaBaseName": "./cloudAuth"
   },
   "entities": []
 }

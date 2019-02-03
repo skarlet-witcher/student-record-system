@@ -28,7 +28,11 @@
     "jhipsterVersion": "5.8.1",
     "skipUserManagement": true,
     "clientPackageManager": "npm",
-    "cacheProvider": "hazelcast"
+    "cacheProvider": "hazelcast",
+    "uaaBaseName": "./cloudAuth",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
   },
   "entities": [
     "StudentResult"

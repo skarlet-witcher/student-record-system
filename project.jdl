@@ -25,9 +25,9 @@ entity StudentResult {
     gpa Double
 }
 
-// relationship OneToOne {
-//     Student{username(login) required} to User
-// }
+relationship OneToOne {
+    Student{username(login) required} to User
+}
 
 // relationship ManyToMany {
 //     Student{module(name)} to Module

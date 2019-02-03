@@ -44,7 +44,17 @@
             ]
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "username",
+            "otherEntityName": "user",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "student"
+        }
+    ],
     "changelogDate": "20190203205003",
     "entityTableName": "student",
     "dto": "mapstruct",

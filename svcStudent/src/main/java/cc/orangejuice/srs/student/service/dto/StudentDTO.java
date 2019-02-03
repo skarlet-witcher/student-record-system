@@ -30,6 +30,10 @@ public class StudentDTO implements Serializable {
     private String phone;
 
 
+    private Long usernameId;
+
+    private String usernameLogin;
+
     public Long getId() {
         return id;
     }
@@ -86,6 +90,22 @@ public class StudentDTO implements Serializable {
         this.phone = phone;
     }
 
+    public Long getUsernameId() {
+        return usernameId;
+    }
+
+    public void setUsernameId(Long userId) {
+        this.usernameId = userId;
+    }
+
+    public String getUsernameLogin() {
+        return usernameLogin;
+    }
+
+    public void setUsernameLogin(String userLogin) {
+        this.usernameLogin = userLogin;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -117,6 +137,8 @@ public class StudentDTO implements Serializable {
             ", gender='" + getGender() + "'" +
             ", email='" + getEmail() + "'" +
             ", phone='" + getPhone() + "'" +
+            ", username=" + getUsernameId() +
+            ", username='" + getUsernameLogin() + "'" +
             "}";
     }
 }

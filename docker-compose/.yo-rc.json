@@ -15,6 +15,7 @@
     "consoleOptions": [],
     "serviceDiscoveryType": "eureka",
     "dockerRepositoryName": "cherrymeteor",
-    "dockerPushCommand": "docker push"
+    "dockerPushCommand": "docker push",
+    "jwtSecretKey": "NDdiMjIyY2ZiMzNlZTZiYmJjNDY1YjlhNjIzNjFmNTk0NDk5MDhjNTA0ZmJiODJjYjkxM2E3MTQxYzU0Yjc4NmYwMTllZjgyM2VhNDg0MzFlYmY2ZWJiMDNmNDI2ZTk5MDMzYQ=="
   }
 }

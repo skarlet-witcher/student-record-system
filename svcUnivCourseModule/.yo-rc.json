@@ -21,18 +21,14 @@
     "testFrameworks": [],
     "websocket": false,
     "baseName": "svcUnivCourseModule",
+    "authenticationType": "uaa",
     "applicationType": "microservice",
     "buildTool": "gradle",
     "serverPort": "8082",
     "jhipsterVersion": "5.8.1",
     "skipUserManagement": true,
     "clientPackageManager": "npm",
-    "authenticationType": "uaa",
-    "cacheProvider": "hazelcast",
-    "jwtSecretKey": "OTU5NTRmZmIyNzdiMjY4ZmUwM2EwZWNjMWVjZjczZGMzMDUyYWRhMGRlY2IzNmE2MDVlOTUyYjU2ZTMwMWUwMjY2ZmNkMTczMTBiNmIzMThhZmJiNDA1MmI5OWE5OGI2MDYyZWRkMTViZWRiY2NlZWJmYjgxYmU4ZjkzMmQzZGE=",
-    "entitySuffix": "",
-    "dtoSuffix": "DTO",
-    "otherModules": []
+    "cacheProvider": "hazelcast"
   },
   "entities": [
     "Module"

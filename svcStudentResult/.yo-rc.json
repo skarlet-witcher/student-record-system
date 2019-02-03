@@ -21,18 +21,14 @@
     "testFrameworks": [],
     "websocket": false,
     "baseName": "svcStudentResult",
+    "authenticationType": "uaa",
     "applicationType": "microservice",
     "buildTool": "gradle",
     "serverPort": "8083",
     "jhipsterVersion": "5.8.1",
     "skipUserManagement": true,
     "clientPackageManager": "npm",
-    "authenticationType": "uaa",
-    "cacheProvider": "hazelcast",
-    "jwtSecretKey": "MzE1MGM0Yjc0MjMzYjRhMjQxNGI3YzMyZjZhNmI3OTJjYjU5YTAzNzhkODJmZGZjYmY4MzliM2NmY2UxYmY3OWM1NzY4MGE3NDI4NjFiNjFmNDgwYzBmNjRkYTg2YjUzYzc3OTQxYzQ1YTYyODEwYWUwZWIwOWEyYTcwNjExODg=",
-    "entitySuffix": "",
-    "dtoSuffix": "DTO",
-    "otherModules": []
+    "cacheProvider": "hazelcast"
   },
   "entities": [
     "StudentResult"

@@ -55,7 +55,7 @@
             "otherEntityRelationshipName": "student"
         }
     ],
-    "changelogDate": "20190203205003",
+    "changelogDate": "20190203221240",
     "entityTableName": "student",
     "dto": "mapstruct",
     "pagination": "pagination",

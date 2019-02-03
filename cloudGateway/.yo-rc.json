@@ -29,10 +29,13 @@
     "jhipsterVersion": "5.8.1",
     "skipUserManagement": false,
     "clientPackageManager": "npm",
-    "cacheProvider": "ehcache",
+    "cacheProvider": "hazelcast",
     "serverPort": "8080",
     "clientFramework": "angularX",
-    "useSass": true
+    "useSass": true,
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
   },
   "entities": []
 }

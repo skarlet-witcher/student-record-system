@@ -53,11 +53,6 @@ public class Student implements Serializable {
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    @OneToOne(optional = false)    @NotNull
-
-    @JoinColumn(unique = true)
-    private User username;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -143,19 +138,6 @@ public class Student implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public User getUsername() {
-        return username;
-    }
-
-    public Student username(User user) {
-        this.username = user;
-        return this;
-    }
-
-    public void setUsername(User user) {
-        this.username = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

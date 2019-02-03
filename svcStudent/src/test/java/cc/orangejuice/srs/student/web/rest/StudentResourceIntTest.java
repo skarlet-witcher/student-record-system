@@ -5,7 +5,6 @@ import cc.orangejuice.srs.student.SvcStudentApp;
 import cc.orangejuice.srs.student.config.SecurityBeanOverrideConfiguration;
 
 import cc.orangejuice.srs.student.domain.Student;
-import cc.orangejuice.srs.student.domain.User;
 import cc.orangejuice.srs.student.repository.StudentRepository;
 import cc.orangejuice.srs.student.repository.search.StudentSearchRepository;
 import cc.orangejuice.srs.student.service.StudentService;
@@ -133,11 +132,6 @@ public class StudentResourceIntTest {
             .gender(DEFAULT_GENDER)
             .email(DEFAULT_EMAIL)
             .phone(DEFAULT_PHONE);
-        // Add required entity
-        User user = UserResourceIntTest.createEntity(em);
-        em.persist(user);
-        em.flush();
-        student.setUsername(user);
         return student;
     }
 

@@ -58,6 +58,8 @@ application {
         packageName cc.orangejuice.srs.student
         authenticationType uaa
         applicationType microservice
+        searchEngine elasticsearch
+        serviceDiscoveryType eureka
         buildTool gradle
         serverPort 8081
     }
@@ -70,6 +72,8 @@ application {
         packageName cc.orangejuice.srs.univ.course.module
         authenticationType uaa
         applicationType microservice
+        searchEngine elasticsearch
+        serviceDiscoveryType eureka
         buildTool gradle
         serverPort 8082
     }
@@ -82,6 +86,8 @@ application {
         packageName cc.orangejuice.srs.student.result
         authenticationType uaa
         applicationType microservice
+        searchEngine elasticsearch
+        serviceDiscoveryType eureka
         buildTool gradle
         serverPort 8083
     }
@@ -94,6 +100,7 @@ application {
         packageName cc.orangejuice.srs.gateway
         authenticationType uaa
         applicationType gateway
+        serviceDiscoveryType eureka
         buildTool gradle
     }
 }
@@ -103,6 +110,8 @@ application {
         baseName cloudAuth
         packageName cc.orangejuice.srs.auth
         applicationType uaa
+        searchEngine elasticsearch
+        serviceDiscoveryType eureka
         buildTool gradle
     }
 }

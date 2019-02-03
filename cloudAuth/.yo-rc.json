@@ -15,7 +15,7 @@
     "packageName": "cc.orangejuice.srs.auth",
     "packageFolder": "cc/orangejuice/srs/auth",
     "prodDatabaseType": "mysql",
-    "searchEngine": false,
+    "searchEngine": "elasticsearch",
     "serviceDiscoveryType": "eureka",
     "skipClient": true,
     "testFrameworks": [],

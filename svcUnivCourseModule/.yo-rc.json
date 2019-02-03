@@ -15,7 +15,7 @@
     "packageName": "cc.orangejuice.srs.univ.course.module",
     "packageFolder": "cc/orangejuice/srs/univ/course/module",
     "prodDatabaseType": "mysql",
-    "searchEngine": false,
+    "searchEngine": "elasticsearch",
     "serviceDiscoveryType": "eureka",
     "skipClient": true,
     "testFrameworks": [],

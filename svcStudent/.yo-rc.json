@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "jhiPrefix": "jhi",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "messageBroker": false,
+    "nativeLanguage": "en",
+    "packageName": "cc.orangejuice.srs.student",
+    "packageFolder": "cc/orangejuice/srs/student",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "serviceDiscoveryType": "eureka",
+    "skipClient": true,
+    "testFrameworks": [],
+    "websocket": false,
+    "baseName": "svcStudent",
+    "applicationType": "microservice",
+    "buildTool": "gradle",
+    "serverPort": "8081",
+    "jhipsterVersion": "5.8.1",
+    "skipUserManagement": true,
+    "clientPackageManager": "npm",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "jwtSecretKey": "ZmI5OWQ3ZDVhMmE3N2I2ZjQ2NDVkZjNjNTczMGFiYjVjNmY1NzU1ODU2Y2Q1OGFkODhiNDE3OWU1YjZjNzlmNTVkMzY2YTI5MjMxYWZiNTUwMWZjMDc3MmJlZmFmYzc2ZTIyYTQ3OGM3MTA3MzRjNGQxNWZkMmNhNzQ1Y2FjODM=",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
+  },
+  "entities": [
+    "Student"
+  ]
+}

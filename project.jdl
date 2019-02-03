@@ -1,0 +1,110 @@
+@microservice(svcStudent)
+entity Student {
+    studentId String,
+    firstName String required,
+    lastName String required,
+    gender Gender required,
+    email String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
+    phone String required
+}
+
+enum Gender {
+    MALE, FEMALE, OTHER
+}
+
+@microservice(svcUnivCourseModule)
+entity Module {
+    code String,
+    name String,
+    desc TextBlob
+}
+
+@microservice(svcUnivStudentResult)
+entity StudentResult {
+    grade Double,
+    gpa Double
+}
+
+// relationship OneToOne {
+//     Student{username(login) required} to User
+// }
+
+// relationship ManyToMany {
+//     Student{module(name)} to Module
+// }
+
+// relationship OneToOne {
+//     StudentResult{module(name)} to Module
+// }
+
+// relationship OneToMany {
+//     Student to StudentResult
+// }
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+search * with elasticsearch
+
+/*
+microservice Student with svcStudent
+microservice Module with svcUnivCourseModule
+microservice StudentResult with svcUnivCourseModuleResult
+*/
+
+application {
+    config {
+        baseName svcStudent
+        packageName cc.orangejuice.srs.student
+        applicationType microservice
+        buildTool gradle
+        serverPort 8081
+    }
+    entities Student
+}
+
+application {
+    config {
+        baseName svcUnivCourseModule
+        packageName cc.orangejuice.srs.univ.course.module
+        applicationType microservice
+        buildTool gradle
+        serverPort 8082
+    }
+    entities Module
+}
+
+application {
+    config {
+        baseName svcStudentResult
+        packageName cc.orangejuice.srs.student.result
+        applicationType microservice
+        buildTool gradle
+        serverPort 8083
+    }
+    entities StudentResult
+}
+
+application {
+    config {
+        baseName cloudGateway
+        packageName cc.orangejuice.srs.gateway
+        applicationType gateway
+        buildTool gradle
+    }
+}
+
+application {
+    config {
+        baseName cloudAuth
+        packageName cc.orangejuice.srs.auth
+        applicationType uaa
+        buildTool gradle
+    }
+}
+
+deployment {
+    deploymentType docker-compose
+    appsFolders [svcStudent, svcUnivCourseModule, svcStudentResult, cloudGateway, cloudAuth]
+    dockerRepositoryName "cherrymeteor"
+}

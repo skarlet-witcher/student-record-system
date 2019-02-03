@@ -1,0 +1,20 @@
+{
+  "generator-jhipster": {
+    "deploymentType": "docker-compose",
+    "gatewayType": "zuul",
+    "monitoring": "no",
+    "directoryPath": "../",
+    "appsFolders": [
+      "svcStudent",
+      "svcUnivCourseModule",
+      "svcStudentResult",
+      "cloudGateway",
+      "cloudAuth"
+    ],
+    "clusteredDbApps": [],
+    "consoleOptions": [],
+    "serviceDiscoveryType": "eureka",
+    "dockerRepositoryName": "cherrymeteor",
+    "dockerPushCommand": "docker push"
+  }
+}

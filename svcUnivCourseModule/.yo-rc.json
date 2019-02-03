@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "jhiPrefix": "jhi",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "messageBroker": false,
+    "nativeLanguage": "en",
+    "packageName": "cc.orangejuice.srs.univ.course.module",
+    "packageFolder": "cc/orangejuice/srs/univ/course/module",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "serviceDiscoveryType": "eureka",
+    "skipClient": true,
+    "testFrameworks": [],
+    "websocket": false,
+    "baseName": "svcUnivCourseModule",
+    "applicationType": "microservice",
+    "buildTool": "gradle",
+    "serverPort": "8082",
+    "jhipsterVersion": "5.8.1",
+    "skipUserManagement": true,
+    "clientPackageManager": "npm",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "jwtSecretKey": "OTU5NTRmZmIyNzdiMjY4ZmUwM2EwZWNjMWVjZjczZGMzMDUyYWRhMGRlY2IzNmE2MDVlOTUyYjU2ZTMwMWUwMjY2ZmNkMTczMTBiNmIzMThhZmJiNDA1MmI5OWE5OGI2MDYyZWRkMTViZWRiY2NlZWJmYjgxYmU4ZjkzMmQzZGE=",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
+  },
+  "entities": [
+    "Module"
+  ]
+}

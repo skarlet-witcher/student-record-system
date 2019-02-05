@@ -51,8 +51,8 @@ public class ModuleResultResourceIntTest {
     private static final Double DEFAULT_QCA = 1D;
     private static final Double UPDATED_QCA = 2D;
 
-    private static final Long DEFAULT_STUNDET_ID = 1L;
-    private static final Long UPDATED_STUNDET_ID = 2L;
+    private static final Long DEFAULT_STUDENT_ID = 1L;
+    private static final Long UPDATED_STUDENT_ID = 2L;
 
     @Autowired
     private ModuleResultRepository moduleResultRepository;
@@ -104,7 +104,7 @@ public class ModuleResultResourceIntTest {
         ModuleResult moduleResult = new ModuleResult()
             .grade(DEFAULT_GRADE)
             .qca(DEFAULT_QCA)
-            .stundetId(DEFAULT_STUNDET_ID);
+            .studentId(DEFAULT_STUDENT_ID);
         return moduleResult;
     }
 
@@ -131,7 +131,7 @@ public class ModuleResultResourceIntTest {
         ModuleResult testModuleResult = moduleResultList.get(moduleResultList.size() - 1);
         assertThat(testModuleResult.getGrade()).isEqualTo(DEFAULT_GRADE);
         assertThat(testModuleResult.getQca()).isEqualTo(DEFAULT_QCA);
-        assertThat(testModuleResult.getStundetId()).isEqualTo(DEFAULT_STUNDET_ID);
+        assertThat(testModuleResult.getStudentId()).isEqualTo(DEFAULT_STUDENT_ID);
     }
 
     @Test
@@ -167,7 +167,7 @@ public class ModuleResultResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(moduleResult.getId().intValue())))
             .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE.doubleValue())))
             .andExpect(jsonPath("$.[*].qca").value(hasItem(DEFAULT_QCA.doubleValue())))
-            .andExpect(jsonPath("$.[*].stundetId").value(hasItem(DEFAULT_STUNDET_ID.intValue())));
+            .andExpect(jsonPath("$.[*].studentId").value(hasItem(DEFAULT_STUDENT_ID.intValue())));
     }
     
     @Test
@@ -183,7 +183,7 @@ public class ModuleResultResourceIntTest {
             .andExpect(jsonPath("$.id").value(moduleResult.getId().intValue()))
             .andExpect(jsonPath("$.grade").value(DEFAULT_GRADE.doubleValue()))
             .andExpect(jsonPath("$.qca").value(DEFAULT_QCA.doubleValue()))
-            .andExpect(jsonPath("$.stundetId").value(DEFAULT_STUNDET_ID.intValue()));
+            .andExpect(jsonPath("$.studentId").value(DEFAULT_STUDENT_ID.intValue()));
     }
 
     @Test
@@ -209,7 +209,7 @@ public class ModuleResultResourceIntTest {
         updatedModuleResult
             .grade(UPDATED_GRADE)
             .qca(UPDATED_QCA)
-            .stundetId(UPDATED_STUNDET_ID);
+            .studentId(UPDATED_STUDENT_ID);
         ModuleResultDTO moduleResultDTO = moduleResultMapper.toDto(updatedModuleResult);
 
         restModuleResultMockMvc.perform(put("/api/module-results")
@@ -223,7 +223,7 @@ public class ModuleResultResourceIntTest {
         ModuleResult testModuleResult = moduleResultList.get(moduleResultList.size() - 1);
         assertThat(testModuleResult.getGrade()).isEqualTo(UPDATED_GRADE);
         assertThat(testModuleResult.getQca()).isEqualTo(UPDATED_QCA);
-        assertThat(testModuleResult.getStundetId()).isEqualTo(UPDATED_STUNDET_ID);
+        assertThat(testModuleResult.getStudentId()).isEqualTo(UPDATED_STUDENT_ID);
     }
 
     @Test

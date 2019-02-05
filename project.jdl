@@ -33,7 +33,7 @@ entity StudentModule {
 entity ModuleResult {
     grade Double,
     qca Double,
-    stundetId Long
+    studentId Long
     // level ModuleResultLevel
 }
 

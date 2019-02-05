@@ -10,7 +10,7 @@
             "fieldType": "Double"
         },
         {
-            "fieldName": "stundetId",
+            "fieldName": "studentId",
             "fieldType": "Long"
         }
     ],

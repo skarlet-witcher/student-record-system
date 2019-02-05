@@ -30,8 +30,8 @@ public class ModuleResult implements Serializable {
     @Column(name = "qca")
     private Double qca;
 
-    @Column(name = "stundet_id")
-    private Long stundetId;
+    @Column(name = "student_id")
+    private Long studentId;
 
     @ManyToOne
     @JsonIgnoreProperties("moduleResults")
@@ -72,17 +72,17 @@ public class ModuleResult implements Serializable {
         this.qca = qca;
     }
 
-    public Long getStundetId() {
-        return stundetId;
+    public Long getStudentId() {
+        return studentId;
     }
 
-    public ModuleResult stundetId(Long stundetId) {
-        this.stundetId = stundetId;
+    public ModuleResult studentId(Long studentId) {
+        this.studentId = studentId;
         return this;
     }
 
-    public void setStundetId(Long stundetId) {
-        this.stundetId = stundetId;
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
     public Module getModule() {
@@ -125,7 +125,7 @@ public class ModuleResult implements Serializable {
             "id=" + getId() +
             ", grade=" + getGrade() +
             ", qca=" + getQca() +
-            ", stundetId=" + getStundetId() +
+            ", studentId=" + getStudentId() +
             "}";
     }
 }

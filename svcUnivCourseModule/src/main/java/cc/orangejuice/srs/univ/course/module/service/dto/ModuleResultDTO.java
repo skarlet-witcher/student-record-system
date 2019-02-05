@@ -13,7 +13,7 @@ public class ModuleResultDTO implements Serializable {
 
     private Double qca;
 
-    private Long stundetId;
+    private Long studentId;
 
 
     private Long moduleId;
@@ -44,12 +44,12 @@ public class ModuleResultDTO implements Serializable {
         this.qca = qca;
     }
 
-    public Long getStundetId() {
-        return stundetId;
+    public Long getStudentId() {
+        return studentId;
     }
 
-    public void setStundetId(Long stundetId) {
-        this.stundetId = stundetId;
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
     public Long getModuleId() {
@@ -95,7 +95,7 @@ public class ModuleResultDTO implements Serializable {
             "id=" + getId() +
             ", grade=" + getGrade() +
             ", qca=" + getQca() +
-            ", stundetId=" + getStundetId() +
+            ", studentId=" + getStudentId() +
             ", module=" + getModuleId() +
             ", module='" + getModuleName() + "'" +
             "}";

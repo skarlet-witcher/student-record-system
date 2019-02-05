@@ -15,6 +15,11 @@ refer to the document of [**jhipster**](https://www.jhipster.tech/development/).
 -------
 `TIPS` another way is to run in docker compose.
 
+## Test Account
+
+- admin:admin
+- user:user
+
 ## Some Port
 
 - 8080 gateway

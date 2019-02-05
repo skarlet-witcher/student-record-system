@@ -85,6 +85,7 @@ application {
         applicationType gateway
         serviceDiscoveryType eureka
         buildTool gradle
+        //skipClient true
     }
 }
 

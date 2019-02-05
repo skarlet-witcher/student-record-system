@@ -48,30 +48,6 @@ services:
         environment:
             - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
     
-    svcstudentresult-app:
-        image: svcstudentresult
-        environment:
-            - _JAVA_OPTIONS=-Xmx512m -Xms256m
-            - 'SPRING_PROFILES_ACTIVE=prod,swagger'
-            - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
-            - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
-            - 'SPRING_DATASOURCE_URL=jdbc:mysql://svcstudentresult-mysql:3306/svcstudentresult?useUnicode=true&characterEncoding=utf8&useSSL=false'
-            - JHIPSTER_SLEEP=30
-            - 'SPRING_DATA_JEST_URI=http://svcstudentresult-elasticsearch:9200'
-            - JHIPSTER_REGISTRY_PASSWORD=admin
-    svcstudentresult-mysql:
-        image: 'mysql:5.7.20'
-        environment:
-            - MYSQL_USER=root
-            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-            - MYSQL_DATABASE=svcstudentresult
-        command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
-    svcstudentresult-elasticsearch:
-        image: 'elasticsearch:5.6.13'
-        command: '-Enetwork.host=0.0.0.0 -Ediscovery.type=single-node'
-        environment:
-            - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
-    
     cloudgateway-app:
         image: cloudgateway
         environment:

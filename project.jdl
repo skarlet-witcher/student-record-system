@@ -26,8 +26,8 @@ entity Module {
 entity StudentModule {
     studentId Long required,
     moduleId Long required,
-    year Integer required,
-    semester Integer required
+    enrollYear Integer required,
+    enrollSemester Integer required
 }
 
 entity ModuleResult {

@@ -16,9 +16,6 @@ Launch all your infrastructure by running: `docker-compose up -d`.
 - svcUnivCourseModule (microservice application)
 - svcUnivCourseModule's mysql database
 - svcUnivCourseModule's elasticsearch search engine
-- svcStudentResult (microservice application)
-- svcStudentResult's mysql database
-- svcStudentResult's elasticsearch search engine
 - cloudGateway (gateway application)
 - cloudGateway's mysql database
 - cloudAuth (uaa application)

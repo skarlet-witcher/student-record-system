@@ -17,10 +17,10 @@ public class StudentModuleDTO implements Serializable {
     private Long moduleId;
 
     @NotNull
-    private Integer year;
+    private Integer enrollYear;
 
     @NotNull
-    private Integer semester;
+    private Integer enrollSemester;
 
 
     public Long getId() {
@@ -47,20 +47,20 @@ public class StudentModuleDTO implements Serializable {
         this.moduleId = moduleId;
     }
 
-    public Integer getYear() {
-        return year;
+    public Integer getEnrollYear() {
+        return enrollYear;
     }
 
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setEnrollYear(Integer enrollYear) {
+        this.enrollYear = enrollYear;
     }
 
-    public Integer getSemester() {
-        return semester;
+    public Integer getEnrollSemester() {
+        return enrollSemester;
     }
 
-    public void setSemester(Integer semester) {
-        this.semester = semester;
+    public void setEnrollSemester(Integer enrollSemester) {
+        this.enrollSemester = enrollSemester;
     }
 
     @Override
@@ -90,8 +90,8 @@ public class StudentModuleDTO implements Serializable {
             "id=" + getId() +
             ", studentId=" + getStudentId() +
             ", moduleId=" + getModuleId() +
-            ", year=" + getYear() +
-            ", semester=" + getSemester() +
+            ", enrollYear=" + getEnrollYear() +
+            ", enrollSemester=" + getEnrollSemester() +
             "}";
     }
 }

@@ -16,14 +16,14 @@
             ]
         },
         {
-            "fieldName": "year",
+            "fieldName": "enrollYear",
             "fieldType": "Integer",
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
-            "fieldName": "semester",
+            "fieldName": "enrollSemester",
             "fieldType": "Integer",
             "fieldValidateRules": [
                 "required"

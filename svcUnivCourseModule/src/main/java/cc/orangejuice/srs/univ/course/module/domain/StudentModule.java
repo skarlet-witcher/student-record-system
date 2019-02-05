@@ -35,12 +35,12 @@ public class StudentModule implements Serializable {
     private Long moduleId;
 
     @NotNull
-    @Column(name = "jhi_year", nullable = false)
-    private Integer year;
+    @Column(name = "enroll_year", nullable = false)
+    private Integer enrollYear;
 
     @NotNull
-    @Column(name = "semester", nullable = false)
-    private Integer semester;
+    @Column(name = "enroll_semester", nullable = false)
+    private Integer enrollSemester;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -77,30 +77,30 @@ public class StudentModule implements Serializable {
         this.moduleId = moduleId;
     }
 
-    public Integer getYear() {
-        return year;
+    public Integer getEnrollYear() {
+        return enrollYear;
     }
 
-    public StudentModule year(Integer year) {
-        this.year = year;
+    public StudentModule enrollYear(Integer enrollYear) {
+        this.enrollYear = enrollYear;
         return this;
     }
 
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setEnrollYear(Integer enrollYear) {
+        this.enrollYear = enrollYear;
     }
 
-    public Integer getSemester() {
-        return semester;
+    public Integer getEnrollSemester() {
+        return enrollSemester;
     }
 
-    public StudentModule semester(Integer semester) {
-        this.semester = semester;
+    public StudentModule enrollSemester(Integer enrollSemester) {
+        this.enrollSemester = enrollSemester;
         return this;
     }
 
-    public void setSemester(Integer semester) {
-        this.semester = semester;
+    public void setEnrollSemester(Integer enrollSemester) {
+        this.enrollSemester = enrollSemester;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -130,8 +130,8 @@ public class StudentModule implements Serializable {
             "id=" + getId() +
             ", studentId=" + getStudentId() +
             ", moduleId=" + getModuleId() +
-            ", year=" + getYear() +
-            ", semester=" + getSemester() +
+            ", enrollYear=" + getEnrollYear() +
+            ", enrollSemester=" + getEnrollSemester() +
             "}";
     }
 }

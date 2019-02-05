@@ -30,11 +30,11 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="jhi_year" type="integer">
+            <column name="enroll_year" type="integer">
                 <constraints nullable="false" />
             </column>
 
-            <column name="semester" type="integer">
+            <column name="enroll_semester" type="integer">
                 <constraints nullable="false" />
             </column>
 

@@ -57,11 +57,11 @@ public class StudentModuleResourceIntTest {
     private static final Long DEFAULT_MODULE_ID = 1L;
     private static final Long UPDATED_MODULE_ID = 2L;
 
-    private static final Integer DEFAULT_YEAR = 1;
-    private static final Integer UPDATED_YEAR = 2;
+    private static final Integer DEFAULT_ENROLL_YEAR = 1;
+    private static final Integer UPDATED_ENROLL_YEAR = 2;
 
-    private static final Integer DEFAULT_SEMESTER = 1;
-    private static final Integer UPDATED_SEMESTER = 2;
+    private static final Integer DEFAULT_ENROLL_SEMESTER = 1;
+    private static final Integer UPDATED_ENROLL_SEMESTER = 2;
 
     @Autowired
     private StudentModuleRepository studentModuleRepository;
@@ -121,8 +121,8 @@ public class StudentModuleResourceIntTest {
         StudentModule studentModule = new StudentModule()
             .studentId(DEFAULT_STUDENT_ID)
             .moduleId(DEFAULT_MODULE_ID)
-            .year(DEFAULT_YEAR)
-            .semester(DEFAULT_SEMESTER);
+            .enrollYear(DEFAULT_ENROLL_YEAR)
+            .enrollSemester(DEFAULT_ENROLL_SEMESTER);
         return studentModule;
     }
 
@@ -149,8 +149,8 @@ public class StudentModuleResourceIntTest {
         StudentModule testStudentModule = studentModuleList.get(studentModuleList.size() - 1);
         assertThat(testStudentModule.getStudentId()).isEqualTo(DEFAULT_STUDENT_ID);
         assertThat(testStudentModule.getModuleId()).isEqualTo(DEFAULT_MODULE_ID);
-        assertThat(testStudentModule.getYear()).isEqualTo(DEFAULT_YEAR);
-        assertThat(testStudentModule.getSemester()).isEqualTo(DEFAULT_SEMESTER);
+        assertThat(testStudentModule.getEnrollYear()).isEqualTo(DEFAULT_ENROLL_YEAR);
+        assertThat(testStudentModule.getEnrollSemester()).isEqualTo(DEFAULT_ENROLL_SEMESTER);
 
         // Validate the StudentModule in Elasticsearch
         verify(mockStudentModuleSearchRepository, times(1)).save(testStudentModule);
@@ -219,10 +219,10 @@ public class StudentModuleResourceIntTest {
 
     @Test
     @Transactional
-    public void checkYearIsRequired() throws Exception {
+    public void checkEnrollYearIsRequired() throws Exception {
         int databaseSizeBeforeTest = studentModuleRepository.findAll().size();
         // set the field null
-        studentModule.setYear(null);
+        studentModule.setEnrollYear(null);
 
         // Create the StudentModule, which fails.
         StudentModuleDTO studentModuleDTO = studentModuleMapper.toDto(studentModule);
@@ -238,10 +238,10 @@ public class StudentModuleResourceIntTest {
 
     @Test
     @Transactional
-    public void checkSemesterIsRequired() throws Exception {
+    public void checkEnrollSemesterIsRequired() throws Exception {
         int databaseSizeBeforeTest = studentModuleRepository.findAll().size();
         // set the field null
-        studentModule.setSemester(null);
+        studentModule.setEnrollSemester(null);
 
         // Create the StudentModule, which fails.
         StudentModuleDTO studentModuleDTO = studentModuleMapper.toDto(studentModule);
@@ -268,8 +268,8 @@ public class StudentModuleResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(studentModule.getId().intValue())))
             .andExpect(jsonPath("$.[*].studentId").value(hasItem(DEFAULT_STUDENT_ID.intValue())))
             .andExpect(jsonPath("$.[*].moduleId").value(hasItem(DEFAULT_MODULE_ID.intValue())))
-            .andExpect(jsonPath("$.[*].year").value(hasItem(DEFAULT_YEAR)))
-            .andExpect(jsonPath("$.[*].semester").value(hasItem(DEFAULT_SEMESTER)));
+            .andExpect(jsonPath("$.[*].enrollYear").value(hasItem(DEFAULT_ENROLL_YEAR)))
+            .andExpect(jsonPath("$.[*].enrollSemester").value(hasItem(DEFAULT_ENROLL_SEMESTER)));
     }
     
     @Test
@@ -285,8 +285,8 @@ public class StudentModuleResourceIntTest {
             .andExpect(jsonPath("$.id").value(studentModule.getId().intValue()))
             .andExpect(jsonPath("$.studentId").value(DEFAULT_STUDENT_ID.intValue()))
             .andExpect(jsonPath("$.moduleId").value(DEFAULT_MODULE_ID.intValue()))
-            .andExpect(jsonPath("$.year").value(DEFAULT_YEAR))
-            .andExpect(jsonPath("$.semester").value(DEFAULT_SEMESTER));
+            .andExpect(jsonPath("$.enrollYear").value(DEFAULT_ENROLL_YEAR))
+            .andExpect(jsonPath("$.enrollSemester").value(DEFAULT_ENROLL_SEMESTER));
     }
 
     @Test
@@ -312,8 +312,8 @@ public class StudentModuleResourceIntTest {
         updatedStudentModule
             .studentId(UPDATED_STUDENT_ID)
             .moduleId(UPDATED_MODULE_ID)
-            .year(UPDATED_YEAR)
-            .semester(UPDATED_SEMESTER);
+            .enrollYear(UPDATED_ENROLL_YEAR)
+            .enrollSemester(UPDATED_ENROLL_SEMESTER);
         StudentModuleDTO studentModuleDTO = studentModuleMapper.toDto(updatedStudentModule);
 
         restStudentModuleMockMvc.perform(put("/api/student-modules")
@@ -327,8 +327,8 @@ public class StudentModuleResourceIntTest {
         StudentModule testStudentModule = studentModuleList.get(studentModuleList.size() - 1);
         assertThat(testStudentModule.getStudentId()).isEqualTo(UPDATED_STUDENT_ID);
         assertThat(testStudentModule.getModuleId()).isEqualTo(UPDATED_MODULE_ID);
-        assertThat(testStudentModule.getYear()).isEqualTo(UPDATED_YEAR);
-        assertThat(testStudentModule.getSemester()).isEqualTo(UPDATED_SEMESTER);
+        assertThat(testStudentModule.getEnrollYear()).isEqualTo(UPDATED_ENROLL_YEAR);
+        assertThat(testStudentModule.getEnrollSemester()).isEqualTo(UPDATED_ENROLL_SEMESTER);
 
         // Validate the StudentModule in Elasticsearch
         verify(mockStudentModuleSearchRepository, times(1)).save(testStudentModule);
@@ -391,8 +391,8 @@ public class StudentModuleResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(studentModule.getId().intValue())))
             .andExpect(jsonPath("$.[*].studentId").value(hasItem(DEFAULT_STUDENT_ID.intValue())))
             .andExpect(jsonPath("$.[*].moduleId").value(hasItem(DEFAULT_MODULE_ID.intValue())))
-            .andExpect(jsonPath("$.[*].year").value(hasItem(DEFAULT_YEAR)))
-            .andExpect(jsonPath("$.[*].semester").value(hasItem(DEFAULT_SEMESTER)));
+            .andExpect(jsonPath("$.[*].enrollYear").value(hasItem(DEFAULT_ENROLL_YEAR)))
+            .andExpect(jsonPath("$.[*].enrollSemester").value(hasItem(DEFAULT_ENROLL_SEMESTER)));
     }
 
     @Test

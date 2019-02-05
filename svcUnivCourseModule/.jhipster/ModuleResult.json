@@ -23,7 +23,7 @@
             "otherEntityRelationshipName": "moduleResult"
         }
     ],
-    "changelogDate": "20190205105431",
+    "changelogDate": "20190205175113",
     "entityTableName": "module_result",
     "dto": "mapstruct",
     "pagination": "pagination",

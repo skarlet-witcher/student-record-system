@@ -6,7 +6,6 @@ import cc.orangejuice.srs.student.config.SecurityBeanOverrideConfiguration;
 
 import cc.orangejuice.srs.student.domain.Student;
 import cc.orangejuice.srs.student.repository.StudentRepository;
-import cc.orangejuice.srs.student.repository.search.StudentSearchRepository;
 import cc.orangejuice.srs.student.service.StudentService;
 import cc.orangejuice.srs.student.service.dto.StudentDTO;
 import cc.orangejuice.srs.student.service.mapper.StudentMapper;
@@ -18,8 +17,6 @@ import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -30,15 +27,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.util.Collections;
 import java.util.List;
 
 
 import static cc.orangejuice.srs.student.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -64,8 +58,8 @@ public class StudentResourceIntTest {
     private static final Gender DEFAULT_GENDER = Gender.MALE;
     private static final Gender UPDATED_GENDER = Gender.FEMALE;
 
-    private static final String DEFAULT_EMAIL = "J,@..T";
-    private static final String UPDATED_EMAIL = "E@t.u";
+    private static final String DEFAULT_EMAIL = "hR@2M.>";
+    private static final String UPDATED_EMAIL = "'j@/.q";
 
     private static final String DEFAULT_PHONE = "AAAAAAAAAA";
     private static final String UPDATED_PHONE = "BBBBBBBBBB";
@@ -93,14 +87,6 @@ public class StudentResourceIntTest {
 
     @Autowired
     private StudentService studentService;
-
-    /**
-     * This repository is mocked in the cc.orangejuice.srs.student.repository.search test package.
-     *
-     * @see cc.orangejuice.srs.student.repository.search.StudentSearchRepositoryMockConfiguration
-     */
-    @Autowired
-    private StudentSearchRepository mockStudentSearchRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -187,9 +173,6 @@ public class StudentResourceIntTest {
         assertThat(testStudent.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testStudent.getCountry()).isEqualTo(DEFAULT_COUNTRY);
         assertThat(testStudent.getUserId()).isEqualTo(DEFAULT_USER_ID);
-
-        // Validate the Student in Elasticsearch
-        verify(mockStudentSearchRepository, times(1)).save(testStudent);
     }
 
     @Test
@@ -210,9 +193,6 @@ public class StudentResourceIntTest {
         // Validate the Student in the database
         List<Student> studentList = studentRepository.findAll();
         assertThat(studentList).hasSize(databaseSizeBeforeCreate);
-
-        // Validate the Student in Elasticsearch
-        verify(mockStudentSearchRepository, times(0)).save(student);
     }
 
     @Test
@@ -469,9 +449,6 @@ public class StudentResourceIntTest {
         assertThat(testStudent.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testStudent.getCountry()).isEqualTo(UPDATED_COUNTRY);
         assertThat(testStudent.getUserId()).isEqualTo(UPDATED_USER_ID);
-
-        // Validate the Student in Elasticsearch
-        verify(mockStudentSearchRepository, times(1)).save(testStudent);
     }
 
     @Test
@@ -491,9 +468,6 @@ public class StudentResourceIntTest {
         // Validate the Student in the database
         List<Student> studentList = studentRepository.findAll();
         assertThat(studentList).hasSize(databaseSizeBeforeUpdate);
-
-        // Validate the Student in Elasticsearch
-        verify(mockStudentSearchRepository, times(0)).save(student);
     }
 
     @Test
@@ -512,34 +486,6 @@ public class StudentResourceIntTest {
         // Validate the database is empty
         List<Student> studentList = studentRepository.findAll();
         assertThat(studentList).hasSize(databaseSizeBeforeDelete - 1);
-
-        // Validate the Student in Elasticsearch
-        verify(mockStudentSearchRepository, times(1)).deleteById(student.getId());
-    }
-
-    @Test
-    @Transactional
-    public void searchStudent() throws Exception {
-        // Initialize the database
-        studentRepository.saveAndFlush(student);
-        when(mockStudentSearchRepository.search(queryStringQuery("id:" + student.getId()), PageRequest.of(0, 20)))
-            .thenReturn(new PageImpl<>(Collections.singletonList(student), PageRequest.of(0, 1), 1));
-        // Search the student
-        restStudentMockMvc.perform(get("/api/_search/students?query=id:" + student.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(student.getId().intValue())))
-            .andExpect(jsonPath("$.[*].studentNumber").value(hasItem(DEFAULT_STUDENT_NUMBER)))
-            .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME)))
-            .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
-            .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)))
-            .andExpect(jsonPath("$.[*].addressLine1").value(hasItem(DEFAULT_ADDRESS_LINE_1)))
-            .andExpect(jsonPath("$.[*].addressLine2").value(hasItem(DEFAULT_ADDRESS_LINE_2)))
-            .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY)))
-            .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY)))
-            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.intValue())));
     }
 
     @Test

@@ -74,7 +74,7 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20190205105428",
+    "changelogDate": "20190205175110",
     "entityTableName": "student",
     "dto": "mapstruct",
     "pagination": "pagination",

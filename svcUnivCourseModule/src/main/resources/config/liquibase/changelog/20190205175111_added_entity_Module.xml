@@ -15,26 +15,22 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity ModuleResult.
+        Added the entity Module.
     -->
-    <changeSet id="20190205105431-1" author="jhipster">
-        <createTable tableName="module_result">
+    <changeSet id="20190205175111-1" author="jhipster">
+        <createTable tableName="module">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="grade" type="double">
-                <constraints nullable="true" />
+            <column name="code" type="varchar(255)">
+                <constraints nullable="false" />
             </column>
 
-            <column name="qca" type="double">
-                <constraints nullable="true" />
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" />
             </column>
 
-            <column name="stundet_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="module_id" type="bigint">
+            <column name="jhi_desc" type="clob">
                 <constraints nullable="true" />
             </column>
 

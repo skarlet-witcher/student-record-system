@@ -6,7 +6,6 @@ import cc.orangejuice.srs.univ.course.module.config.SecurityBeanOverrideConfigur
 
 import cc.orangejuice.srs.univ.course.module.domain.StudentModule;
 import cc.orangejuice.srs.univ.course.module.repository.StudentModuleRepository;
-import cc.orangejuice.srs.univ.course.module.repository.search.StudentModuleSearchRepository;
 import cc.orangejuice.srs.univ.course.module.service.StudentModuleService;
 import cc.orangejuice.srs.univ.course.module.service.dto.StudentModuleDTO;
 import cc.orangejuice.srs.univ.course.module.service.mapper.StudentModuleMapper;
@@ -18,8 +17,6 @@ import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -30,15 +27,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.util.Collections;
 import java.util.List;
 
 
 import static cc.orangejuice.srs.univ.course.module.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -71,14 +65,6 @@ public class StudentModuleResourceIntTest {
 
     @Autowired
     private StudentModuleService studentModuleService;
-
-    /**
-     * This repository is mocked in the cc.orangejuice.srs.univ.course.module.repository.search test package.
-     *
-     * @see cc.orangejuice.srs.univ.course.module.repository.search.StudentModuleSearchRepositoryMockConfiguration
-     */
-    @Autowired
-    private StudentModuleSearchRepository mockStudentModuleSearchRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -151,9 +137,6 @@ public class StudentModuleResourceIntTest {
         assertThat(testStudentModule.getModuleId()).isEqualTo(DEFAULT_MODULE_ID);
         assertThat(testStudentModule.getEnrollYear()).isEqualTo(DEFAULT_ENROLL_YEAR);
         assertThat(testStudentModule.getEnrollSemester()).isEqualTo(DEFAULT_ENROLL_SEMESTER);
-
-        // Validate the StudentModule in Elasticsearch
-        verify(mockStudentModuleSearchRepository, times(1)).save(testStudentModule);
     }
 
     @Test
@@ -174,9 +157,6 @@ public class StudentModuleResourceIntTest {
         // Validate the StudentModule in the database
         List<StudentModule> studentModuleList = studentModuleRepository.findAll();
         assertThat(studentModuleList).hasSize(databaseSizeBeforeCreate);
-
-        // Validate the StudentModule in Elasticsearch
-        verify(mockStudentModuleSearchRepository, times(0)).save(studentModule);
     }
 
     @Test
@@ -329,9 +309,6 @@ public class StudentModuleResourceIntTest {
         assertThat(testStudentModule.getModuleId()).isEqualTo(UPDATED_MODULE_ID);
         assertThat(testStudentModule.getEnrollYear()).isEqualTo(UPDATED_ENROLL_YEAR);
         assertThat(testStudentModule.getEnrollSemester()).isEqualTo(UPDATED_ENROLL_SEMESTER);
-
-        // Validate the StudentModule in Elasticsearch
-        verify(mockStudentModuleSearchRepository, times(1)).save(testStudentModule);
     }
 
     @Test
@@ -351,9 +328,6 @@ public class StudentModuleResourceIntTest {
         // Validate the StudentModule in the database
         List<StudentModule> studentModuleList = studentModuleRepository.findAll();
         assertThat(studentModuleList).hasSize(databaseSizeBeforeUpdate);
-
-        // Validate the StudentModule in Elasticsearch
-        verify(mockStudentModuleSearchRepository, times(0)).save(studentModule);
     }
 
     @Test
@@ -372,27 +346,6 @@ public class StudentModuleResourceIntTest {
         // Validate the database is empty
         List<StudentModule> studentModuleList = studentModuleRepository.findAll();
         assertThat(studentModuleList).hasSize(databaseSizeBeforeDelete - 1);
-
-        // Validate the StudentModule in Elasticsearch
-        verify(mockStudentModuleSearchRepository, times(1)).deleteById(studentModule.getId());
-    }
-
-    @Test
-    @Transactional
-    public void searchStudentModule() throws Exception {
-        // Initialize the database
-        studentModuleRepository.saveAndFlush(studentModule);
-        when(mockStudentModuleSearchRepository.search(queryStringQuery("id:" + studentModule.getId()), PageRequest.of(0, 20)))
-            .thenReturn(new PageImpl<>(Collections.singletonList(studentModule), PageRequest.of(0, 1), 1));
-        // Search the studentModule
-        restStudentModuleMockMvc.perform(get("/api/_search/student-modules?query=id:" + studentModule.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(studentModule.getId().intValue())))
-            .andExpect(jsonPath("$.[*].studentId").value(hasItem(DEFAULT_STUDENT_ID.intValue())))
-            .andExpect(jsonPath("$.[*].moduleId").value(hasItem(DEFAULT_MODULE_ID.intValue())))
-            .andExpect(jsonPath("$.[*].enrollYear").value(hasItem(DEFAULT_ENROLL_YEAR)))
-            .andExpect(jsonPath("$.[*].enrollSemester").value(hasItem(DEFAULT_ENROLL_SEMESTER)));
     }
 
     @Test

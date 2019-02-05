@@ -2,7 +2,6 @@ package cc.orangejuice.srs.univ.course.module.service;
 
 import cc.orangejuice.srs.univ.course.module.domain.StudentModule;
 import cc.orangejuice.srs.univ.course.module.repository.StudentModuleRepository;
-import cc.orangejuice.srs.univ.course.module.repository.search.StudentModuleSearchRepository;
 import cc.orangejuice.srs.univ.course.module.service.dto.StudentModuleDTO;
 import cc.orangejuice.srs.univ.course.module.service.mapper.StudentModuleMapper;
 import org.slf4j.Logger;
@@ -14,8 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing StudentModule.
@@ -30,12 +27,9 @@ public class StudentModuleService {
 
     private final StudentModuleMapper studentModuleMapper;
 
-    private final StudentModuleSearchRepository studentModuleSearchRepository;
-
-    public StudentModuleService(StudentModuleRepository studentModuleRepository, StudentModuleMapper studentModuleMapper, StudentModuleSearchRepository studentModuleSearchRepository) {
+    public StudentModuleService(StudentModuleRepository studentModuleRepository, StudentModuleMapper studentModuleMapper) {
         this.studentModuleRepository = studentModuleRepository;
         this.studentModuleMapper = studentModuleMapper;
-        this.studentModuleSearchRepository = studentModuleSearchRepository;
     }
 
     /**
@@ -48,9 +42,7 @@ public class StudentModuleService {
         log.debug("Request to save StudentModule : {}", studentModuleDTO);
         StudentModule studentModule = studentModuleMapper.toEntity(studentModuleDTO);
         studentModule = studentModuleRepository.save(studentModule);
-        StudentModuleDTO result = studentModuleMapper.toDto(studentModule);
-        studentModuleSearchRepository.save(studentModule);
-        return result;
+        return studentModuleMapper.toDto(studentModule);
     }
 
     /**
@@ -87,20 +79,5 @@ public class StudentModuleService {
      */
     public void delete(Long id) {
         log.debug("Request to delete StudentModule : {}", id);        studentModuleRepository.deleteById(id);
-        studentModuleSearchRepository.deleteById(id);
-    }
-
-    /**
-     * Search for the studentModule corresponding to the query.
-     *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Transactional(readOnly = true)
-    public Page<StudentModuleDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of StudentModules for query {}", query);
-        return studentModuleSearchRepository.search(queryStringQuery(query), pageable)
-            .map(studentModuleMapper::toDto);
     }
 }

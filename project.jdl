@@ -44,7 +44,7 @@ relationship ManyToOne {
 dto * with mapstruct
 paginate * with pagination
 service * with serviceClass
-search * with elasticsearch
+//search * with elasticsearch
 
 application {
     config {

@@ -19,9 +19,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing ModuleResult.
@@ -119,21 +116,4 @@ public class ModuleResultResource {
         moduleResultService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/module-results?query=:query : search for the moduleResult corresponding
-     * to the query.
-     *
-     * @param query the query of the moduleResult search
-     * @param pageable the pagination information
-     * @return the result of the search
-     */
-    @GetMapping("/_search/module-results")
-    public ResponseEntity<List<ModuleResultDTO>> searchModuleResults(@RequestParam String query, Pageable pageable) {
-        log.debug("REST request to search for a page of ModuleResults for query {}", query);
-        Page<ModuleResultDTO> page = moduleResultService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/module-results");
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
 }

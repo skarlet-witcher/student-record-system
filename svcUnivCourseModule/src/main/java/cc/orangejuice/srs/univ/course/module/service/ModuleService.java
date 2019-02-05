@@ -2,7 +2,6 @@ package cc.orangejuice.srs.univ.course.module.service;
 
 import cc.orangejuice.srs.univ.course.module.domain.Module;
 import cc.orangejuice.srs.univ.course.module.repository.ModuleRepository;
-import cc.orangejuice.srs.univ.course.module.repository.search.ModuleSearchRepository;
 import cc.orangejuice.srs.univ.course.module.service.dto.ModuleDTO;
 import cc.orangejuice.srs.univ.course.module.service.mapper.ModuleMapper;
 import org.slf4j.Logger;
@@ -14,8 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing Module.
@@ -30,12 +27,9 @@ public class ModuleService {
 
     private final ModuleMapper moduleMapper;
 
-    private final ModuleSearchRepository moduleSearchRepository;
-
-    public ModuleService(ModuleRepository moduleRepository, ModuleMapper moduleMapper, ModuleSearchRepository moduleSearchRepository) {
+    public ModuleService(ModuleRepository moduleRepository, ModuleMapper moduleMapper) {
         this.moduleRepository = moduleRepository;
         this.moduleMapper = moduleMapper;
-        this.moduleSearchRepository = moduleSearchRepository;
     }
 
     /**
@@ -48,9 +42,7 @@ public class ModuleService {
         log.debug("Request to save Module : {}", moduleDTO);
         Module module = moduleMapper.toEntity(moduleDTO);
         module = moduleRepository.save(module);
-        ModuleDTO result = moduleMapper.toDto(module);
-        moduleSearchRepository.save(module);
-        return result;
+        return moduleMapper.toDto(module);
     }
 
     /**
@@ -87,20 +79,5 @@ public class ModuleService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Module : {}", id);        moduleRepository.deleteById(id);
-        moduleSearchRepository.deleteById(id);
-    }
-
-    /**
-     * Search for the module corresponding to the query.
-     *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Transactional(readOnly = true)
-    public Page<ModuleDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of Modules for query {}", query);
-        return moduleSearchRepository.search(queryStringQuery(query), pageable)
-            .map(moduleMapper::toDto);
     }
 }

@@ -84,6 +84,5 @@
     "clientRootFolder": "",
     "applications": [
         "svcStudent"
-    ],
-    "searchEngine": "elasticsearch"
+    ]
 }

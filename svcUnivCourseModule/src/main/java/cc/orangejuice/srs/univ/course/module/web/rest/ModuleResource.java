@@ -20,9 +20,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Module.
@@ -120,21 +117,4 @@ public class ModuleResource {
         moduleService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/modules?query=:query : search for the module corresponding
-     * to the query.
-     *
-     * @param query the query of the module search
-     * @param pageable the pagination information
-     * @return the result of the search
-     */
-    @GetMapping("/_search/modules")
-    public ResponseEntity<List<ModuleDTO>> searchModules(@RequestParam String query, Pageable pageable) {
-        log.debug("REST request to search for a page of Modules for query {}", query);
-        Page<ModuleDTO> page = moduleService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/modules");
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
 }

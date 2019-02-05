@@ -1,15 +1,14 @@
-version: '2.1'
+version: '2'
 services:
     svcstudent-app:
         image: svcstudent
         environment:
-#            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
             - 'SPRING_PROFILES_ACTIVE=prod,swagger'
             - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
             - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
             - 'SPRING_DATASOURCE_URL=jdbc:mysql://svcstudent-mysql:3306/svcstudent?useUnicode=true&characterEncoding=utf8&useSSL=false'
             - JHIPSTER_SLEEP=30
-            - 'SPRING_DATA_JEST_URI=http://svcstudent-elasticsearch:9200'
             - JHIPSTER_REGISTRY_PASSWORD=admin
     svcstudent-mysql:
         image: 'mysql:5.7.20'
@@ -18,17 +17,16 @@ services:
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=svcstudent
         command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
-
+    
     svcunivcoursemodule-app:
         image: svcunivcoursemodule
         environment:
-#            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
             - 'SPRING_PROFILES_ACTIVE=prod,swagger'
             - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
             - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
             - 'SPRING_DATASOURCE_URL=jdbc:mysql://svcunivcoursemodule-mysql:3306/svcunivcoursemodule?useUnicode=true&characterEncoding=utf8&useSSL=false'
             - JHIPSTER_SLEEP=30
-            - 'SPRING_DATA_JEST_URI=http://svcunivcoursemodule-elasticsearch:9200'
             - JHIPSTER_REGISTRY_PASSWORD=admin
     svcunivcoursemodule-mysql:
         image: 'mysql:5.7.20'
@@ -37,11 +35,11 @@ services:
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=svcunivcoursemodule
         command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
-
+    
     cloudgateway-app:
         image: cloudgateway
         environment:
-#            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
             - 'SPRING_PROFILES_ACTIVE=prod,swagger'
             - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
             - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
@@ -61,13 +59,12 @@ services:
     cloudauth-app:
         image: cloudauth
         environment:
-#            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
             - 'SPRING_PROFILES_ACTIVE=prod,swagger'
             - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
             - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
             - 'SPRING_DATASOURCE_URL=jdbc:mysql://cloudauth-mysql:3306/cloudauth?useUnicode=true&characterEncoding=utf8&useSSL=false'
             - JHIPSTER_SLEEP=30
-            - 'SPRING_DATA_JEST_URI=http://cloudauth-elasticsearch:9200'
             - JHIPSTER_REGISTRY_PASSWORD=admin
     cloudauth-mysql:
         image: 'mysql:5.7.20'
@@ -76,7 +73,7 @@ services:
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=cloudauth
         command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
-
+    
     jhipster-registry:
         extends:
             file: jhipster-registry.yml

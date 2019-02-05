@@ -6,7 +6,6 @@ import cc.orangejuice.srs.univ.course.module.config.SecurityBeanOverrideConfigur
 
 import cc.orangejuice.srs.univ.course.module.domain.Module;
 import cc.orangejuice.srs.univ.course.module.repository.ModuleRepository;
-import cc.orangejuice.srs.univ.course.module.repository.search.ModuleSearchRepository;
 import cc.orangejuice.srs.univ.course.module.service.ModuleService;
 import cc.orangejuice.srs.univ.course.module.service.dto.ModuleDTO;
 import cc.orangejuice.srs.univ.course.module.service.mapper.ModuleMapper;
@@ -18,8 +17,6 @@ import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -31,15 +28,12 @@ import org.springframework.util.Base64Utils;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.util.Collections;
 import java.util.List;
 
 
 import static cc.orangejuice.srs.univ.course.module.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -69,14 +63,6 @@ public class ModuleResourceIntTest {
 
     @Autowired
     private ModuleService moduleService;
-
-    /**
-     * This repository is mocked in the cc.orangejuice.srs.univ.course.module.repository.search test package.
-     *
-     * @see cc.orangejuice.srs.univ.course.module.repository.search.ModuleSearchRepositoryMockConfiguration
-     */
-    @Autowired
-    private ModuleSearchRepository mockModuleSearchRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -147,9 +133,6 @@ public class ModuleResourceIntTest {
         assertThat(testModule.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testModule.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testModule.getDesc()).isEqualTo(DEFAULT_DESC);
-
-        // Validate the Module in Elasticsearch
-        verify(mockModuleSearchRepository, times(1)).save(testModule);
     }
 
     @Test
@@ -170,9 +153,6 @@ public class ModuleResourceIntTest {
         // Validate the Module in the database
         List<Module> moduleList = moduleRepository.findAll();
         assertThat(moduleList).hasSize(databaseSizeBeforeCreate);
-
-        // Validate the Module in Elasticsearch
-        verify(mockModuleSearchRepository, times(0)).save(module);
     }
 
     @Test
@@ -283,9 +263,6 @@ public class ModuleResourceIntTest {
         assertThat(testModule.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testModule.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testModule.getDesc()).isEqualTo(UPDATED_DESC);
-
-        // Validate the Module in Elasticsearch
-        verify(mockModuleSearchRepository, times(1)).save(testModule);
     }
 
     @Test
@@ -305,9 +282,6 @@ public class ModuleResourceIntTest {
         // Validate the Module in the database
         List<Module> moduleList = moduleRepository.findAll();
         assertThat(moduleList).hasSize(databaseSizeBeforeUpdate);
-
-        // Validate the Module in Elasticsearch
-        verify(mockModuleSearchRepository, times(0)).save(module);
     }
 
     @Test
@@ -326,26 +300,6 @@ public class ModuleResourceIntTest {
         // Validate the database is empty
         List<Module> moduleList = moduleRepository.findAll();
         assertThat(moduleList).hasSize(databaseSizeBeforeDelete - 1);
-
-        // Validate the Module in Elasticsearch
-        verify(mockModuleSearchRepository, times(1)).deleteById(module.getId());
-    }
-
-    @Test
-    @Transactional
-    public void searchModule() throws Exception {
-        // Initialize the database
-        moduleRepository.saveAndFlush(module);
-        when(mockModuleSearchRepository.search(queryStringQuery("id:" + module.getId()), PageRequest.of(0, 20)))
-            .thenReturn(new PageImpl<>(Collections.singletonList(module), PageRequest.of(0, 1), 1));
-        // Search the module
-        restModuleMockMvc.perform(get("/api/_search/modules?query=id:" + module.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(module.getId().intValue())))
-            .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE)))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].desc").value(hasItem(DEFAULT_DESC.toString())));
     }
 
     @Test

@@ -41,6 +41,5 @@
     "clientRootFolder": "",
     "applications": [
         "svcUnivCourseModule"
-    ],
-    "searchEngine": "elasticsearch"
+    ]
 }

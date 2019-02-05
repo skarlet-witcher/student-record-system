@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @AuthorizedFeignClient(name = "svcstudent")
 interface StudentFeignClient {
-
     @GetMapping(value = "/api/students/{id}")
     StudentVo findStudent(@PathVariable("id") Long id);
 }

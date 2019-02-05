@@ -103,4 +103,5 @@ deployment {
     deploymentType docker-compose
     appsFolders [svcStudent, svcUnivCourseModule, cloudGateway, cloudAuth]
     dockerRepositoryName "cherrymeteor"
+    monitoring elk
 }

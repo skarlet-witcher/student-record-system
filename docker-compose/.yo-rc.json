@@ -2,7 +2,7 @@
   "generator-jhipster": {
     "deploymentType": "docker-compose",
     "gatewayType": "zuul",
-    "monitoring": "no",
+    "monitoring": "elk",
     "directoryPath": "../",
     "appsFolders": [
       "svcStudent",

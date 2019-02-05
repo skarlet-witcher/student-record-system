@@ -1,4 +1,4 @@
-##Introduction
+## Introduction
 jhipster born integrating with best practices from first line engineers.
 
 ## Start

@@ -260,6 +260,5 @@ task cleanResources(type: Delete) {
     delete 'build/resources'
 }
 
-
 task stage(dependsOn: 'bootWar') {
 }

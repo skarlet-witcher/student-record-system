@@ -1,56 +1,50 @@
-@microservice(svcStudent)
+//@microservice(svcStudent)
 entity Student {
-    studentId String,
+    studentNumber String,
     firstName String required,
     lastName String required,
     gender Gender required,
     email String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
-    phone String required
+    phone String required,
+    addressLine1 String required,
+    addressLine2 String,
+    city String required,
+    country String required,
+    userId Long
 }
 
 enum Gender {
     MALE, FEMALE, OTHER
 }
 
-@microservice(svcUnivCourseModule)
 entity Module {
-    code String,
-    name String,
+    code String required,
+    name String required,
     desc TextBlob
 }
 
-@microservice(svcUnivStudentResult)
-entity StudentResult {
-    grade Double,
-    gpa Double
+entity StudentModule {
+    studentId Long required,
+    moduleId Long required,
+    year Integer required,
+    semester Integer required
 }
 
-// relationship OneToOne {
-//     Student{username(login) required} to User
-// }
+entity ModuleResult {
+    grade Double,
+    qca Double,
+    stundetId Long
+    // level ModuleResultLevel
+}
 
-// relationship ManyToMany {
-//     Student{module(name)} to Module
-// }
-
-// relationship OneToOne {
-//     StudentResult{module(name)} to Module
-// }
-
-// relationship OneToMany {
-//     Student to StudentResult
-// }
+relationship ManyToOne {
+    ModuleResult{module(name)} to Module
+}
 
 dto * with mapstruct
 paginate * with pagination
 service * with serviceClass
 search * with elasticsearch
-
-/*
-microservice Student with svcStudent
-microservice Module with svcUnivCourseModule
-microservice StudentResult with svcUnivCourseModuleResult
-*/
 
 application {
     config {
@@ -79,22 +73,7 @@ application {
         buildTool gradle
         serverPort 8082
     }
-    entities Module
-}
-
-application {
-    config {
-        baseName svcStudentResult
-        packageName cc.orangejuice.srs.student.result
-        authenticationType uaa
-        uaaBaseName "./cloudAuth"
-        applicationType microservice
-        searchEngine elasticsearch
-        serviceDiscoveryType eureka
-        buildTool gradle
-        serverPort 8083
-    }
-    entities StudentResult
+    entities Module, StudentModule, ModuleResult
 }
 
 application {
@@ -122,6 +101,6 @@ application {
 
 deployment {
     deploymentType docker-compose
-    appsFolders [svcStudent, svcUnivCourseModule, svcStudentResult, cloudGateway, cloudAuth]
+    appsFolders [svcStudent, svcUnivCourseModule, cloudGateway, cloudAuth]
     dockerRepositoryName "cherrymeteor"
 }

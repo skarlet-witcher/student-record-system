@@ -22,19 +22,18 @@
     "websocket": false,
     "baseName": "svcUnivCourseModule",
     "authenticationType": "uaa",
+    "uaaBaseName": "./cloudAuth",
     "applicationType": "microservice",
     "buildTool": "gradle",
     "serverPort": "8082",
     "jhipsterVersion": "5.8.1",
     "skipUserManagement": true,
     "clientPackageManager": "npm",
-    "cacheProvider": "hazelcast",
-    "uaaBaseName": "./cloudAuth",
-    "entitySuffix": "",
-    "dtoSuffix": "DTO",
-    "otherModules": []
+    "cacheProvider": "hazelcast"
   },
   "entities": [
-    "Module"
+    "Module",
+    "StudentModule",
+    "ModuleResult"
   ]
 }

@@ -22,6 +22,7 @@
     "websocket": false,
     "baseName": "svcStudent",
     "authenticationType": "uaa",
+    "uaaBaseName": "./cloudAuth",
     "applicationType": "microservice",
     "buildTool": "gradle",
     "serverPort": "8081",
@@ -29,7 +30,6 @@
     "skipUserManagement": true,
     "clientPackageManager": "npm",
     "cacheProvider": "hazelcast",
-    "uaaBaseName": "./cloudAuth",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": []

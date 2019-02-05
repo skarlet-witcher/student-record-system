@@ -52,8 +52,8 @@ import cc.orangejuice.srs.student.domain.enumeration.Gender;
 @SpringBootTest(classes = {SecurityBeanOverrideConfiguration.class, SvcStudentApp.class})
 public class StudentResourceIntTest {
 
-    private static final String DEFAULT_STUDENT_ID = "AAAAAAAAAA";
-    private static final String UPDATED_STUDENT_ID = "BBBBBBBBBB";
+    private static final String DEFAULT_STUDENT_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_STUDENT_NUMBER = "BBBBBBBBBB";
 
     private static final String DEFAULT_FIRST_NAME = "AAAAAAAAAA";
     private static final String UPDATED_FIRST_NAME = "BBBBBBBBBB";
@@ -64,11 +64,26 @@ public class StudentResourceIntTest {
     private static final Gender DEFAULT_GENDER = Gender.MALE;
     private static final Gender UPDATED_GENDER = Gender.FEMALE;
 
-    private static final String DEFAULT_EMAIL = "0@ci.h";
-    private static final String UPDATED_EMAIL = "4@{H.Fp";
+    private static final String DEFAULT_EMAIL = "J,@..T";
+    private static final String UPDATED_EMAIL = "E@t.u";
 
     private static final String DEFAULT_PHONE = "AAAAAAAAAA";
     private static final String UPDATED_PHONE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ADDRESS_LINE_1 = "AAAAAAAAAA";
+    private static final String UPDATED_ADDRESS_LINE_1 = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ADDRESS_LINE_2 = "AAAAAAAAAA";
+    private static final String UPDATED_ADDRESS_LINE_2 = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CITY = "AAAAAAAAAA";
+    private static final String UPDATED_CITY = "BBBBBBBBBB";
+
+    private static final String DEFAULT_COUNTRY = "AAAAAAAAAA";
+    private static final String UPDATED_COUNTRY = "BBBBBBBBBB";
+
+    private static final Long DEFAULT_USER_ID = 1L;
+    private static final Long UPDATED_USER_ID = 2L;
 
     @Autowired
     private StudentRepository studentRepository;
@@ -126,12 +141,17 @@ public class StudentResourceIntTest {
      */
     public static Student createEntity(EntityManager em) {
         Student student = new Student()
-            .studentId(DEFAULT_STUDENT_ID)
+            .studentNumber(DEFAULT_STUDENT_NUMBER)
             .firstName(DEFAULT_FIRST_NAME)
             .lastName(DEFAULT_LAST_NAME)
             .gender(DEFAULT_GENDER)
             .email(DEFAULT_EMAIL)
-            .phone(DEFAULT_PHONE);
+            .phone(DEFAULT_PHONE)
+            .addressLine1(DEFAULT_ADDRESS_LINE_1)
+            .addressLine2(DEFAULT_ADDRESS_LINE_2)
+            .city(DEFAULT_CITY)
+            .country(DEFAULT_COUNTRY)
+            .userId(DEFAULT_USER_ID);
         return student;
     }
 
@@ -156,12 +176,17 @@ public class StudentResourceIntTest {
         List<Student> studentList = studentRepository.findAll();
         assertThat(studentList).hasSize(databaseSizeBeforeCreate + 1);
         Student testStudent = studentList.get(studentList.size() - 1);
-        assertThat(testStudent.getStudentId()).isEqualTo(DEFAULT_STUDENT_ID);
+        assertThat(testStudent.getStudentNumber()).isEqualTo(DEFAULT_STUDENT_NUMBER);
         assertThat(testStudent.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
         assertThat(testStudent.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testStudent.getGender()).isEqualTo(DEFAULT_GENDER);
         assertThat(testStudent.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testStudent.getPhone()).isEqualTo(DEFAULT_PHONE);
+        assertThat(testStudent.getAddressLine1()).isEqualTo(DEFAULT_ADDRESS_LINE_1);
+        assertThat(testStudent.getAddressLine2()).isEqualTo(DEFAULT_ADDRESS_LINE_2);
+        assertThat(testStudent.getCity()).isEqualTo(DEFAULT_CITY);
+        assertThat(testStudent.getCountry()).isEqualTo(DEFAULT_COUNTRY);
+        assertThat(testStudent.getUserId()).isEqualTo(DEFAULT_USER_ID);
 
         // Validate the Student in Elasticsearch
         verify(mockStudentSearchRepository, times(1)).save(testStudent);
@@ -287,6 +312,63 @@ public class StudentResourceIntTest {
 
     @Test
     @Transactional
+    public void checkAddressLine1IsRequired() throws Exception {
+        int databaseSizeBeforeTest = studentRepository.findAll().size();
+        // set the field null
+        student.setAddressLine1(null);
+
+        // Create the Student, which fails.
+        StudentDTO studentDTO = studentMapper.toDto(student);
+
+        restStudentMockMvc.perform(post("/api/students")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(studentDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Student> studentList = studentRepository.findAll();
+        assertThat(studentList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkCityIsRequired() throws Exception {
+        int databaseSizeBeforeTest = studentRepository.findAll().size();
+        // set the field null
+        student.setCity(null);
+
+        // Create the Student, which fails.
+        StudentDTO studentDTO = studentMapper.toDto(student);
+
+        restStudentMockMvc.perform(post("/api/students")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(studentDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Student> studentList = studentRepository.findAll();
+        assertThat(studentList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkCountryIsRequired() throws Exception {
+        int databaseSizeBeforeTest = studentRepository.findAll().size();
+        // set the field null
+        student.setCountry(null);
+
+        // Create the Student, which fails.
+        StudentDTO studentDTO = studentMapper.toDto(student);
+
+        restStudentMockMvc.perform(post("/api/students")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(studentDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Student> studentList = studentRepository.findAll();
+        assertThat(studentList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllStudents() throws Exception {
         // Initialize the database
         studentRepository.saveAndFlush(student);
@@ -296,12 +378,17 @@ public class StudentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(student.getId().intValue())))
-            .andExpect(jsonPath("$.[*].studentId").value(hasItem(DEFAULT_STUDENT_ID.toString())))
+            .andExpect(jsonPath("$.[*].studentNumber").value(hasItem(DEFAULT_STUDENT_NUMBER.toString())))
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME.toString())))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
             .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
-            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())));
+            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
+            .andExpect(jsonPath("$.[*].addressLine1").value(hasItem(DEFAULT_ADDRESS_LINE_1.toString())))
+            .andExpect(jsonPath("$.[*].addressLine2").value(hasItem(DEFAULT_ADDRESS_LINE_2.toString())))
+            .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
+            .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())))
+            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.intValue())));
     }
     
     @Test
@@ -315,12 +402,17 @@ public class StudentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(student.getId().intValue()))
-            .andExpect(jsonPath("$.studentId").value(DEFAULT_STUDENT_ID.toString()))
+            .andExpect(jsonPath("$.studentNumber").value(DEFAULT_STUDENT_NUMBER.toString()))
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME.toString()))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
             .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
-            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()));
+            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
+            .andExpect(jsonPath("$.addressLine1").value(DEFAULT_ADDRESS_LINE_1.toString()))
+            .andExpect(jsonPath("$.addressLine2").value(DEFAULT_ADDRESS_LINE_2.toString()))
+            .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
+            .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY.toString()))
+            .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.intValue()));
     }
 
     @Test
@@ -344,12 +436,17 @@ public class StudentResourceIntTest {
         // Disconnect from session so that the updates on updatedStudent are not directly saved in db
         em.detach(updatedStudent);
         updatedStudent
-            .studentId(UPDATED_STUDENT_ID)
+            .studentNumber(UPDATED_STUDENT_NUMBER)
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .gender(UPDATED_GENDER)
             .email(UPDATED_EMAIL)
-            .phone(UPDATED_PHONE);
+            .phone(UPDATED_PHONE)
+            .addressLine1(UPDATED_ADDRESS_LINE_1)
+            .addressLine2(UPDATED_ADDRESS_LINE_2)
+            .city(UPDATED_CITY)
+            .country(UPDATED_COUNTRY)
+            .userId(UPDATED_USER_ID);
         StudentDTO studentDTO = studentMapper.toDto(updatedStudent);
 
         restStudentMockMvc.perform(put("/api/students")
@@ -361,12 +458,17 @@ public class StudentResourceIntTest {
         List<Student> studentList = studentRepository.findAll();
         assertThat(studentList).hasSize(databaseSizeBeforeUpdate);
         Student testStudent = studentList.get(studentList.size() - 1);
-        assertThat(testStudent.getStudentId()).isEqualTo(UPDATED_STUDENT_ID);
+        assertThat(testStudent.getStudentNumber()).isEqualTo(UPDATED_STUDENT_NUMBER);
         assertThat(testStudent.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testStudent.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testStudent.getGender()).isEqualTo(UPDATED_GENDER);
         assertThat(testStudent.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testStudent.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testStudent.getAddressLine1()).isEqualTo(UPDATED_ADDRESS_LINE_1);
+        assertThat(testStudent.getAddressLine2()).isEqualTo(UPDATED_ADDRESS_LINE_2);
+        assertThat(testStudent.getCity()).isEqualTo(UPDATED_CITY);
+        assertThat(testStudent.getCountry()).isEqualTo(UPDATED_COUNTRY);
+        assertThat(testStudent.getUserId()).isEqualTo(UPDATED_USER_ID);
 
         // Validate the Student in Elasticsearch
         verify(mockStudentSearchRepository, times(1)).save(testStudent);
@@ -427,12 +529,17 @@ public class StudentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(student.getId().intValue())))
-            .andExpect(jsonPath("$.[*].studentId").value(hasItem(DEFAULT_STUDENT_ID)))
+            .andExpect(jsonPath("$.[*].studentNumber").value(hasItem(DEFAULT_STUDENT_NUMBER)))
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME)))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
             .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)));
+            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)))
+            .andExpect(jsonPath("$.[*].addressLine1").value(hasItem(DEFAULT_ADDRESS_LINE_1)))
+            .andExpect(jsonPath("$.[*].addressLine2").value(hasItem(DEFAULT_ADDRESS_LINE_2)))
+            .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY)))
+            .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY)))
+            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.intValue())));
     }
 
     @Test

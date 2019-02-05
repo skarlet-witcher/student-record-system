@@ -28,8 +28,8 @@ public class Student implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "student_id")
-    private String studentId;
+    @Column(name = "student_number")
+    private String studentNumber;
 
     @NotNull
     @Column(name = "first_name", nullable = false)
@@ -53,6 +53,24 @@ public class Student implements Serializable {
     @Column(name = "phone", nullable = false)
     private String phone;
 
+    @NotNull
+    @Column(name = "address_line_1", nullable = false)
+    private String addressLine1;
+
+    @Column(name = "address_line_2")
+    private String addressLine2;
+
+    @NotNull
+    @Column(name = "city", nullable = false)
+    private String city;
+
+    @NotNull
+    @Column(name = "country", nullable = false)
+    private String country;
+
+    @Column(name = "user_id")
+    private Long userId;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -62,17 +80,17 @@ public class Student implements Serializable {
         this.id = id;
     }
 
-    public String getStudentId() {
-        return studentId;
+    public String getStudentNumber() {
+        return studentNumber;
     }
 
-    public Student studentId(String studentId) {
-        this.studentId = studentId;
+    public Student studentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
         return this;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
     }
 
     public String getFirstName() {
@@ -139,6 +157,71 @@ public class Student implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public Student addressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+        return this;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public Student addressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+        return this;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public Student city(String city) {
+        this.city = city;
+        return this;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public Student country(String country) {
+        this.country = country;
+        return this;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public Student userId(Long userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -165,12 +248,17 @@ public class Student implements Serializable {
     public String toString() {
         return "Student{" +
             "id=" + getId() +
-            ", studentId='" + getStudentId() + "'" +
+            ", studentNumber='" + getStudentNumber() + "'" +
             ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
             ", gender='" + getGender() + "'" +
             ", email='" + getEmail() + "'" +
             ", phone='" + getPhone() + "'" +
+            ", addressLine1='" + getAddressLine1() + "'" +
+            ", addressLine2='" + getAddressLine2() + "'" +
+            ", city='" + getCity() + "'" +
+            ", country='" + getCountry() + "'" +
+            ", userId=" + getUserId() +
             "}";
     }
 }

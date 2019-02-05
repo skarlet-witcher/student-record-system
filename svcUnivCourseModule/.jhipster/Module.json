@@ -3,11 +3,17 @@
     "fields": [
         {
             "fieldName": "code",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "name",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "desc",
@@ -16,7 +22,7 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20190203221241",
+    "changelogDate": "20190205105429",
     "entityTableName": "module",
     "dto": "mapstruct",
     "pagination": "pagination",
@@ -27,6 +33,5 @@
     "applications": [
         "svcUnivCourseModule"
     ],
-    "microserviceName": "svcUnivCourseModule",
     "searchEngine": "elasticsearch"
 }

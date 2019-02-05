@@ -1,0 +1,38 @@
+{
+    "name": "ModuleResult",
+    "fields": [
+        {
+            "fieldName": "grade",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "qca",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "stundetId",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "module",
+            "otherEntityName": "module",
+            "otherEntityField": "name",
+            "otherEntityRelationshipName": "moduleResult"
+        }
+    ],
+    "changelogDate": "20190205105431",
+    "entityTableName": "module_result",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "svcUnivCourseModule"
+    ],
+    "searchEngine": "elasticsearch"
+}

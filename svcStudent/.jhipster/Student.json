@@ -2,7 +2,7 @@
     "name": "Student",
     "fields": [
         {
-            "fieldName": "studentId",
+            "fieldName": "studentNumber",
             "fieldType": "String"
         },
         {
@@ -42,10 +42,39 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "addressLine1",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "addressLine2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "city",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "country",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "userId",
+            "fieldType": "Long"
         }
     ],
     "relationships": [],
-    "changelogDate": "20190203221240",
+    "changelogDate": "20190205105428",
     "entityTableName": "student",
     "dto": "mapstruct",
     "pagination": "pagination",
@@ -56,6 +85,5 @@
     "applications": [
         "svcStudent"
     ],
-    "microserviceName": "svcStudent",
     "searchEngine": "elasticsearch"
 }

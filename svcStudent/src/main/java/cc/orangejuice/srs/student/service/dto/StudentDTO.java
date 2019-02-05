@@ -11,7 +11,7 @@ public class StudentDTO implements Serializable {
 
     private Long id;
 
-    private String studentId;
+    private String studentNumber;
 
     @NotNull
     private String firstName;
@@ -29,6 +29,19 @@ public class StudentDTO implements Serializable {
     @NotNull
     private String phone;
 
+    @NotNull
+    private String addressLine1;
+
+    private String addressLine2;
+
+    @NotNull
+    private String city;
+
+    @NotNull
+    private String country;
+
+    private Long userId;
+
 
     public Long getId() {
         return id;
@@ -38,12 +51,12 @@ public class StudentDTO implements Serializable {
         this.id = id;
     }
 
-    public String getStudentId() {
-        return studentId;
+    public String getStudentNumber() {
+        return studentNumber;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
     }
 
     public String getFirstName() {
@@ -86,6 +99,46 @@ public class StudentDTO implements Serializable {
         this.phone = phone;
     }
 
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -111,12 +164,17 @@ public class StudentDTO implements Serializable {
     public String toString() {
         return "StudentDTO{" +
             "id=" + getId() +
-            ", studentId='" + getStudentId() + "'" +
+            ", studentNumber='" + getStudentNumber() + "'" +
             ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
             ", gender='" + getGender() + "'" +
             ", email='" + getEmail() + "'" +
             ", phone='" + getPhone() + "'" +
+            ", addressLine1='" + getAddressLine1() + "'" +
+            ", addressLine2='" + getAddressLine2() + "'" +
+            ", city='" + getCity() + "'" +
+            ", country='" + getCountry() + "'" +
+            ", userId=" + getUserId() +
             "}";
     }
 }

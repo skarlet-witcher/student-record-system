@@ -59,9 +59,6 @@ spring:
             hibernate.cache.hazelcast.instance_name: svcUnivCourseModule
             hibernate.cache.use_minimal_puts: true
             hibernate.cache.hazelcast.use_lite_member: true
-    data:
-        jest:
-            uri: http://localhost:9200
     liquibase:
         contexts: prod
     mail:

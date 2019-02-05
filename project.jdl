@@ -53,7 +53,7 @@ application {
         authenticationType uaa
         uaaBaseName "./cloudAuth"
         applicationType microservice
-        searchEngine elasticsearch
+        //searchEngine elasticsearch
         serviceDiscoveryType eureka
         buildTool gradle
         serverPort 8081
@@ -68,7 +68,7 @@ application {
         authenticationType uaa
         uaaBaseName "./cloudAuth"
         applicationType microservice
-        searchEngine elasticsearch
+        //searchEngine elasticsearch
         serviceDiscoveryType eureka
         buildTool gradle
         serverPort 8082
@@ -94,7 +94,7 @@ application {
         baseName cloudAuth
         packageName cc.orangejuice.srs.auth
         applicationType uaa
-        searchEngine elasticsearch
+        //searchEngine elasticsearch
         serviceDiscoveryType eureka
         buildTool gradle
     }
@@ -104,6 +104,6 @@ deployment {
     deploymentType docker-compose
     appsFolders [svcStudent, svcUnivCourseModule, cloudGateway, cloudAuth]
     dockerRepositoryName "cherrymeteor"
-    monitoring elk
-    consoleOptions [curator, zipkin]
+    //monitoring elk
+    //consoleOptions [curator, zipkin]
 }

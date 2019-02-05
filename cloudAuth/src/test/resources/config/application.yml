@@ -51,11 +51,6 @@ spring:
             hibernate.generate_statistics: false
             hibernate.hbm2ddl.auto: validate
             hibernate.jdbc.time_zone: UTC
-    data:
-        elasticsearch:
-            properties:
-                path:
-                    home: build/elasticsearch
     liquibase:
         contexts: test
     mail:

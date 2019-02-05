@@ -67,11 +67,6 @@ spring:
             hibernate.cache.hazelcast.instance_name: svcStudent
             hibernate.cache.use_minimal_puts: true
             hibernate.cache.hazelcast.use_lite_member: true
-    data:
-        elasticsearch:
-            properties:
-                path:
-                    home: build/elasticsearch
     liquibase:
         contexts: dev
     mail:

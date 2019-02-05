@@ -9,15 +9,10 @@ services:
             - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
             - SPRING_DATASOURCE_URL=jdbc:mysql://svcstudent-mysql:3306/svcstudent?useUnicode=true&characterEncoding=utf8&useSSL=false
             - JHIPSTER_SLEEP=30 # gives time for the JHipster Registry to boot before the application
-            - SPRING_DATA_JEST_URI=http://svcstudent-elasticsearch:9200
     svcstudent-mysql:
         extends:
             file: mysql.yml
             service: svcstudent-mysql
-    svcstudent-elasticsearch:
-        extends:
-            file: elasticsearch.yml
-            service: svcstudent-elasticsearch
     jhipster-registry:
         extends:
             file: jhipster-registry.yml

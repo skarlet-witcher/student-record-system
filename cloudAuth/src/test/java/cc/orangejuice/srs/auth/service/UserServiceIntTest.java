@@ -3,7 +3,6 @@ package cc.orangejuice.srs.auth.service;
 import cc.orangejuice.srs.auth.CloudAuthApp;
 import cc.orangejuice.srs.auth.config.Constants;
 import cc.orangejuice.srs.auth.domain.User;
-import cc.orangejuice.srs.auth.repository.search.UserSearchRepository;
 import cc.orangejuice.srs.auth.repository.UserRepository;
 import cc.orangejuice.srs.auth.service.dto.UserDTO;
 import cc.orangejuice.srs.auth.service.util.RandomUtil;
@@ -29,8 +28,6 @@ import java.util.Optional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -48,14 +45,6 @@ public class UserServiceIntTest {
 
     @Autowired
     private UserService userService;
-
-    /**
-     * This repository is mocked in the cc.orangejuice.srs.auth.repository.search test package.
-     *
-     * @see cc.orangejuice.srs.auth.repository.search.UserSearchRepositoryMockConfiguration
-     */
-    @Autowired
-    private UserSearchRepository mockUserSearchRepository;
 
     @Autowired
     private AuditingHandler auditingHandler;
@@ -169,9 +158,6 @@ public class UserServiceIntTest {
         userService.removeNotActivatedUsers();
         users = userRepository.findAllByActivatedIsFalseAndCreatedDateBefore(now.minus(3, ChronoUnit.DAYS));
         assertThat(users).isEmpty();
-
-        // Verify Elasticsearch mock
-        verify(mockUserSearchRepository, times(1)).delete(user);
     }
 
     @Test
@@ -201,9 +187,6 @@ public class UserServiceIntTest {
         assertThat(userRepository.findOneByLogin("johndoe")).isPresent();
         userService.removeNotActivatedUsers();
         assertThat(userRepository.findOneByLogin("johndoe")).isNotPresent();
-
-        // Verify Elasticsearch mock
-        verify(mockUserSearchRepository, times(1)).delete(user);
     }
 
 }

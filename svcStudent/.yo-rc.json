@@ -15,7 +15,7 @@
     "packageName": "cc.orangejuice.srs.student",
     "packageFolder": "cc/orangejuice/srs/student",
     "prodDatabaseType": "mysql",
-    "searchEngine": "elasticsearch",
+    "searchEngine": false,
     "serviceDiscoveryType": "eureka",
     "skipClient": true,
     "testFrameworks": [],

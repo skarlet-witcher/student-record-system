@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 services:
     svcstudent-app:
         image: svcstudent
@@ -18,12 +18,7 @@ services:
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=svcstudent
         command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
-    svcstudent-elasticsearch:
-        image: 'elasticsearch:5.6.13'
-        command: '-Enetwork.host=0.0.0.0 -Ediscovery.type=single-node'
-        environment:
-            - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
-    
+
     svcunivcoursemodule-app:
         image: svcunivcoursemodule
         environment:
@@ -42,12 +37,7 @@ services:
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=svcunivcoursemodule
         command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
-    svcunivcoursemodule-elasticsearch:
-        image: 'elasticsearch:5.6.13'
-        command: '-Enetwork.host=0.0.0.0 -Ediscovery.type=single-node'
-        environment:
-            - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
-    
+
     cloudgateway-app:
         image: cloudgateway
         environment:
@@ -86,48 +76,8 @@ services:
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=cloudauth
         command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
-    cloudauth-elasticsearch:
-        image: 'elasticsearch:5.6.13'
-        command: '-Enetwork.host=0.0.0.0 -Ediscovery.type=single-node'
-        environment:
-            - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
-    
+
     jhipster-registry:
         extends:
             file: jhipster-registry.yml
             service: jhipster-registry
-
-    jhipster-elasticsearch:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-elasticsearch
-    jhipster-logstash:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-logstash
-        depends_on:
-            - jhipster-elasticsearch
-    jhipster-console:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-console
-        depends_on:
-            - jhipster-elasticsearch
-    jhipster-import-dashboards:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-import-dashboards
-        depends_on:
-            - jhipster-elasticsearch
-    jhipster-curator:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-curator
-        depends_on:
-            - jhipster-elasticsearch
-    jhipster-zipkin:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-zipkin
-        depends_on:
-            - jhipster-elasticsearch

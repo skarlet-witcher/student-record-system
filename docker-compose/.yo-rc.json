@@ -11,7 +11,10 @@
       "cloudAuth"
     ],
     "clusteredDbApps": [],
-    "consoleOptions": [],
+    "consoleOptions": [
+      "curator",
+      "zipkin"
+    ],
     "serviceDiscoveryType": "eureka",
     "dockerRepositoryName": "cherrymeteor",
     "dockerPushCommand": "docker push",

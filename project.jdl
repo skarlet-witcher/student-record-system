@@ -104,4 +104,5 @@ deployment {
     appsFolders [svcStudent, svcUnivCourseModule, cloudGateway, cloudAuth]
     dockerRepositoryName "cherrymeteor"
     monitoring elk
+    consoleOptions [curator, zipkin]
 }

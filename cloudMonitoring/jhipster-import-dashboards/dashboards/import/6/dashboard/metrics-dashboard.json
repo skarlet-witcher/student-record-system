@@ -1,0 +1,70 @@
+{
+  "objects": [
+    {
+      "attributes": {
+        "description": "",
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"index\":\"metrics\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
+        },
+        "title": "Metric median value graph",
+        "uiStateJSON": "{}",
+        "version": 1,
+        "visState": "{\"title\":\"Metric median value graph\",\"type\":\"line\",\"params\":{\"type\":\"line\",\"grid\":{\"categoryLines\":false,\"style\":{\"color\":\"#eee\"}},\"categoryAxes\":[{\"id\":\"CategoryAxis-1\",\"type\":\"category\",\"position\":\"bottom\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\"},\"labels\":{\"show\":true,\"truncate\":100},\"title\":{}}],\"valueAxes\":[{\"id\":\"ValueAxis-1\",\"name\":\"LeftAxis-1\",\"type\":\"value\",\"position\":\"left\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\",\"mode\":\"normal\"},\"labels\":{\"show\":true,\"rotate\":0,\"filter\":false,\"truncate\":100},\"title\":{\"text\":\"metric value\"}}],\"seriesParams\":[{\"show\":\"true\",\"type\":\"line\",\"mode\":\"normal\",\"data\":{\"label\":\"metric value\",\"id\":\"1\"},\"valueAxis\":\"ValueAxis-1\",\"drawLinesBetweenPoints\":true,\"showCircles\":true}],\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"times\":[],\"addTimeMarker\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"median\",\"schema\":\"metric\",\"params\":{\"field\":\"metric_value\",\"percents\":[50],\"customLabel\":\"metric value\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"metric_name.keyword\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"_term\"}}]}"
+      },
+      "id": "0c9936f0-e0f0-11e7-9c68-0b9a0f0c183c",
+      "type": "visualization",
+      "version": 1
+    },
+    {
+      "attributes": {
+        "description": "",
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"index\":\"metrics\",\"filter\":[{\"meta\":{\"index\":\"c7b73f10-e0e4-11e7-9c68-0b9a0f0c183c\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"metric_type\",\"value\":\"TIMER\",\"params\":{\"query\":\"TIMER\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"metric_type\":{\"query\":\"TIMER\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}],\"query\":{\"query\":\"* -metric_name=com.codahale.metrics.*\",\"language\":\"lucene\"}}"
+        },
+        "title": "Service statistics (global average)",
+        "uiStateJSON": "{}",
+        "version": 1,
+        "visState": "{\"title\":\"Service statistics (global average)\",\"type\":\"line\",\"params\":{\"type\":\"line\",\"grid\":{\"categoryLines\":false,\"style\":{\"color\":\"#eee\"}},\"categoryAxes\":[{\"id\":\"CategoryAxis-1\",\"type\":\"category\",\"position\":\"bottom\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\"},\"labels\":{\"show\":true,\"truncate\":100},\"title\":{}}],\"valueAxes\":[{\"id\":\"ValueAxis-1\",\"name\":\"LeftAxis-1\",\"type\":\"value\",\"position\":\"left\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\",\"mode\":\"normal\"},\"labels\":{\"show\":true,\"rotate\":0,\"filter\":false,\"truncate\":100},\"title\":{\"text\":\"Average metric_p99\"}}],\"seriesParams\":[{\"show\":\"true\",\"type\":\"line\",\"mode\":\"normal\",\"data\":{\"label\":\"Average metric_p99\",\"id\":\"1\"},\"valueAxis\":\"ValueAxis-1\",\"drawLinesBetweenPoints\":true,\"showCircles\":true}],\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"times\":[],\"addTimeMarker\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"metric_p99\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"metric_name.keyword\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\"}}]}"
+      },
+      "id": "4ce9b970-e0f3-11e7-9c68-0b9a0f0c183c",
+      "type": "visualization",
+      "version": 1
+    },
+    {
+      "attributes": {
+        "description": "",
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{}"
+        },
+        "title": "Select Metrics",
+        "uiStateJSON": "{}",
+        "version": 1,
+        "visState": "{\"title\":\"Select Metrics\",\"type\":\"input_control_vis\",\"params\":{\"controls\":[{\"id\":\"1513348526215\",\"indexPattern\":\"metrics\",\"fieldName\":\"instance_name.keyword\",\"label\":\"Instance\",\"type\":\"list\",\"options\":{\"type\":\"terms\",\"multiselect\":true,\"size\":10,\"order\":\"desc\"}},{\"id\":\"1513348567660\",\"indexPattern\":\"metrics\",\"fieldName\":\"metric_type.keyword\",\"label\":\"Metric Type\",\"type\":\"list\",\"options\":{\"type\":\"terms\",\"multiselect\":true,\"size\":10,\"order\":\"desc\"}},{\"id\":\"1513348551531\",\"indexPattern\":\"metrics\",\"fieldName\":\"metric_name.keyword\",\"label\":\"Metric\",\"type\":\"list\",\"options\":{\"type\":\"terms\",\"multiselect\":true,\"size\":10000,\"order\":\"desc\"}}],\"updateFiltersOnChange\":true},\"aggs\":[]}"
+      },
+      "id": "7406b6e0-e1a5-11e7-9e74-19a039e44384",
+      "type": "visualization",
+      "updated_at": "2017-12-15T14:37:19.054Z",
+      "version": 1
+    },
+    {
+      "attributes": {
+        "description": "View service metrics",
+        "hits": 0,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[],\"highlightAll\":true,\"version\":true}"
+        },
+        "optionsJSON": "{\"darkTheme\":true,\"hidePanelTitles\":false,\"useMargins\":true}",
+        "panelsJSON": "[{\"panelIndex\":\"2\",\"gridData\":{\"x\":4,\"y\":0,\"w\":8,\"h\":7,\"i\":\"2\"},\"id\":\"0c9936f0-e0f0-11e7-9c68-0b9a0f0c183c\",\"type\":\"visualization\",\"version\":\"6.1.0\"},{\"panelIndex\":\"4\",\"gridData\":{\"x\":4,\"y\":7,\"w\":8,\"h\":5,\"i\":\"4\"},\"version\":\"6.1.0\",\"type\":\"visualization\",\"id\":\"4ce9b970-e0f3-11e7-9c68-0b9a0f0c183c\"},{\"panelIndex\":\"5\",\"gridData\":{\"x\":0,\"y\":0,\"w\":4,\"h\":3,\"i\":\"5\"},\"version\":\"6.1.0\",\"type\":\"visualization\",\"id\":\"7406b6e0-e1a5-11e7-9e74-19a039e44384\"}]",
+        "timeRestore": false,
+        "title": "metrics-dashboard",
+        "uiStateJSON": "{}",
+        "version": 1
+      },
+      "id": "607a1ab0-e0ef-11e7-9c68-0b9a0f0c183c",
+      "type": "dashboard",
+      "updated_at": "2017-12-15T14:42:44.141Z",
+      "version": 3
+    }
+  ],
+  "version": "6.4.1"
+}

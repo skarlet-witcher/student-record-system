@@ -125,7 +125,7 @@ jhipster:
         max-age: 1800
     security:
         client-authorization:
-            access-token-uri: http://./cloudauth/oauth/token
+            access-token-uri: http://cloudauth/oauth/token
             token-service-id: ./cloudauth
             client-id: internal
             client-secret: internal

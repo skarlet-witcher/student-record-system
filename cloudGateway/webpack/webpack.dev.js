@@ -14,13 +14,15 @@ const commonConfig = require('./webpack.common.js');
 
 const ENV = 'development';
 
-module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
+module.exports = (options) =;
+>
+webpackMerge(commonConfig({env: ENV}), {
     devtool: 'eval-source-map',
     devServer: {
         contentBase: './build/www',
         proxy: [{
             context: [
-                '/./cloudauth',
+                '/cloudauth',
                 /* jhipster-needle-add-entity-to-webpack - JHipster will add entity api paths here */
                 '/api',
                 '/management',

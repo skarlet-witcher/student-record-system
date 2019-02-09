@@ -22,7 +22,7 @@
     "websocket": false,
     "baseName": "svcStudent",
     "authenticationType": "uaa",
-    "uaaBaseName": "./cloudAuth",
+      "uaaBaseName": "cloudauth",
     "applicationType": "microservice",
     "buildTool": "gradle",
     "serverPort": "8081",

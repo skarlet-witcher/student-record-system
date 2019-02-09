@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { JhiDateUtils } from 'ng-jhipster';
 
-import { UserService, User } from 'app/core';
+import { User, UserService } from 'app/core';
 import { SERVER_API_URL } from 'app/app.constants';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
@@ -29,7 +29,7 @@ describe('Service Tests', () => {
                 service.find('user').subscribe(() => {});
 
                 const req = httpMock.expectOne({ method: 'GET' });
-                const resourceUrl = SERVER_API_URL + './cloudauth/api/users';
+                const resourceUrl = SERVER_API_URL + 'cloudauth/api/users';
                 expect(req.request.url).toEqual(`${resourceUrl}/user`);
             });
             it('should return User', () => {

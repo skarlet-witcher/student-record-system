@@ -8,16 +8,11 @@ refer to the document of [**jhipster**](https://www.jhipster.tech/development/).
 
 1. set up the dev environment by following instruction above.
 
-2. run cloudRegistry before others: 
+2. run cloudRegistry/cloudAuth/cloudGateway before others: 
 
-   - in case sourcecode:`.\mvnw -Pdev,webpack`(linux) or `mvnw -Pdev,webpack`(cmd in windows)
-   - in case War: just run the bat file(for windows)
-
-3. run cloudGateway: 
-
-   - run `run.bat`
+   - run `run infrustrcture.bat` in root folder.
   
-4. run microservice locally with active profile: 
+3. run microservice locally with active profile: 
    `spring.profiles.active=dev,no-liquibase`  but leave `no-liquibase` alone aside for cloudAuth service, cause it depends on it to generate default accounts.
 
 - API doc in `localhost:xxxx/v2/api-docs` and gateway.

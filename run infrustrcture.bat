@@ -1,6 +1,6 @@
 cd cloudRegistry
 start cmd /K run.bat
-cd cloudGateway
+cd ../cloudGateway
 start cmd /K run.bat
-cd cloudAuth
+cd ../cloudAuth
 start cmd /K gradlew.bat

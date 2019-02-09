@@ -10,8 +10,8 @@ refer to the document of [**jhipster**](https://www.jhipster.tech/development/).
 
 2. run cloudRegistry before others: 
 
-   - incase sourcecode:`.\mvnw -Pdev,webpack`(linux) or `mvnw -Pdev,webpack`(cmd in windows)
-   - incase War: just run the bat file(for windows)
+   - in case sourcecode:`.\mvnw -Pdev,webpack`(linux) or `mvnw -Pdev,webpack`(cmd in windows)
+   - in case War: just run the bat file(for windows)
 
 3. run microservice locally with active profile: 
    `spring.profiles.active=dev,no-liquibase`  but leave `no-liquibase` alone aside for cloudAuth service, cause it depends on it to generate default accounts.

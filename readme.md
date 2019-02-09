@@ -10,7 +10,7 @@ refer to the document of [**jhipster**](https://www.jhipster.tech/development/).
 
 2. run cloudRegistry/cloudAuth/cloudGateway before others: 
 
-   - run `run infrustrcture.bat` in root folder.
+   - run `run infrastructure.bat` in root folder.
   
 3. run microservice locally with active profile: 
    `spring.profiles.active=dev,no-liquibase`  but leave `no-liquibase` alone aside for cloudAuth service, cause it depends on it to generate default accounts.

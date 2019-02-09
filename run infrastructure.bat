@@ -4,3 +4,4 @@ cd ../cloudGateway
 start cmd /K run.bat
 cd ../cloudAuth
 start cmd /K gradlew.bat
+cd ..

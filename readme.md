@@ -14,8 +14,8 @@ refer to the document of [**jhipster**](https://www.jhipster.tech/development/).
    - Method 2: run `cloudRegistry/run.bat`, `cloudAuth/gradlew.bat`, `cloudGateway/run.bat` in order.
   
 3. run microservice locally with active profile: 
-   `spring.profiles.active=dev,no-liquibase`  but leave `no-liquibase` alone aside for cloudAuth service, cause it depends on it to generate default accounts.
-
+   `spring.profiles.active=dev`, if with 'no-liquibase', then service can't create the db tables.
+   
 - API doc in `localhost:xxxx/v2/api-docs` and gateway.
 - H2 database in `localhost:xxxx/h2-console`.
 - the frontend (Angular) located in `cloudGateway\src\main\webapp\app`

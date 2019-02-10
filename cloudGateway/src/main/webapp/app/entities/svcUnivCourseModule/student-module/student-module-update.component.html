@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-student-module-heading" jhiTranslate="cloudGatewayApp.svcUnivCourseModuleStudentModule.home.createOrEditLabel">Create or edit a Student Module</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!studentModule.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="studentModule.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcUnivCourseModuleStudentModule.studentId" for="field_studentId">Student Id</label>
+                    <input type="number" class="form-control" name="studentId" id="field_studentId"
+                        [(ngModel)]="studentModule.studentId" required/>
+                    <div [hidden]="!(editForm.controls.studentId?.dirty && editForm.controls.studentId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.studentId?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.studentId?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcUnivCourseModuleStudentModule.moduleId" for="field_moduleId">Module Id</label>
+                    <input type="number" class="form-control" name="moduleId" id="field_moduleId"
+                        [(ngModel)]="studentModule.moduleId" required/>
+                    <div [hidden]="!(editForm.controls.moduleId?.dirty && editForm.controls.moduleId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.moduleId?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.moduleId?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcUnivCourseModuleStudentModule.enrollYear" for="field_enrollYear">Enroll Year</label>
+                    <input type="number" class="form-control" name="enrollYear" id="field_enrollYear"
+                        [(ngModel)]="studentModule.enrollYear" required/>
+                    <div [hidden]="!(editForm.controls.enrollYear?.dirty && editForm.controls.enrollYear?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.enrollYear?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.enrollYear?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcUnivCourseModuleStudentModule.enrollSemester" for="field_enrollSemester">Enroll Semester</label>
+                    <input type="number" class="form-control" name="enrollSemester" id="field_enrollSemester"
+                        [(ngModel)]="studentModule.enrollSemester" required/>
+                    <div [hidden]="!(editForm.controls.enrollSemester?.dirty && editForm.controls.enrollSemester?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.enrollSemester?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.enrollSemester?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

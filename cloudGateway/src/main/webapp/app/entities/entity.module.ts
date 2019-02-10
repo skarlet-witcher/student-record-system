@@ -6,19 +6,19 @@ import { RouterModule } from '@angular/router';
         RouterModule.forChild([
             {
                 path: 'student',
-                loadChildren: './student/student.module#CloudGatewayStudentModule'
+                loadChildren: './svcStudent/student/student.module#SvcStudentStudentModule'
             },
             {
                 path: 'module',
-                loadChildren: './module/module.module#CloudGatewayModuleModule'
+                loadChildren: './svcUnivCourseModule/module/module.module#SvcUnivCourseModuleModuleModule'
             },
             {
                 path: 'student-module',
-                loadChildren: './student-module/student-module.module#CloudGatewayStudentModuleModule'
+                loadChildren: './svcUnivCourseModule/student-module/student-module.module#SvcUnivCourseModuleStudentModuleModule'
             },
             {
                 path: 'module-result',
-                loadChildren: './module-result/module-result.module#CloudGatewayModuleResultModule'
+                loadChildren: './svcUnivCourseModule/module-result/module-result.module#SvcUnivCourseModuleModuleResultModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

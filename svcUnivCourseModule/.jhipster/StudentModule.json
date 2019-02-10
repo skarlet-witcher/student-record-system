@@ -42,5 +42,6 @@
     "applications": [
         "svcUnivCourseModule",
         "cloudGateway"
-    ]
+    ],
+    "microserviceName": "svcUnivCourseModule"
 }

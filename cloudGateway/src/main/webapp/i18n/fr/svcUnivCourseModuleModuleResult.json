@@ -1,0 +1,28 @@
+{
+    "cloudGatewayApp": {
+        "svcUnivCourseModuleModuleResult": {
+            "home": {
+                "title": "ModuleResults",
+                "createLabel": "Créer un nouveau Module Result",
+                "createOrEditLabel": "Créer ou éditer un Module Result"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Module Result {{ id }} ?"
+            },
+            "detail": {
+                "title": "Module Result"
+            },
+            "grade": "Grade",
+            "qca": "Qca",
+            "studentId": "Student Id",
+            "module": "Module"
+        }
+    },
+    "svcUnivCourseModuleApp": {
+        "svcUnivCourseModuleModuleResult": {
+            "created": "Un nouveau Module Result a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Module Result avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Module Result avec l'identifiant {{ param }} a été supprimé"
+        }
+    }
+}

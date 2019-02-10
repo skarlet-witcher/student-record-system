@@ -44,6 +44,8 @@ relationship ManyToOne {
 dto * with mapstruct
 paginate * with pagination
 service * with serviceClass
+microservice Student with svcStudent
+microservice Module, StudentModule, ModuleResult with svcUnivCourseModule
 //search * with elasticsearch
 
 application {

@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="cloudGatewayApp.svcUnivCourseModuleModuleResult.home.title">Module Results</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-module-result" [routerLink]="['/module-result/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="cloudGatewayApp.svcUnivCourseModuleModuleResult.home.createLabel">
+            Create new Module Result
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="moduleResults">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="grade"><span jhiTranslate="cloudGatewayApp.svcUnivCourseModuleModuleResult.grade">Grade</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="qca"><span jhiTranslate="cloudGatewayApp.svcUnivCourseModuleModuleResult.qca">Qca</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="studentId"><span jhiTranslate="cloudGatewayApp.svcUnivCourseModuleModuleResult.studentId">Student Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="moduleName"><span jhiTranslate="cloudGatewayApp.svcUnivCourseModuleModuleResult.module">Module</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let moduleResult of moduleResults ;trackBy: trackId">
+                <td><a [routerLink]="['/module-result', moduleResult.id, 'view' ]">{{moduleResult.id}}</a></td>
+                <td>{{moduleResult.grade}}</td>
+                <td>{{moduleResult.qca}}</td>
+                <td>{{moduleResult.studentId}}</td>
+                <td>
+                    <div *ngIf="moduleResult.moduleId">
+                        <a [routerLink]="['../module', moduleResult.moduleId , 'view' ]" >{{moduleResult.moduleName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/module-result', moduleResult.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/module-result', moduleResult.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'module-result', { outlets: { popup: moduleResult.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="moduleResults && moduleResults.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

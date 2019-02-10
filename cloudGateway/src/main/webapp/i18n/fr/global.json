@@ -7,10 +7,10 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entités",
-                "student": "Student",
-                "module": "Module",
-                "studentModule": "Student Module",
-                "moduleResult": "Module Result",
+                "svcStudentStudent": "Student",
+                "svcUnivCourseModuleModule": "Module",
+                "svcUnivCourseModuleStudentModule": "Student Module",
+                "svcUnivCourseModuleModuleResult": "Module Result",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -85,5 +85,6 @@
     "applications": [
         "svcStudent",
         "cloudGateway"
-    ]
+    ],
+    "microserviceName": "svcStudent"
 }

@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="studentModule">
+            <h2><span jhiTranslate="cloudGatewayApp.svcUnivCourseModuleStudentModule.detail.title">Student Module</span> {{studentModule.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cloudGatewayApp.svcUnivCourseModuleStudentModule.studentId">Student Id</span></dt>
+                <dd>
+                    <span>{{studentModule.studentId}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcUnivCourseModuleStudentModule.moduleId">Module Id</span></dt>
+                <dd>
+                    <span>{{studentModule.moduleId}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcUnivCourseModuleStudentModule.enrollYear">Enroll Year</span></dt>
+                <dd>
+                    <span>{{studentModule.enrollYear}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcUnivCourseModuleStudentModule.enrollSemester">Enroll Semester</span></dt>
+                <dd>
+                    <span>{{studentModule.enrollSemester}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/student-module', studentModule.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

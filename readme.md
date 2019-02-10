@@ -10,7 +10,7 @@ refer to the document of [**jhipster**](https://www.jhipster.tech/development/).
 
 2. run cloudRegistry/cloudAuth/cloudGateway before others: 
 
-   - Method 1: run `run infrastructure.bat` in root folder.
+   - Method 1: run `run infrastructure.bat` in root folder. you may see error like *can't find cloudauth*, just wait seconds for cloudauth finishing register 
    - Method 2: run `cloudRegistry/run.bat`, `cloudAuth/gradlew.bat`, `cloudGateway/run.bat` in order.
   
 3. run microservice locally with active profile: 

@@ -1,0 +1,28 @@
+{
+    "cloudGatewayApp": {
+        "svcUnivCourseModuleStudentModule": {
+            "home": {
+                "title": "StudentModules",
+                "createLabel": "Créer un nouveau Student Module",
+                "createOrEditLabel": "Créer ou éditer un Student Module"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Student Module {{ id }} ?"
+            },
+            "detail": {
+                "title": "Student Module"
+            },
+            "studentId": "Student Id",
+            "moduleId": "Module Id",
+            "enrollYear": "Enroll Year",
+            "enrollSemester": "Enroll Semester"
+        }
+    },
+    "svcUnivCourseModuleApp": {
+        "svcUnivCourseModuleStudentModule": {
+            "created": "Un nouveau Student Module a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Student Module avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Student Module avec l'identifiant {{ param }} a été supprimé"
+        }
+    }
+}

@@ -34,5 +34,5 @@
         "dtoSuffix": "DTO",
         "otherModules": []
     },
-    "entities": []
+    "entities": ["Student", "Module", "StudentModule", "ModuleResult"]
 }

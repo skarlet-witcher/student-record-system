@@ -87,6 +87,7 @@ application {
         buildTool gradle
         //skipClient true
     }
+    entities *
 }
 
 application {

@@ -1,5 +1,5 @@
 {
-    "name": "Student",
+    "microserviceName": "Student",
     "fields": [
         {
             "fieldName": "studentNumber",

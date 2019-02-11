@@ -2,7 +2,10 @@ package cc.orangejuice.srs.univ.course.module.repository;
 
 import cc.orangejuice.srs.univ.course.module.domain.StudentModule;
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**
@@ -12,4 +15,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudentModuleRepository extends JpaRepository<StudentModule, Long> {
 
+    @Query(value = "Select studentModule From StudentModule studentModule where studentModule.studentId =:studentId and studentModule.enrollSemester=:enrollSemester and studentModule.enrollYear=:enrollYear")
+    List<StudentModule> findAllWithStudentModulesByStudentNumber(@Param("studentId") Long studentId, @Param("enrollYear") Integer enrollYear, @Param("enrollSemester") Integer enrollSemester);
 }

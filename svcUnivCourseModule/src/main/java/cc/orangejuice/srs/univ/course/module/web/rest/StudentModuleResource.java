@@ -1,4 +1,5 @@
 package cc.orangejuice.srs.univ.course.module.web.rest;
+import cc.orangejuice.srs.univ.course.module.domain.StudentModule;
 import cc.orangejuice.srs.univ.course.module.service.StudentModuleService;
 import cc.orangejuice.srs.univ.course.module.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.univ.course.module.web.rest.util.HeaderUtil;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -116,5 +118,11 @@ public class StudentModuleResource {
         log.debug("REST request to delete StudentModule : {}", id);
         studentModuleService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/student-modules/{studentId}/{enrollYear}/{enrollSemester}")
+    public List<StudentModule> getStudentRegisteredModules(@PathVariable Long studentId, @PathVariable("enrollYear") Integer enrollYear, @PathVariable("enrollSemester") Integer enrollSemester) {
+        log.debug("REST request to get {} StudentModules ", studentId);
+        return studentModuleService.getStudentRegisteredModules(studentId, enrollYear, enrollSemester);
     }
 }

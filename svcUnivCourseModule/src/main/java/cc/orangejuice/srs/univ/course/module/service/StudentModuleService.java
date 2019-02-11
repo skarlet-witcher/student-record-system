@@ -1,6 +1,7 @@
 package cc.orangejuice.srs.univ.course.module.service;
 
 import cc.orangejuice.srs.univ.course.module.domain.StudentModule;
+import cc.orangejuice.srs.univ.course.module.repository.ModuleRepository;
 import cc.orangejuice.srs.univ.course.module.repository.StudentModuleRepository;
 import cc.orangejuice.srs.univ.course.module.service.dto.StudentModuleDTO;
 import cc.orangejuice.srs.univ.course.module.service.mapper.StudentModuleMapper;
@@ -12,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -79,5 +82,11 @@ public class StudentModuleService {
      */
     public void delete(Long id) {
         log.debug("Request to delete StudentModule : {}", id);        studentModuleRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentModule> getStudentRegisteredModules(Long studentId, Integer enrollYear, Integer enrollSemester) {
+        log.debug("Request to get {} Student RegisteredModule", studentId);
+        return studentModuleRepository.findAllWithStudentModulesByStudentNumber(studentId, enrollYear, enrollSemester);
     }
 }

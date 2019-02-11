@@ -1,5 +1,5 @@
 {
-    "microserviceName": "ModuleResult",
+    "name": "ModuleResult",
     "fields": [
         {
             "fieldName": "grade",

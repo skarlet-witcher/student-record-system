@@ -1,6 +1,7 @@
 package cc.orangejuice.srs.univ.course.module.service;
 
 import cc.orangejuice.srs.univ.course.module.domain.ModuleResult;
+import cc.orangejuice.srs.univ.course.module.domain.StudentModule;
 import cc.orangejuice.srs.univ.course.module.repository.ModuleResultRepository;
 import cc.orangejuice.srs.univ.course.module.service.dto.ModuleResultDTO;
 import cc.orangejuice.srs.univ.course.module.service.mapper.ModuleResultMapper;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -79,5 +81,11 @@ public class ModuleResultService {
      */
     public void delete(Long id) {
         log.debug("Request to delete ModuleResult : {}", id);        moduleResultRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<ModuleResult> getResultListByStudent(Long studentId) {
+        log.debug("Request to get the result list for {} Student ", studentId);
+        return moduleResultRepository.findAllModulesResultsByStudentId(studentId);
     }
 }

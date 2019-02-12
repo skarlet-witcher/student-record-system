@@ -120,9 +120,15 @@ public class StudentModuleResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/student-modules/{studentId}/{enrollYear}/{enrollSemester}")
-    public List<StudentModule> getStudentRegisteredModules(@PathVariable Long studentId, @PathVariable("enrollYear") Integer enrollYear, @PathVariable("enrollSemester") Integer enrollSemester) {
+    @GetMapping("/student-modules/moduleList/{studentId}/{enrollYear}/{enrollSemester}")
+    public List<StudentModule> getRegisteredModules(@PathVariable Long studentId, @PathVariable("enrollYear") Integer enrollYear, @PathVariable("enrollSemester") Integer enrollSemester) {
         log.debug("REST request to get {} StudentModules ", studentId);
         return studentModuleService.getStudentRegisteredModules(studentId, enrollYear, enrollSemester);
+    }
+
+    @GetMapping("/student-modules/studentList/{moduleId}")
+    public List<StudentModule> getRegisteredStudents(@PathVariable Long moduleId) {
+        log.debug("REST request to get the student list for {} Module ", moduleId);
+        return studentModuleService.getStudentListByModules(moduleId);
     }
 }

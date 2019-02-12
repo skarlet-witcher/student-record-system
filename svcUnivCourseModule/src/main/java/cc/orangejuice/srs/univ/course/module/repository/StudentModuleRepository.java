@@ -16,5 +16,8 @@ import java.util.List;
 public interface StudentModuleRepository extends JpaRepository<StudentModule, Long> {
 
     @Query(value = "Select studentModule From StudentModule studentModule where studentModule.studentId =:studentId and studentModule.enrollSemester=:enrollSemester and studentModule.enrollYear=:enrollYear")
-    List<StudentModule> findAllWithStudentModulesByStudentNumber(@Param("studentId") Long studentId, @Param("enrollYear") Integer enrollYear, @Param("enrollSemester") Integer enrollSemester);
+    List<StudentModule> findAllWithStudentRegisteredModules(@Param("studentId") Long studentId, @Param("enrollYear") Integer enrollYear, @Param("enrollSemester") Integer enrollSemester);
+
+    @Query(value = "Select studentModule From StudentModule studentModule where studentModule.moduleId =:moduleId")
+    List<StudentModule> findAllStudentsByModuleId(@Param("moduleId") Long moduleId);
 }

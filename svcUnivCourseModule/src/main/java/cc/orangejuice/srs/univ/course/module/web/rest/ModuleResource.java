@@ -1,4 +1,5 @@
 package cc.orangejuice.srs.univ.course.module.web.rest;
+import cc.orangejuice.srs.univ.course.module.domain.Module;
 import cc.orangejuice.srs.univ.course.module.service.ModuleService;
 import cc.orangejuice.srs.univ.course.module.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.univ.course.module.web.rest.util.HeaderUtil;
@@ -116,5 +117,11 @@ public class ModuleResource {
         log.debug("REST request to delete Module : {}", id);
         moduleService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/modules/module-detail/{moduleCode}")
+    public Module getModuleByModuleCode(@PathVariable String moduleCode) {
+        log.debug("REST request to get {} module details", moduleCode);
+        return moduleService.findOneModuleByModuleCode(moduleCode);
     }
 }

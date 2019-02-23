@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="studentModuleGradeDict">
+            <h2><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleGradeDict.detail.title">Student Module Grade Dict</span> {{studentModuleGradeDict.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleGradeDict.name">Name</span></dt>
+                <dd>
+                    <span>{{studentModuleGradeDict.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleGradeDict.description">Description</span></dt>
+                <dd>
+                    <span>{{studentModuleGradeDict.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleGradeDict.lowMarks" [ngbTooltip]="'cloudGatewayApp.svcProgrammeModuleStudentModuleGradeDict.help.lowMarks' | translate">Low Marks</span></dt>
+                <dd>
+                    <span>{{studentModuleGradeDict.lowMarks}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleGradeDict.qpv">Qpv</span></dt>
+                <dd>
+                    <span>{{studentModuleGradeDict.qpv}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleGradeDict.isAffectQca">Is Affect Qca</span></dt>
+                <dd>
+                    <span>{{studentModuleGradeDict.isAffectQca}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/student-module-grade-dict', studentModuleGradeDict.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

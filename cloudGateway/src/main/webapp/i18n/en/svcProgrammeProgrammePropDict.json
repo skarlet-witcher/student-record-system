@@ -1,0 +1,33 @@
+{
+    "cloudGatewayApp": {
+        "svcProgrammeProgrammePropDict": {
+            "home": {
+                "title": "Programme Prop Dicts",
+                "createLabel": "Create a new Programme Prop Dict",
+                "createOrEditLabel": "Create or edit a Programme Prop Dict"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Programme Prop Dict {{ id }}?"
+            },
+            "detail": {
+                "title": "Programme Prop Dict"
+            },
+            "forEnrollYear": "For Enroll Year",
+            "type": "Type",
+            "forYearNo": "For Year No",
+            "forSemesterNo": "For Semester No",
+            "key": "Key",
+            "value": "Value",
+            "help": {
+                "key": "semester-&gt;factor, semester-&gt;belong_to_part, general-&gt;how_many_parts"
+            }
+        }
+    },
+    "svcProgrammeApp": {
+        "svcProgrammeProgrammePropDict": {
+            "created": "A new Programme Prop Dict is created with identifier {{ param }}",
+            "updated": "A Programme Prop Dict is updated with identifier {{ param }}",
+            "deleted": "A Programme Prop Dict is deleted with identifier {{ param }}"
+        }
+    }
+}

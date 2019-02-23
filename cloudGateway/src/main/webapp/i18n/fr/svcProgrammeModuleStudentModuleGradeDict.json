@@ -1,0 +1,32 @@
+{
+    "cloudGatewayApp": {
+        "svcProgrammeModuleStudentModuleGradeDict": {
+            "home": {
+                "title": "StudentModuleGradeDicts",
+                "createLabel": "Créer un nouveau Student Module Grade Dict",
+                "createOrEditLabel": "Créer ou éditer un Student Module Grade Dict"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Student Module Grade Dict {{ id }} ?"
+            },
+            "detail": {
+                "title": "Student Module Grade Dict"
+            },
+            "name": "Name",
+            "description": "Description",
+            "lowMarks": "Low Marks",
+            "qpv": "Qpv",
+            "isAffectQca": "Is Affect Qca",
+            "help": {
+                "lowMarks": "marks bigger than this will get corresponding qpv"
+            }
+        }
+    },
+    "svcProgrammeModuleApp": {
+        "svcProgrammeModuleStudentModuleGradeDict": {
+            "created": "Un nouveau Student Module Grade Dict a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Student Module Grade Dict avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Student Module Grade Dict avec l'identifiant {{ param }} a été supprimé"
+        }
+    }
+}

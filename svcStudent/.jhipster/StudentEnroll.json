@@ -1,0 +1,57 @@
+{
+    "name": "StudentEnroll",
+    "fields": [
+        {
+            "fieldName": "enrollYear",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "forProgrammeId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "forDegree",
+            "fieldType": "Degree",
+            "fieldValues": "BACHELOR,MASTER,DOCTER",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "EnrollStatus",
+            "fieldValues": "TAKING,SUSPEND,DONE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "student",
+            "otherEntityName": "student",
+            "otherEntityField": "studentNumber",
+            "otherEntityRelationshipName": "student"
+        }
+    ],
+    "changelogDate": "20190223235454",
+    "entityTableName": "student_enroll",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "svcStudent",
+        "cloudGateway"
+    ],
+    "microserviceName": "svcStudent"
+}

@@ -8,9 +8,17 @@
             "entities": {
                 "main": "Entités",
                 "svcStudentStudent": "Student",
-                "svcUnivCourseModuleModule": "Module",
+                "svcProgrammeModuleModule": "Module",
                 "svcUnivCourseModuleStudentModule": "Student Module",
                 "svcUnivCourseModuleModuleResult": "Module Result",
+                "svcStudentStudentEnroll": "Student Enroll",
+                "svcStudentStudentProgression": "Student Progression",
+                "svcProgrammeFaculty": "Faculty",
+                "svcProgrammeDepartment": "Department",
+                "svcProgrammeProgramme": "Programme",
+                "svcProgrammeProgrammePropDict": "Programme Prop Dict",
+                "svcProgrammeModuleStudentModuleSelection": "Student Module Selection",
+                "svcProgrammeModuleStudentModuleGradeDict": "Student Module Grade Dict",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

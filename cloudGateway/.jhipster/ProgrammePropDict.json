@@ -1,0 +1,57 @@
+{
+    "name": "ProgrammePropDict",
+    "fields": [
+        {
+            "fieldName": "forEnrollYear",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "ProgrammePropType",
+            "fieldValues": "GENERAL,YEAR,SEMESTER",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "forYearNo",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "forSemesterNo",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "key",
+            "javadoc": "semester->factor, semester->belong_to_part, general->how_many_parts",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "value",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190223235459",
+    "entityTableName": "programme_prop_dict",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "svcProgramme",
+        "cloudGateway"
+    ],
+    "microserviceName": "svcProgramme"
+}

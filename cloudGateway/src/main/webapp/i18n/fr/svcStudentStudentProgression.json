@@ -1,0 +1,35 @@
+{
+    "cloudGatewayApp": {
+        "svcStudentStudentProgression": {
+            "home": {
+                "title": "StudentProgressions",
+                "createLabel": "Créer un nouveau Student Progression",
+                "createOrEditLabel": "Créer ou éditer un Student Progression"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Student Progression {{ id }} ?"
+            },
+            "detail": {
+                "title": "Student Progression"
+            },
+            "yearNo": "Year No",
+            "semesterNo": "Semester No",
+            "qca": "Qca",
+            "cumulativeQcaForPart": "Cumulative Qca For Part",
+            "progressDecision": "Progress Decision",
+            "student": "Student",
+            "help": {
+                "qca": "semesterNo -&gt; qca",
+                "cumulativeQcaForPart": "0:not   1...n:part n  | yearNo(finish of a part) -&gt; cumulativeQcaForPart",
+                "progressDecision": "yearNo -&gt; progressDecision"
+            }
+        }
+    },
+    "svcStudentApp": {
+        "svcStudentStudentProgression": {
+            "created": "Un nouveau Student Progression a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Student Progression avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Student Progression avec l'identifiant {{ param }} a été supprimé"
+        }
+    }
+}

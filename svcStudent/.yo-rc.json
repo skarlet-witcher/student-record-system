@@ -35,6 +35,8 @@
     "otherModules": []
   },
   "entities": [
-    "Student"
+    "Student",
+    "StudentEnroll",
+    "StudentProgression"
   ]
 }

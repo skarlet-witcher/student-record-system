@@ -1,6 +1,7 @@
 package cc.orangejuice.srs.student.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,6 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import cc.orangejuice.srs.student.domain.enumeration.Gender;
@@ -26,6 +29,9 @@ public class Student implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * generated value
+     */
     @Column(name = "student_number")
     private String studentNumber;
 
@@ -69,6 +75,12 @@ public class Student implements Serializable {
     @Column(name = "user_id")
     private Long userId;
 
+    @OneToMany(mappedBy = "student")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<StudentEnroll> studentEnrolls = new HashSet<>();
+    @OneToMany(mappedBy = "student")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<StudentProgression> studentProgressions = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -219,6 +231,56 @@ public class Student implements Serializable {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Set<StudentEnroll> getStudentEnrolls() {
+        return studentEnrolls;
+    }
+
+    public Student studentEnrolls(Set<StudentEnroll> studentEnrolls) {
+        this.studentEnrolls = studentEnrolls;
+        return this;
+    }
+
+    public Student addStudentEnroll(StudentEnroll studentEnroll) {
+        this.studentEnrolls.add(studentEnroll);
+        studentEnroll.setStudent(this);
+        return this;
+    }
+
+    public Student removeStudentEnroll(StudentEnroll studentEnroll) {
+        this.studentEnrolls.remove(studentEnroll);
+        studentEnroll.setStudent(null);
+        return this;
+    }
+
+    public void setStudentEnrolls(Set<StudentEnroll> studentEnrolls) {
+        this.studentEnrolls = studentEnrolls;
+    }
+
+    public Set<StudentProgression> getStudentProgressions() {
+        return studentProgressions;
+    }
+
+    public Student studentProgressions(Set<StudentProgression> studentProgressions) {
+        this.studentProgressions = studentProgressions;
+        return this;
+    }
+
+    public Student addStudentProgression(StudentProgression studentProgression) {
+        this.studentProgressions.add(studentProgression);
+        studentProgression.setStudent(this);
+        return this;
+    }
+
+    public Student removeStudentProgression(StudentProgression studentProgression) {
+        this.studentProgressions.remove(studentProgression);
+        studentProgression.setStudent(null);
+        return this;
+    }
+
+    public void setStudentProgressions(Set<StudentProgression> studentProgressions) {
+        this.studentProgressions = studentProgressions;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

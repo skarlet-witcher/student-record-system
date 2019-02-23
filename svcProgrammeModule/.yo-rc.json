@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "jhiPrefix": "jhi",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "messageBroker": false,
+    "nativeLanguage": "en",
+    "packageName": "cc.orangejuice.srs.programme.module",
+    "packageFolder": "cc/orangejuice/srs/programme/module",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "serviceDiscoveryType": "eureka",
+    "skipClient": true,
+    "testFrameworks": [],
+    "websocket": false,
+    "baseName": "svcProgrammeModule",
+    "authenticationType": "uaa",
+    "uaaBaseName": "cloudauth",
+    "applicationType": "microservice",
+    "buildTool": "gradle",
+    "serverPort": "8083",
+    "jhipsterVersion": "5.8.1",
+    "skipUserManagement": true,
+    "clientPackageManager": "npm",
+    "cacheProvider": "hazelcast"
+  },
+  "entities": [
+    "Module",
+    "StudentModuleSelection",
+    "StudentModuleGradeDict"
+  ]
+}

@@ -6,8 +6,8 @@ import { filter, map } from 'rxjs/operators';
 import { JhiAlertService } from 'ng-jhipster';
 import { IModuleResult } from 'app/shared/model/svcUnivCourseModule/module-result.model';
 import { ModuleResultService } from './module-result.service';
-import { IModule } from 'app/shared/model/svcUnivCourseModule/module.model';
-import { ModuleService } from 'app/entities/svcUnivCourseModule/module';
+import { IModule } from 'app/shared/model/svcProgrammeModule/module.model';
+import { ModuleService } from 'app/entities/svcProgrammeModule/module';
 
 @Component({
     selector: 'jhi-module-result-update',

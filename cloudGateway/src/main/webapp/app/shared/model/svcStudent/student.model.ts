@@ -1,3 +1,6 @@
+import { IStudentEnroll } from 'app/shared/model/svcStudent/student-enroll.model';
+import { IStudentProgression } from 'app/shared/model/svcStudent/student-progression.model';
+
 export const enum Gender {
     MALE = 'MALE',
     FEMALE = 'FEMALE',
@@ -17,6 +20,8 @@ export interface IStudent {
     city?: string;
     country?: string;
     userId?: number;
+    studentEnrolls?: IStudentEnroll[];
+    studentProgressions?: IStudentProgression[];
 }
 
 export class Student implements IStudent {
@@ -32,6 +37,8 @@ export class Student implements IStudent {
         public addressLine2?: string,
         public city?: string,
         public country?: string,
-        public userId?: number
+        public userId?: number,
+        public studentEnrolls?: IStudentEnroll[],
+        public studentProgressions?: IStudentProgression[]
     ) {}
 }

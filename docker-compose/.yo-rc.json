@@ -6,7 +6,8 @@
     "directoryPath": "../",
     "appsFolders": [
       "svcStudent",
-      "svcUnivCourseModule",
+      "svcProgramme",
+      "svcProgrammeModule",
       "cloudGateway",
       "cloudAuth"
     ],

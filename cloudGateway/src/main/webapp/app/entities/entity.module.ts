@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'module',
-                loadChildren: './svcUnivCourseModule/module/module.module#SvcUnivCourseModuleModuleModule'
+                loadChildren: './svcProgrammeModule/module/module.module#SvcProgrammeModuleModuleModule'
             },
             {
                 path: 'student-module',
@@ -19,6 +19,40 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'module-result',
                 loadChildren: './svcUnivCourseModule/module-result/module-result.module#SvcUnivCourseModuleModuleResultModule'
+            },
+            {
+                path: 'student-enroll',
+                loadChildren: './svcStudent/student-enroll/student-enroll.module#SvcStudentStudentEnrollModule'
+            },
+            {
+                path: 'student-progression',
+                loadChildren: './svcStudent/student-progression/student-progression.module#SvcStudentStudentProgressionModule'
+            },
+            {
+                path: 'faculty',
+                loadChildren: './svcProgramme/faculty/faculty.module#SvcProgrammeFacultyModule'
+            },
+            {
+                path: 'department',
+                loadChildren: './svcProgramme/department/department.module#SvcProgrammeDepartmentModule'
+            },
+            {
+                path: 'programme',
+                loadChildren: './svcProgramme/programme/programme.module#SvcProgrammeProgrammeModule'
+            },
+            {
+                path: 'programme-prop-dict',
+                loadChildren: './svcProgramme/programme-prop-dict/programme-prop-dict.module#SvcProgrammeProgrammePropDictModule'
+            },
+            {
+                path: 'student-module-selection',
+                loadChildren:
+                    './svcProgrammeModule/student-module-selection/student-module-selection.module#SvcProgrammeModuleStudentModuleSelectionModule'
+            },
+            {
+                path: 'student-module-grade-dict',
+                loadChildren:
+                    './svcProgrammeModule/student-module-grade-dict/student-module-grade-dict.module#SvcProgrammeModuleStudentModuleGradeDictModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

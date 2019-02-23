@@ -22,7 +22,12 @@
             "addressLine2": "Address Line 2",
             "city": "City",
             "country": "Country",
-            "userId": "User Id"
+            "userId": "User Id",
+            "studentEnroll": "Student Enroll",
+            "studentProgression": "Student Progression",
+            "help": {
+                "studentNumber": "generated value"
+            }
         }
     },
     "svcStudentApp": {

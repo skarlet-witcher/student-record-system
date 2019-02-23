@@ -12,6 +12,9 @@ import org.mapstruct.*;
 public interface StudentMapper extends EntityMapper<StudentDTO, Student> {
 
 
+    @Mapping(target = "studentEnrolls", ignore = true)
+    @Mapping(target = "studentProgressions", ignore = true)
+    Student toEntity(StudentDTO studentDTO);
 
     default Student fromId(Long id) {
         if (id == null) {

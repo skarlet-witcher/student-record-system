@@ -35,4 +35,5 @@ refer to the document of [**jhipster**](https://www.jhipster.tech/development/).
 - 8761 registry
 - 9999 cloudAuth
 - 8081 svcStudent
-- 8082 svcUnivCourseModule
+- 8082 svcProgramme
+- 8083 svcProgrammeModule

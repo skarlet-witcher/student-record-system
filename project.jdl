@@ -1,5 +1,6 @@
 //@microservice(svcStudent)
 entity Student {
+    /** generated value */
     studentNumber String,
     firstName String required,
     lastName String required,
@@ -13,39 +14,131 @@ entity Student {
     userId Long
 }
 
+entity StudentEnroll {
+    enrollYear Integer required
+    forProgrammeId Long required
+    forDegree Degree required
+    status EnrollStatus required
+}
+
+enum Degree{
+    BACHELOR, MASTER, DOCTER
+}
+
+enum EnrollStatus{
+    TAKING, SUSPEND, DONE
+}
+
+relationship OneToMany {
+    Student to StudentEnroll{Student(studentNumber)}
+}
+
 enum Gender {
     MALE, FEMALE, OTHER
+}
+
+entity StudentProgression{
+    yearNo Integer required
+    semesterNo Integer required
+    /** semesterNo -> qca */
+    qca Double required
+    /** 0:not   1...n:part n  | yearNo(finish of a part) -> cumulativeQcaForPart */
+    cumulativeQcaForPart Integer required
+    /** yearNo -> progressDecision*/
+    progressDecision ProgressDecision
+}
+
+/** SUSPENSION: pause progress, won't be registered in next semester
+ *  FAIL_CAN_REPEAT: after repeat successful will be changed into PASS
+ *  FAIL_NO_REPEAT: won't be registered into next semester, need to learn modules of this year again
+ */
+enum ProgressDecision{
+    PASS, SUSPENSION, FAIL_CAN_REPEAT, FAIL_NO_REPEAT
+}
+
+relationship OneToMany {
+    Student to StudentProgression{Student(studentNumber)}
+}
+
+entity Faculty{
+    name String required
+}
+
+entity Department{
+    name String required
+}
+
+entity Programme{
+    code String required,
+    name String required,
+    length Integer required,
+    courseLeader String required
+    degree String required
+}
+
+entity ProgrammePropDict{
+    forEnrollYear Integer required
+    type ProgrammePropType required
+    forYearNo Integer
+    forSemesterNo Integer
+    /** semester->factor, semester->belong_to_part, general->how_many_parts */
+    key String required
+    value String required
+}
+
+enum ProgrammePropType{
+    GENERAL, YEAR, SEMESTER
+}
+
+relationship OneToMany {
+    Faculty to Department{Faculty(name) required}
+}
+
+relationship OneToMany {
+    Department to Programme{Department(name) required}
 }
 
 entity Module {
     code String required,
     name String required,
-    desc TextBlob
+    credit Double required
 }
 
-entity StudentModule {
-    studentId Long required,
-    moduleId Long required,
-    enrollYear Integer required,
-    enrollSemester Integer required
-}
-
-entity ModuleResult {
-    grade Double,
-    qca Double,
-    studentId Long
-    // level ModuleResultLevel
+entity StudentModuleSelection {
+    studentId Long required
+    yearNo Integer required
+    semesterNo Integer required
+    /** null before module finished*/ 
+    creditHour Double 
+    /** null before module finished*/ 
+    marks Double
+    /** null before module finished*/ 
+    qcs Double
 }
 
 relationship ManyToOne {
-    ModuleResult{module(name)} to Module
+    StudentModuleSelection{Module(name)} to Module
+}
+
+entity StudentModuleGradeDict{
+    name String required unique,
+    description String required,
+    /** marks bigger than this will get corresponding qpv*/
+    lowMarks Integer
+    qpv Double,
+    isAffectQca Boolean
+}
+
+relationship ManyToOne {
+    StudentModuleSelection{StudentModuleGradeType(name)} to StudentModuleGradeDict
 }
 
 dto * with mapstruct
 paginate * with pagination
 service * with serviceClass
-microservice Student with svcStudent
-microservice Module, StudentModule, ModuleResult with svcUnivCourseModule
+microservice Student, StudentEnroll, StudentProgression with svcStudent
+microservice Faculty, Department, Programme, ProgrammePropDict with svcProgramme
+microservice Module, StudentModuleSelection, StudentModuleGradeDict with svcProgrammeModule
 //search * with elasticsearch
 
 application {
@@ -60,13 +153,13 @@ application {
         buildTool gradle
         serverPort 8081
     }
-    entities Student
+    entities Student, StudentEnroll, StudentProgression
 }
 
 application {
     config {
-        baseName svcUnivCourseModule
-        packageName cc.orangejuice.srs.univ.course.module
+        baseName svcProgramme
+        packageName cc.orangejuice.srs.programme
         authenticationType uaa
         uaaBaseName "cloudauth"
         applicationType microservice
@@ -75,7 +168,22 @@ application {
         buildTool gradle
         serverPort 8082
     }
-    entities Module, StudentModule, ModuleResult
+    entities Faculty, Department, Programme, ProgrammePropDict
+}
+
+application {
+    config {
+        baseName svcProgrammeModule
+        packageName cc.orangejuice.srs.programme.module
+        authenticationType uaa
+        uaaBaseName "cloudauth"
+        applicationType microservice
+        //searchEngine elasticsearch
+        serviceDiscoveryType eureka
+        buildTool gradle
+        serverPort 8083
+    }
+    entities Module, StudentModuleSelection, StudentModuleGradeDict
 }
 
 application {
@@ -105,7 +213,7 @@ application {
 
 deployment {
     deploymentType docker-compose
-    appsFolders [svcStudent, svcUnivCourseModule, cloudGateway, cloudAuth]
+    appsFolders [svcStudent, svcProgramme, svcProgrammeModule, cloudGateway, cloudAuth]
     dockerRepositoryName "cherrymeteor"
     //monitoring elk
     //consoleOptions [curator, zipkin]

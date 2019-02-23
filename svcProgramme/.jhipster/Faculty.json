@@ -1,0 +1,33 @@
+{
+    "name": "Faculty",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "department",
+            "otherEntityName": "department",
+            "otherEntityRelationshipName": "faculty"
+        }
+    ],
+    "changelogDate": "20190223235456",
+    "entityTableName": "faculty",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "svcProgramme",
+        "cloudGateway"
+    ],
+    "microserviceName": "svcProgramme"
+}

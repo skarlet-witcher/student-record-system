@@ -3,6 +3,7 @@
     "fields": [
         {
             "fieldName": "studentNumber",
+            "javadoc": "generated value",
             "fieldType": "String"
         },
         {
@@ -73,7 +74,20 @@
             "fieldType": "Long"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "studentEnroll",
+            "otherEntityName": "studentEnroll",
+            "otherEntityRelationshipName": "student"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "studentProgression",
+            "otherEntityName": "studentProgression",
+            "otherEntityRelationshipName": "student"
+        }
+    ],
     "changelogDate": "20190205175110",
     "entityTableName": "student",
     "dto": "mapstruct",

@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="programme">
+            <h2><span jhiTranslate="cloudGatewayApp.svcProgrammeProgramme.detail.title">Programme</span> {{programme.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeProgramme.code">Code</span></dt>
+                <dd>
+                    <span>{{programme.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeProgramme.name">Name</span></dt>
+                <dd>
+                    <span>{{programme.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeProgramme.length">Length</span></dt>
+                <dd>
+                    <span>{{programme.length}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeProgramme.courseLeader">Course Leader</span></dt>
+                <dd>
+                    <span>{{programme.courseLeader}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeProgramme.degree">Degree</span></dt>
+                <dd>
+                    <span>{{programme.degree}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeProgramme.department">Department</span></dt>
+                <dd>
+                    <div *ngIf="programme.departmentId">
+                        <a [routerLink]="['/department', programme.departmentId, 'view']">{{programme.departmentName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/programme', programme.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 package cc.orangejuice.srs.student.service.dto;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,6 +12,10 @@ public class StudentDTO implements Serializable {
 
     private Long id;
 
+    /**
+     * generated value
+     */
+    @ApiModelProperty(value = "generated value")
     private String studentNumber;
 
     @NotNull

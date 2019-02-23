@@ -1,0 +1,63 @@
+{
+    "name": "StudentProgression",
+    "fields": [
+        {
+            "fieldName": "yearNo",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "semesterNo",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "qca",
+            "javadoc": "semesterNo -> qca",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cumulativeQcaForPart",
+            "javadoc": "0:not   1...n:part n  | yearNo(finish of a part) -> cumulativeQcaForPart",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "progressDecision",
+            "javadoc": "yearNo -> progressDecision",
+            "fieldType": "ProgressDecision",
+            "fieldValues": "PASS,SUSPENSION,FAIL_CAN_REPEAT,FAIL_NO_REPEAT"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "student",
+            "otherEntityName": "student",
+            "otherEntityField": "studentNumber",
+            "otherEntityRelationshipName": "student"
+        }
+    ],
+    "changelogDate": "20190223235455",
+    "entityTableName": "student_progression",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "svcStudent",
+        "cloudGateway"
+    ],
+    "microserviceName": "svcStudent"
+}

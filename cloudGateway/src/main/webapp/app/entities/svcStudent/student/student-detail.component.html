@@ -5,7 +5,7 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.studentNumber">Student Number</span></dt>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.studentNumber" [ngbTooltip]="'cloudGatewayApp.svcStudentStudent.help.studentNumber' | translate">Student Number</span></dt>
                 <dd>
                     <span>{{student.studentNumber}}</span>
                 </dd>

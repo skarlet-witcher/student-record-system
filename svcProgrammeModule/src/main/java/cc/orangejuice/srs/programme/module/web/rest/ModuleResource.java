@@ -1,9 +1,9 @@
-package cc.orangejuice.srs.univ.course.module.web.rest;
-import cc.orangejuice.srs.univ.course.module.service.ModuleService;
-import cc.orangejuice.srs.univ.course.module.web.rest.errors.BadRequestAlertException;
-import cc.orangejuice.srs.univ.course.module.web.rest.util.HeaderUtil;
-import cc.orangejuice.srs.univ.course.module.web.rest.util.PaginationUtil;
-import cc.orangejuice.srs.univ.course.module.service.dto.ModuleDTO;
+package cc.orangejuice.srs.programme.module.web.rest;
+import cc.orangejuice.srs.programme.module.service.ModuleService;
+import cc.orangejuice.srs.programme.module.web.rest.errors.BadRequestAlertException;
+import cc.orangejuice.srs.programme.module.web.rest.util.HeaderUtil;
+import cc.orangejuice.srs.programme.module.web.rest.util.PaginationUtil;
+import cc.orangejuice.srs.programme.module.service.dto.ModuleDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +30,7 @@ public class ModuleResource {
 
     private final Logger log = LoggerFactory.getLogger(ModuleResource.class);
 
-    private static final String ENTITY_NAME = "svcUnivCourseModuleModule";
+    private static final String ENTITY_NAME = "svcProgrammeModuleModule";
 
     private final ModuleService moduleService;
 

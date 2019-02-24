@@ -2,7 +2,6 @@ package cc.orangejuice.srs.programme.module.repository;
 
 import cc.orangejuice.srs.programme.module.domain.Module;
 import org.springframework.data.jpa.repository.*;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
@@ -12,6 +11,5 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface ModuleRepository extends JpaRepository<Module, Long> {
-    @Query(value = "Select module From Module module Where module.code=:moduleCode")
-    Module findOneModuleByModuleCod(@Param("moduleCode") String moduleCode);
+
 }

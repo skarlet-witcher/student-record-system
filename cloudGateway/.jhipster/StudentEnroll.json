@@ -18,7 +18,7 @@
         {
             "fieldName": "forDegree",
             "fieldType": "Degree",
-            "fieldValues": "BACHELOR,MASTER,DOCTER",
+            "fieldValues": "BACHELOR,MASTER,DOCTOR",
             "fieldValidateRules": [
                 "required"
             ]

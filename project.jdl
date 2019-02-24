@@ -22,7 +22,7 @@ entity StudentEnroll {
 }
 
 enum Degree{
-    BACHELOR, MASTER, DOCTER
+    BACHELOR, MASTER, DOCTOR
 }
 
 enum EnrollStatus{

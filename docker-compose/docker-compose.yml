@@ -1,0 +1,98 @@
+version: '2'
+services:
+    svcstudent-app:
+        image: svcstudent
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - 'SPRING_PROFILES_ACTIVE=prod,swagger'
+            - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
+            - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
+            - 'SPRING_DATASOURCE_URL=jdbc:mysql://svcstudent-mysql:3306/svcstudent?useUnicode=true&characterEncoding=utf8&useSSL=false'
+            - JHIPSTER_SLEEP=30
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+    svcstudent-mysql:
+        image: 'mysql:5.7.20'
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=svcstudent
+        command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+    
+    svcprogramme-app:
+        image: svcprogramme
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - 'SPRING_PROFILES_ACTIVE=prod,swagger'
+            - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
+            - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
+            - 'SPRING_DATASOURCE_URL=jdbc:mysql://svcprogramme-mysql:3306/svcprogramme?useUnicode=true&characterEncoding=utf8&useSSL=false'
+            - JHIPSTER_SLEEP=30
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+    svcprogramme-mysql:
+        image: 'mysql:5.7.20'
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=svcprogramme
+        command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+    
+    svcprogrammemodule-app:
+        image: svcprogrammemodule
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - 'SPRING_PROFILES_ACTIVE=prod,swagger'
+            - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
+            - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
+            - 'SPRING_DATASOURCE_URL=jdbc:mysql://svcprogrammemodule-mysql:3306/svcprogrammemodule?useUnicode=true&characterEncoding=utf8&useSSL=false'
+            - JHIPSTER_SLEEP=30
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+    svcprogrammemodule-mysql:
+        image: 'mysql:5.7.20'
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=svcprogrammemodule
+        command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+    
+    cloudgateway-app:
+        image: cloudgateway
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - 'SPRING_PROFILES_ACTIVE=prod,swagger'
+            - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
+            - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
+            - 'SPRING_DATASOURCE_URL=jdbc:mysql://cloudgateway-mysql:3306/cloudgateway?useUnicode=true&characterEncoding=utf8&useSSL=false'
+            - JHIPSTER_SLEEP=30
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+        ports:
+            - '8080:8080'
+    cloudgateway-mysql:
+        image: 'mysql:5.7.20'
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=cloudgateway
+        command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+    
+    cloudauth-app:
+        image: cloudauth
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - 'SPRING_PROFILES_ACTIVE=prod,swagger'
+            - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
+            - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
+            - 'SPRING_DATASOURCE_URL=jdbc:mysql://cloudauth-mysql:3306/cloudauth?useUnicode=true&characterEncoding=utf8&useSSL=false'
+            - JHIPSTER_SLEEP=30
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+    cloudauth-mysql:
+        image: 'mysql:5.7.20'
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=cloudauth
+        command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+    
+    jhipster-registry:
+        extends:
+            file: jhipster-registry.yml
+            service: jhipster-registry

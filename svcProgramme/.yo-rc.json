@@ -29,7 +29,10 @@
     "jhipsterVersion": "5.8.1",
     "skipUserManagement": true,
     "clientPackageManager": "npm",
-    "cacheProvider": "hazelcast"
+    "cacheProvider": "hazelcast",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
   },
   "entities": [
     "Faculty",

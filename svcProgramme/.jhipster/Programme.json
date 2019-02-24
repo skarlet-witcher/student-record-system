@@ -47,7 +47,7 @@
             "otherEntityRelationshipName": "department"
         }
     ],
-    "changelogDate": "20190223235458",
+    "changelogDate": "20190224000011",
     "entityTableName": "programme",
     "dto": "mapstruct",
     "pagination": "pagination",

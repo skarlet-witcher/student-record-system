@@ -5,30 +5,6 @@ import { RouterModule } from '@angular/router';
     imports: [
         RouterModule.forChild([
             {
-                path: 'student',
-                loadChildren: './svcStudent/student/student.module#SvcStudentStudentModule'
-            },
-            {
-                path: 'module',
-                loadChildren: './svcProgrammeModule/module/module.module#SvcProgrammeModuleModuleModule'
-            },
-            {
-                path: 'student-module',
-                loadChildren: './svcUnivCourseModule/student-module/student-module.module#SvcUnivCourseModuleStudentModuleModule'
-            },
-            {
-                path: 'module-result',
-                loadChildren: './svcUnivCourseModule/module-result/module-result.module#SvcUnivCourseModuleModuleResultModule'
-            },
-            {
-                path: 'student-enroll',
-                loadChildren: './svcStudent/student-enroll/student-enroll.module#SvcStudentStudentEnrollModule'
-            },
-            {
-                path: 'student-progression',
-                loadChildren: './svcStudent/student-progression/student-progression.module#SvcStudentStudentProgressionModule'
-            },
-            {
                 path: 'faculty',
                 loadChildren: './svcProgramme/faculty/faculty.module#SvcProgrammeFacultyModule'
             },
@@ -45,6 +21,10 @@ import { RouterModule } from '@angular/router';
                 loadChildren: './svcProgramme/programme-prop-dict/programme-prop-dict.module#SvcProgrammeProgrammePropDictModule'
             },
             {
+                path: 'module',
+                loadChildren: './svcProgrammeModule/module/module.module#SvcProgrammeModuleModuleModule'
+            },
+            {
                 path: 'student-module-selection',
                 loadChildren:
                     './svcProgrammeModule/student-module-selection/student-module-selection.module#SvcProgrammeModuleStudentModuleSelectionModule'
@@ -53,6 +33,18 @@ import { RouterModule } from '@angular/router';
                 path: 'student-module-grade-dict',
                 loadChildren:
                     './svcProgrammeModule/student-module-grade-dict/student-module-grade-dict.module#SvcProgrammeModuleStudentModuleGradeDictModule'
+            },
+            {
+                path: 'student',
+                loadChildren: './svcStudent/student/student.module#SvcStudentStudentModule'
+            },
+            {
+                path: 'student-enroll',
+                loadChildren: './svcStudent/student-enroll/student-enroll.module#SvcStudentStudentEnrollModule'
+            },
+            {
+                path: 'student-progression',
+                loadChildren: './svcStudent/student-progression/student-progression.module#SvcStudentStudentProgressionModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

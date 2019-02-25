@@ -41,7 +41,7 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20190223235459",
+    "changelogDate": "20190224000012",
     "entityTableName": "programme_prop_dict",
     "dto": "mapstruct",
     "pagination": "pagination",

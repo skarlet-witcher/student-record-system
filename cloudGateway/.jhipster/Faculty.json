@@ -17,7 +17,7 @@
             "otherEntityRelationshipName": "faculty"
         }
     ],
-    "changelogDate": "20190223235456",
+    "changelogDate": "20190224000009",
     "entityTableName": "faculty",
     "dto": "mapstruct",
     "pagination": "pagination",

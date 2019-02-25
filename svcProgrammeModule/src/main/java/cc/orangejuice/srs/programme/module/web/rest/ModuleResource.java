@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -117,13 +116,5 @@ public class ModuleResource {
         log.debug("REST request to delete Module : {}", id);
         moduleService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-    }
-
-    @GetMapping("/modules/module-detail/{moduleCode}")
-    public ResponseEntity<ModuleDTO> getModuleByModuleCode(@PathVariable String moduleCode) {
-        log.debug("REST request to get {} module details", moduleCode);
-        Optional<ModuleDTO> moduleDTO = moduleService.findOneModuleByModuleCode(moduleCode);
-        return ResponseUtil.wrapOrNotFound(moduleDTO);
-
     }
 }

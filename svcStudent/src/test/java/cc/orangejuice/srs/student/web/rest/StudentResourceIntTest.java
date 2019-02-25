@@ -58,8 +58,8 @@ public class StudentResourceIntTest {
     private static final Gender DEFAULT_GENDER = Gender.MALE;
     private static final Gender UPDATED_GENDER = Gender.FEMALE;
 
-    private static final String DEFAULT_EMAIL = "hR@2M.>";
-    private static final String UPDATED_EMAIL = "'j@/.q";
+    private static final String DEFAULT_EMAIL = "I@s1.v`";
+    private static final String UPDATED_EMAIL = "&n@-.3";
 
     private static final String DEFAULT_PHONE = "AAAAAAAAAA";
     private static final String UPDATED_PHONE = "BBBBBBBBBB";

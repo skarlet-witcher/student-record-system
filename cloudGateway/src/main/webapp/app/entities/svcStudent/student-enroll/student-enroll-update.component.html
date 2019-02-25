@@ -44,7 +44,7 @@
                     <select class="form-control" name="forDegree" [(ngModel)]="studentEnroll.forDegree" id="field_forDegree"  required>
                         <option value="BACHELOR">{{'cloudGatewayApp.Degree.BACHELOR' | translate}}</option>
                         <option value="MASTER">{{'cloudGatewayApp.Degree.MASTER' | translate}}</option>
-                        <option value="DOCTER">{{'cloudGatewayApp.Degree.DOCTER' | translate}}</option>
+                        <option value="DOCTOR">{{'cloudGatewayApp.Degree.DOCTOR' | translate}}</option>
                     </select>
                     <div [hidden]="!(editForm.controls.forDegree?.dirty && editForm.controls.forDegree?.invalid)">
                         <small class="form-text text-danger"

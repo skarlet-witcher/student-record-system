@@ -4,13 +4,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <!--
-        Added the constraints for entity StudentProgression.
+        Added the constraints for entity StudentEnroll.
     -->
-    <changeSet id="20190223235455-2" author="jhipster">
+    <changeSet id="20190225185426-2" author="jhipster">
         
         <addForeignKeyConstraint baseColumnNames="student_id"
-                                 baseTableName="student_progression"
-                                 constraintName="fk_student_progression_student_id"
+                                 baseTableName="student_enroll"
+                                 constraintName="fk_student_enroll_student_id"
                                  referencedColumnNames="id"
                                  referencedTableName="student"/>
 

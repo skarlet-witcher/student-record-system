@@ -80,10 +80,4 @@ public class ModuleService {
     public void delete(Long id) {
         log.debug("Request to delete Module : {}", id);        moduleRepository.deleteById(id);
     }
-
-    @Transactional(readOnly = true)
-    public Module findOneModuleByModuleCode(String moduleCode) {
-        log.debug("Request to get {} Module Details", moduleCode);
-        return moduleRepository.findOneModuleByModuleCod(moduleCode);
-    }
 }

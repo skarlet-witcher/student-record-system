@@ -1,7 +1,7 @@
 export const enum Degree {
     BACHELOR = 'BACHELOR',
     MASTER = 'MASTER',
-    DOCTER = 'DOCTER'
+    DOCTOR = 'DOCTOR'
 }
 
 export const enum EnrollStatus {

@@ -17,7 +17,7 @@
     <!--
         Added the entity StudentProgression.
     -->
-    <changeSet id="20190223235455-1" author="jhipster">
+    <changeSet id="20190225185427-1" author="jhipster">
         <createTable tableName="student_progression">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>

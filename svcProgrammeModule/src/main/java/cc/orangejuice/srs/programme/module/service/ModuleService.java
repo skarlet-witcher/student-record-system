@@ -83,8 +83,8 @@ public class ModuleService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<ModuleDTO> findOneModuleByModuleCode(String moduleCode) {
+    public Optional<ModuleDTO> findOneModule(String moduleCode) {
         log.debug("Request to get {} Module Details", moduleCode);
-        return moduleRepository.findOneModuleByModuleCod(moduleCode).map(moduleMapper::toDto);
+        return moduleRepository.findOneModule(moduleCode).map(moduleMapper::toDto);
     }
 }

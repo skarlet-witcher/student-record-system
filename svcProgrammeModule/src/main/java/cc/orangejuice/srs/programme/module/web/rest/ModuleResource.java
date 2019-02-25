@@ -122,7 +122,7 @@ public class ModuleResource {
     @GetMapping("/modules/module-detail/{moduleCode}")
     public ResponseEntity<ModuleDTO> getModuleByModuleCode(@PathVariable String moduleCode) {
         log.debug("REST request to get {} module details", moduleCode);
-        Optional<ModuleDTO> moduleDTO = moduleService.findOneModuleByModuleCode(moduleCode);
+        Optional<ModuleDTO> moduleDTO = moduleService.findOneModule(moduleCode);
         return ResponseUtil.wrapOrNotFound(moduleDTO);
 
     }

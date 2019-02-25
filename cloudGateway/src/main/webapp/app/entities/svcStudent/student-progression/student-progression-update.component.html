@@ -1,0 +1,100 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-student-progression-heading" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.home.createOrEditLabel">Create or edit a Student Progression</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!studentProgression.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="studentProgression.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.yearNo" for="field_yearNo">Year No</label>
+                    <input type="number" class="form-control" name="yearNo" id="field_yearNo"
+                        [(ngModel)]="studentProgression.yearNo" required/>
+                    <div [hidden]="!(editForm.controls.yearNo?.dirty && editForm.controls.yearNo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.yearNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.yearNo?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.semesterNo" for="field_semesterNo">Semester No</label>
+                    <input type="number" class="form-control" name="semesterNo" id="field_semesterNo"
+                        [(ngModel)]="studentProgression.semesterNo" required/>
+                    <div [hidden]="!(editForm.controls.semesterNo?.dirty && editForm.controls.semesterNo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.semesterNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.semesterNo?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.qca" for="field_qca" [ngbTooltip]="'cloudGatewayApp.svcStudentStudentProgression.help.qca' | translate">Qca</label>
+                    <input type="number" class="form-control" name="qca" id="field_qca"
+                        [(ngModel)]="studentProgression.qca" required/>
+                    <div [hidden]="!(editForm.controls.qca?.dirty && editForm.controls.qca?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.qca?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.qca?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.cumulativeQcaForPart" for="field_cumulativeQcaForPart" [ngbTooltip]="'cloudGatewayApp.svcStudentStudentProgression.help.cumulativeQcaForPart' | translate">Cumulative Qca For Part</label>
+                    <input type="number" class="form-control" name="cumulativeQcaForPart" id="field_cumulativeQcaForPart"
+                        [(ngModel)]="studentProgression.cumulativeQcaForPart" required/>
+                    <div [hidden]="!(editForm.controls.cumulativeQcaForPart?.dirty && editForm.controls.cumulativeQcaForPart?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.cumulativeQcaForPart?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.cumulativeQcaForPart?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.progressDecision" for="field_progressDecision" [ngbTooltip]="'cloudGatewayApp.svcStudentStudentProgression.help.progressDecision' | translate">Progress Decision</label>
+                    <select class="form-control" name="progressDecision" [(ngModel)]="studentProgression.progressDecision" id="field_progressDecision" >
+                        <option value="PASS">{{'cloudGatewayApp.ProgressDecision.PASS' | translate}}</option>
+                        <option value="SUSPENSION">{{'cloudGatewayApp.ProgressDecision.SUSPENSION' | translate}}</option>
+                        <option value="FAIL_CAN_REPEAT">{{'cloudGatewayApp.ProgressDecision.FAIL_CAN_REPEAT' | translate}}</option>
+                        <option value="FAIL_NO_REPEAT">{{'cloudGatewayApp.ProgressDecision.FAIL_NO_REPEAT' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.student" for="field_student">Student</label>
+                    <select class="form-control" id="field_student" name="student" [(ngModel)]="studentProgression.studentId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="studentOption.id" *ngFor="let studentOption of students; trackBy: trackStudentById">{{studentOption.studentNumber}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

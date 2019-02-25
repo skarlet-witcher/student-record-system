@@ -11,8 +11,6 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {})
 public interface ModuleMapper extends EntityMapper<ModuleDTO, Module> {
 
-
-
     default Module fromId(Long id) {
         if (id == null) {
             return null;
@@ -21,4 +19,5 @@ public interface ModuleMapper extends EntityMapper<ModuleDTO, Module> {
         module.setId(id);
         return module;
     }
+
 }

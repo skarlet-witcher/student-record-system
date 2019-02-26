@@ -117,4 +117,11 @@ public class ProgrammeResource {
         programmeService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/programmes/programme-detail/{programmeCode}")
+    public ResponseEntity<ProgrammeDTO> getProgramme(@PathVariable String programmeCode) {
+        log.debug("REST request to get {} Programme", programmeCode);
+        Optional<ProgrammeDTO> programmeDTO = programmeService.findOneProgrammeByProgrammeCode(programmeCode);
+        return ResponseUtil.wrapOrNotFound(programmeDTO);
+    }
 }

@@ -80,4 +80,11 @@ public class ProgrammeService {
     public void delete(Long id) {
         log.debug("Request to delete Programme : {}", id);        programmeRepository.deleteById(id);
     }
+
+    @Transactional(readOnly = true)
+    public Optional<ProgrammeDTO> findOneProgrammeByProgrammeCode(String programmeCode) {
+        log.debug("Request to get {} Programme ", programmeCode);
+        return programmeRepository.findOneProgrammeByProgrammeCode(programmeCode).map(programmeMapper::toDto);
+    }
+
 }

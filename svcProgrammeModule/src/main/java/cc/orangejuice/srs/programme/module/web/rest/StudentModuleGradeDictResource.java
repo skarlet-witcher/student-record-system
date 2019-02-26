@@ -117,4 +117,11 @@ public class StudentModuleGradeDictResource {
         studentModuleGradeDictService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/student-module-grade-dicts/gradeType/{gradeName}")
+    public ResponseEntity<StudentModuleGradeDictDTO> getStudentModuleGradeDictByGradeName(@PathVariable String gradeName) {
+        log.debug("REST request to get  {} StudentModuleGradeDict", gradeName);
+        Optional<StudentModuleGradeDictDTO> studentModuleGradeDictDTO = studentModuleGradeDictService.findOneGradeTypeByGradeName(gradeName);
+        return ResponseUtil.wrapOrNotFound(studentModuleGradeDictDTO);
+    }
 }

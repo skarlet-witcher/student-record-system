@@ -80,4 +80,11 @@ public class StudentModuleGradeDictService {
     public void delete(Long id) {
         log.debug("Request to delete StudentModuleGradeDict : {}", id);        studentModuleGradeDictRepository.deleteById(id);
     }
+
+    @Transactional(readOnly = true)
+    public Optional<StudentModuleGradeDictDTO> findOneGradeTypeByGradeName(String gradeName) {
+        log.debug("Request to get {} StudentModuleGradeDict ", gradeName);
+        return studentModuleGradeDictRepository.findOneGradeTypeByName(gradeName)
+            .map(studentModuleGradeDictMapper::toDto);
+    }
 }

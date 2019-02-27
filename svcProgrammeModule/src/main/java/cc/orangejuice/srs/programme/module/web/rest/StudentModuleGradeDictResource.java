@@ -117,7 +117,7 @@ public class StudentModuleGradeDictResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping(value = "/student-module-grade-dicts", params = {"gradeName"})
+    @GetMapping(value = "/student-module-grade-dicts/grade-detail", params = {"gradeName"})
     public ResponseEntity<StudentModuleGradeDictDTO> getStudentModuleGradeDictByGradeName(
         @RequestParam(value = "gradeName") String gradeName) {
         log.debug("REST request to get  {} StudentModuleGradeDict", gradeName);

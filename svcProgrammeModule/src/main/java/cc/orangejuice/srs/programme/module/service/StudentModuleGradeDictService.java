@@ -84,7 +84,7 @@ public class StudentModuleGradeDictService {
     @Transactional(readOnly = true)
     public Optional<StudentModuleGradeDictDTO> findOneGradeTypeByGradeName(String gradeName) {
         log.debug("Request to get {} StudentModuleGradeDict ", gradeName);
-        return studentModuleGradeDictRepository.findOneGradeTypeByName(gradeName)
+        return studentModuleGradeDictRepository.findOneByNameIgnoreCase(gradeName)
             .map(studentModuleGradeDictMapper::toDto);
     }
 }

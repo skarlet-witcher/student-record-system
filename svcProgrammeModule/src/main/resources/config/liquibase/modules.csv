@@ -1,0 +1,37 @@
+id;code;name;credit
+1;CS4012;Representation and Modelling;6
+2;CS4141;Introduction to Programming;6
+3;CS4221;Foundations of Computer Science 1;6
+4;ET4011;Fundamentals of Computer Organisation;6
+5;MA4111;Discrete Mathematics;6
+6;CS4043;Games Modelling Design;6
+7;CS4222;Software Development;6
+8;CS4182;Foundations of Computer Science 2;6
+9;ET4162;Computing System Organisation;6
+10;MA4402;Computer Maths 2;6
+11;CS4013;Object Oriented Development;6
+12;CS4023;Operating Systems;6
+13;CS4416;Database Systems;6
+14;CS4004;Software Testing and Inspection;6
+15;CS4178;Software Requirements and Modelling;6
+16;CS4006;Intelligent Systems;6
+17;CS4076;Event Driven Programming;6
+18;CS4115;Data Structures and Algorithms;6
+19;CS4815;Computer Graphics;6
+20;MA4413;Statistics for Computing;6
+21;CS4230;Cooperative Education 1;15
+22;CS4310;Cooperative Education 2;15
+23;CS4457;Project Management and Practice;6
+24;CS4187;Professional Issues in Computing;6
+25;CS4084;Mobile Application Development;6
+26;CS4116;Software Development Project;6
+27;CS4106;Machine Learning: Methods and Applications;6
+28;CS4617;Computer Systems Project 1;6
+29;CS4125;System Analysis and Design;6
+30;CS5741;Concurrency and Parallelism in Software Development;6
+31;CS4337;Big Data Management and Security;6
+32;CS4287;Neural Computing;6
+33;CS4618;Computer Systems Project 2 (Double Weighted);12
+34;CS4227;Software Design and Architecture;6
+35;CS4158;Programming Language Technology;6
+36;CS4168;Data Mining;6

@@ -24,12 +24,12 @@ refer to the document of [**jhipster**](https://www.jhipster.tech/development/).
 -------
 `TIPS` another way is to run in docker compose.
 
-## Test Account
+## Test Accounts
 
 - admin:admin
 - user:user
 
-## Some Port
+## Some Ports
 
 - 8080 gateway
 - 8761 registry
@@ -37,3 +37,9 @@ refer to the document of [**jhipster**](https://www.jhipster.tech/development/).
 - 8081 svcStudent
 - 8082 svcProgramme
 - 8083 svcProgrammeModule
+
+## Database Initialization
+
+1. Delete all the files in `student-record-system\build\h2db\db\` to clean all the data for your local H2 database.
+
+2. Run the project and the test data will be successfully initialized.

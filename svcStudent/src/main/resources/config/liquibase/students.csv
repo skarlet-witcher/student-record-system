@@ -1,0 +1,3 @@
+id;student_number;first_name;last_name;gender;email;phone;address_line_1;address_line_2;city;country;user_id
+66;14045123;James;Foley;MALE;james.foley@ul.ie;083234213;troy village;castletroy;Limerick;Ireland;6
+67;14045132;John;Long;MALE;john.long@ul.ie;083323445;Thomond village;castletroy;Limerick;Ireland;7

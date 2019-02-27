@@ -44,6 +44,11 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+
+        <loadData file="config/liquibase/studentsEnroll.csv"
+                  separator=";"
+                  tableName="student_enroll">
+        </loadData>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

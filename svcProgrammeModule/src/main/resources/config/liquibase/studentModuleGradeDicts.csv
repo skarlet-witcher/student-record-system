@@ -1,0 +1,13 @@
+id;name;description;low_marks;qpv;is_affect_qca
+1;A1;First honours;80;4.00;TRUE
+2;A2;First honours;72;3.60;TRUE
+3;B1;Honours 2.1;64;3.20;TRUE
+4;B2;Honours 2.1;60;3.00;TRUE
+5;B3;Honours 2.2;56;2.80;TRUE
+6;C1;Honours 2.2;52;2.60;TRUE
+7;C2;Third honours;48;2.40;TRUE
+8;C3;Third honours;40;2.00;TRUE
+9;D1;Compensating fail;35;1.60;TRUE
+10;D2;Compensating fail;30;1.20;TRUE
+11;F;Fail;0;0;TRUE
+12;NG;Fail;0;0;TRUE

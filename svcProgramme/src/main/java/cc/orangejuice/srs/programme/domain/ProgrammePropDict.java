@@ -42,7 +42,10 @@ public class ProgrammePropDict implements Serializable {
     private Integer forSemesterNo;
 
     /**
+     * A Dictionary
      * semester->factor, semester->belong_to_part, general->how_many_parts
+     * i.e. key = "part" value = 1 / key = "part" value = 2
+     * i.e  key = "factor" value = 1
      */
     @NotNull
     @Column(name = "jhi_key", nullable = false)

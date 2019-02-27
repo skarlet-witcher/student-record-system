@@ -6,7 +6,6 @@ import cc.orangejuice.srs.programme.service.dto.ProgrammeDTO;
 import cc.orangejuice.srs.programme.service.mapper.ProgrammeMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -84,7 +83,7 @@ public class ProgrammeService {
     @Transactional(readOnly = true)
     public Optional<ProgrammeDTO> findOneProgrammeByProgrammeCode(String programmeCode) {
         log.debug("Request to get {} Programme ", programmeCode);
-        return programmeRepository.findOneProgrammeByProgrammeCode(programmeCode).map(programmeMapper::toDto);
+        return programmeRepository.findOneByCodeIgnoreCase(programmeCode).map(programmeMapper::toDto);
     }
 
 }

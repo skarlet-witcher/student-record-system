@@ -15,6 +15,5 @@ import java.util.Optional;
 @SuppressWarnings("unused")
 @Repository
 public interface ModuleRepository extends JpaRepository<Module, Long> {
-    @Query(value = "Select module From Module module Where module.code=:moduleCode")
-    Optional<Module> findOneModule(@Param("moduleCode") String moduleCode);
+    Optional<Module> findOneByCode(@Param("moduleCode") String moduleCode);
 }

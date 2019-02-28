@@ -80,4 +80,6 @@ public class StudentModuleSelectionService {
     public void delete(Long id) {
         log.debug("Request to delete StudentModuleSelection : {}", id);        studentModuleSelectionRepository.deleteById(id);
     }
+
+
 }

@@ -1,5 +1,6 @@
 package cc.orangejuice.srs.programme.module.web.rest;
 
+import cc.orangejuice.srs.programme.module.domain.StudentModuleGradeDict;
 import cc.orangejuice.srs.programme.module.service.StudentModuleGradeDictService;
 import cc.orangejuice.srs.programme.module.service.dto.StudentModuleGradeDictDTO;
 import cc.orangejuice.srs.programme.module.web.rest.errors.BadRequestAlertException;
@@ -83,7 +84,7 @@ public class StudentModuleGradeDictResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of studentModuleGradeDicts in body
      */
-    @GetMapping("/student-module-grade-dicts")
+    @GetMapping( value = "/student-module-grade-dicts", params = {"gradeName"})
     public ResponseEntity<List<StudentModuleGradeDictDTO>> getAllStudentModuleGradeDicts(Pageable pageable) {
         log.debug("REST request to get a page of StudentModuleGradeDicts");
         Page<StudentModuleGradeDictDTO> page = studentModuleGradeDictService.findAll(pageable);
@@ -117,11 +118,13 @@ public class StudentModuleGradeDictResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping(value = "/student-module-grade-dicts/grade-detail", params = {"gradeName"})
+    @GetMapping(value = "/student-module-grade-dicts/", params = {"gradeName"})
     public ResponseEntity<StudentModuleGradeDictDTO> getStudentModuleGradeDictByGradeName(
         @RequestParam(value = "gradeName") String gradeName) {
         log.debug("REST request to get  {} StudentModuleGradeDict", gradeName);
         Optional<StudentModuleGradeDictDTO> studentModuleGradeDictDTO = studentModuleGradeDictService.findOneGradeTypeByGradeName(gradeName);
         return ResponseUtil.wrapOrNotFound(studentModuleGradeDictDTO);
     }
+
+
 }

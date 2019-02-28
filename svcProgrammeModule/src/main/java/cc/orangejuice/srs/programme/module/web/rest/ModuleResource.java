@@ -119,11 +119,12 @@ public class ModuleResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/modules/module-detail/{moduleCode}")
-    public ResponseEntity<ModuleDTO> getModuleByModuleCode(@PathVariable String moduleCode) {
+
+    @GetMapping(value = "/modules/module-detail/", params = {"moduleCode"})
+    public ResponseEntity<ModuleDTO> getModuleByModuleCode(@RequestParam String moduleCode) {
         log.debug("REST request to get {} module details", moduleCode);
         Optional<ModuleDTO> moduleDTO = moduleService.findOneModule(moduleCode);
         return ResponseUtil.wrapOrNotFound(moduleDTO);
-
     }
+
 }

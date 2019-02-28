@@ -133,7 +133,7 @@ public class ProgrammePropDictResourceIntTest {
 
         // Create the ProgrammePropDict
         ProgrammePropDictDTO programmePropDictDTO = programmePropDictMapper.toDto(programmePropDict);
-        restProgrammePropDictMockMvc.perform(post("/api/programme-prop-dicts")
+        restProgrammePropDictMockMvc.perform(post("/api/programme-prop")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(programmePropDictDTO)))
             .andExpect(status().isCreated());
@@ -160,7 +160,7 @@ public class ProgrammePropDictResourceIntTest {
         ProgrammePropDictDTO programmePropDictDTO = programmePropDictMapper.toDto(programmePropDict);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restProgrammePropDictMockMvc.perform(post("/api/programme-prop-dicts")
+        restProgrammePropDictMockMvc.perform(post("/api/programme-prop")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(programmePropDictDTO)))
             .andExpect(status().isBadRequest());
@@ -180,7 +180,7 @@ public class ProgrammePropDictResourceIntTest {
         // Create the ProgrammePropDict, which fails.
         ProgrammePropDictDTO programmePropDictDTO = programmePropDictMapper.toDto(programmePropDict);
 
-        restProgrammePropDictMockMvc.perform(post("/api/programme-prop-dicts")
+        restProgrammePropDictMockMvc.perform(post("/api/programme-prop")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(programmePropDictDTO)))
             .andExpect(status().isBadRequest());
@@ -199,7 +199,7 @@ public class ProgrammePropDictResourceIntTest {
         // Create the ProgrammePropDict, which fails.
         ProgrammePropDictDTO programmePropDictDTO = programmePropDictMapper.toDto(programmePropDict);
 
-        restProgrammePropDictMockMvc.perform(post("/api/programme-prop-dicts")
+        restProgrammePropDictMockMvc.perform(post("/api/programme-prop")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(programmePropDictDTO)))
             .andExpect(status().isBadRequest());
@@ -218,7 +218,7 @@ public class ProgrammePropDictResourceIntTest {
         // Create the ProgrammePropDict, which fails.
         ProgrammePropDictDTO programmePropDictDTO = programmePropDictMapper.toDto(programmePropDict);
 
-        restProgrammePropDictMockMvc.perform(post("/api/programme-prop-dicts")
+        restProgrammePropDictMockMvc.perform(post("/api/programme-prop")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(programmePropDictDTO)))
             .andExpect(status().isBadRequest());
@@ -237,7 +237,7 @@ public class ProgrammePropDictResourceIntTest {
         // Create the ProgrammePropDict, which fails.
         ProgrammePropDictDTO programmePropDictDTO = programmePropDictMapper.toDto(programmePropDict);
 
-        restProgrammePropDictMockMvc.perform(post("/api/programme-prop-dicts")
+        restProgrammePropDictMockMvc.perform(post("/api/programme-prop")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(programmePropDictDTO)))
             .andExpect(status().isBadRequest());
@@ -253,7 +253,7 @@ public class ProgrammePropDictResourceIntTest {
         programmePropDictRepository.saveAndFlush(programmePropDict);
 
         // Get all the programmePropDictList
-        restProgrammePropDictMockMvc.perform(get("/api/programme-prop-dicts?sort=id,desc"))
+        restProgrammePropDictMockMvc.perform(get("/api/programme-prop?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(programmePropDict.getId().intValue())))
@@ -272,7 +272,7 @@ public class ProgrammePropDictResourceIntTest {
         programmePropDictRepository.saveAndFlush(programmePropDict);
 
         // Get the programmePropDict
-        restProgrammePropDictMockMvc.perform(get("/api/programme-prop-dicts/{id}", programmePropDict.getId()))
+        restProgrammePropDictMockMvc.perform(get("/api/programme-prop/{id}", programmePropDict.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(programmePropDict.getId().intValue()))
@@ -288,7 +288,7 @@ public class ProgrammePropDictResourceIntTest {
     @Transactional
     public void getNonExistingProgrammePropDict() throws Exception {
         // Get the programmePropDict
-        restProgrammePropDictMockMvc.perform(get("/api/programme-prop-dicts/{id}", Long.MAX_VALUE))
+        restProgrammePropDictMockMvc.perform(get("/api/programme-prop/{id}", Long.MAX_VALUE))
             .andExpect(status().isNotFound());
     }
 
@@ -313,7 +313,7 @@ public class ProgrammePropDictResourceIntTest {
             .value(UPDATED_VALUE);
         ProgrammePropDictDTO programmePropDictDTO = programmePropDictMapper.toDto(updatedProgrammePropDict);
 
-        restProgrammePropDictMockMvc.perform(put("/api/programme-prop-dicts")
+        restProgrammePropDictMockMvc.perform(put("/api/programme-prop")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(programmePropDictDTO)))
             .andExpect(status().isOk());
@@ -339,7 +339,7 @@ public class ProgrammePropDictResourceIntTest {
         ProgrammePropDictDTO programmePropDictDTO = programmePropDictMapper.toDto(programmePropDict);
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
-        restProgrammePropDictMockMvc.perform(put("/api/programme-prop-dicts")
+        restProgrammePropDictMockMvc.perform(put("/api/programme-prop")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(programmePropDictDTO)))
             .andExpect(status().isBadRequest());
@@ -358,7 +358,7 @@ public class ProgrammePropDictResourceIntTest {
         int databaseSizeBeforeDelete = programmePropDictRepository.findAll().size();
 
         // Delete the programmePropDict
-        restProgrammePropDictMockMvc.perform(delete("/api/programme-prop-dicts/{id}", programmePropDict.getId())
+        restProgrammePropDictMockMvc.perform(delete("/api/programme-prop/{id}", programmePropDict.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 

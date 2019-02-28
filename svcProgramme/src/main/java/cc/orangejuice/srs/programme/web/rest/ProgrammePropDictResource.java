@@ -1,4 +1,5 @@
 package cc.orangejuice.srs.programme.web.rest;
+import cc.orangejuice.srs.programme.domain.enumeration.ProgrammePropType;
 import cc.orangejuice.srs.programme.service.ProgrammePropDictService;
 import cc.orangejuice.srs.programme.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.programme.web.rest.util.HeaderUtil;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -116,5 +118,24 @@ public class ProgrammePropDictResource {
         log.debug("REST request to delete ProgrammePropDict : {}", id);
         programmePropDictService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping(value = "/programme-prop-dicts/", params = {"forEnrollYear", "type", "forSemesterNo", "key"})
+    public ResponseEntity<ProgrammePropDictDTO> getProgrammePropDetailByEnrollYear(
+        @RequestParam(value = "type", defaultValue = "GENERAL") ProgrammePropType type,
+        @RequestParam(value = "forEnrollYear", required = false) Integer forEnrollYear,
+        @RequestParam(value = "forYearNo", required = false) Integer forYearNo,
+        @RequestParam(value = "forSemesterNo", required = false) Integer forSemesterNo,
+        @RequestParam("key") String key) {
+        log.debug("REST request to get year {} ,{}, {} and {} for ProgrammePropDict", forEnrollYear, type, forSemesterNo, key);
+        Optional<ProgrammePropDictDTO> programmePropDictDTO;
+        if(type == ProgrammePropType.GENERAL) {
+            programmePropDictDTO = programmePropDictService.findOneForGeneral(type, forEnrollYear, key);
+        } else if (type == ProgrammePropType.SEMESTER) {
+            programmePropDictDTO = programmePropDictService.findOneForSemester(type, forEnrollYear, forSemesterNo, key);
+        } else {
+            programmePropDictDTO = programmePropDictService.findOneForYear(type, forEnrollYear, forYearNo, key);
+        }
+        return ResponseUtil.wrapOrNotFound(programmePropDictDTO);
     }
 }

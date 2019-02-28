@@ -21,4 +21,6 @@ public interface ProgrammePropDictMapper extends EntityMapper<ProgrammePropDictD
         programmePropDict.setId(id);
         return programmePropDict;
     }
+
+
 }

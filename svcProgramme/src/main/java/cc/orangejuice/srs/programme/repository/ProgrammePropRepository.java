@@ -1,8 +1,12 @@
 package cc.orangejuice.srs.programme.repository;
 
 import cc.orangejuice.srs.programme.domain.ProgrammeProp;
-import org.springframework.data.jpa.repository.*;
+import cc.orangejuice.srs.programme.domain.enumeration.ProgrammePropType;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 
 /**
@@ -12,4 +16,20 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProgrammePropRepository extends JpaRepository<ProgrammeProp, Long> {
 
+    Optional<ProgrammeProp> findOneByTypeAndForEnrollYearAndKey(
+        @Param("type") ProgrammePropType type,
+        @Param("forEnrollYear") Integer forEnrollYear,
+        @Param("key") String key);
+
+    Optional<ProgrammeProp> findOneByTypeAndForEnrollYearAndForSemesterNoAndKey(
+        @Param("type") ProgrammePropType type,
+        @Param("forEnrollYear") Integer forEnrollYear,
+        @Param("forSemesterNo") Integer forSemesterNo,
+        @Param("key") String key);
+
+    Optional<ProgrammeProp> findOneByTypeAndForEnrollYearAndForYearNoAndKey(
+        @Param("type") ProgrammePropType type,
+        @Param("forEnrollYear") Integer forEnrollYear,
+        @Param("forYearNo") Integer forYearNo,
+        @Param("key") String key);
 }

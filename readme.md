@@ -36,7 +36,7 @@ refer to the document of [**jhipster**](https://www.jhipster.tech/development/).
 - 9999 cloudAuth
 - 8081 svcStudent
 - 8082 svcProgramme
-- 8083 svcProgrammeModule
+- 8083 svcModule
 
 ## Database Initialization
 

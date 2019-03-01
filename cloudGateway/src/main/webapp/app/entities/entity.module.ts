@@ -22,12 +22,11 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'module',
-                loadChildren: './svcProgrammeModule/module/module.module#SvcProgrammeModuleModuleModule'
+                loadChildren: './svcModule/module/module.module#SvcModuleModuleModule'
             },
             {
                 path: 'student-module-selection',
-                loadChildren:
-                    './svcProgrammeModule/student-module-selection/student-module-selection.module#SvcProgrammeModuleStudentModuleSelectionModule'
+                loadChildren: './svcModule/student-module-selection/student-module-selection.module#SvcModuleStudentModuleSelectionModule'
             },
             {
                 path: 'student-module-grade-dict',
@@ -52,7 +51,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'module-grade',
-                loadChildren: './svcProgrammeModule/module-grade/module-grade.module#SvcProgrammeModuleModuleGradeModule'
+                loadChildren: './svcModule/module-grade/module-grade.module#SvcModuleModuleGradeModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

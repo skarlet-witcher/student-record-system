@@ -118,14 +118,6 @@ public class StudentModuleSelectionResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    /**
-     * //todo
-     * POST  /student-module-selections : Create a new studentModuleSelection.
-     *
-     * @param studentModuleSelectionDTO the studentModuleSelectionDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new studentModuleSelectionDTO, or with status 400 (Bad Request) if the studentModuleSelection has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
 
 
     // todo submit mark

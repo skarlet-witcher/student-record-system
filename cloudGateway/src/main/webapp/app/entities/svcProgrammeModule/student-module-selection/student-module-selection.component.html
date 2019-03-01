@@ -16,8 +16,8 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="studentId"><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.studentId">Student Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="yearNo"><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.yearNo">Year No</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="semesterNo"><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.semesterNo">Semester No</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="academicYear"><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.academicYear">Academic Year</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="academicSemester"><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.academicSemester">Academic Semester</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="creditHour"><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.creditHour">Credit Hour</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="marks"><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.marks">Marks</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="qcs"><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.qcs">Qcs</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -30,8 +30,8 @@
             <tr *ngFor="let studentModuleSelection of studentModuleSelections ;trackBy: trackId">
                 <td><a [routerLink]="['/student-module-selection', studentModuleSelection.id, 'view' ]">{{studentModuleSelection.id}}</a></td>
                 <td>{{studentModuleSelection.studentId}}</td>
-                <td>{{studentModuleSelection.yearNo}}</td>
-                <td>{{studentModuleSelection.semesterNo}}</td>
+                <td>{{studentModuleSelection.academicYear}}</td>
+                <td>{{studentModuleSelection.academicSemester}}</td>
                 <td>{{studentModuleSelection.creditHour}}</td>
                 <td>{{studentModuleSelection.marks}}</td>
                 <td>{{studentModuleSelection.qcs}}</td>
@@ -42,7 +42,7 @@
                 </td>
                 <td>
                     <div *ngIf="studentModuleSelection.studentModuleGradeTypeId">
-                        <a [routerLink]="['../student-module-grade-dict', studentModuleSelection.studentModuleGradeTypeId , 'view' ]" >{{studentModuleSelection.studentModuleGradeTypeName}}</a>
+                        <a [routerLink]="['../module-grade', studentModuleSelection.studentModuleGradeTypeId , 'view' ]" >{{studentModuleSelection.studentModuleGradeTypeName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

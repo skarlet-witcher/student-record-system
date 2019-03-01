@@ -45,6 +45,14 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'student-progression',
                 loadChildren: './svcStudent/student-progression/student-progression.module#SvcStudentStudentProgressionModule'
+            },
+            {
+                path: 'programme-prop',
+                loadChildren: './svcProgramme/programme-prop/programme-prop.module#SvcProgrammeProgrammePropModule'
+            },
+            {
+                path: 'module-grade',
+                loadChildren: './svcProgrammeModule/module-grade/module-grade.module#SvcProgrammeModuleModuleGradeModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

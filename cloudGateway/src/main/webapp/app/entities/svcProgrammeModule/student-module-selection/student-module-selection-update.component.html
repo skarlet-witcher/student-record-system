@@ -25,31 +25,31 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.yearNo" for="field_yearNo">Year No</label>
-                    <input type="number" class="form-control" name="yearNo" id="field_yearNo"
-                        [(ngModel)]="studentModuleSelection.yearNo" required/>
-                    <div [hidden]="!(editForm.controls.yearNo?.dirty && editForm.controls.yearNo?.invalid)">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.academicYear" for="field_academicYear">Academic Year</label>
+                    <input type="number" class="form-control" name="academicYear" id="field_academicYear"
+                        [(ngModel)]="studentModuleSelection.academicYear" required/>
+                    <div [hidden]="!(editForm.controls.academicYear?.dirty && editForm.controls.academicYear?.invalid)">
                         <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.yearNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        [hidden]="!editForm.controls.academicYear?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.yearNo?.errors?.number" jhiTranslate="entity.validation.number">
+                            [hidden]="!editForm.controls.academicYear?.errors?.number" jhiTranslate="entity.validation.number">
                             This field should be a number.
                         </small>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.semesterNo" for="field_semesterNo">Semester No</label>
-                    <input type="number" class="form-control" name="semesterNo" id="field_semesterNo"
-                        [(ngModel)]="studentModuleSelection.semesterNo" required/>
-                    <div [hidden]="!(editForm.controls.semesterNo?.dirty && editForm.controls.semesterNo?.invalid)">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.academicSemester" for="field_academicSemester">Academic Semester</label>
+                    <input type="number" class="form-control" name="academicSemester" id="field_academicSemester"
+                        [(ngModel)]="studentModuleSelection.academicSemester" required/>
+                    <div [hidden]="!(editForm.controls.academicSemester?.dirty && editForm.controls.academicSemester?.invalid)">
                         <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.semesterNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        [hidden]="!editForm.controls.academicSemester?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.semesterNo?.errors?.number" jhiTranslate="entity.validation.number">
+                            [hidden]="!editForm.controls.academicSemester?.errors?.number" jhiTranslate="entity.validation.number">
                             This field should be a number.
                         </small>
                     </div>
@@ -81,7 +81,7 @@
                     <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcProgrammeModuleStudentModuleSelection.studentModuleGradeType" for="field_studentModuleGradeType">Student Module Grade Type</label>
                     <select class="form-control" id="field_studentModuleGradeType" name="studentModuleGradeType" [(ngModel)]="studentModuleSelection.studentModuleGradeTypeId" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="studentModuleGradeDictOption.id" *ngFor="let studentModuleGradeDictOption of studentmodulegradedicts; trackBy: trackStudentModuleGradeDictById">{{studentModuleGradeDictOption.name}}</option>
+                        <option [ngValue]="moduleGradeOption.id" *ngFor="let moduleGradeOption of modulegrades; trackBy: trackModuleGradeById">{{moduleGradeOption.name}}</option>
                     </select>
                 </div>
             </div>

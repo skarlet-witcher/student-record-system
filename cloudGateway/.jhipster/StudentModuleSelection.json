@@ -9,14 +9,14 @@
             ]
         },
         {
-            "fieldName": "yearNo",
+            "fieldName": "academicYear",
             "fieldType": "Integer",
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
-            "fieldName": "semesterNo",
+            "fieldName": "academicSemester",
             "fieldType": "Integer",
             "fieldValidateRules": [
                 "required"
@@ -49,7 +49,7 @@
         {
             "relationshipType": "many-to-one",
             "relationshipName": "studentModuleGradeType",
-            "otherEntityName": "studentModuleGradeDict",
+            "otherEntityName": "moduleGrade",
             "otherEntityField": "name",
             "otherEntityRelationshipName": "studentModuleSelection"
         }

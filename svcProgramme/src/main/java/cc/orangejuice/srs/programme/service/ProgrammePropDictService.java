@@ -1,21 +1,17 @@
 package cc.orangejuice.srs.programme.service;
 
 import cc.orangejuice.srs.programme.domain.ProgrammePropDict;
-import cc.orangejuice.srs.programme.domain.enumeration.ProgrammePropType;
 import cc.orangejuice.srs.programme.repository.ProgrammePropDictRepository;
 import cc.orangejuice.srs.programme.service.dto.ProgrammePropDictDTO;
 import cc.orangejuice.srs.programme.service.mapper.ProgrammePropDictMapper;
-import com.netflix.discovery.converters.Auto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 /**
@@ -82,28 +78,6 @@ public class ProgrammePropDictService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete ProgrammePropDict : {}", id);
-        programmePropDictRepository.deleteById(id);
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<ProgrammePropDictDTO> findOneForGeneral(ProgrammePropType type, Integer forEnrollYear, String key) {
-        log.debug("Request to get ProgrammeProDict Where type is {}, forEnrollYear is {} and key is {}", type, forEnrollYear, key);
-        return programmePropDictRepository.findOneByTypeAndForEnrollYearAndKey(type, forEnrollYear, key)
-            .map(programmePropDictMapper::toDto);
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<ProgrammePropDictDTO> findOneForSemester(ProgrammePropType type, Integer forEnrollYear, Integer forSemesterNo, String key) {
-        log.debug("Request to get ProgrammeProDict  Where type is {}, forEnrollYear is {}, forSemesterNO is {} and key is {}", type, forEnrollYear, forSemesterNo, key);
-        return programmePropDictRepository.findOneByTypeAndForEnrollYearAndForSemesterNoAndKey(
-            type, forEnrollYear, forSemesterNo, key).map(programmePropDictMapper::toDto);
-    }
-
-    public Optional<ProgrammePropDictDTO> findOneForYear(ProgrammePropType type, Integer forEnrollYear, Integer forYearNo, String key) {
-        log.debug("Request to get ProgrammeProDict  Where type is {}, forEnrollYear is {}, forYearNo is {} and key is {}", type, forEnrollYear, forYearNo, key);
-        return programmePropDictRepository.findOneByTypeAndForEnrollYearAndForYearNoAndKey(type, forEnrollYear, forYearNo, key)
-            .map(programmePropDictMapper::toDto);
-
+        log.debug("Request to delete ProgrammePropDict : {}", id);        programmePropDictRepository.deleteById(id);
     }
 }

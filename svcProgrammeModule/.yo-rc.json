@@ -37,6 +37,6 @@
   "entities": [
     "Module",
     "StudentModuleSelection",
-    "StudentModuleGradeDict"
+    "ModuleGrade"
   ]
 }

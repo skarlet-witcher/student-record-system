@@ -11,7 +11,7 @@ type EntityArrayResponseType = HttpResponse<IProgrammePropDict[]>;
 
 @Injectable({ providedIn: 'root' })
 export class ProgrammePropDictService {
-    public resourceUrl = SERVER_API_URL + 'svcprogramme/api/programme-prop';
+    public resourceUrl = SERVER_API_URL + 'svcprogramme/api/programme-prop-dicts';
 
     constructor(protected http: HttpClient) {}
 

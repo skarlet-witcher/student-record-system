@@ -15,10 +15,10 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity ProgrammePropDict.
+        Added the entity ProgrammeProp.
     -->
-    <changeSet id="20190224000012-1" author="jhipster">
-        <createTable tableName="programme_prop_dict">
+    <changeSet id="20190301141519-1" author="jhipster">
+        <createTable tableName="programme_prop">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>

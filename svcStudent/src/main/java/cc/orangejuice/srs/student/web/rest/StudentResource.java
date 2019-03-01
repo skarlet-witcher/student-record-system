@@ -117,11 +117,4 @@ public class StudentResource {
         studentService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    @GetMapping("/students/student-detail/{studentNumber}")
-    public ResponseEntity<StudentDTO> getOneStudentByStudentNumber(@PathVariable String studentNumber) {
-        log.debug("REST request to get {} Student ", studentNumber);
-        Optional<StudentDTO> studentDTO = studentService.findOneStudentByStudentNumber(studentNumber);
-        return ResponseUtil.wrapOrNotFound(studentDTO);
-    }
 }

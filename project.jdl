@@ -76,7 +76,7 @@ entity Programme{
     degree String required
 }
 
-entity ProgrammePropDict{
+entity ProgrammeProp{
     forEnrollYear Integer required
     type ProgrammePropType required
     forYearNo Integer
@@ -106,8 +106,8 @@ entity Module {
 
 entity StudentModuleSelection {
     studentId Long required
-    yearNo Integer required
-    semesterNo Integer required
+    academicYear Integer required
+    academicSemester Integer required
     /** null before module finished*/ 
     creditHour Double 
     /** null before module finished*/ 
@@ -120,7 +120,7 @@ relationship ManyToOne {
     StudentModuleSelection{Module(name)} to Module
 }
 
-entity StudentModuleGradeDict{
+entity ModuleGrade{
     name String required unique,
     description String required,
     /** marks bigger than this will get corresponding qpv*/
@@ -130,15 +130,15 @@ entity StudentModuleGradeDict{
 }
 
 relationship ManyToOne {
-    StudentModuleSelection{StudentModuleGradeType(name)} to StudentModuleGradeDict
+    StudentModuleSelection{StudentModuleGradeType(name)} to ModuleGrade
 }
 
 dto * with mapstruct
 paginate * with pagination
 service * with serviceClass
 microservice Student, StudentEnroll, StudentProgression with svcStudent
-microservice Faculty, Department, Programme, ProgrammePropDict with svcProgramme
-microservice Module, StudentModuleSelection, StudentModuleGradeDict with svcProgrammeModule
+microservice Faculty, Department, Programme, ProgrammeProp with svcProgramme
+microservice Module, StudentModuleSelection, ModuleGrade with svcProgrammeModule
 //search * with elasticsearch
 
 application {
@@ -168,7 +168,7 @@ application {
         buildTool gradle
         serverPort 8082
     }
-    entities Faculty, Department, Programme, ProgrammePropDict
+    entities Faculty, Department, Programme, ProgrammeProp
 }
 
 application {
@@ -183,7 +183,7 @@ application {
         buildTool gradle
         serverPort 8083
     }
-    entities Module, StudentModuleSelection, StudentModuleGradeDict
+    entities Module, StudentModuleSelection, ModuleGrade
 }
 
 application {

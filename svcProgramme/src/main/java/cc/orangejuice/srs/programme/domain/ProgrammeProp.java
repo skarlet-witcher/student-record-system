@@ -13,12 +13,12 @@ import java.util.Objects;
 import cc.orangejuice.srs.programme.domain.enumeration.ProgrammePropType;
 
 /**
- * A ProgrammePropDict.
+ * A ProgrammeProp.
  */
 @Entity
-@Table(name = "programme_prop_dict")
+@Table(name = "programme_prop")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class ProgrammePropDict implements Serializable {
+public class ProgrammeProp implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -65,7 +65,7 @@ public class ProgrammePropDict implements Serializable {
         return forEnrollYear;
     }
 
-    public ProgrammePropDict forEnrollYear(Integer forEnrollYear) {
+    public ProgrammeProp forEnrollYear(Integer forEnrollYear) {
         this.forEnrollYear = forEnrollYear;
         return this;
     }
@@ -78,7 +78,7 @@ public class ProgrammePropDict implements Serializable {
         return type;
     }
 
-    public ProgrammePropDict type(ProgrammePropType type) {
+    public ProgrammeProp type(ProgrammePropType type) {
         this.type = type;
         return this;
     }
@@ -91,7 +91,7 @@ public class ProgrammePropDict implements Serializable {
         return forYearNo;
     }
 
-    public ProgrammePropDict forYearNo(Integer forYearNo) {
+    public ProgrammeProp forYearNo(Integer forYearNo) {
         this.forYearNo = forYearNo;
         return this;
     }
@@ -104,7 +104,7 @@ public class ProgrammePropDict implements Serializable {
         return forSemesterNo;
     }
 
-    public ProgrammePropDict forSemesterNo(Integer forSemesterNo) {
+    public ProgrammeProp forSemesterNo(Integer forSemesterNo) {
         this.forSemesterNo = forSemesterNo;
         return this;
     }
@@ -117,7 +117,7 @@ public class ProgrammePropDict implements Serializable {
         return key;
     }
 
-    public ProgrammePropDict key(String key) {
+    public ProgrammeProp key(String key) {
         this.key = key;
         return this;
     }
@@ -130,7 +130,7 @@ public class ProgrammePropDict implements Serializable {
         return value;
     }
 
-    public ProgrammePropDict value(String value) {
+    public ProgrammeProp value(String value) {
         this.value = value;
         return this;
     }
@@ -148,11 +148,11 @@ public class ProgrammePropDict implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ProgrammePropDict programmePropDict = (ProgrammePropDict) o;
-        if (programmePropDict.getId() == null || getId() == null) {
+        ProgrammeProp programmeProp = (ProgrammeProp) o;
+        if (programmeProp.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), programmePropDict.getId());
+        return Objects.equals(getId(), programmeProp.getId());
     }
 
     @Override
@@ -162,7 +162,7 @@ public class ProgrammePropDict implements Serializable {
 
     @Override
     public String toString() {
-        return "ProgrammePropDict{" +
+        return "ProgrammeProp{" +
             "id=" + getId() +
             ", forEnrollYear=" + getForEnrollYear() +
             ", type='" + getType() + "'" +

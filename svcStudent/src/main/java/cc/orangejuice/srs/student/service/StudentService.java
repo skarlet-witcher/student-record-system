@@ -80,10 +80,4 @@ public class StudentService {
     public void delete(Long id) {
         log.debug("Request to delete Student : {}", id);        studentRepository.deleteById(id);
     }
-
-    @Transactional(readOnly = true)
-    public Optional<StudentDTO> findOneStudentByStudentNumber(String studentNumber) {
-        log.debug("Request to get {} Student", studentNumber);
-        return studentRepository.findOneStudentByStudentNumber(studentNumber).map(studentMapper::toDto);
-    }
 }

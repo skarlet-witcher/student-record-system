@@ -1,8 +1,8 @@
 export interface IStudentModuleSelection {
     id?: number;
     studentId?: number;
-    yearNo?: number;
-    semesterNo?: number;
+    academicYear?: number;
+    academicSemester?: number;
     creditHour?: number;
     marks?: number;
     qcs?: number;
@@ -16,8 +16,8 @@ export class StudentModuleSelection implements IStudentModuleSelection {
     constructor(
         public id?: number,
         public studentId?: number,
-        public yearNo?: number,
-        public semesterNo?: number,
+        public academicYear?: number,
+        public academicSemester?: number,
         public creditHour?: number,
         public marks?: number,
         public qcs?: number,

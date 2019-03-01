@@ -8,8 +8,8 @@ import { IStudentModuleSelection } from 'app/shared/model/svcProgrammeModule/stu
 import { StudentModuleSelectionService } from './student-module-selection.service';
 import { IModule } from 'app/shared/model/svcProgrammeModule/module.model';
 import { ModuleService } from 'app/entities/svcProgrammeModule/module';
-import { IStudentModuleGradeDict } from 'app/shared/model/svcProgrammeModule/student-module-grade-dict.model';
-import { StudentModuleGradeDictService } from 'app/entities/svcProgrammeModule/student-module-grade-dict';
+import { IModuleGrade } from 'app/shared/model/svcProgrammeModule/module-grade.model';
+import { ModuleGradeService } from 'app/entities/svcProgrammeModule/module-grade';
 
 @Component({
     selector: 'jhi-student-module-selection-update',
@@ -21,13 +21,13 @@ export class StudentModuleSelectionUpdateComponent implements OnInit {
 
     modules: IModule[];
 
-    studentmodulegradedicts: IStudentModuleGradeDict[];
+    modulegrades: IModuleGrade[];
 
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected studentModuleSelectionService: StudentModuleSelectionService,
         protected moduleService: ModuleService,
-        protected studentModuleGradeDictService: StudentModuleGradeDictService,
+        protected moduleGradeService: ModuleGradeService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -43,16 +43,13 @@ export class StudentModuleSelectionUpdateComponent implements OnInit {
                 map((response: HttpResponse<IModule[]>) => response.body)
             )
             .subscribe((res: IModule[]) => (this.modules = res), (res: HttpErrorResponse) => this.onError(res.message));
-        this.studentModuleGradeDictService
+        this.moduleGradeService
             .query()
             .pipe(
-                filter((mayBeOk: HttpResponse<IStudentModuleGradeDict[]>) => mayBeOk.ok),
-                map((response: HttpResponse<IStudentModuleGradeDict[]>) => response.body)
+                filter((mayBeOk: HttpResponse<IModuleGrade[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IModuleGrade[]>) => response.body)
             )
-            .subscribe(
-                (res: IStudentModuleGradeDict[]) => (this.studentmodulegradedicts = res),
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
+            .subscribe((res: IModuleGrade[]) => (this.modulegrades = res), (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     previousState() {
@@ -92,7 +89,7 @@ export class StudentModuleSelectionUpdateComponent implements OnInit {
         return item.id;
     }
 
-    trackStudentModuleGradeDictById(index: number, item: IStudentModuleGradeDict) {
+    trackModuleGradeById(index: number, item: IModuleGrade) {
         return item.id;
     }
 }

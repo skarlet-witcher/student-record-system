@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="department">
+            <h2><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleDepartment.detail.title">Department</span> {{department.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleDepartment.name">Name</span></dt>
+                <dd>
+                    <span>{{department.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcProgrammeModuleDepartment.faculty">Faculty</span></dt>
+                <dd>
+                    <div *ngIf="department.facultyId">
+                        <a [routerLink]="['/faculty', department.facultyId, 'view']">{{department.facultyName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/department', department.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -13,8 +13,8 @@
                 "title": "Student Module Selection"
             },
             "studentId": "Student Id",
-            "yearNo": "Year No",
-            "semesterNo": "Semester No",
+            "academicYear": "Academic Year",
+            "academicSemester": "Academic Semester",
             "creditHour": "Credit Hour",
             "marks": "Marks",
             "qcs": "Qcs",

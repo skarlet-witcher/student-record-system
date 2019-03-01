@@ -21,6 +21,7 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
         proxy: [{
             context: [
                 '/cloudauth',
+                '/svcmodule',
                 '/svcprogramme',
                 '/svcprogrammemodule',
                 '/svcstudent',

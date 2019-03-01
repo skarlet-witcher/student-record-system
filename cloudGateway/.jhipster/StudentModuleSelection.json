@@ -9,6 +9,20 @@
             ]
         },
         {
+            "fieldName": "academicYear",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "academicSemester",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "yearNo",
             "fieldType": "Integer",
             "fieldValidateRules": [
@@ -49,7 +63,7 @@
         {
             "relationshipType": "many-to-one",
             "relationshipName": "studentModuleGradeType",
-            "otherEntityName": "studentModuleGradeDict",
+            "otherEntityName": "moduleGrade",
             "otherEntityField": "name",
             "otherEntityRelationshipName": "studentModuleSelection"
         }
@@ -63,8 +77,8 @@
     "fluentMethods": true,
     "clientRootFolder": "",
     "applications": [
-        "svcProgrammeModule",
+        "svcModule",
         "cloudGateway"
     ],
-    "microserviceName": "svcProgrammeModule"
+    "microserviceName": "svcModule"
 }

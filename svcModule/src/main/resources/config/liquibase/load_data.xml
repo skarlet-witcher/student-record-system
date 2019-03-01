@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="12413123" author="jhipster">
+        <loadData file="config/liquibase/modules.csv"
+                  separator=";"
+                  tableName="module">
+        </loadData>
+
+        <loadData file="config/liquibase/module_grade.csv"
+                  separator=";"
+                  tableName="module_grade">
+        </loadData>
+
+        <loadData file="config/liquibase/student_module_selection.csv"
+                  separator=";"
+                  tableName="student_module_selection">
+        </loadData>
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

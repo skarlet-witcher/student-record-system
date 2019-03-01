@@ -29,5 +29,5 @@
         "svcProgramme",
         "cloudGateway"
     ],
-    "microserviceName": "svcProgramme"
+    "microserviceName": "svcModule"
 }

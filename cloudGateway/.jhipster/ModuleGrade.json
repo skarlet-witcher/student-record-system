@@ -1,0 +1,47 @@
+{
+    "name": "ModuleGrade",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "unique"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lowMarks",
+            "javadoc": "marks bigger than this will get corresponding qpv",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "qpv",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "isAffectQca",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190301141522",
+    "entityTableName": "module_grade",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "svcModule",
+        "cloudGateway"
+    ],
+    "microserviceName": "svcModule"
+}

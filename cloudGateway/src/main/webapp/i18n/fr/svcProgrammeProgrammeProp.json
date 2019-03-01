@@ -1,0 +1,33 @@
+{
+    "cloudGatewayApp": {
+        "svcProgrammeProgrammeProp": {
+            "home": {
+                "title": "ProgrammeProps",
+                "createLabel": "Créer un nouveau Programme Prop",
+                "createOrEditLabel": "Créer ou éditer un Programme Prop"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Programme Prop {{ id }} ?"
+            },
+            "detail": {
+                "title": "Programme Prop"
+            },
+            "forEnrollYear": "For Enroll Year",
+            "type": "Type",
+            "forYearNo": "For Year No",
+            "forSemesterNo": "For Semester No",
+            "key": "Key",
+            "value": "Value",
+            "help": {
+                "key": "semester-&gt;factor, semester-&gt;belong_to_part, general-&gt;how_many_parts"
+            }
+        }
+    },
+    "svcProgrammeApp": {
+        "svcProgrammeProgrammeProp": {
+            "created": "Un nouveau Programme Prop a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Programme Prop avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Programme Prop avec l'identifiant {{ param }} a été supprimé"
+        }
+    }
+}

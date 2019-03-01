@@ -33,7 +33,7 @@
     "fluentMethods": true,
     "clientRootFolder": "",
     "applications": [
-        "svcModule",
+        "svcProgrammeModule",
         "cloudGateway"
     ],
     "microserviceName": "svcModule"

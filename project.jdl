@@ -108,6 +108,8 @@ entity StudentModuleSelection {
     studentId Long required
     academicYear Integer required
     academicSemester Integer required
+    yearNo Integer required
+    semesterNo Integer required
     /** null before module finished*/ 
     creditHour Double 
     /** null before module finished*/ 

@@ -55,6 +55,36 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.yearNo" for="field_yearNo">Year No</label>
+                    <input type="number" class="form-control" name="yearNo" id="field_yearNo"
+                        [(ngModel)]="studentModuleSelection.yearNo" required/>
+                    <div [hidden]="!(editForm.controls.yearNo?.dirty && editForm.controls.yearNo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.yearNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.yearNo?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.semesterNo" for="field_semesterNo">Semester No</label>
+                    <input type="number" class="form-control" name="semesterNo" id="field_semesterNo"
+                        [(ngModel)]="studentModuleSelection.semesterNo" required/>
+                    <div [hidden]="!(editForm.controls.semesterNo?.dirty && editForm.controls.semesterNo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.semesterNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.semesterNo?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.creditHour" for="field_creditHour" [ngbTooltip]="'cloudGatewayApp.svcModuleStudentModuleSelection.help.creditHour' | translate">Credit Hour</label>
                     <input type="number" class="form-control" name="creditHour" id="field_creditHour"
                         [(ngModel)]="studentModuleSelection.creditHour" />

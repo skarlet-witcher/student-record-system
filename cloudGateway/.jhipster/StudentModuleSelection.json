@@ -23,6 +23,20 @@
             ]
         },
         {
+            "fieldName": "yearNo",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "semesterNo",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "creditHour",
             "javadoc": "null before module finished",
             "fieldType": "Double"
@@ -63,7 +77,7 @@
     "fluentMethods": true,
     "clientRootFolder": "",
     "applications": [
-        "svcModule",
+        "svcProgrammeModule",
         "cloudGateway"
     ],
     "microserviceName": "svcModule"

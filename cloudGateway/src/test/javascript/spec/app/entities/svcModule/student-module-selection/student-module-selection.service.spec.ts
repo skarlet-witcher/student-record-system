@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(StudentModuleSelectionService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new StudentModuleSelection(0, 0, 0, 0, 0, 0, 0);
+            elemDefault = new StudentModuleSelection(0, 0, 0, 0, 0, 0, 0, 0, 0);
         });
 
         describe('Service methods', async () => {
@@ -58,6 +58,8 @@ describe('Service Tests', () => {
                         studentId: 1,
                         academicYear: 1,
                         academicSemester: 1,
+                        yearNo: 1,
+                        semesterNo: 1,
                         creditHour: 1,
                         marks: 1,
                         qcs: 1
@@ -80,6 +82,8 @@ describe('Service Tests', () => {
                         studentId: 1,
                         academicYear: 1,
                         academicSemester: 1,
+                        yearNo: 1,
+                        semesterNo: 1,
                         creditHour: 1,
                         marks: 1,
                         qcs: 1

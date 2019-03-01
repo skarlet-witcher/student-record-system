@@ -3,6 +3,8 @@ export interface IStudentModuleSelection {
     studentId?: number;
     academicYear?: number;
     academicSemester?: number;
+    yearNo?: number;
+    semesterNo?: number;
     creditHour?: number;
     marks?: number;
     qcs?: number;
@@ -18,6 +20,8 @@ export class StudentModuleSelection implements IStudentModuleSelection {
         public studentId?: number,
         public academicYear?: number,
         public academicSemester?: number,
+        public yearNo?: number,
+        public semesterNo?: number,
         public creditHour?: number,
         public marks?: number,
         public qcs?: number,

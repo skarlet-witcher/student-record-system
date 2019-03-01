@@ -21,9 +21,9 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
         proxy: [{
             context: [
                 '/cloudauth',
+                '/svcprogrammemodule',
                 '/svcprogramme',
                 '/svcmodule',
-                '/svcprogrammemodule',
                 '/svcstudent',
                 /* jhipster-needle-add-entity-to-webpack - JHipster will add entity api paths here */
                 '/api',

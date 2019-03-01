@@ -6,7 +6,6 @@ import cc.orangejuice.srs.programme.module.service.dto.ModuleGradeDTO;
 import cc.orangejuice.srs.programme.module.service.mapper.ModuleGradeMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -78,6 +77,14 @@ public class ModuleGradeService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete ModuleGrade : {}", id);        moduleGradeRepository.deleteById(id);
+        log.debug("Request to delete ModuleGrade : {}", id);
+        moduleGradeRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<ModuleGradeDTO> findOneGradeTypeByGradeName(String gradeName) {
+        log.debug("Request to get {} StudentModuleGradeDict ", gradeName);
+        return moduleGradeRepository.findOneByNameIgnoreCase(gradeName)
+            .map(moduleGradeMapper::toDto);
     }
 }

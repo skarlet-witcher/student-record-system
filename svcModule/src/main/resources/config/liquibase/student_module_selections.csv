@@ -1,0 +1,11 @@
+id;student_id;academic_year;academic_semester;year_no;semester_no;credit_hour;marks;qcs;module_id;student_module_grade_type_id
+1;66;2014;1;1;1;null;null;null;1;null
+2;66;2014;1;1;1;null;null;null;2;null
+3;66;2014;1;1;1;null;null;null;3;null
+4;66;2014;1;1;1;null;null;null;4;null
+5;66;2014;1;1;1;null;null;null;5;null
+6;66;2014;2;1;2;null;null;null;6;null
+7;66;2014;2;1;2;null;null;null;7;null
+8;66;2014;2;1;2;null;null;null;8;null
+9;66;2014;2;1;2;null;null;null;9;null
+10;66;2014;2;1;2;null;null;null;10;null

@@ -116,4 +116,13 @@ public class ModuleGradeResource {
         moduleGradeService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+
+    @GetMapping(value = "/module-grade/", params = {"gradeName"})
+    public ResponseEntity<ModuleGradeDTO> getStudentModuleGradeDictByGradeName(
+        @RequestParam(value = "gradeName") String gradeName) {
+        log.debug("REST request to get  {} StudentModuleGradeDict", gradeName);
+        Optional<ModuleGradeDTO> studentModuleGradeDictDTO = moduleGradeService.findOneGradeTypeByGradeName(gradeName);
+        return ResponseUtil.wrapOrNotFound(studentModuleGradeDictDTO);
+    }
 }

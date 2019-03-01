@@ -79,4 +79,10 @@ public class ModuleGradeService {
     public void delete(Long id) {
         log.debug("Request to delete ModuleGrade : {}", id);        moduleGradeRepository.deleteById(id);
     }
+
+    public Optional<ModuleGradeDTO> findOneGradeTypeByGradeName(String gradeName) {
+        log.debug("Request to get {} StudentModuleGradeDict ", gradeName);
+        return moduleGradeRepository.findOneByNameIgnoreCase(gradeName)
+            .map(moduleGradeMapper::toDto);
+    }
 }

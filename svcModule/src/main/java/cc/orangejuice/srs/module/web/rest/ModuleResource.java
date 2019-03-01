@@ -116,4 +116,11 @@ public class ModuleResource {
         moduleService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping(value = "/modules/", params = {"moduleCode"})
+    public ResponseEntity<ModuleDTO> getModuleByModuleCode(@RequestParam String moduleCode) {
+        log.debug("REST request to get {} module details", moduleCode);
+        Optional<ModuleDTO> moduleDTO = moduleService.findOneModule(moduleCode);
+        return ResponseUtil.wrapOrNotFound(moduleDTO);
+    }
 }

@@ -31,7 +31,7 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20190301141522",
+    "changelogDate": "20190301194502",
     "entityTableName": "module_grade",
     "dto": "mapstruct",
     "pagination": "pagination",

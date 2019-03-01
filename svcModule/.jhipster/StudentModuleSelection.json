@@ -54,7 +54,7 @@
             "otherEntityRelationshipName": "studentModuleSelection"
         }
     ],
-    "changelogDate": "20190224000014",
+    "changelogDate": "20190301194501",
     "entityTableName": "student_module_selection",
     "dto": "mapstruct",
     "pagination": "pagination",

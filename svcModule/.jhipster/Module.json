@@ -1,38 +1,31 @@
 {
-    "name": "ModuleGrade",
+    "name": "Module",
     "fields": [
         {
-            "fieldName": "name",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "unique"
-            ]
-        },
-        {
-            "fieldName": "description",
+            "fieldName": "code",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
-            "fieldName": "lowMarks",
-            "javadoc": "marks bigger than this will get corresponding qpv",
-            "fieldType": "Integer"
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
-            "fieldName": "qpv",
-            "fieldType": "Double"
-        },
-        {
-            "fieldName": "isAffectQca",
-            "fieldType": "Boolean"
+            "fieldName": "credit",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "relationships": [],
-    "changelogDate": "20190301141522",
-    "entityTableName": "module_grade",
+    "changelogDate": "20190301194500",
+    "entityTableName": "module",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceClass",

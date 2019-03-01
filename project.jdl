@@ -138,7 +138,7 @@ paginate * with pagination
 service * with serviceClass
 microservice Student, StudentEnroll, StudentProgression with svcStudent
 microservice Faculty, Department, Programme, ProgrammeProp with svcProgramme
-microservice Module, StudentModuleSelection, ModuleGrade with svcProgrammeModule
+microservice Module, StudentModuleSelection, ModuleGrade with svcModule
 //search * with elasticsearch
 
 application {
@@ -173,8 +173,8 @@ application {
 
 application {
     config {
-        baseName svcProgrammeModule
-        packageName cc.orangejuice.srs.programme.module
+        baseName svcModule
+        packageName cc.orangejuice.srs.module
         authenticationType uaa
         uaaBaseName "cloudauth"
         applicationType microservice
@@ -213,7 +213,7 @@ application {
 
 deployment {
     deploymentType docker-compose
-    appsFolders [svcStudent, svcProgramme, svcProgrammeModule, cloudGateway, cloudAuth]
+    appsFolders [svcStudent, svcProgramme, svcModule, cloudGateway, cloudAuth]
     dockerRepositoryName "cherrymeteor"
     //monitoring elk
     //consoleOptions [curator, zipkin]

@@ -15,10 +15,10 @@ public class StudentModuleSelectionDTO implements Serializable {
     private Long studentId;
 
     @NotNull
-    private Integer yearNo;
+    private Integer academicYear;
 
     @NotNull
-    private Integer semesterNo;
+    private Integer academicSemester;
 
     /**
      * null before module finished
@@ -63,20 +63,20 @@ public class StudentModuleSelectionDTO implements Serializable {
         this.studentId = studentId;
     }
 
-    public Integer getYearNo() {
-        return yearNo;
+    public Integer getAcademicYear() {
+        return academicYear;
     }
 
-    public void setYearNo(Integer yearNo) {
-        this.yearNo = yearNo;
+    public void setAcademicYear(Integer academicYear) {
+        this.academicYear = academicYear;
     }
 
-    public Integer getSemesterNo() {
-        return semesterNo;
+    public Integer getAcademicSemester() {
+        return academicSemester;
     }
 
-    public void setSemesterNo(Integer semesterNo) {
-        this.semesterNo = semesterNo;
+    public void setAcademicSemester(Integer academicSemester) {
+        this.academicSemester = academicSemester;
     }
 
     public Double getCreditHour() {
@@ -123,16 +123,16 @@ public class StudentModuleSelectionDTO implements Serializable {
         return studentModuleGradeTypeId;
     }
 
-    public void setStudentModuleGradeTypeId(Long studentModuleGradeDictId) {
-        this.studentModuleGradeTypeId = studentModuleGradeDictId;
+    public void setStudentModuleGradeTypeId(Long moduleGradeId) {
+        this.studentModuleGradeTypeId = moduleGradeId;
     }
 
     public String getStudentModuleGradeTypeName() {
         return studentModuleGradeTypeName;
     }
 
-    public void setStudentModuleGradeTypeName(String studentModuleGradeDictName) {
-        this.studentModuleGradeTypeName = studentModuleGradeDictName;
+    public void setStudentModuleGradeTypeName(String moduleGradeName) {
+        this.studentModuleGradeTypeName = moduleGradeName;
     }
 
     @Override
@@ -161,8 +161,8 @@ public class StudentModuleSelectionDTO implements Serializable {
         return "StudentModuleSelectionDTO{" +
             "id=" + getId() +
             ", studentId=" + getStudentId() +
-            ", yearNo=" + getYearNo() +
-            ", semesterNo=" + getSemesterNo() +
+            ", academicYear=" + getAcademicYear() +
+            ", academicSemester=" + getAcademicSemester() +
             ", creditHour=" + getCreditHour() +
             ", marks=" + getMarks() +
             ", qcs=" + getQcs() +

@@ -18,7 +18,7 @@
                                  baseTableName="student_module_selection"
                                  constraintName="fk_student_module_selection_student_module_grade_type_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="student_module_grade_dict"/>
+                                 referencedTableName="module_grade"/>
 
     </changeSet>
 </databaseChangeLog>

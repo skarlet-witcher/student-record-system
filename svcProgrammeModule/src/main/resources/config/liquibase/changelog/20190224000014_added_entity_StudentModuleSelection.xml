@@ -26,11 +26,11 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="year_no" type="integer">
+            <column name="academic_year" type="integer">
                 <constraints nullable="false" />
             </column>
 
-            <column name="semester_no" type="integer">
+            <column name="academic_semester" type="integer">
                 <constraints nullable="false" />
             </column>
 
@@ -56,11 +56,6 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-
-        <loadData file="config/liquibase/studentModuleSelections.csv"
-                  separator=";"
-                  tableName="student_module_selection">
-        </loadData>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

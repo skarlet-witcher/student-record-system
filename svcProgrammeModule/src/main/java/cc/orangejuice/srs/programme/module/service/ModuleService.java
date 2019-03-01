@@ -78,13 +78,6 @@ public class ModuleService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete Module : {}", id);
-        moduleRepository.deleteById(id);
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<ModuleDTO> findOneModule(String moduleCode) {
-        log.debug("Request to get {} Module Details", moduleCode);
-        return moduleRepository.findOneByCode(moduleCode).map(moduleMapper::toDto);
+        log.debug("Request to delete Module : {}", id);        moduleRepository.deleteById(id);
     }
 }

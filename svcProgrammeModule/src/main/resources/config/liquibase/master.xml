@@ -7,7 +7,7 @@
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190224000013_added_entity_Module.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190224000014_added_entity_StudentModuleSelection.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190224000015_added_entity_StudentModuleGradeDict.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190301141522_added_entity_ModuleGrade.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190224000014_added_entity_constraints_StudentModuleSelection.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->

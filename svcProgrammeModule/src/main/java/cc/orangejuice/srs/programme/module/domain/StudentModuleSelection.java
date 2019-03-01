@@ -30,12 +30,12 @@ public class StudentModuleSelection implements Serializable {
     private Long studentId;
 
     @NotNull
-    @Column(name = "year_no", nullable = false)
-    private Integer yearNo;
+    @Column(name = "academic_year", nullable = false)
+    private Integer academicYear;
 
     @NotNull
-    @Column(name = "semester_no", nullable = false)
-    private Integer semesterNo;
+    @Column(name = "academic_semester", nullable = false)
+    private Integer academicSemester;
 
     /**
      * null before module finished
@@ -61,7 +61,7 @@ public class StudentModuleSelection implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("studentModuleSelections")
-    private StudentModuleGradeDict studentModuleGradeType;
+    private ModuleGrade studentModuleGradeType;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -85,30 +85,30 @@ public class StudentModuleSelection implements Serializable {
         this.studentId = studentId;
     }
 
-    public Integer getYearNo() {
-        return yearNo;
+    public Integer getAcademicYear() {
+        return academicYear;
     }
 
-    public StudentModuleSelection yearNo(Integer yearNo) {
-        this.yearNo = yearNo;
+    public StudentModuleSelection academicYear(Integer academicYear) {
+        this.academicYear = academicYear;
         return this;
     }
 
-    public void setYearNo(Integer yearNo) {
-        this.yearNo = yearNo;
+    public void setAcademicYear(Integer academicYear) {
+        this.academicYear = academicYear;
     }
 
-    public Integer getSemesterNo() {
-        return semesterNo;
+    public Integer getAcademicSemester() {
+        return academicSemester;
     }
 
-    public StudentModuleSelection semesterNo(Integer semesterNo) {
-        this.semesterNo = semesterNo;
+    public StudentModuleSelection academicSemester(Integer academicSemester) {
+        this.academicSemester = academicSemester;
         return this;
     }
 
-    public void setSemesterNo(Integer semesterNo) {
-        this.semesterNo = semesterNo;
+    public void setAcademicSemester(Integer academicSemester) {
+        this.academicSemester = academicSemester;
     }
 
     public Double getCreditHour() {
@@ -163,17 +163,17 @@ public class StudentModuleSelection implements Serializable {
         this.module = module;
     }
 
-    public StudentModuleGradeDict getStudentModuleGradeType() {
+    public ModuleGrade getStudentModuleGradeType() {
         return studentModuleGradeType;
     }
 
-    public StudentModuleSelection studentModuleGradeType(StudentModuleGradeDict studentModuleGradeDict) {
-        this.studentModuleGradeType = studentModuleGradeDict;
+    public StudentModuleSelection studentModuleGradeType(ModuleGrade moduleGrade) {
+        this.studentModuleGradeType = moduleGrade;
         return this;
     }
 
-    public void setStudentModuleGradeType(StudentModuleGradeDict studentModuleGradeDict) {
-        this.studentModuleGradeType = studentModuleGradeDict;
+    public void setStudentModuleGradeType(ModuleGrade moduleGrade) {
+        this.studentModuleGradeType = moduleGrade;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -202,8 +202,8 @@ public class StudentModuleSelection implements Serializable {
         return "StudentModuleSelection{" +
             "id=" + getId() +
             ", studentId=" + getStudentId() +
-            ", yearNo=" + getYearNo() +
-            ", semesterNo=" + getSemesterNo() +
+            ", academicYear=" + getAcademicYear() +
+            ", academicSemester=" + getAcademicSemester() +
             ", creditHour=" + getCreditHour() +
             ", marks=" + getMarks() +
             ", qcs=" + getQcs() +

@@ -48,11 +48,11 @@ public class StudentModuleSelectionResourceIntTest {
     private static final Long DEFAULT_STUDENT_ID = 1L;
     private static final Long UPDATED_STUDENT_ID = 2L;
 
-    private static final Integer DEFAULT_YEAR_NO = 1;
-    private static final Integer UPDATED_YEAR_NO = 2;
+    private static final Integer DEFAULT_ACADEMIC_YEAR = 1;
+    private static final Integer UPDATED_ACADEMIC_YEAR = 2;
 
-    private static final Integer DEFAULT_SEMESTER_NO = 1;
-    private static final Integer UPDATED_SEMESTER_NO = 2;
+    private static final Integer DEFAULT_ACADEMIC_SEMESTER = 1;
+    private static final Integer UPDATED_ACADEMIC_SEMESTER = 2;
 
     private static final Double DEFAULT_CREDIT_HOUR = 1D;
     private static final Double UPDATED_CREDIT_HOUR = 2D;
@@ -112,8 +112,8 @@ public class StudentModuleSelectionResourceIntTest {
     public static StudentModuleSelection createEntity(EntityManager em) {
         StudentModuleSelection studentModuleSelection = new StudentModuleSelection()
             .studentId(DEFAULT_STUDENT_ID)
-            .yearNo(DEFAULT_YEAR_NO)
-            .semesterNo(DEFAULT_SEMESTER_NO)
+            .academicYear(DEFAULT_ACADEMIC_YEAR)
+            .academicSemester(DEFAULT_ACADEMIC_SEMESTER)
             .creditHour(DEFAULT_CREDIT_HOUR)
             .marks(DEFAULT_MARKS)
             .qcs(DEFAULT_QCS);
@@ -142,8 +142,8 @@ public class StudentModuleSelectionResourceIntTest {
         assertThat(studentModuleSelectionList).hasSize(databaseSizeBeforeCreate + 1);
         StudentModuleSelection testStudentModuleSelection = studentModuleSelectionList.get(studentModuleSelectionList.size() - 1);
         assertThat(testStudentModuleSelection.getStudentId()).isEqualTo(DEFAULT_STUDENT_ID);
-        assertThat(testStudentModuleSelection.getYearNo()).isEqualTo(DEFAULT_YEAR_NO);
-        assertThat(testStudentModuleSelection.getSemesterNo()).isEqualTo(DEFAULT_SEMESTER_NO);
+        assertThat(testStudentModuleSelection.getAcademicYear()).isEqualTo(DEFAULT_ACADEMIC_YEAR);
+        assertThat(testStudentModuleSelection.getAcademicSemester()).isEqualTo(DEFAULT_ACADEMIC_SEMESTER);
         assertThat(testStudentModuleSelection.getCreditHour()).isEqualTo(DEFAULT_CREDIT_HOUR);
         assertThat(testStudentModuleSelection.getMarks()).isEqualTo(DEFAULT_MARKS);
         assertThat(testStudentModuleSelection.getQcs()).isEqualTo(DEFAULT_QCS);
@@ -190,10 +190,10 @@ public class StudentModuleSelectionResourceIntTest {
 
     @Test
     @Transactional
-    public void checkYearNoIsRequired() throws Exception {
+    public void checkAcademicYearIsRequired() throws Exception {
         int databaseSizeBeforeTest = studentModuleSelectionRepository.findAll().size();
         // set the field null
-        studentModuleSelection.setYearNo(null);
+        studentModuleSelection.setAcademicYear(null);
 
         // Create the StudentModuleSelection, which fails.
         StudentModuleSelectionDTO studentModuleSelectionDTO = studentModuleSelectionMapper.toDto(studentModuleSelection);
@@ -209,10 +209,10 @@ public class StudentModuleSelectionResourceIntTest {
 
     @Test
     @Transactional
-    public void checkSemesterNoIsRequired() throws Exception {
+    public void checkAcademicSemesterIsRequired() throws Exception {
         int databaseSizeBeforeTest = studentModuleSelectionRepository.findAll().size();
         // set the field null
-        studentModuleSelection.setSemesterNo(null);
+        studentModuleSelection.setAcademicSemester(null);
 
         // Create the StudentModuleSelection, which fails.
         StudentModuleSelectionDTO studentModuleSelectionDTO = studentModuleSelectionMapper.toDto(studentModuleSelection);
@@ -238,8 +238,8 @@ public class StudentModuleSelectionResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(studentModuleSelection.getId().intValue())))
             .andExpect(jsonPath("$.[*].studentId").value(hasItem(DEFAULT_STUDENT_ID.intValue())))
-            .andExpect(jsonPath("$.[*].yearNo").value(hasItem(DEFAULT_YEAR_NO)))
-            .andExpect(jsonPath("$.[*].semesterNo").value(hasItem(DEFAULT_SEMESTER_NO)))
+            .andExpect(jsonPath("$.[*].academicYear").value(hasItem(DEFAULT_ACADEMIC_YEAR)))
+            .andExpect(jsonPath("$.[*].academicSemester").value(hasItem(DEFAULT_ACADEMIC_SEMESTER)))
             .andExpect(jsonPath("$.[*].creditHour").value(hasItem(DEFAULT_CREDIT_HOUR.doubleValue())))
             .andExpect(jsonPath("$.[*].marks").value(hasItem(DEFAULT_MARKS.doubleValue())))
             .andExpect(jsonPath("$.[*].qcs").value(hasItem(DEFAULT_QCS.doubleValue())));
@@ -257,8 +257,8 @@ public class StudentModuleSelectionResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(studentModuleSelection.getId().intValue()))
             .andExpect(jsonPath("$.studentId").value(DEFAULT_STUDENT_ID.intValue()))
-            .andExpect(jsonPath("$.yearNo").value(DEFAULT_YEAR_NO))
-            .andExpect(jsonPath("$.semesterNo").value(DEFAULT_SEMESTER_NO))
+            .andExpect(jsonPath("$.academicYear").value(DEFAULT_ACADEMIC_YEAR))
+            .andExpect(jsonPath("$.academicSemester").value(DEFAULT_ACADEMIC_SEMESTER))
             .andExpect(jsonPath("$.creditHour").value(DEFAULT_CREDIT_HOUR.doubleValue()))
             .andExpect(jsonPath("$.marks").value(DEFAULT_MARKS.doubleValue()))
             .andExpect(jsonPath("$.qcs").value(DEFAULT_QCS.doubleValue()));
@@ -286,8 +286,8 @@ public class StudentModuleSelectionResourceIntTest {
         em.detach(updatedStudentModuleSelection);
         updatedStudentModuleSelection
             .studentId(UPDATED_STUDENT_ID)
-            .yearNo(UPDATED_YEAR_NO)
-            .semesterNo(UPDATED_SEMESTER_NO)
+            .academicYear(UPDATED_ACADEMIC_YEAR)
+            .academicSemester(UPDATED_ACADEMIC_SEMESTER)
             .creditHour(UPDATED_CREDIT_HOUR)
             .marks(UPDATED_MARKS)
             .qcs(UPDATED_QCS);
@@ -303,8 +303,8 @@ public class StudentModuleSelectionResourceIntTest {
         assertThat(studentModuleSelectionList).hasSize(databaseSizeBeforeUpdate);
         StudentModuleSelection testStudentModuleSelection = studentModuleSelectionList.get(studentModuleSelectionList.size() - 1);
         assertThat(testStudentModuleSelection.getStudentId()).isEqualTo(UPDATED_STUDENT_ID);
-        assertThat(testStudentModuleSelection.getYearNo()).isEqualTo(UPDATED_YEAR_NO);
-        assertThat(testStudentModuleSelection.getSemesterNo()).isEqualTo(UPDATED_SEMESTER_NO);
+        assertThat(testStudentModuleSelection.getAcademicYear()).isEqualTo(UPDATED_ACADEMIC_YEAR);
+        assertThat(testStudentModuleSelection.getAcademicSemester()).isEqualTo(UPDATED_ACADEMIC_SEMESTER);
         assertThat(testStudentModuleSelection.getCreditHour()).isEqualTo(UPDATED_CREDIT_HOUR);
         assertThat(testStudentModuleSelection.getMarks()).isEqualTo(UPDATED_MARKS);
         assertThat(testStudentModuleSelection.getQcs()).isEqualTo(UPDATED_QCS);

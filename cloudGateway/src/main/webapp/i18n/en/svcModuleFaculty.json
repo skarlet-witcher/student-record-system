@@ -1,0 +1,26 @@
+{
+    "cloudGatewayApp": {
+        "svcModuleFaculty": {
+            "home": {
+                "title": "Faculties",
+                "createLabel": "Create a new Faculty",
+                "createOrEditLabel": "Create or edit a Faculty"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Faculty {{ id }}?"
+            },
+            "detail": {
+                "title": "Faculty"
+            },
+            "name": "Name",
+            "department": "Department"
+        }
+    },
+    "svcModuleApp": {
+        "svcModuleFaculty": {
+            "created": "A new Faculty is created with identifier {{ param }}",
+            "updated": "A Faculty is updated with identifier {{ param }}",
+            "deleted": "A Faculty is deleted with identifier {{ param }}"
+        }
+    }
+}

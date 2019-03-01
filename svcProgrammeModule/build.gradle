@@ -173,6 +173,7 @@ repositories {
 dependencies {
     // Use ", version: jhipster_dependencies_version, changing: true" if you want
     // to use a SNAPSHOT release instead of a stable release
+    compile project(':svcProgramme')
     compile group: "io.github.jhipster", name: "jhipster-framework"
     compile "org.springframework.boot:spring-boot-starter-cache"
     compile "io.dropwizard.metrics:metrics-core"
@@ -260,9 +261,6 @@ task cleanResources(type: Delete) {
     delete 'build/resources'
 }
 
-wrapper {
-    gradleVersion = '4.10.2'
-}
 
 task stage(dependsOn: 'bootWar') {
 }

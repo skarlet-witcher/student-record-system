@@ -1,0 +1,84 @@
+{
+    "name": "StudentModuleSelection",
+    "fields": [
+        {
+            "fieldName": "studentId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "academicYear",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "academicSemester",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "yearNo",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "semesterNo",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creditHour",
+            "javadoc": "null before module finished",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "marks",
+            "javadoc": "null before module finished",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "qcs",
+            "javadoc": "null before module finished",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "module",
+            "otherEntityName": "module",
+            "otherEntityField": "name",
+            "otherEntityRelationshipName": "studentModuleSelection"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "studentModuleGradeType",
+            "otherEntityName": "moduleGrade",
+            "otherEntityField": "name",
+            "otherEntityRelationshipName": "studentModuleSelection"
+        }
+    ],
+    "changelogDate": "20190301203702",
+    "entityTableName": "student_module_selection",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "svcModule",
+        "cloudGateway"
+    ],
+    "microserviceName": "svcModule"
+}

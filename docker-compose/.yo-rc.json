@@ -7,7 +7,7 @@
     "appsFolders": [
       "svcStudent",
       "svcProgramme",
-      "svcProgrammeModule",
+      "svcModule",
       "cloudGateway",
       "cloudAuth"
     ],

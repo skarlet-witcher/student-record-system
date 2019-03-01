@@ -7,9 +7,9 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
-                "svcProgrammeModuleFaculty": "Faculty",
-                "svcProgrammeModuleDepartment": "Department",
-                "svcProgrammeModuleProgramme": "Programme",
+                "svcModuleFaculty": "Faculty",
+                "svcModuleDepartment": "Department",
+                "svcModuleProgramme": "Programme",
                 "svcProgrammeProgrammePropDict": "Programme Prop Dict",
                 "svcModuleModule": "Module",
                 "svcModuleStudentModuleSelection": "Student Module Selection",
@@ -17,7 +17,7 @@
                 "svcStudentStudent": "Student",
                 "svcStudentStudentEnroll": "Student Enroll",
                 "svcStudentStudentProgression": "Student Progression",
-                "svcProgrammeModuleProgrammeProp": "Programme Prop",
+                "svcModuleProgrammeProp": "Programme Prop",
                 "svcModuleModuleGrade": "Module Grade",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },

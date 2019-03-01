@@ -27,6 +27,7 @@ public class StudentModuleSelectionService {
 
     private final StudentModuleSelectionMapper studentModuleSelectionMapper;
 
+
     public StudentModuleSelectionService(StudentModuleSelectionRepository studentModuleSelectionRepository, StudentModuleSelectionMapper studentModuleSelectionMapper) {
         this.studentModuleSelectionRepository = studentModuleSelectionRepository;
         this.studentModuleSelectionMapper = studentModuleSelectionMapper;
@@ -78,8 +79,28 @@ public class StudentModuleSelectionService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete StudentModuleSelection : {}", id);        studentModuleSelectionRepository.deleteById(id);
+        log.debug("Request to delete StudentModuleSelection : {}", id);
+        studentModuleSelectionRepository.deleteById(id);
     }
 
 
+    public void updateMarkBySelectionIdAndMark(Long selectionId, Double mark) {
+        log.debug("Request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
+        studentModuleSelectionRepository.updateByIdAndMark(selectionId, mark);
+    }
+    // todo business logic for calculating QCA
+
+    // sub-goal get credit
+    private Double getCredit(Long selectionId) {
+        log.debug("Request to get credit from a module in the selection {}", selectionId);
+        Optional<StudentModuleSelection> studentModuleSelection = studentModuleSelectionRepository.findById(selectionId);
+        return studentModuleSelection.get().getModule().getCredit();
+    }
+    /*
+    // sub-goal getFactor
+    private Double getFactor() {
+        log.debug("Request to get factor from ");
+        // get factor by many parameters. enrollYear remaining
+    }
+    */
 }

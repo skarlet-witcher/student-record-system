@@ -117,4 +117,33 @@ public class StudentModuleSelectionResource {
         studentModuleSelectionService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    /**
+     * //todo
+     * POST  /student-module-selections : Create a new studentModuleSelection.
+     *
+     * @param studentModuleSelectionDTO the studentModuleSelectionDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new studentModuleSelectionDTO, or with status 400 (Bad Request) if the studentModuleSelection has already an ID
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+
+
+    // todo submit mark
+    @PostMapping(value = "/student-module-selections/submit-mark", params={"selectionId", "mark"})
+    public ResponseEntity<StudentModuleSelectionDTO> updateMarks(@RequestParam("selectionId") Long selectionId, @RequestParam("mark") Double mark) {
+        log.debug("REST request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
+        studentModuleSelectionService.updateMarkBySelectionIdAndMark(selectionId, mark);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, selectionId.toString())).build();
+
+        // sub-goal: todo get credit
+
+    }
+
+
+    /*
+    @GetMapping(value = "/student-module-selections/selection-details", params = {"yearNo", "semesterNo", "moduleId"})
+    public ResponseEntity<>
+    */
+
+
 }

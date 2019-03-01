@@ -1,6 +1,7 @@
 package cc.orangejuice.srs.programme.module.web.rest;
 
 import cc.orangejuice.srs.programme.module.domain.StudentModuleGradeDict;
+import cc.orangejuice.srs.programme.module.service.ModuleService;
 import cc.orangejuice.srs.programme.module.service.StudentModuleGradeDictService;
 import cc.orangejuice.srs.programme.module.service.dto.StudentModuleGradeDictDTO;
 import cc.orangejuice.srs.programme.module.web.rest.errors.BadRequestAlertException;

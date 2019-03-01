@@ -1,0 +1,32 @@
+{
+    "cloudGatewayApp": {
+        "svcProgrammeModuleModuleGrade": {
+            "home": {
+                "title": "ModuleGrades",
+                "createLabel": "Créer un nouveau Module Grade",
+                "createOrEditLabel": "Créer ou éditer un Module Grade"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Module Grade {{ id }} ?"
+            },
+            "detail": {
+                "title": "Module Grade"
+            },
+            "name": "Name",
+            "description": "Description",
+            "lowMarks": "Low Marks",
+            "qpv": "Qpv",
+            "isAffectQca": "Is Affect Qca",
+            "help": {
+                "lowMarks": "marks bigger than this will get corresponding qpv"
+            }
+        }
+    },
+    "svcProgrammeModuleApp": {
+        "svcProgrammeModuleModuleGrade": {
+            "created": "Un nouveau Module Grade a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Module Grade avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Module Grade avec l'identifiant {{ param }} a été supprimé"
+        }
+    }
+}

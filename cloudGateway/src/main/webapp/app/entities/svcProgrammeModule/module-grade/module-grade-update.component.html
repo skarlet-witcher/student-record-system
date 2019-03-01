@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-module-grade-heading" jhiTranslate="cloudGatewayApp.svcProgrammeModuleModuleGrade.home.createOrEditLabel">Create or edit a Module Grade</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!moduleGrade.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="moduleGrade.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcProgrammeModuleModuleGrade.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="moduleGrade.name" required/>
+                    <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcProgrammeModuleModuleGrade.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="moduleGrade.description" required/>
+                    <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.description?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcProgrammeModuleModuleGrade.lowMarks" for="field_lowMarks" [ngbTooltip]="'cloudGatewayApp.svcProgrammeModuleModuleGrade.help.lowMarks' | translate">Low Marks</label>
+                    <input type="number" class="form-control" name="lowMarks" id="field_lowMarks"
+                        [(ngModel)]="moduleGrade.lowMarks" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcProgrammeModuleModuleGrade.qpv" for="field_qpv">Qpv</label>
+                    <input type="number" class="form-control" name="qpv" id="field_qpv"
+                        [(ngModel)]="moduleGrade.qpv" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcProgrammeModuleModuleGrade.isAffectQca" for="field_isAffectQca">Is Affect Qca</label>
+                    <input type="checkbox" class="form-control" name="isAffectQca" id="field_isAffectQca"
+                        [(ngModel)]="moduleGrade.isAffectQca" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

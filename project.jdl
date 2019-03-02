@@ -144,7 +144,7 @@ dto * with mapstruct
 paginate * with pagination
 service * with serviceClass
 microservice Student, StudentEnroll, StudentProgression with svcStudent
-microservice Faculty, Department, Programme, ProgrammeProp with svcModule
+microservice Faculty, Department, Programme, ProgrammeProp with svcProgramme
 microservice Module, StudentModuleSelection, ModuleGrade with svcModule
 //search * with elasticsearch
 

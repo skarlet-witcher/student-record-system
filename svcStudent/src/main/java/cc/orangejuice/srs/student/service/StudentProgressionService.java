@@ -1,7 +1,6 @@
 package cc.orangejuice.srs.student.service;
 
 import cc.orangejuice.srs.student.domain.StudentProgression;
-import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
 import cc.orangejuice.srs.student.repository.StudentProgressionRepository;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.service.mapper.StudentProgressionMapper;
@@ -13,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -82,38 +80,4 @@ public class StudentProgressionService {
     public void delete(Long id) {
         log.debug("Request to delete StudentProgression : {}", id);        studentProgressionRepository.deleteById(id);
     }
-
-
-    public void firstDecision() {
-        log.debug("Begin making first decision of transiting state from NO_STATE to PASS/SUSPENSION");
-
-        List<StudentProgression> studentProgressionRepositoryAll = studentProgressionRepository.findAll();
-        for (StudentProgression studentProgression: studentProgressionRepositoryAll) {
-            if(studentProgression.getForAcademicYear() == 1 && studentProgression.getForAcademicSemester() == 2){
-                if(studentProgression.getQca() >= 2){
-                    studentProgression.setProgressDecision(ProgressDecision.PASS);
-                }
-                else {
-                    //need to get QCS to calculate QCA
-//                    if(swap > 2.0 ) -> fail can repeat
-//                    if(swap < 2.0) -> fail no repeat
-                }
-
-            }
-        }
-
-    }
-
-    public void secondDesion() {
-        log.debug("Begin making second decision from FAIL_CAN_REPEAT to PASS or FAIL_NO_REPEAT");
-        List<StudentProgression> studentProgressionRepositoryAll = studentProgressionRepository.findAll();
-        for (StudentProgression studentProgression: studentProgressionRepositoryAll) {
-            if(studentProgression.getProgressDecision().equals(ProgressDecision.FAIL_CAN_REPEAT)){
-
-            }
-        }
-
-    }
-
-
 }

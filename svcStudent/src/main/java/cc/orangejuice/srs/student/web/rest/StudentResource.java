@@ -1,5 +1,4 @@
 package cc.orangejuice.srs.student.web.rest;
-import cc.orangejuice.srs.student.domain.Student;
 import cc.orangejuice.srs.student.service.StudentService;
 import cc.orangejuice.srs.student.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.student.web.rest.util.HeaderUtil;
@@ -106,7 +105,6 @@ public class StudentResource {
         return ResponseUtil.wrapOrNotFound(studentDTO);
     }
 
-
     /**
      * DELETE  /students/:id : delete the "id" student.
      *
@@ -119,12 +117,4 @@ public class StudentResource {
         studentService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    @GetMapping("/students/gender/{id}")
-    public ResponseEntity<StudentDTO> changeGender(@PathVariable Long id) {
-        Optional<StudentDTO> studentDTO = studentService.changeGender(id);
-        log.info("abawge");
-        return ResponseUtil.wrapOrNotFound(studentDTO);
-    }
-
 }

@@ -1,7 +1,6 @@
 package cc.orangejuice.srs.student.service;
 
 import cc.orangejuice.srs.student.domain.Student;
-import cc.orangejuice.srs.student.domain.enumeration.Gender;
 import cc.orangejuice.srs.student.repository.StudentRepository;
 import cc.orangejuice.srs.student.service.dto.StudentDTO;
 import cc.orangejuice.srs.student.service.mapper.StudentMapper;
@@ -80,16 +79,5 @@ public class StudentService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Student : {}", id);        studentRepository.deleteById(id);
-    }
-
-    public Optional<StudentDTO> changeGender(Long id)  {
-        Optional<Student> optionalStudent = studentRepository.findById(id);
-        if(optionalStudent.isPresent()){
-            optionalStudent.map(student -> {
-                student.setGender(Gender.MALE);
-                return studentMapper.toDto(student);
-            });
-        }
-        return Optional.empty();
     }
 }

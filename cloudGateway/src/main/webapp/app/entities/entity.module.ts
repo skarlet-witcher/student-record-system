@@ -6,15 +6,15 @@ import { RouterModule } from '@angular/router';
         RouterModule.forChild([
             {
                 path: 'faculty',
-                loadChildren: './svcModule/faculty/faculty.module#SvcModuleFacultyModule'
+                loadChildren: './svcProgramme/faculty/faculty.module#SvcProgrammeFacultyModule'
             },
             {
                 path: 'department',
-                loadChildren: './svcModule/department/department.module#SvcModuleDepartmentModule'
+                loadChildren: './svcProgramme/department/department.module#SvcProgrammeDepartmentModule'
             },
             {
                 path: 'programme',
-                loadChildren: './svcModule/programme/programme.module#SvcModuleProgrammeModule'
+                loadChildren: './svcProgramme/programme/programme.module#SvcProgrammeProgrammeModule'
             },
             {
                 path: 'module',
@@ -38,7 +38,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'programme-prop',
-                loadChildren: './svcModule/programme-prop/programme-prop.module#SvcModuleProgrammePropModule'
+                loadChildren: './svcProgramme/programme-prop/programme-prop.module#SvcProgrammeProgrammePropModule'
             },
             {
                 path: 'module-grade',

@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -17,21 +17,12 @@ import { RouterModule } from '@angular/router';
                 loadChildren: './svcModule/programme/programme.module#SvcModuleProgrammeModule'
             },
             {
-                path: 'programme-prop-dict',
-                loadChildren: './svcProgramme/programme-prop-dict/programme-prop-dict.module#SvcProgrammeProgrammePropDictModule'
-            },
-            {
                 path: 'module',
                 loadChildren: './svcModule/module/module.module#SvcModuleModuleModule'
             },
             {
                 path: 'student-module-selection',
                 loadChildren: './svcModule/student-module-selection/student-module-selection.module#SvcModuleStudentModuleSelectionModule'
-            },
-            {
-                path: 'student-module-grade-dict',
-                loadChildren:
-                    './svcProgrammeModule/student-module-grade-dict/student-module-grade-dict.module#SvcProgrammeModuleStudentModuleGradeDictModule'
             },
             {
                 path: 'student',

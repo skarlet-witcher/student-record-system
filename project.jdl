@@ -176,7 +176,7 @@ application {
 application {
     config {
         baseName svcModule
-        packageName cc.orangejuice.srs.programme.module
+        packageName cc.orangejuice.srs.module
         authenticationType uaa
         uaaBaseName "cloudauth"
         applicationType microservice

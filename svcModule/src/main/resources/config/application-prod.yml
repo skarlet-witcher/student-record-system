@@ -16,7 +16,7 @@
 logging:
     level:
         ROOT: INFO
-        cc.orangejuice.srs.programme.module: INFO
+        cc.orangejuice.srs.module: INFO
         io.github.jhipster: INFO
 
 eureka:

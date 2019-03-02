@@ -17,7 +17,7 @@ logging:
     level:
         ROOT: DEBUG
         io.github.jhipster: DEBUG
-        cc.orangejuice.srs.programme.module: DEBUG
+        cc.orangejuice.srs.module: DEBUG
 
 eureka:
     instance:

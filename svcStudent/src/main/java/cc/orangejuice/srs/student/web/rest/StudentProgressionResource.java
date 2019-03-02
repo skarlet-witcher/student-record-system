@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -117,4 +116,17 @@ public class StudentProgressionResource {
         studentProgressionService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/student-progressions/firstdecision")
+    public ResponseEntity<Void> firstDecision(){
+        studentProgressionService.firstDecision();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "First decision made")).build();
+    }
+
+    @GetMapping("/student-progressions/seconddecision")
+    public ResponseEntity<Void> secondDecision(){
+        studentProgressionService.secondDesion();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "Second decision made")).build();
+    }
+
 }

@@ -1,22 +1,23 @@
 package cc.orangejuice.srs.module.web.rest;
-
 import cc.orangejuice.srs.module.service.ModuleGradeService;
-import cc.orangejuice.srs.module.service.dto.ModuleGradeDTO;
 import cc.orangejuice.srs.module.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.module.web.rest.util.HeaderUtil;
 import cc.orangejuice.srs.module.web.rest.util.PaginationUtil;
+import cc.orangejuice.srs.module.service.dto.ModuleGradeDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -115,14 +116,5 @@ public class ModuleGradeResource {
         log.debug("REST request to delete ModuleGrade : {}", id);
         moduleGradeService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-    }
-
-
-    @GetMapping(value = "/module-grade/", params = {"gradeName"})
-    public ResponseEntity<ModuleGradeDTO> getStudentModuleGradeDictByGradeName(
-        @RequestParam(value = "gradeName") String gradeName) {
-        log.debug("REST request to get  {} StudentModuleGradeDict", gradeName);
-        Optional<ModuleGradeDTO> studentModuleGradeDictDTO = moduleGradeService.findOneGradeTypeByGradeName(gradeName);
-        return ResponseUtil.wrapOrNotFound(studentModuleGradeDictDTO);
     }
 }

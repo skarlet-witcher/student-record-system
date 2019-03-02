@@ -6,6 +6,7 @@ import cc.orangejuice.srs.module.service.dto.ModuleDTO;
 import cc.orangejuice.srs.module.service.mapper.ModuleMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -78,11 +79,5 @@ public class ModuleService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Module : {}", id);        moduleRepository.deleteById(id);
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<ModuleDTO> findOneModule(String moduleCode) {
-        log.debug("Request to get {} Module Details", moduleCode);
-        return moduleRepository.findOneByCode(moduleCode).map(moduleMapper::toDto);
     }
 }

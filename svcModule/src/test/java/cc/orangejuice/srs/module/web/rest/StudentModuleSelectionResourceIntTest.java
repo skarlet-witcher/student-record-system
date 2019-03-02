@@ -1,13 +1,16 @@
 package cc.orangejuice.srs.module.web.rest;
 
 import cc.orangejuice.srs.module.SvcModuleApp;
+
 import cc.orangejuice.srs.module.config.SecurityBeanOverrideConfiguration;
+
 import cc.orangejuice.srs.module.domain.StudentModuleSelection;
 import cc.orangejuice.srs.module.repository.StudentModuleSelectionRepository;
 import cc.orangejuice.srs.module.service.StudentModuleSelectionService;
 import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.module.service.mapper.StudentModuleSelectionMapper;
 import cc.orangejuice.srs.module.web.rest.errors.ExceptionTranslator;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +28,7 @@ import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+
 
 import static cc.orangejuice.srs.module.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;

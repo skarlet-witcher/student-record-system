@@ -1,6 +1,7 @@
 package cc.orangejuice.srs.module.web.rest;
 
 import cc.orangejuice.srs.module.web.rest.vm.LoggerVM;
+
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 import org.slf4j.LoggerFactory;

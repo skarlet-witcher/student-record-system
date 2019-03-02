@@ -12,16 +12,17 @@
             "detail": {
                 "title": "Student Progression"
             },
-            "yearNo": "Year No",
-            "semesterNo": "Semester No",
+            "forAcademicYear": "For Academic Year",
+            "forAcademicSemester": "For Academic Semester",
+            "forPartNo": "For Part No",
             "qca": "Qca",
-            "cumulativeQcaForPart": "Cumulative Qca For Part",
+            "progressType": "Progress Type",
             "progressDecision": "Progress Decision",
             "student": "Student",
             "help": {
-                "qca": "semesterNo -&gt; qca",
-                "cumulativeQcaForPart": "0:not   1...n:part n  | yearNo(finish of a part) -&gt; cumulativeQcaForPart",
-                "progressDecision": "yearNo -&gt; progressDecision"
+                "qca": "academicSemester -&gt; qca",
+                "progressType": "1...n:part n  , academicYear(finish of a part) -&gt; cumulativeQcaForPart",
+                "progressDecision": "academicYear -&gt; progressDecision"
             }
         }
     },

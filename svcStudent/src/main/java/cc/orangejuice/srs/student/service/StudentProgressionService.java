@@ -89,7 +89,7 @@ public class StudentProgressionService {
 
         List<StudentProgression> studentProgressionRepositoryAll = studentProgressionRepository.findAll();
         for (StudentProgression studentProgression: studentProgressionRepositoryAll) {
-            if(studentProgression.getYearNo() == 1 && studentProgression.getSemesterNo() == 2){
+            if(studentProgression.getForAcademicYear() == 1 && studentProgression.getForAcademicSemester() == 2){
                 if(studentProgression.getQca() >= 2){
                     studentProgression.setProgressDecision(ProgressDecision.PASS);
                 }

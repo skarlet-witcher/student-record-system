@@ -116,7 +116,7 @@ entity StudentModuleSelection {
     yearNo Integer required
     semesterNo Integer required
     /** null before module finished*/ 
-    creditHour Double 
+    creditHour Double
     /** null before module finished*/ 
     marks Double
     /** null before module finished*/ 

@@ -35,9 +35,9 @@ services:
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=svcprogramme
         command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
-
+    
     svcmodule-app:
-      image: svcmodule
+        image: svcmodule
         environment:
             - _JAVA_OPTIONS=-Xmx512m -Xms256m
             - 'SPRING_PROFILES_ACTIVE=prod,swagger'

@@ -12,9 +12,9 @@
                   tableName="student">
         </loadData>
 
-        <loadData file="config/liquibase/students_enroll.csv"
+        <loadData file="config/liquibase/student_enroll.csv"
                   separator=";"
-                  tableName="students_enroll">
+                  tableName="student_enroll">
         </loadData>
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

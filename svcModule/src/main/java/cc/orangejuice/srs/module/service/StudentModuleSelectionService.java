@@ -1,25 +1,25 @@
-package cc.orangejuice.srs.programme.module.service;
+package cc.orangejuice.srs.module.service;
 
-import cc.orangejuice.srs.programme.domain.enumeration.ProgrammePropType;
-import cc.orangejuice.srs.programme.module.client.ProgrammeFeignClient;
-import cc.orangejuice.srs.programme.module.domain.ModuleGrade;
-import cc.orangejuice.srs.programme.module.domain.StudentModuleSelection;
-import cc.orangejuice.srs.programme.module.repository.StudentModuleSelectionRepository;
-import cc.orangejuice.srs.programme.module.service.dto.ModuleGradeDTO;
-import cc.orangejuice.srs.programme.module.service.dto.StudentModuleSelectionDTO;
-import cc.orangejuice.srs.programme.module.service.mapper.StudentModuleSelectionMapper;
-import cc.orangejuice.srs.programme.service.dto.ProgrammePropDTO;
+
+import cc.orangejuice.srs.module.client.ProgrammeFeignClient;
+import cc.orangejuice.srs.module.domain.Module;
+import cc.orangejuice.srs.module.domain.ModuleGrade;
+import cc.orangejuice.srs.module.domain.StudentModuleSelection;
+import cc.orangejuice.srs.module.repository.StudentModuleSelectionRepository;
+import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
+import cc.orangejuice.srs.module.service.mapper.StudentModuleSelectionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+
 
 /**
  * Service Implementation for managing StudentModuleSelection.
@@ -103,20 +103,20 @@ public class StudentModuleSelectionService {
     public void updateMarkBySelectionIdAndMark(Long selectionId, Double mark) {
         log.debug("Request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
         Double creditHour;
-        studentModuleSelectionRepository.updateByIdAndMark(selectionId, mark);
+        studentModuleSelectionRepository.updateMarksById(selectionId, mark);
         creditHour = getCreditHour(selectionId);
         updateQCS(selectionId, mark, creditHour);
     }
-    // todo business logic for calculating QCA
 
-    // sub-goal get credit
+
+    // todo sub-goal get credit
     private Double getCreditHour(Long selectionId) {
         log.debug("Request to get credit from a module in the selection {}", selectionId);
         Optional<StudentModuleSelection> studentModuleSelection = studentModuleSelectionRepository.findById(selectionId);
         return studentModuleSelection.get().getModule().getCredit() * getFactor(studentModuleSelection);
     }
 
-    // sub-goal getFactor
+    // todo sub-goal getFactor
     private Double getFactor(Optional<StudentModuleSelection> studentModuleSelection) {
         log.debug("Request to get factor from academicYear: {}, academicSemester: {}, yearNumber: {}, SemesterNumber: {}",
             studentModuleSelection.get().getAcademicYear(),
@@ -124,16 +124,18 @@ public class StudentModuleSelectionService {
             studentModuleSelection.get().getYearNo(),
             studentModuleSelection.get().getSemesterNo());
 
-        Optional<ProgrammePropDTO> programmePropDTO = programmeFeignClient.getProgrammeProp(ProgrammePropType.SEMESTER,
+        ResponseEntity programmeProp = programmeFeignClient.getProgrammeProp("SEMESTER",
             studentModuleSelection.get().getAcademicYear(),
             studentModuleSelection.get().getYearNo(),
             studentModuleSelection.get().getSemesterNo(),
             "factor");
-        return Double.parseDouble(programmePropDTO.get().getValue());
+        // todo how to get the factor
+        log.debug("get factor : {} ",Double.parseDouble(programmeProp.getBody().toString()));
+        return Double.parseDouble(programmeProp.getBody().toString());
 
     }
 
-    // update QCS
+    // todo update QCS
     private void updateQCS(Long selectionId, Double mark, Double creditHour) {
         log.debug("Request to get QPV and GradeName by Mark: {}", mark);
 
@@ -142,7 +144,6 @@ public class StudentModuleSelectionService {
         Double qpv= 0.00;
         String gradeName="";
 
-        // todo what to input in the param in findAll(Pageable pageable) ?
         List<ModuleGrade> moduleGradeList = moduleGradeService.getAllModuleGradewithQcaAffected();
 
         for(ModuleGrade moduleGrade : moduleGradeList) {
@@ -153,8 +154,63 @@ public class StudentModuleSelectionService {
             }
         }
         qcs = qpv * creditHour;
-        studentModuleSelectionRepository.updateByIdAndStudentModuleGradeTypeAndQcs(selectionId, gradeName, qcs);
+        studentModuleSelectionRepository.updateByIdAndStudentModuleGradeTypeAndQcsAndCreditHour(selectionId, gradeName, qcs, creditHour);
     }
 
 
+    public Optional<StudentModuleSelectionDTO> findOneByYearNoAndSemesterNoAndModule(Integer academic_year, Integer academic_semester, Integer yearNo, Integer semesterNo) {
+        log.debug("Request to get studentModuleSelection for the student in academicYear : {}, academicSemester: {}, yearNo: {}, semesterNo: {} and module: {} ",
+            academic_year, academic_semester, yearNo, semesterNo);
+        return studentModuleSelectionRepository.findOneByAcademicYearAndAcademicSemesterAndYearNoAndSemesterNo(academic_year, academic_semester, yearNo, semesterNo)
+            .map(studentModuleSelectionMapper::toDto);
+
+    }
+
+    // todo calculate semester QCA
+    public Double getSemesterQCA(Long studentId, Integer academicYear, Integer yearNo, Integer semesterNo) {
+        log.debug("Request to get Semester QCA for student: {} at academicYear: {}, yearNo: {} and semesterNo {}",
+            studentId, academicYear, yearNo, semesterNo);
+        Double semesterQca;
+        Double cumulatedQCS = 0.00;
+        Double cumulatedHours = 0.00;
+        for(StudentModuleSelection studentModuleSelection: findAllStudentSelectionsBySemester(studentId, academicYear, yearNo, semesterNo)) {
+            cumulatedQCS += studentModuleSelection.getQcs();
+            cumulatedHours += studentModuleSelection.getCreditHour() - getNQH();
+        }
+        semesterQca = cumulatedQCS/cumulatedHours;
+        return semesterQca;
+    }
+
+    private List<StudentModuleSelection> findAllStudentSelectionsBySemester(Long studentId, Integer academicYear, Integer yearNo, Integer semesterNo) {
+        log.debug("Request to get Semester selections for student: {} at academicYear: {}, yearNo: {} and semesterNo {}",
+            studentId, academicYear, yearNo, semesterNo);
+        return studentModuleSelectionRepository.findAllByStudentIdAndAcademicYearAndYearNoAndSemesterNo(studentId, academicYear, yearNo, semesterNo);
+    }
+
+    private Double getNQH() {
+        // to be improved later
+        return 0.00;
+    }
+
+    // todo calculate cumulative QCA
+    public Double getCumulativeQCA(Long studentId, Integer academicYear, Integer yearNo) {
+        log.debug("REST request to get Cumulative QCA for student: {} at academicYear: {}, yearNo: {}",
+            studentId, academicYear, yearNo);
+        Double cumulativeQca;
+        Double cumulatedQCS = 0.00;
+        Double cumulatedHours = 0.00;
+        for(StudentModuleSelection studentModuleSelection: findAllStudentSelectionsByYear(studentId, academicYear, yearNo)) {
+            cumulatedQCS += studentModuleSelection.getQcs();
+            cumulatedHours += studentModuleSelection.getCreditHour() - getNQH();
+        }
+        cumulativeQca = cumulatedQCS/cumulatedHours;
+        return cumulativeQca;
+
+    }
+
+    private List<StudentModuleSelection> findAllStudentSelectionsByYear(Long studentId, Integer academicYear, Integer yearNo) {
+        log.debug("Request to get Year selections for student: {} at academicYear: {}, yearNo: {}",
+            studentId, academicYear, yearNo);
+        return studentModuleSelectionRepository.findAllByStudentIdAndAcademicYearAndYearNo(studentId, academicYear, yearNo);
+    }
 }

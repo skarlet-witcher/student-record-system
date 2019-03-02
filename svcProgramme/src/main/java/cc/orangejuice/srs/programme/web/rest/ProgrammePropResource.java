@@ -1,4 +1,6 @@
 package cc.orangejuice.srs.programme.web.rest;
+import cc.orangejuice.srs.programme.domain.ProgrammeProp;
+import cc.orangejuice.srs.programme.domain.enumeration.ProgrammePropType;
 import cc.orangejuice.srs.programme.service.ProgrammePropService;
 import cc.orangejuice.srs.programme.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.programme.web.rest.util.HeaderUtil;
@@ -117,4 +119,26 @@ public class ProgrammePropResource {
         programmePropService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping(value = "/programme-props/", params = { "type", "forEnrollYear", "forYearNo", "forSemesterNo", "key"})
+    public ResponseEntity getProgrammeFactorsOrParts(
+        @RequestParam(value = "type", defaultValue = "GENERAL") String type,
+        @RequestParam(value = "forEnrollYear", required = false) Integer forEnrollYear,
+        @RequestParam(value = "forYearNo", required = false) Integer forYearNo,
+        @RequestParam(value = "forSemesterNo", required = false) Integer forSemesterNo,
+        @RequestParam("key") String key) {
+
+        log.debug("REST request to get year {} ,{}, {} and {} for ProgrammePropDict", forEnrollYear, type, forSemesterNo, key);
+        Optional<ProgrammePropDTO> programmePropDTO = null;
+        if (type == ProgrammePropType.YEAR.toString()) {
+            programmePropDTO = programmePropService.findOneByYear(type, forEnrollYear, forYearNo, key);
+        } else if (type == ProgrammePropType.SEMESTER.toString()) {
+            programmePropDTO = programmePropService.findOneBySemester(type, forEnrollYear, forSemesterNo, key);
+        } else {
+            // general?
+        }
+        return ResponseUtil.wrapOrNotFound(programmePropDTO);
+    }
+
+
 }

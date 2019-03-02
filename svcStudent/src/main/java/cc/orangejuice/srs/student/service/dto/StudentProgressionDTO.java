@@ -3,6 +3,7 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+import cc.orangejuice.srs.student.domain.enumeration.ProgressType;
 import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
 
 /**
@@ -12,30 +13,29 @@ public class StudentProgressionDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
-    private Integer yearNo;
+    private Integer forAcademicYear;
 
-    @NotNull
-    private Integer semesterNo;
+    private Integer forAcademicSemester;
+
+    private Integer forPartNo;
 
     /**
-     * semesterNo -> qca
+     * academicSemester -> qca
      */
     @NotNull
-    @ApiModelProperty(value = "semesterNo -> qca", required = true)
+    @ApiModelProperty(value = "academicSemester -> qca", required = true)
     private Double qca;
 
     /**
-     * 0:not   1...n:part n  | yearNo(finish of a part) -> cumulativeQcaForPart
+     * 1...n:part n  , academicYear(finish of a part) -> cumulativeQcaForPart
      */
-    @NotNull
-    @ApiModelProperty(value = "0:not   1...n:part n  | yearNo(finish of a part) -> cumulativeQcaForPart", required = true)
-    private Integer cumulativeQcaForPart;
+    @ApiModelProperty(value = "1...n:part n  , academicYear(finish of a part) -> cumulativeQcaForPart")
+    private ProgressType progressType;
 
     /**
-     * yearNo -> progressDecision
+     * academicYear -> progressDecision
      */
-    @ApiModelProperty(value = "yearNo -> progressDecision")
+    @ApiModelProperty(value = "academicYear -> progressDecision")
     private ProgressDecision progressDecision;
 
 
@@ -51,20 +51,28 @@ public class StudentProgressionDTO implements Serializable {
         this.id = id;
     }
 
-    public Integer getYearNo() {
-        return yearNo;
+    public Integer getForAcademicYear() {
+        return forAcademicYear;
     }
 
-    public void setYearNo(Integer yearNo) {
-        this.yearNo = yearNo;
+    public void setForAcademicYear(Integer forAcademicYear) {
+        this.forAcademicYear = forAcademicYear;
     }
 
-    public Integer getSemesterNo() {
-        return semesterNo;
+    public Integer getForAcademicSemester() {
+        return forAcademicSemester;
     }
 
-    public void setSemesterNo(Integer semesterNo) {
-        this.semesterNo = semesterNo;
+    public void setForAcademicSemester(Integer forAcademicSemester) {
+        this.forAcademicSemester = forAcademicSemester;
+    }
+
+    public Integer getForPartNo() {
+        return forPartNo;
+    }
+
+    public void setForPartNo(Integer forPartNo) {
+        this.forPartNo = forPartNo;
     }
 
     public Double getQca() {
@@ -75,12 +83,12 @@ public class StudentProgressionDTO implements Serializable {
         this.qca = qca;
     }
 
-    public Integer getCumulativeQcaForPart() {
-        return cumulativeQcaForPart;
+    public ProgressType getProgressType() {
+        return progressType;
     }
 
-    public void setCumulativeQcaForPart(Integer cumulativeQcaForPart) {
-        this.cumulativeQcaForPart = cumulativeQcaForPart;
+    public void setProgressType(ProgressType progressType) {
+        this.progressType = progressType;
     }
 
     public ProgressDecision getProgressDecision() {
@@ -132,10 +140,11 @@ public class StudentProgressionDTO implements Serializable {
     public String toString() {
         return "StudentProgressionDTO{" +
             "id=" + getId() +
-            ", yearNo=" + getYearNo() +
-            ", semesterNo=" + getSemesterNo() +
+            ", forAcademicYear=" + getForAcademicYear() +
+            ", forAcademicSemester=" + getForAcademicSemester() +
+            ", forPartNo=" + getForPartNo() +
             ", qca=" + getQca() +
-            ", cumulativeQcaForPart=" + getCumulativeQcaForPart() +
+            ", progressType='" + getProgressType() + "'" +
             ", progressDecision='" + getProgressDecision() + "'" +
             ", student=" + getStudentId() +
             ", student='" + getStudentStudentNumber() + "'" +

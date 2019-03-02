@@ -1,13 +1,16 @@
 package cc.orangejuice.srs.module.web.rest;
 
 import cc.orangejuice.srs.module.SvcModuleApp;
+
 import cc.orangejuice.srs.module.config.SecurityBeanOverrideConfiguration;
+
 import cc.orangejuice.srs.module.domain.ModuleGrade;
 import cc.orangejuice.srs.module.repository.ModuleGradeRepository;
 import cc.orangejuice.srs.module.service.ModuleGradeService;
 import cc.orangejuice.srs.module.service.dto.ModuleGradeDTO;
 import cc.orangejuice.srs.module.service.mapper.ModuleGradeMapper;
 import cc.orangejuice.srs.module.web.rest.errors.ExceptionTranslator;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +28,7 @@ import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+
 
 import static cc.orangejuice.srs.module.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -209,8 +213,8 @@ public class ModuleGradeResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(moduleGrade.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].lowMarks").value(hasItem(DEFAULT_LOW_MARKS)))
             .andExpect(jsonPath("$.[*].qpv").value(hasItem(DEFAULT_QPV.doubleValue())))
             .andExpect(jsonPath("$.[*].isAffectQca").value(hasItem(DEFAULT_IS_AFFECT_QCA.booleanValue())));
@@ -227,8 +231,8 @@ public class ModuleGradeResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(moduleGrade.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.lowMarks").value(DEFAULT_LOW_MARKS))
             .andExpect(jsonPath("$.qpv").value(DEFAULT_QPV.doubleValue()))
             .andExpect(jsonPath("$.isAffectQca").value(DEFAULT_IS_AFFECT_QCA.booleanValue()));

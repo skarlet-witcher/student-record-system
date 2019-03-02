@@ -1,7 +1,7 @@
 package cc.orangejuice.srs.module.repository;
 
 import cc.orangejuice.srs.module.domain.StudentModuleSelection;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
 

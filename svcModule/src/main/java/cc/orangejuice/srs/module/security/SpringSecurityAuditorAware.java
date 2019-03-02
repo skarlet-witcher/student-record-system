@@ -1,10 +1,11 @@
 package cc.orangejuice.srs.module.security;
 
 import cc.orangejuice.srs.module.config.Constants;
-import org.springframework.data.domain.AuditorAware;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.stereotype.Component;
 
 /**
  * Implementation of AuditorAware based on Spring Security.

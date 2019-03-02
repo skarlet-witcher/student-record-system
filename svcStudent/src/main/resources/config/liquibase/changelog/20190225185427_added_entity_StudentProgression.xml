@@ -22,23 +22,27 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="year_no" type="integer">
+            <column name="for_academic_year" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="for_academic_semester" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="for_part_no" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="qca" type="double" remarks="academicSemester -&gt; qca">
                 <constraints nullable="false" />
             </column>
 
-            <column name="semester_no" type="integer">
-                <constraints nullable="false" />
+            <column name="progress_type" type="varchar(255)" remarks="1...n:part n  , academicYear(finish of a part) -&gt; cumulativeQcaForPart">
+                <constraints nullable="true" />
             </column>
 
-            <column name="qca" type="double" remarks="semesterNo -&gt; qca">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="cumulative_qca_for_part" type="integer" remarks="0:not   1...n:part n  | yearNo(finish of a part) -&gt; cumulativeQcaForPart">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="progress_decision" type="varchar(255)" remarks="yearNo -&gt; progressDecision">
+            <column name="progress_decision" type="varchar(255)" remarks="academicYear -&gt; progressDecision">
                 <constraints nullable="true" />
             </column>
 

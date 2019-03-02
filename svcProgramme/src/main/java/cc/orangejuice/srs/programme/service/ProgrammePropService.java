@@ -1,12 +1,12 @@
 package cc.orangejuice.srs.programme.service;
 
 import cc.orangejuice.srs.programme.domain.ProgrammeProp;
-import cc.orangejuice.srs.programme.domain.enumeration.ProgrammePropType;
 import cc.orangejuice.srs.programme.repository.ProgrammePropRepository;
 import cc.orangejuice.srs.programme.service.dto.ProgrammePropDTO;
 import cc.orangejuice.srs.programme.service.mapper.ProgrammePropMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -79,27 +79,5 @@ public class ProgrammePropService {
      */
     public void delete(Long id) {
         log.debug("Request to delete ProgrammeProp : {}", id);        programmePropRepository.deleteById(id);
-    }
-
-
-    @Transactional(readOnly = true)
-    public Optional<ProgrammePropDTO> findOneForGeneral(ProgrammePropType type, Integer forEnrollYear, String key) {
-        log.debug("Request to get ProgrammePro Where type is {}, forEnrollYear is {} and key is {}", type, forEnrollYear, key);
-        return programmePropRepository.findOneByTypeAndForEnrollYearAndKey(type, forEnrollYear, key)
-            .map(programmePropMapper::toDto);
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<ProgrammePropDTO> findOneForSemester(ProgrammePropType type, Integer forEnrollYear, Integer forSemesterNo, String key) {
-        log.debug("Request to get ProgrammePro  Where type is {}, forEnrollYear is {}, forSemesterNO is {} and key is {}", type, forEnrollYear, forSemesterNo, key);
-        return programmePropRepository.findOneByTypeAndForEnrollYearAndForSemesterNoAndKey(
-            type, forEnrollYear, forSemesterNo, key).map(programmePropMapper::toDto);
-    }
-
-    public Optional<ProgrammePropDTO> findOneForYear(ProgrammePropType type, Integer forEnrollYear, Integer forYearNo, String key) {
-        log.debug("Request to get ProgrammePro  Where type is {}, forEnrollYear is {}, forYearNo is {} and key is {}", type, forEnrollYear, forYearNo, key);
-        return programmePropRepository.findOneByTypeAndForEnrollYearAndForYearNoAndKey(type, forEnrollYear, forYearNo, key)
-            .map(programmePropMapper::toDto);
-
     }
 }

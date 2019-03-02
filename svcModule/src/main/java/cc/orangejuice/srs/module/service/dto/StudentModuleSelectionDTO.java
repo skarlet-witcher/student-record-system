@@ -1,8 +1,6 @@
 package cc.orangejuice.srs.module.service.dto;
-
 import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 

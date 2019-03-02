@@ -1,8 +1,9 @@
 package cc.orangejuice.srs.module.service.mapper;
 
-import cc.orangejuice.srs.module.domain.Module;
+import cc.orangejuice.srs.module.domain.*;
 import cc.orangejuice.srs.module.service.dto.ModuleDTO;
-import org.mapstruct.Mapper;
+
+import org.mapstruct.*;
 
 /**
  * Mapper for the entity Module and its DTO ModuleDTO.

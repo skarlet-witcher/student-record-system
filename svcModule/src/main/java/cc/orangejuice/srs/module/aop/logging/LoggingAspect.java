@@ -1,6 +1,7 @@
 package cc.orangejuice.srs.module.aop.logging;
 
 import io.github.jhipster.config.JHipsterConstants;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -42,8 +43,8 @@ public class LoggingAspect {
     /**
      * Pointcut that matches all Spring beans in the application's main packages.
      */
-    @Pointcut("within(cc.orangejuice.srs.module.repository..*)" +
-        " || within(cc.orangejuice.srs.module.service..*)" +
+    @Pointcut("within(cc.orangejuice.srs.module.repository..*)"+
+        " || within(cc.orangejuice.srs.module.service..*)"+
         " || within(cc.orangejuice.srs.module.web.rest..*)")
     public void applicationPackagePointcut() {
         // Method is empty as this is just a Pointcut, the implementations are in the advices.

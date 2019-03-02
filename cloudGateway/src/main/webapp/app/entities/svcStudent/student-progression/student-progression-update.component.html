@@ -10,34 +10,19 @@
                         [(ngModel)]="studentProgression.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.yearNo" for="field_yearNo">Year No</label>
-                    <input type="number" class="form-control" name="yearNo" id="field_yearNo"
-                        [(ngModel)]="studentProgression.yearNo" required/>
-                    <div [hidden]="!(editForm.controls.yearNo?.dirty && editForm.controls.yearNo?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.yearNo?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.yearNo?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.forAcademicYear" for="field_forAcademicYear">For Academic Year</label>
+                    <input type="number" class="form-control" name="forAcademicYear" id="field_forAcademicYear"
+                        [(ngModel)]="studentProgression.forAcademicYear" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.semesterNo" for="field_semesterNo">Semester No</label>
-                    <input type="number" class="form-control" name="semesterNo" id="field_semesterNo"
-                        [(ngModel)]="studentProgression.semesterNo" required/>
-                    <div [hidden]="!(editForm.controls.semesterNo?.dirty && editForm.controls.semesterNo?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.semesterNo?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.semesterNo?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.forAcademicSemester" for="field_forAcademicSemester">For Academic Semester</label>
+                    <input type="number" class="form-control" name="forAcademicSemester" id="field_forAcademicSemester"
+                        [(ngModel)]="studentProgression.forAcademicSemester" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.forPartNo" for="field_forPartNo">For Part No</label>
+                    <input type="number" class="form-control" name="forPartNo" id="field_forPartNo"
+                        [(ngModel)]="studentProgression.forPartNo" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.qca" for="field_qca" [ngbTooltip]="'cloudGatewayApp.svcStudentStudentProgression.help.qca' | translate">Qca</label>
@@ -55,19 +40,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.cumulativeQcaForPart" for="field_cumulativeQcaForPart" [ngbTooltip]="'cloudGatewayApp.svcStudentStudentProgression.help.cumulativeQcaForPart' | translate">Cumulative Qca For Part</label>
-                    <input type="number" class="form-control" name="cumulativeQcaForPart" id="field_cumulativeQcaForPart"
-                        [(ngModel)]="studentProgression.cumulativeQcaForPart" required/>
-                    <div [hidden]="!(editForm.controls.cumulativeQcaForPart?.dirty && editForm.controls.cumulativeQcaForPart?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.cumulativeQcaForPart?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.cumulativeQcaForPart?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
+                    <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.progressType" for="field_progressType" [ngbTooltip]="'cloudGatewayApp.svcStudentStudentProgression.help.progressType' | translate">Progress Type</label>
+                    <select class="form-control" name="progressType" [(ngModel)]="studentProgression.progressType" id="field_progressType" >
+                        <option value="SEMESTER">{{'cloudGatewayApp.ProgressType.SEMESTER' | translate}}</option>
+                        <option value="YEAR">{{'cloudGatewayApp.ProgressType.YEAR' | translate}}</option>
+                        <option value="PART">{{'cloudGatewayApp.ProgressType.PART' | translate}}</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.progressDecision" for="field_progressDecision" [ngbTooltip]="'cloudGatewayApp.svcStudentStudentProgression.help.progressDecision' | translate">Progress Decision</label>

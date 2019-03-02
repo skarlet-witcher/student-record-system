@@ -36,6 +36,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import cc.orangejuice.srs.student.domain.enumeration.ProgressType;
 import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
 /**
  * Test class for the StudentProgressionResource REST controller.
@@ -46,17 +47,20 @@ import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
 @SpringBootTest(classes = {SecurityBeanOverrideConfiguration.class, SvcStudentApp.class})
 public class StudentProgressionResourceIntTest {
 
-    private static final Integer DEFAULT_YEAR_NO = 1;
-    private static final Integer UPDATED_YEAR_NO = 2;
+    private static final Integer DEFAULT_FOR_ACADEMIC_YEAR = 1;
+    private static final Integer UPDATED_FOR_ACADEMIC_YEAR = 2;
 
-    private static final Integer DEFAULT_SEMESTER_NO = 1;
-    private static final Integer UPDATED_SEMESTER_NO = 2;
+    private static final Integer DEFAULT_FOR_ACADEMIC_SEMESTER = 1;
+    private static final Integer UPDATED_FOR_ACADEMIC_SEMESTER = 2;
+
+    private static final Integer DEFAULT_FOR_PART_NO = 1;
+    private static final Integer UPDATED_FOR_PART_NO = 2;
 
     private static final Double DEFAULT_QCA = 1D;
     private static final Double UPDATED_QCA = 2D;
 
-    private static final Integer DEFAULT_CUMULATIVE_QCA_FOR_PART = 1;
-    private static final Integer UPDATED_CUMULATIVE_QCA_FOR_PART = 2;
+    private static final ProgressType DEFAULT_PROGRESS_TYPE = ProgressType.SEMESTER;
+    private static final ProgressType UPDATED_PROGRESS_TYPE = ProgressType.YEAR;
 
     private static final ProgressDecision DEFAULT_PROGRESS_DECISION = ProgressDecision.PASS;
     private static final ProgressDecision UPDATED_PROGRESS_DECISION = ProgressDecision.SUSPENSION;
@@ -109,10 +113,11 @@ public class StudentProgressionResourceIntTest {
      */
     public static StudentProgression createEntity(EntityManager em) {
         StudentProgression studentProgression = new StudentProgression()
-            .yearNo(DEFAULT_YEAR_NO)
-            .semesterNo(DEFAULT_SEMESTER_NO)
+            .forAcademicYear(DEFAULT_FOR_ACADEMIC_YEAR)
+            .forAcademicSemester(DEFAULT_FOR_ACADEMIC_SEMESTER)
+            .forPartNo(DEFAULT_FOR_PART_NO)
             .qca(DEFAULT_QCA)
-            .cumulativeQcaForPart(DEFAULT_CUMULATIVE_QCA_FOR_PART)
+            .progressType(DEFAULT_PROGRESS_TYPE)
             .progressDecision(DEFAULT_PROGRESS_DECISION);
         return studentProgression;
     }
@@ -138,10 +143,11 @@ public class StudentProgressionResourceIntTest {
         List<StudentProgression> studentProgressionList = studentProgressionRepository.findAll();
         assertThat(studentProgressionList).hasSize(databaseSizeBeforeCreate + 1);
         StudentProgression testStudentProgression = studentProgressionList.get(studentProgressionList.size() - 1);
-        assertThat(testStudentProgression.getYearNo()).isEqualTo(DEFAULT_YEAR_NO);
-        assertThat(testStudentProgression.getSemesterNo()).isEqualTo(DEFAULT_SEMESTER_NO);
+        assertThat(testStudentProgression.getForAcademicYear()).isEqualTo(DEFAULT_FOR_ACADEMIC_YEAR);
+        assertThat(testStudentProgression.getForAcademicSemester()).isEqualTo(DEFAULT_FOR_ACADEMIC_SEMESTER);
+        assertThat(testStudentProgression.getForPartNo()).isEqualTo(DEFAULT_FOR_PART_NO);
         assertThat(testStudentProgression.getQca()).isEqualTo(DEFAULT_QCA);
-        assertThat(testStudentProgression.getCumulativeQcaForPart()).isEqualTo(DEFAULT_CUMULATIVE_QCA_FOR_PART);
+        assertThat(testStudentProgression.getProgressType()).isEqualTo(DEFAULT_PROGRESS_TYPE);
         assertThat(testStudentProgression.getProgressDecision()).isEqualTo(DEFAULT_PROGRESS_DECISION);
     }
 
@@ -167,67 +173,10 @@ public class StudentProgressionResourceIntTest {
 
     @Test
     @Transactional
-    public void checkYearNoIsRequired() throws Exception {
-        int databaseSizeBeforeTest = studentProgressionRepository.findAll().size();
-        // set the field null
-        studentProgression.setYearNo(null);
-
-        // Create the StudentProgression, which fails.
-        StudentProgressionDTO studentProgressionDTO = studentProgressionMapper.toDto(studentProgression);
-
-        restStudentProgressionMockMvc.perform(post("/api/student-progressions")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(studentProgressionDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<StudentProgression> studentProgressionList = studentProgressionRepository.findAll();
-        assertThat(studentProgressionList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkSemesterNoIsRequired() throws Exception {
-        int databaseSizeBeforeTest = studentProgressionRepository.findAll().size();
-        // set the field null
-        studentProgression.setSemesterNo(null);
-
-        // Create the StudentProgression, which fails.
-        StudentProgressionDTO studentProgressionDTO = studentProgressionMapper.toDto(studentProgression);
-
-        restStudentProgressionMockMvc.perform(post("/api/student-progressions")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(studentProgressionDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<StudentProgression> studentProgressionList = studentProgressionRepository.findAll();
-        assertThat(studentProgressionList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkQcaIsRequired() throws Exception {
         int databaseSizeBeforeTest = studentProgressionRepository.findAll().size();
         // set the field null
         studentProgression.setQca(null);
-
-        // Create the StudentProgression, which fails.
-        StudentProgressionDTO studentProgressionDTO = studentProgressionMapper.toDto(studentProgression);
-
-        restStudentProgressionMockMvc.perform(post("/api/student-progressions")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(studentProgressionDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<StudentProgression> studentProgressionList = studentProgressionRepository.findAll();
-        assertThat(studentProgressionList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkCumulativeQcaForPartIsRequired() throws Exception {
-        int databaseSizeBeforeTest = studentProgressionRepository.findAll().size();
-        // set the field null
-        studentProgression.setCumulativeQcaForPart(null);
 
         // Create the StudentProgression, which fails.
         StudentProgressionDTO studentProgressionDTO = studentProgressionMapper.toDto(studentProgression);
@@ -252,10 +201,11 @@ public class StudentProgressionResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(studentProgression.getId().intValue())))
-            .andExpect(jsonPath("$.[*].yearNo").value(hasItem(DEFAULT_YEAR_NO)))
-            .andExpect(jsonPath("$.[*].semesterNo").value(hasItem(DEFAULT_SEMESTER_NO)))
+            .andExpect(jsonPath("$.[*].forAcademicYear").value(hasItem(DEFAULT_FOR_ACADEMIC_YEAR)))
+            .andExpect(jsonPath("$.[*].forAcademicSemester").value(hasItem(DEFAULT_FOR_ACADEMIC_SEMESTER)))
+            .andExpect(jsonPath("$.[*].forPartNo").value(hasItem(DEFAULT_FOR_PART_NO)))
             .andExpect(jsonPath("$.[*].qca").value(hasItem(DEFAULT_QCA.doubleValue())))
-            .andExpect(jsonPath("$.[*].cumulativeQcaForPart").value(hasItem(DEFAULT_CUMULATIVE_QCA_FOR_PART)))
+            .andExpect(jsonPath("$.[*].progressType").value(hasItem(DEFAULT_PROGRESS_TYPE.toString())))
             .andExpect(jsonPath("$.[*].progressDecision").value(hasItem(DEFAULT_PROGRESS_DECISION.toString())));
     }
     
@@ -270,10 +220,11 @@ public class StudentProgressionResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(studentProgression.getId().intValue()))
-            .andExpect(jsonPath("$.yearNo").value(DEFAULT_YEAR_NO))
-            .andExpect(jsonPath("$.semesterNo").value(DEFAULT_SEMESTER_NO))
+            .andExpect(jsonPath("$.forAcademicYear").value(DEFAULT_FOR_ACADEMIC_YEAR))
+            .andExpect(jsonPath("$.forAcademicSemester").value(DEFAULT_FOR_ACADEMIC_SEMESTER))
+            .andExpect(jsonPath("$.forPartNo").value(DEFAULT_FOR_PART_NO))
             .andExpect(jsonPath("$.qca").value(DEFAULT_QCA.doubleValue()))
-            .andExpect(jsonPath("$.cumulativeQcaForPart").value(DEFAULT_CUMULATIVE_QCA_FOR_PART))
+            .andExpect(jsonPath("$.progressType").value(DEFAULT_PROGRESS_TYPE.toString()))
             .andExpect(jsonPath("$.progressDecision").value(DEFAULT_PROGRESS_DECISION.toString()));
     }
 
@@ -298,10 +249,11 @@ public class StudentProgressionResourceIntTest {
         // Disconnect from session so that the updates on updatedStudentProgression are not directly saved in db
         em.detach(updatedStudentProgression);
         updatedStudentProgression
-            .yearNo(UPDATED_YEAR_NO)
-            .semesterNo(UPDATED_SEMESTER_NO)
+            .forAcademicYear(UPDATED_FOR_ACADEMIC_YEAR)
+            .forAcademicSemester(UPDATED_FOR_ACADEMIC_SEMESTER)
+            .forPartNo(UPDATED_FOR_PART_NO)
             .qca(UPDATED_QCA)
-            .cumulativeQcaForPart(UPDATED_CUMULATIVE_QCA_FOR_PART)
+            .progressType(UPDATED_PROGRESS_TYPE)
             .progressDecision(UPDATED_PROGRESS_DECISION);
         StudentProgressionDTO studentProgressionDTO = studentProgressionMapper.toDto(updatedStudentProgression);
 
@@ -314,10 +266,11 @@ public class StudentProgressionResourceIntTest {
         List<StudentProgression> studentProgressionList = studentProgressionRepository.findAll();
         assertThat(studentProgressionList).hasSize(databaseSizeBeforeUpdate);
         StudentProgression testStudentProgression = studentProgressionList.get(studentProgressionList.size() - 1);
-        assertThat(testStudentProgression.getYearNo()).isEqualTo(UPDATED_YEAR_NO);
-        assertThat(testStudentProgression.getSemesterNo()).isEqualTo(UPDATED_SEMESTER_NO);
+        assertThat(testStudentProgression.getForAcademicYear()).isEqualTo(UPDATED_FOR_ACADEMIC_YEAR);
+        assertThat(testStudentProgression.getForAcademicSemester()).isEqualTo(UPDATED_FOR_ACADEMIC_SEMESTER);
+        assertThat(testStudentProgression.getForPartNo()).isEqualTo(UPDATED_FOR_PART_NO);
         assertThat(testStudentProgression.getQca()).isEqualTo(UPDATED_QCA);
-        assertThat(testStudentProgression.getCumulativeQcaForPart()).isEqualTo(UPDATED_CUMULATIVE_QCA_FOR_PART);
+        assertThat(testStudentProgression.getProgressType()).isEqualTo(UPDATED_PROGRESS_TYPE);
         assertThat(testStudentProgression.getProgressDecision()).isEqualTo(UPDATED_PROGRESS_DECISION);
     }
 

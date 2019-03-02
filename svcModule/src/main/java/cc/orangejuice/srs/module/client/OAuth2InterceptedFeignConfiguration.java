@@ -1,12 +1,13 @@
 package cc.orangejuice.srs.module.client;
 
-import feign.RequestInterceptor;
-import io.github.jhipster.security.uaa.LoadBalancedResourceDetails;
+import java.io.IOException;
+
 import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 
-import java.io.IOException;
+import feign.RequestInterceptor;
+import io.github.jhipster.security.uaa.LoadBalancedResourceDetails;
 
 public class OAuth2InterceptedFeignConfiguration {
 

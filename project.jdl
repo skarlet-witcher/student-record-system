@@ -38,14 +38,19 @@ enum Gender {
 }
 
 entity StudentProgression{
-    yearNo Integer required
-    semesterNo Integer required
-    /** semesterNo -> qca */
+    forAcademicYear Integer
+    forAcademicSemester Integer
+    forPartNo Integer
+    /** academicSemester -> qca */
     qca Double required
-    /** 0:not   1...n:part n  | yearNo(finish of a part) -> cumulativeQcaForPart */
-    cumulativeQcaForPart Integer required
-    /** yearNo -> progressDecision*/
+    /** 1...n:part n  , academicYear(finish of a part) -> cumulativeQcaForPart */
+    progressType ProgressType
+    /** academicYear -> progressDecision*/
     progressDecision ProgressDecision
+}
+
+enum ProgressType{
+    SEMESTER, YEAR, PART
 }
 
 /** SUSPENSION: pause progress, won't be registered in next semester

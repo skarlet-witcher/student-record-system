@@ -1,9 +1,9 @@
 package cc.orangejuice.srs.module.service.mapper;
 
-import cc.orangejuice.srs.module.domain.StudentModuleSelection;
+import cc.orangejuice.srs.module.domain.*;
 import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+
+import org.mapstruct.*;
 
 /**
  * Mapper for the entity StudentModuleSelection and its DTO StudentModuleSelectionDTO.

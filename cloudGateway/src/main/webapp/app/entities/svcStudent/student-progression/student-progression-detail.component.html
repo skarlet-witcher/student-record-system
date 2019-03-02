@@ -5,21 +5,25 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.yearNo">Year No</span></dt>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.forAcademicYear">For Academic Year</span></dt>
                 <dd>
-                    <span>{{studentProgression.yearNo}}</span>
+                    <span>{{studentProgression.forAcademicYear}}</span>
                 </dd>
-                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.semesterNo">Semester No</span></dt>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.forAcademicSemester">For Academic Semester</span></dt>
                 <dd>
-                    <span>{{studentProgression.semesterNo}}</span>
+                    <span>{{studentProgression.forAcademicSemester}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.forPartNo">For Part No</span></dt>
+                <dd>
+                    <span>{{studentProgression.forPartNo}}</span>
                 </dd>
                 <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.qca" [ngbTooltip]="'cloudGatewayApp.svcStudentStudentProgression.help.qca' | translate">Qca</span></dt>
                 <dd>
                     <span>{{studentProgression.qca}}</span>
                 </dd>
-                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.cumulativeQcaForPart" [ngbTooltip]="'cloudGatewayApp.svcStudentStudentProgression.help.cumulativeQcaForPart' | translate">Cumulative Qca For Part</span></dt>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.progressType" [ngbTooltip]="'cloudGatewayApp.svcStudentStudentProgression.help.progressType' | translate">Progress Type</span></dt>
                 <dd>
-                    <span>{{studentProgression.cumulativeQcaForPart}}</span>
+                    <span jhiTranslate="{{'cloudGatewayApp.ProgressType.' + studentProgression.progressType}}">{{studentProgression.progressType}}</span>
                 </dd>
                 <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.progressDecision" [ngbTooltip]="'cloudGatewayApp.svcStudentStudentProgression.help.progressDecision' | translate">Progress Decision</span></dt>
                 <dd>

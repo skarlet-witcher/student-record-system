@@ -2,38 +2,34 @@
     "name": "StudentProgression",
     "fields": [
         {
-            "fieldName": "yearNo",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldName": "forAcademicYear",
+            "fieldType": "Integer"
         },
         {
-            "fieldName": "semesterNo",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldName": "forAcademicSemester",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "forPartNo",
+            "fieldType": "Integer"
         },
         {
             "fieldName": "qca",
-            "javadoc": "semesterNo -> qca",
+            "javadoc": "academicSemester -> qca",
             "fieldType": "Double",
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
-            "fieldName": "cumulativeQcaForPart",
-            "javadoc": "0:not   1...n:part n  | yearNo(finish of a part) -> cumulativeQcaForPart",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldName": "progressType",
+            "javadoc": "1...n:part n  , academicYear(finish of a part) -> cumulativeQcaForPart",
+            "fieldType": "ProgressType",
+            "fieldValues": "SEMESTER,YEAR,PART"
         },
         {
             "fieldName": "progressDecision",
-            "javadoc": "yearNo -> progressDecision",
+            "javadoc": "academicYear -> progressDecision",
             "fieldType": "ProgressDecision",
             "fieldValues": "PASS,SUSPENSION,FAIL_CAN_REPEAT,FAIL_NO_REPEAT"
         }

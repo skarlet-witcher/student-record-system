@@ -5,7 +5,12 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import { StudentProgressionService } from 'app/entities/svcStudent/student-progression/student-progression.service';
-import { IStudentProgression, StudentProgression, ProgressDecision } from 'app/shared/model/svcStudent/student-progression.model';
+import {
+    IStudentProgression,
+    StudentProgression,
+    ProgressType,
+    ProgressDecision
+} from 'app/shared/model/svcStudent/student-progression.model';
 
 describe('Service Tests', () => {
     describe('StudentProgression Service', () => {
@@ -21,7 +26,7 @@ describe('Service Tests', () => {
             service = injector.get(StudentProgressionService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new StudentProgression(0, 0, 0, 0, 0, ProgressDecision.PASS);
+            elemDefault = new StudentProgression(0, 0, 0, 0, 0, ProgressType.SEMESTER, ProgressDecision.PASS);
         });
 
         describe('Service methods', async () => {
@@ -55,10 +60,11 @@ describe('Service Tests', () => {
             it('should update a StudentProgression', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        yearNo: 1,
-                        semesterNo: 1,
+                        forAcademicYear: 1,
+                        forAcademicSemester: 1,
+                        forPartNo: 1,
                         qca: 1,
-                        cumulativeQcaForPart: 1,
+                        progressType: 'BBBBBB',
                         progressDecision: 'BBBBBB'
                     },
                     elemDefault
@@ -76,10 +82,11 @@ describe('Service Tests', () => {
             it('should return a list of StudentProgression', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        yearNo: 1,
-                        semesterNo: 1,
+                        forAcademicYear: 1,
+                        forAcademicSemester: 1,
+                        forPartNo: 1,
                         qca: 1,
-                        cumulativeQcaForPart: 1,
+                        progressType: 'BBBBBB',
                         progressDecision: 'BBBBBB'
                     },
                     elemDefault

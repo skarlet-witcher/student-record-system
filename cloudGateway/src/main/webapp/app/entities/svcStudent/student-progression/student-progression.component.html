@@ -15,10 +15,11 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="yearNo"><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.yearNo">Year No</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="semesterNo"><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.semesterNo">Semester No</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="forAcademicYear"><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.forAcademicYear">For Academic Year</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="forAcademicSemester"><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.forAcademicSemester">For Academic Semester</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="forPartNo"><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.forPartNo">For Part No</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="qca"><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.qca">Qca</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="cumulativeQcaForPart"><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.cumulativeQcaForPart">Cumulative Qca For Part</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="progressType"><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.progressType">Progress Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="progressDecision"><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.progressDecision">Progress Decision</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="studentStudentNumber"><span jhiTranslate="cloudGatewayApp.svcStudentStudentProgression.student">Student</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
@@ -27,10 +28,11 @@
             <tbody>
             <tr *ngFor="let studentProgression of studentProgressions ;trackBy: trackId">
                 <td><a [routerLink]="['/student-progression', studentProgression.id, 'view' ]">{{studentProgression.id}}</a></td>
-                <td>{{studentProgression.yearNo}}</td>
-                <td>{{studentProgression.semesterNo}}</td>
+                <td>{{studentProgression.forAcademicYear}}</td>
+                <td>{{studentProgression.forAcademicSemester}}</td>
+                <td>{{studentProgression.forPartNo}}</td>
                 <td>{{studentProgression.qca}}</td>
-                <td>{{studentProgression.cumulativeQcaForPart}}</td>
+                <td jhiTranslate="{{'cloudGatewayApp.ProgressType.' + studentProgression.progressType}}">{{studentProgression.progressType}}</td>
                 <td jhiTranslate="{{'cloudGatewayApp.ProgressDecision.' + studentProgression.progressDecision}}">{{studentProgression.progressDecision}}</td>
                 <td>
                     <div *ngIf="studentProgression.studentId">

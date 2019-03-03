@@ -94,16 +94,16 @@ public class StudentProgressionService {
 
         //Get list of QCA
         List<StudentProgression> studentProgressionRepositoryAll = studentProgressionRepository.findAll();
-        List<StudentProgressionDTO> studentProgressionDTO = studentProgressionMapper.toDto(studentProgressionRepositoryAll);
+        List<StudentProgressionDTO> studentProgressionDTOS = studentProgressionMapper.toDto(studentProgressionRepositoryAll);
 
         //Check if QCA in the list is in the first part, and >2.0 or <2.0
-        for (StudentProgressionDTO studentProgression : studentProgressionDTO) {
+        for (StudentProgressionDTO studentProgressionDTO : studentProgressionDTOS) {
             //If QCA in the first part
-            if (studentProgression.getForPartNo() == 1 && studentProgression.getForAcademicSemester() == 2) {
+            if (studentProgressionDTO.getForPartNo() == 1 && studentProgressionDTO.getForAcademicSemester() == 2) {
                 //if QCA >2.0
-                if (studentProgression.getQca() >= 2) {
-                    studentProgression.setProgressDecision(ProgressDecision.PASS);
-                    StudentProgression modifiedStudentProgression = studentProgressionMapper.toEntity(studentProgression);
+                if (studentProgressionDTO.getQca() >= 2) {
+                    studentProgressionDTO.setProgressDecision(ProgressDecision.PASS);
+                    StudentProgression modifiedStudentProgression = studentProgressionMapper.toEntity(studentProgressionDTO);
                     studentProgressionRepository.save(modifiedStudentProgression);
                 }
 
@@ -114,7 +114,7 @@ public class StudentProgressionService {
                     boolean isLearning2Semester = false;
 
                     for (StudentModuleSelectionDTO gradeRecord : gradeList) {
-                        if (gradeRecord.getStudentId().equals(studentProgression.getStudentId())) {
+                        if (gradeRecord.getStudentId().equals(studentProgressionDTO.getStudentId())) {
                             if (gradeRecord.getYearNo() == 1)
                                 gradeOfThisStduent.add(gradeRecord);
                             if (isLearning2Semester == false) {
@@ -133,7 +133,7 @@ public class StudentProgressionService {
                     });
 
                     double QCAbeforeSwap = calculateQCAafterSwap(gradeOfThisStduent);
-                    System.out.println("QCA before: " +QCAbeforeSwap + studentProgression.getProgressDecision());
+                    System.out.println("QCA before: " +QCAbeforeSwap + studentProgressionDTO.getProgressDecision());
 
                     //If he only learns in 1 semester
                     if (isLearning2Semester == false) {
@@ -150,19 +150,19 @@ public class StudentProgressionService {
 
                     //if (swap > 2.0) or <2.0
                     if(QCAafterSwap >= 2.0){
-                        studentProgression.setProgressDecision(ProgressDecision.FAIL_CAN_REPEAT);
-                        StudentProgression modifiedStudentProgression = studentProgressionMapper.toEntity(studentProgression);
+                        studentProgressionDTO.setProgressDecision(ProgressDecision.FAIL_CAN_REPEAT);
+                        StudentProgression modifiedStudentProgression = studentProgressionMapper.toEntity(studentProgressionDTO);
                         studentProgressionRepository.save(modifiedStudentProgression);
                     }
                     else {
-                        studentProgression.setProgressDecision(ProgressDecision.FAIL_NO_REPEAT);
-                        StudentProgression modifiedStudentProgression = studentProgressionMapper.toEntity(studentProgression);
+                        studentProgressionDTO.setProgressDecision(ProgressDecision.FAIL_NO_REPEAT);
+                        StudentProgression modifiedStudentProgression = studentProgressionMapper.toEntity(studentProgressionDTO);
                         studentProgressionRepository.save(modifiedStudentProgression);
 
                     }
 
                     //Decision CAN_REPEAT or NO_REPEAT
-                    System.out.println("QCA after: " +QCAafterSwap + studentProgression.getProgressDecision());
+                    System.out.println("QCA after: " +QCAafterSwap + studentProgressionDTO.getProgressDecision());
 
                 }
 
@@ -183,15 +183,12 @@ public class StudentProgressionService {
         return 0;
     }
 
-    public static double calculateQCAafterSwap(List<StudentModuleSelectionDTO> gradeOfThisStuduent) {
+    public static double calculateQCAafterSwap(List<StudentModuleSelectionDTO> gradeOfThisStudent) {
         double QCA = 0.0;
         Double totalAttemptHours = 0.0;
         //Accumulate QCA and attempthours
-        for (StudentModuleSelectionDTO grade : gradeOfThisStuduent) {
-
+        for (StudentModuleSelectionDTO grade : gradeOfThisStudent) {
             QCA = QCA + grade.getQcs();
-
-
                 totalAttemptHours += grade.getCreditHour() - getNQH();
 
 //            int eachAttemptHour = 0;
@@ -206,5 +203,25 @@ public class StudentProgressionService {
         return QCA;
     }
 
+    //(Function not finish) Long will change it later.
+    //Xiangkai is responsible for producing the Student_progression record.
+    // And he will call this function to fill the data into the "Progress Decision" column
+    // he will need to check the condition (studentProgressionDTO.getForPartNo() == 1 && studentProgressionDTO.getForAcademicSemester() == 2)
+
+    /**
+     * Make the decision based on original_QCA and listGradeOfThisStudent
+     * This function does not check the condition whether the student_progression is in Decision Point or not
+     * This function only check if
+     *    QCA > 2.0 : PASS
+     *    QCA < 2.0: then swap 4 worst grades, then calculating QCA again based on listGradeOfThisStudent, then output decison
+     * @param originalCumulativeQca
+     * @param listGradeOfThisStudent: to take 4 worst modules to swap
+     * @return PASS, FAIL_CAN_REPEAT, FAIL_NO_REPEAT
+     */
+    private Enum<ProgressDecision> makeProgressionDecision(double originalCumulativeQca, List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
+        if(originalCumulativeQca > 2.0)
+            return ProgressDecision.PASS;
+        else return ProgressDecision.FAIL_CAN_REPEAT;
+    }
 
 }

@@ -78,6 +78,7 @@ public class StudentModuleSelectionService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete StudentModuleSelection : {}", id);        studentModuleSelectionRepository.deleteById(id);
+        log.debug("Request to delete StudentModuleSelection : {}", id);
+        studentModuleSelectionRepository.deleteById(id);
     }
 }

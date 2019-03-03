@@ -78,6 +78,7 @@ public class FacultyService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete Faculty : {}", id);        facultyRepository.deleteById(id);
+        log.debug("Request to delete Faculty : {}", id);
+        facultyRepository.deleteById(id);
     }
 }

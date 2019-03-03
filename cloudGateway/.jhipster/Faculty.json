@@ -12,9 +12,9 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "department",
             "otherEntityName": "department",
-            "otherEntityRelationshipName": "faculty"
+            "otherEntityRelationshipName": "faculty",
+            "relationshipName": "department"
         }
     ],
     "changelogDate": "20190224000009",

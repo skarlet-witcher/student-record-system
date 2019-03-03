@@ -1,6 +1,6 @@
 # cloudAuth
 
-This application was generated using JHipster 5.8.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.8.1](https://www.jhipster.tech/documentation-archive/v5.8.1).
+This application was generated using JHipster 5.8.2, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.8.2](https://www.jhipster.tech/documentation-archive/v5.8.2).
 
 This is a "uaa" application intended to be part of a microservice architecture, please refer to the [Doing microservices with JHipster][] page of the documentation for more information.
 
@@ -79,13 +79,13 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
 
 [jhipster homepage and latest documentation]: https://www.jhipster.tech
-[jhipster 5.8.1 archive]: https://www.jhipster.tech/documentation-archive/v5.8.1
-[doing microservices with jhipster]: https://www.jhipster.tech/documentation-archive/v5.8.1/microservices-architecture/
+[jhipster 5.8.2 archive]: https://www.jhipster.tech/documentation-archive/v5.8.2
+[doing microservices with jhipster]: https://www.jhipster.tech/documentation-archive/v5.8.2/microservices-architecture/
 
-[Using UAA for Microservice Security]: https://www.jhipster.tech/documentation-archive/v5.8.1/using-uaa/[Using JHipster in development]: https://www.jhipster.tech/documentation-archive/v5.8.1/development/
-[Service Discovery and Configuration with the JHipster-Registry]: https://www.jhipster.tech/documentation-archive/v5.8.1/microservices-architecture/#jhipster-registry
-[Using Docker and Docker-Compose]: https://www.jhipster.tech/documentation-archive/v5.8.1/docker-compose
-[Using JHipster in production]: https://www.jhipster.tech/documentation-archive/v5.8.1/production/
-[Running tests page]: https://www.jhipster.tech/documentation-archive/v5.8.1/running-tests/
-[Code quality page]: https://www.jhipster.tech/documentation-archive/v5.8.1/code-quality/
-[Setting up Continuous Integration]: https://www.jhipster.tech/documentation-archive/v5.8.1/setting-up-ci/
+[Using UAA for Microservice Security]: https://www.jhipster.tech/documentation-archive/v5.8.2/using-uaa/[Using JHipster in development]: https://www.jhipster.tech/documentation-archive/v5.8.2/development/
+[Service Discovery and Configuration with the JHipster-Registry]: https://www.jhipster.tech/documentation-archive/v5.8.2/microservices-architecture/#jhipster-registry
+[Using Docker and Docker-Compose]: https://www.jhipster.tech/documentation-archive/v5.8.2/docker-compose
+[Using JHipster in production]: https://www.jhipster.tech/documentation-archive/v5.8.2/production/
+[Running tests page]: https://www.jhipster.tech/documentation-archive/v5.8.2/running-tests/
+[Code quality page]: https://www.jhipster.tech/documentation-archive/v5.8.2/code-quality/
+[Setting up Continuous Integration]: https://www.jhipster.tech/documentation-archive/v5.8.2/setting-up-ci/

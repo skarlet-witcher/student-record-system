@@ -12,17 +12,17 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "programme",
             "otherEntityName": "programme",
-            "otherEntityRelationshipName": "department"
+            "otherEntityRelationshipName": "department",
+            "relationshipName": "programme"
         },
         {
             "relationshipType": "many-to-one",
+            "otherEntityName": "faculty",
+            "otherEntityRelationshipName": "department",
             "relationshipValidateRules": "required",
             "relationshipName": "faculty",
-            "otherEntityName": "faculty",
-            "otherEntityField": "name",
-            "otherEntityRelationshipName": "faculty"
+            "otherEntityField": "name"
         }
     ],
     "changelogDate": "20190224000010",

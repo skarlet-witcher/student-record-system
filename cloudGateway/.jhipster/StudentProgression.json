@@ -37,10 +37,10 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "student",
             "otherEntityName": "student",
-            "otherEntityField": "studentNumber",
-            "otherEntityRelationshipName": "student"
+            "otherEntityRelationshipName": "studentProgression",
+            "relationshipName": "student",
+            "otherEntityField": "studentNumber"
         }
     ],
     "changelogDate": "20190225185427",

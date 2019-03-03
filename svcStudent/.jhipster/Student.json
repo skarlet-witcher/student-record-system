@@ -77,15 +77,15 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "studentEnroll",
             "otherEntityName": "studentEnroll",
-            "otherEntityRelationshipName": "student"
+            "otherEntityRelationshipName": "student",
+            "relationshipName": "studentEnroll"
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "studentProgression",
             "otherEntityName": "studentProgression",
-            "otherEntityRelationshipName": "student"
+            "otherEntityRelationshipName": "student",
+            "relationshipName": "studentProgression"
         }
     ],
     "changelogDate": "20190225185425",

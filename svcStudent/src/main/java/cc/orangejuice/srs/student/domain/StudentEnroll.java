@@ -48,7 +48,7 @@ public class StudentEnroll implements Serializable {
     private EnrollStatus status;
 
     @ManyToOne
-    @JsonIgnoreProperties("students")
+    @JsonIgnoreProperties("studentEnrolls")
     private Student student;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

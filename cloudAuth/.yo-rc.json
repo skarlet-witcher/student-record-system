@@ -23,7 +23,7 @@
     "baseName": "cloudAuth",
     "applicationType": "uaa",
     "buildTool": "gradle",
-    "jhipsterVersion": "5.8.1",
+    "jhipsterVersion": "5.8.2",
     "skipUserManagement": false,
     "clientPackageManager": "npm",
     "authenticationType": "uaa",

@@ -47,7 +47,7 @@ public class Programme implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties("departments")
+    @JsonIgnoreProperties("programmes")
     private Department department;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

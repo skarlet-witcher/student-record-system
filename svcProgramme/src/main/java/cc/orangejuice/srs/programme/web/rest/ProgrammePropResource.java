@@ -1,28 +1,23 @@
 package cc.orangejuice.srs.programme.web.rest;
-import cc.orangejuice.srs.programme.domain.ProgrammeProp;
+
 import cc.orangejuice.srs.programme.domain.enumeration.ProgrammePropType;
 import cc.orangejuice.srs.programme.service.ProgrammePropService;
+import cc.orangejuice.srs.programme.service.dto.ProgrammePropDTO;
 import cc.orangejuice.srs.programme.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.programme.web.rest.util.HeaderUtil;
 import cc.orangejuice.srs.programme.web.rest.util.PaginationUtil;
-import cc.orangejuice.srs.programme.service.dto.ProgrammePropDTO;
 import io.github.jhipster.web.util.ResponseUtil;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -123,10 +118,10 @@ public class ProgrammePropResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @ApiImplicitParams({
-        @ApiImplicitParam(name = "forYearNo", allowEmptyValue = true),
-        @ApiImplicitParam(name = "forSemesterNo", allowEmptyValue = true)
-    })
+    //    @ApiImplicitParams({
+//        @ApiImplicitParam(name = "forYearNo", allowEmptyValue = true),
+//        @ApiImplicitParam(name = "forSemesterNo", allowEmptyValue = true)
+//    })
     @GetMapping(value = "/programme-props/query")
     public ResponseEntity<ProgrammePropDTO> getProgrammeProps(
         @RequestParam(value = "type", defaultValue = "GENERAL") ProgrammePropType type,

@@ -1,25 +1,22 @@
 package cc.orangejuice.srs.module.web.rest;
-import cc.orangejuice.srs.module.domain.Module;
+
 import cc.orangejuice.srs.module.service.StudentModuleSelectionService;
+import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.module.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.module.web.rest.util.HeaderUtil;
 import cc.orangejuice.srs.module.web.rest.util.PaginationUtil;
-import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -133,7 +130,7 @@ public class StudentModuleSelectionResource {
 
 
     // todo get selections by academic_year, yearNo
-    @GetMapping(value = "/student-module-selections/selection-details", params = {"studentId", "academicYear", "yearNo"})
+    @GetMapping(value = "/student-module-selections/query")
     public List<StudentModuleSelectionDTO> getStudentModuleSelections(
         @RequestParam("studentId") Long studentId,
         @RequestParam("academicYear") Integer academicYear,
@@ -159,7 +156,7 @@ public class StudentModuleSelectionResource {
     }
 
     // todo calculate cumulative qca
-    @GetMapping(value = "/student-module-selections/cumulative-qca", params = {"studentId","academicYear", "yearNo"})
+    @GetMapping(value = "/student-module-selections/cumulative-qca")
     public Double getCumulativeQCA(
         @Param("studentId") Long studentId,
         @Param("academicYear") Integer academicYear,

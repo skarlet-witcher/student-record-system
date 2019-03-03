@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@AuthorizedFeignClient(name = "svc-programme")
+@AuthorizedFeignClient(name = "svcprogramme")
 @RestController
 public interface ProgrammeFeignClient {
-    @GetMapping(value = "/api/programme-props")
-    ResponseEntity<ProgrammePropDTO> getProgrammeProp(
+    @GetMapping(value = "/api/programme-props/query")
+    ResponseEntity<ProgrammePropDTO> getProgrammeProps(
         @RequestParam(value = "type", defaultValue = "GENERAL") String type,
         @RequestParam(value = "forEnrollYear", required = false) Integer forEnrollYear,
         @RequestParam(value = "forYearNo", required = false) Integer forYearNo,

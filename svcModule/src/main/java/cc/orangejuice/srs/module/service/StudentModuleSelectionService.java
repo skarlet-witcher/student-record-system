@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -125,7 +126,7 @@ public class StudentModuleSelectionService {
             studentModuleSelection.get().getYearNo(),
             studentModuleSelection.get().getSemesterNo());
 
-        ResponseEntity programmePropResponse = programmeFeignClient.getProgrammeProp("SEMESTER",
+        ResponseEntity programmePropResponse = programmeFeignClient.getProgrammeProps("SEMESTER",
             studentModuleSelection.get().getAcademicYear(),
             studentModuleSelection.get().getYearNo(),
             studentModuleSelection.get().getSemesterNo(),
@@ -141,24 +142,28 @@ public class StudentModuleSelectionService {
 
     // todo update QCS
     private void updateQCS(Long selectionId, Double mark, Double creditHour) {
-        log.debug("Request to update QPV and GradeName by Mark: {}", mark);
+        log.debug("Request to update QPV and GradeName by Mark: {}, creditHour: {}", mark, creditHour);
 
         // get QPV and GradeName
         Double qcs;
-        Double qpv= 0.00;
         String gradeName="";
+        ModuleGrade moduleGradeResult = null;
 
         List<ModuleGrade> moduleGradeList = moduleGradeService.getAllModuleGradewithQcaAffected();
+        log.debug("moduleGradeList result: {}", moduleGradeList.size());
 
         for(ModuleGrade moduleGrade : moduleGradeList) {
             if(mark >= moduleGrade.getLowMarks()) {
-                qpv = moduleGrade.getQpv();
-                gradeName = moduleGrade.getName();
-                return;
+                moduleGradeResult = moduleGrade;
+                break;
             }
         }
-        qcs = qpv * creditHour;
-        studentModuleSelectionRepository.updateByIdAndStudentModuleGradeTypeAndQcsAndCreditHour(selectionId, gradeName, qcs, creditHour);
+
+        qcs = moduleGradeResult.getQpv() * creditHour;
+        DecimalFormat df = new DecimalFormat("#.##");
+        qcs = Double.parseDouble(df.format(qcs));
+        log.debug("Request to update student result with selectionId: {}, gradeName: {}, QCS: {}, creditHour: {}", selectionId, gradeName, qcs, creditHour);
+        studentModuleSelectionRepository.updateById(selectionId, moduleGradeResult, qcs, creditHour);
     }
 
     public Optional<StudentModuleSelectionDTO> findAllByYearNoAndSemesterNo(Integer academic_year, Integer yearNo, Integer semesterNo) {

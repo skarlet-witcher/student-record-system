@@ -15,5 +15,5 @@ import java.util.List;
 @Repository
 public interface ModuleGradeRepository extends JpaRepository<ModuleGrade, Long> {
 
-    List<ModuleGrade> findAllByIsAffectQca(@Param("isAffectQca") boolean isAffectQca);
+    List<ModuleGrade> findAllByIsAffectQca(@Param("is_affect_qca") Boolean isAffectQca);
 }

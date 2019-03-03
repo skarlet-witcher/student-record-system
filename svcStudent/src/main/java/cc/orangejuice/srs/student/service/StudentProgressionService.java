@@ -1,13 +1,16 @@
 package cc.orangejuice.srs.student.service;
 
+import cc.orangejuice.srs.student.domain.Student;
 import cc.orangejuice.srs.student.domain.StudentProgression;
 import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
 import cc.orangejuice.srs.student.repository.StudentProgressionRepository;
+import cc.orangejuice.srs.student.repository.StudentRepository;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.service.mapper.StudentProgressionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -28,6 +31,9 @@ public class StudentProgressionService {
     private final StudentProgressionRepository studentProgressionRepository;
 
     private final StudentProgressionMapper studentProgressionMapper;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     public StudentProgressionService(StudentProgressionRepository studentProgressionRepository, StudentProgressionMapper studentProgressionMapper) {
         this.studentProgressionRepository = studentProgressionRepository;
@@ -115,5 +121,12 @@ public class StudentProgressionService {
 
     }
 
+    public void calculateQCA(){
+        List<Student> studentList = studentRepository.findAll();
+//        List<Student>
+        for (Student student:studentList ) {
 
+
+        }
+    }
 }

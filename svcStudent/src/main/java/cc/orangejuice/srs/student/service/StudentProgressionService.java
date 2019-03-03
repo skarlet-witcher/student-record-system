@@ -182,34 +182,22 @@ public class StudentProgressionService {
             gradeOfThisStduent.get(i).setQcs(12.0);
         }
     }
-    /**
-     * resource -> this.calculate qca
-     * qca gotten, then call makeProgressionDecision(cumulativeQca, qcs per module)
-     */
-    // service function
 
-    /**
-     * qca calculate function
-     *
-     * @params all data needed.
-     */
-    private double calculateQca(StudentModuleSelectionDTO studentModuleSelectionDTO) {
+
+    private static Integer getNQH() {
         return 0;
-    }
-
-    // todo Long
-    // make progression decision
-    private void makeProgressionDecision(double originalCumulativeQca, StudentModuleSelectionDTO studentModuleSelectionDTO) {
-
     }
 
     public static double calculateQCAafterSwap(List<StudentModuleSelectionDTO> gradeOfThisStuduent) {
         double QCA = 0.0;
-        int totalAttemptHours = 0;
+        Double totalAttemptHours = 0.0;
         //Accumulate QCA and attempthours
         for (StudentModuleSelectionDTO grade : gradeOfThisStuduent) {
 
             QCA = QCA + grade.getQcs();
+
+
+                totalAttemptHours += grade.getCreditHour() - getNQH();
 
 //            int eachAttemptHour = 0;
 //            int credit = moduleRepository.findById(grade.getModuleId()).getCredit;
@@ -219,8 +207,9 @@ public class StudentProgressionService {
 
         }
 
-        totalAttemptHours = 60;
         QCA = QCA / totalAttemptHours;
         return QCA;
     }
+
+
 }

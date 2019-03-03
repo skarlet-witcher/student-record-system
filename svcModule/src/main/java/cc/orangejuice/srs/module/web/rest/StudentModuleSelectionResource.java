@@ -119,7 +119,7 @@ public class StudentModuleSelectionResource {
 
 
 
-    // todo submit mark
+
     @PutMapping(value = "/student-module-selections/submit-mark", params={"selectionId", "mark"})
     public ResponseEntity<StudentModuleSelectionDTO> updateMarks(@RequestParam("selectionId") Long selectionId, @RequestParam("mark") Double mark) {
         log.debug("REST request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
@@ -129,7 +129,7 @@ public class StudentModuleSelectionResource {
     }
 
 
-    // todo get selections by academic_year, yearNo
+
     @GetMapping(value = "/student-module-selections/query")
     public List<StudentModuleSelectionDTO> getStudentModuleSelections(
         @RequestParam("studentId") Long studentId,

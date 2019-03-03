@@ -4,11 +4,13 @@ import cc.orangejuice.srs.student.service.dto.StudentModuleSelectionDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 import java.util.List;
 
 @AuthorizedFeignClient(name = "svcModule")
+@RestController
 public interface StudentModuleSelectionsFeignClient {
     @RequestMapping("/api/student-module-selections")
     Collection<StudentModuleSelectionDTO> findAll();

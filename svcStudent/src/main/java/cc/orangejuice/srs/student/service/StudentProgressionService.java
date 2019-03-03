@@ -1,5 +1,6 @@
 package cc.orangejuice.srs.student.service;
 
+import cc.orangejuice.srs.student.client.StudentModuleSelectionsFeignClient;
 import cc.orangejuice.srs.student.domain.Student;
 import cc.orangejuice.srs.student.domain.StudentProgression;
 import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
@@ -12,14 +13,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
-import java.io.IOException;
+
 import java.util.*;
 
 /**
@@ -35,12 +35,15 @@ public class StudentProgressionService {
 
     private final StudentProgressionMapper studentProgressionMapper;
 
+    private final StudentModuleSelectionsFeignClient studentModuleSelectionsFeignClient;
+
     @Autowired
     private StudentRepository studentRepository;
 
-    public StudentProgressionService(StudentProgressionRepository studentProgressionRepository, StudentProgressionMapper studentProgressionMapper) {
+    public StudentProgressionService(StudentProgressionRepository studentProgressionRepository, StudentProgressionMapper studentProgressionMapper, StudentModuleSelectionsFeignClient studentModuleSelectionsFeignClient) {
         this.studentProgressionRepository = studentProgressionRepository;
         this.studentProgressionMapper = studentProgressionMapper;
+        this.studentModuleSelectionsFeignClient = studentModuleSelectionsFeignClient;
     }
 
     /**
@@ -212,4 +215,11 @@ public class StudentProgressionService {
     }
 
 
+    public void calculateQCA(List<StudentModuleSelectionDTO> resultsList, Integer academicYear, Integer academicSemester) {
+        log.debug("Request to calculate QCA for student: {}", resultsList.get(0).getStudentId());
+
+        // todo calculate semester QCA
+        // todo calculate cumulative QCA
+        // todo invoke progression decision if it is the end of the part
+    }
 }

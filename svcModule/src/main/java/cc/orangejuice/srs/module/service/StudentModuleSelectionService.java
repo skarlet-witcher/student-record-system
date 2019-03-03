@@ -30,205 +30,174 @@ import java.util.Optional;
 @Transactional
 public class StudentModuleSelectionService {
 
-    private final Logger log = LoggerFactory.getLogger(StudentModuleSelectionService.class);
+        private final Logger log = LoggerFactory.getLogger(StudentModuleSelectionService.class);
 
-    private final StudentModuleSelectionRepository studentModuleSelectionRepository;
+        private final StudentModuleSelectionRepository studentModuleSelectionRepository;
 
-    private final StudentModuleSelectionMapper studentModuleSelectionMapper;
+        private final StudentModuleSelectionMapper studentModuleSelectionMapper;
 
-    private final ProgrammeFeignClient programmeFeignClient;
+        private final ProgrammeFeignClient programmeFeignClient;
 
-    private final ModuleGradeService moduleGradeService;
-
-
-    public StudentModuleSelectionService(StudentModuleSelectionRepository studentModuleSelectionRepository,
-                                         StudentModuleSelectionMapper studentModuleSelectionMapper,
-                                         ProgrammeFeignClient programmeFeignClient,
-                                         ModuleGradeService moduleGradeService) {
-        this.studentModuleSelectionRepository = studentModuleSelectionRepository;
-        this.studentModuleSelectionMapper = studentModuleSelectionMapper;
-        this.programmeFeignClient = programmeFeignClient;
-        this.moduleGradeService = moduleGradeService;
-    }
-
-    /**
-     * Save a studentModuleSelection.
-     *
-     * @param studentModuleSelectionDTO the entity to save
-     * @return the persisted entity
-     */
-    public StudentModuleSelectionDTO save(StudentModuleSelectionDTO studentModuleSelectionDTO) {
-        log.debug("Request to save StudentModuleSelection : {}", studentModuleSelectionDTO);
-        StudentModuleSelection studentModuleSelection = studentModuleSelectionMapper.toEntity(studentModuleSelectionDTO);
-        studentModuleSelection = studentModuleSelectionRepository.save(studentModuleSelection);
-        return studentModuleSelectionMapper.toDto(studentModuleSelection);
-    }
-
-    /**
-     * Get all the studentModuleSelections.
-     *
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Transactional(readOnly = true)
-    public Page<StudentModuleSelectionDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all StudentModuleSelections");
-        return studentModuleSelectionRepository.findAll(pageable)
-            .map(studentModuleSelectionMapper::toDto);
-    }
+        private final ModuleGradeService moduleGradeService;
 
 
-    /**
-     * Get one studentModuleSelection by id.
-     *
-     * @param id the id of the entity
-     * @return the entity
-     */
-    @Transactional(readOnly = true)
-    public Optional<StudentModuleSelectionDTO> findOne(Long id) {
-        log.debug("Request to get StudentModuleSelection : {}", id);
-        return studentModuleSelectionRepository.findById(id)
-            .map(studentModuleSelectionMapper::toDto);
-    }
+        public StudentModuleSelectionService(StudentModuleSelectionRepository studentModuleSelectionRepository,
+                                             StudentModuleSelectionMapper studentModuleSelectionMapper,
+                                             ProgrammeFeignClient programmeFeignClient,
+                                             ModuleGradeService moduleGradeService) {
+            this.studentModuleSelectionRepository = studentModuleSelectionRepository;
+            this.studentModuleSelectionMapper = studentModuleSelectionMapper;
+            this.programmeFeignClient = programmeFeignClient;
+            this.moduleGradeService = moduleGradeService;
+        }
 
-    /**
-     * Delete the studentModuleSelection by id.
-     *
-     * @param id the id of the entity
-     */
-    public void delete(Long id) {
-        log.debug("Request to delete StudentModuleSelection : {}", id);
-        studentModuleSelectionRepository.deleteById(id);
-    }
+        /**
+         * Save a studentModuleSelection.
+         *
+         * @param studentModuleSelectionDTO the entity to save
+         * @return the persisted entity
+         */
+        public StudentModuleSelectionDTO save(StudentModuleSelectionDTO studentModuleSelectionDTO) {
+            log.debug("Request to save StudentModuleSelection : {}", studentModuleSelectionDTO);
+            StudentModuleSelection studentModuleSelection = studentModuleSelectionMapper.toEntity(studentModuleSelectionDTO);
+            studentModuleSelection = studentModuleSelectionRepository.save(studentModuleSelection);
+            return studentModuleSelectionMapper.toDto(studentModuleSelection);
+        }
+
+        /**
+         * Get all the studentModuleSelections.
+         *
+         * @param pageable the pagination information
+         * @return the list of entities
+         */
+        @Transactional(readOnly = true)
+        public Page<StudentModuleSelectionDTO> findAll(Pageable pageable) {
+            log.debug("Request to get all StudentModuleSelections");
+            return studentModuleSelectionRepository.findAll(pageable)
+                .map(studentModuleSelectionMapper::toDto);
+        }
 
 
-    public void updateMarkBySelectionIdAndMark(Long selectionId, Double mark) {
-        log.debug("Request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
-        Double creditHour;
-        studentModuleSelectionRepository.updateMarksById(selectionId, mark);
-        creditHour = getCreditHour(selectionId);
-        updateQCS(selectionId, mark, creditHour);
-    }
+        /**
+         * Get one studentModuleSelection by id.
+         *
+         * @param id the id of the entity
+         * @return the entity
+         */
+        @Transactional(readOnly = true)
+        public Optional<StudentModuleSelectionDTO> findOne(Long id) {
+            log.debug("Request to get StudentModuleSelection : {}", id);
+            return studentModuleSelectionRepository.findById(id)
+                .map(studentModuleSelectionMapper::toDto);
+        }
+
+        /**
+         * Delete the studentModuleSelection by id.
+         *
+         * @param id the id of the entity
+         */
+        public void delete(Long id) {
+            log.debug("Request to delete StudentModuleSelection : {}", id);
+            studentModuleSelectionRepository.deleteById(id);
+        }
 
 
-    // todo sub-goal get credit
-    private Double getCreditHour(Long selectionId) {
-        log.debug("Request to get credit from a module in the selection {}", selectionId);
-        Optional<StudentModuleSelection> studentModuleSelection = studentModuleSelectionRepository.findById(selectionId);
-        return studentModuleSelection.get().getModule().getCredit() * getFactor(studentModuleSelection);
-    }
+        public void updateMarkBySelectionIdAndMark(Long selectionId, Double mark) {
+            log.debug("Request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
+            Double creditHour;
+            studentModuleSelectionRepository.updateMarksById(selectionId, mark);
+            creditHour = getCreditHour(selectionId);
+            updateQCS(selectionId, mark, creditHour);
+            checkIfSemesterIsEnd(selectionId);
+        }
 
-    // todo sub-goal getFactor
-    private Double getFactor(Optional<StudentModuleSelection> studentModuleSelection) {
-        log.debug("Request to get factor from academicYear: {}, academicSemester: {}, yearNumber: {}, SemesterNumber: {}",
-            studentModuleSelection.get().getAcademicYear(),
-            studentModuleSelection.get().getAcademicSemester(),
-            studentModuleSelection.get().getYearNo(),
-            studentModuleSelection.get().getSemesterNo());
+        private void checkIfSemesterIsEnd(Long selectionId) {
+            log.debug("Request to get Semester No for selection Id: {}", selectionId);
 
-        ResponseEntity programmePropResponse = programmeFeignClient.getProgrammeProps("SEMESTER",
-            studentModuleSelection.get().getAcademicYear(),
-            studentModuleSelection.get().getYearNo(),
-            studentModuleSelection.get().getSemesterNo(),
-            "factor");
+            Boolean haveAllMarks = true;
 
-        ProgrammePropDTO programmeProp = (ProgrammePropDTO) programmePropResponse.getBody();
+            // get a tuple for getting studentId and semesterNo
+            Optional<StudentModuleSelectionDTO> studentModuleSelectionDTO = findOne(selectionId);
 
-        // todo how to get the factor
-        log.debug("get factor : {} ", programmeProp.toString());
-        return Double.parseDouble(programmeProp.getValue());
+            log.debug("Request to get result list for student {} at SemesterNo {}", studentModuleSelectionDTO.get().getStudentId(), studentModuleSelectionDTO.get().getSemesterNo());
+            List<StudentModuleSelection> resultsList = studentModuleSelectionRepository.findAllByStudentIdAndSemesterNo(studentModuleSelectionDTO.get().getStudentId(), studentModuleSelectionDTO.get().getSemesterNo());
 
-    }
+            // check if a student has all the marks for a semester
+            for(StudentModuleSelection studentModuleSelection : resultsList) {
+                if(studentModuleSelection.getMarks() == null) {
+                    haveAllMarks = false;
+                    break;
+                }
+            }
+            // (if it is the end of the semester)
+            if(haveAllMarks) {
+                // send all the results that less or equal to this academic semester
+                log.debug("It is the end of semester {}, Request to get all the results that that less or equal to the academic semester {} for student {}", studentModuleSelectionDTO.get().getAcademicSemester(), studentModuleSelectionDTO.get().getAcademicSemester(), studentModuleSelectionDTO.get().getStudentId());
+                List<StudentModuleSelection> allResultsList = studentModuleSelectionRepository.findAllByStudentIdAndSemesterNo(studentModuleSelectionDTO.get().getStudentId(), studentModuleSelectionDTO.get().getAcademicSemester());
+                List<StudentModuleSelectionDTO> allResulstsDTO = studentModuleSelectionMapper.toDto(allResultsList);
+                // todo send to student micro-service for calculating the QCA with resultList, academicYear and academicSemester
 
-    // todo update QCS
-    private void updateQCS(Long selectionId, Double mark, Double creditHour) {
-        log.debug("Request to update QPV and GradeName by Mark: {}, creditHour: {}", mark, creditHour);
-
-        // get QPV and GradeName
-        Double qcs;
-        String gradeName="";
-        ModuleGrade moduleGradeResult = null;
-
-        List<ModuleGrade> moduleGradeList = moduleGradeService.getAllModuleGradewithQcaAffected();
-        log.debug("moduleGradeList result: {}", moduleGradeList.size());
-
-        for(ModuleGrade moduleGrade : moduleGradeList) {
-            if(mark >= moduleGrade.getLowMarks()) {
-                moduleGradeResult = moduleGrade;
-                break;
             }
         }
 
-        qcs = moduleGradeResult.getQpv() * creditHour;
-        DecimalFormat df = new DecimalFormat("#.##");
-        qcs = Double.parseDouble(df.format(qcs));
-        log.debug("Request to update student result with selectionId: {}, gradeName: {}, QCS: {}, creditHour: {}", selectionId, gradeName, qcs, creditHour);
-        studentModuleSelectionRepository.updateById(selectionId, moduleGradeResult, qcs, creditHour);
-    }
-
-    public Optional<StudentModuleSelectionDTO> findAllByYearNoAndSemesterNo(Integer academic_year, Integer yearNo, Integer semesterNo) {
-        log.debug("Request to get studentModuleSelection for the student in academicYear : {}, yearNo: {}, semesterNo: {} and module: {} ",
-            academic_year, yearNo, semesterNo);
-        return studentModuleSelectionRepository.findAllByAcademicYearAndYearNoAndSemesterNo(academic_year, yearNo, semesterNo)
-            .map(studentModuleSelectionMapper::toDto);
-
-    }
-
-    /*
-    private Optional<StudentModuleSelection> findAllStudentSelectionsBySemester(Long studentId, Integer academicYear, Integer yearNo, Integer semesterNo) {
-        log.debug("Request to get Semester selections for student: {} at academicYear: {}, yearNo: {} and semesterNo {}",
-            studentId, academicYear, yearNo, semesterNo);
-        return studentModuleSelectionRepository.findAllByStudentIdAndAcademicYearAndYearNoAndSemesterNo(studentId, academicYear, yearNo, semesterNo);
-    }
-    */
-
-    public List<StudentModuleSelectionDTO> findAllStudentSelectionsByYear(Long studentId, Integer academicYear, Integer yearNo) {
-        log.debug("Request to get Year selections for student: {} at academicYear: {}, yearNo: {}",
-            studentId, academicYear, yearNo);
-        List<StudentModuleSelection> studentModuleSelections=   studentModuleSelectionRepository.findAllByStudentIdAndAcademicYearAndYearNo(studentId, academicYear, yearNo);
-        List<StudentModuleSelectionDTO> returnList =  studentModuleSelectionMapper.toDto(studentModuleSelections);
-        return returnList;
-    }
-
-
-
-    /*
-    // todo calculate cumulative QCA
-    public Double getCumulativeQCA(Long studentId, Integer academicYear, Integer yearNo) {
-        log.debug("REST request to get Cumulative QCA for student: {} at academicYear: {}, yearNo: {}",
-            studentId, academicYear, yearNo);
-        Double cumulativeQca;
-        Double cumulatedQCS = 0.00;
-        Double cumulatedHours = 0.00;
-        for(StudentModuleSelection studentModuleSelection: findAllStudentSelectionsByYear(studentId, academicYear, yearNo)) {
-            cumulatedQCS += studentModuleSelection.getQcs();
-            cumulatedHours += studentModuleSelection.getCreditHour() - getNQH();
+        private Double getCreditHour(Long selectionId) {
+            log.debug("Request to get credit from a module in the selection {}", selectionId);
+            Optional<StudentModuleSelection> studentModuleSelection = studentModuleSelectionRepository.findById(selectionId);
+            return studentModuleSelection.get().getModule().getCredit() * getFactor(studentModuleSelection);
         }
-        cumulativeQca = cumulatedQCS/cumulatedHours;
-        return cumulativeQca;
 
-    }
 
-    // todo calculate semester QCA
-    public Double getSemesterQCA(Long studentId, Integer academicYear, Integer yearNo, Integer semesterNo) {
-        log.debug("Request to get Semester QCA for student: {} at academicYear: {}, yearNo: {} and semesterNo {}",
-            studentId, academicYear, yearNo, semesterNo);
-        Double semesterQca;
-        Double cumulatedQCS = 0.00;
-        Double cumulatedHours = 0.00;
-        for(StudentModuleSelection studentModuleSelection: findAllStudentSelectionsBySemester(studentId, academicYear, yearNo, semesterNo)) {
-            cumulatedQCS += studentModuleSelection.getQcs();
-            cumulatedHours += studentModuleSelection.getCreditHour() - getNQH();
+        private Double getFactor(Optional<StudentModuleSelection> studentModuleSelection) {
+            log.debug("Request to get factor from academicYear: {}, academicSemester: {}, yearNumber: {}, SemesterNumber: {}",
+                studentModuleSelection.get().getAcademicYear(),
+                studentModuleSelection.get().getAcademicSemester(),
+                studentModuleSelection.get().getYearNo(),
+                studentModuleSelection.get().getSemesterNo());
+
+            ResponseEntity programmePropResponse = programmeFeignClient.getProgrammeProps("SEMESTER",
+                studentModuleSelection.get().getAcademicYear(),
+                studentModuleSelection.get().getYearNo(),
+                studentModuleSelection.get().getSemesterNo(),
+                "factor");
+
+            ProgrammePropDTO programmeProp = (ProgrammePropDTO) programmePropResponse.getBody();
+
+            return Double.parseDouble(programmeProp.getValue());
+
         }
-        semesterQca = cumulatedQCS/cumulatedHours;
-        return semesterQca;
-    }
 
-    private Double getNQH() {
-        // to be improved later
-        return 0.00;
-    }
-    */
 
+        private void updateQCS(Long selectionId, Double mark, Double creditHour) {
+            log.debug("Request to update QPV and GradeName by Mark: {}, creditHour: {}", mark, creditHour);
+
+            // get QPV and GradeName
+            Double qcs;
+            String gradeName="";
+            ModuleGrade moduleGradeResult = null;
+
+            List<ModuleGrade> moduleGradeList = moduleGradeService.getAllModuleGradewithQcaAffected();
+            log.debug("moduleGradeList result: {}", moduleGradeList.size());
+
+            for(ModuleGrade moduleGrade : moduleGradeList) {
+                if(mark >= moduleGrade.getLowMarks()) {
+                    moduleGradeResult = moduleGrade;
+                    break;
+                }
+            }
+
+            qcs = moduleGradeResult.getQpv() * creditHour;
+            DecimalFormat df = new DecimalFormat("#.##");
+            qcs = Double.parseDouble(df.format(qcs));
+            log.debug("Request to update student result with selectionId: {}, gradeName: {}, QCS: {}, creditHour: {}", selectionId, gradeName, qcs, creditHour);
+            studentModuleSelectionRepository.updateById(selectionId, moduleGradeResult, qcs, creditHour);
+        }
+
+        public List<StudentModuleSelectionDTO> findAllStudentSelectionsByYear(Long studentId, Integer academicYear, Integer yearNo) {
+            log.debug("Request to get Year selections for student: {} at academicYear: {}, yearNo: {}",
+                studentId, academicYear, yearNo);
+            List<StudentModuleSelection> studentModuleSelections=   studentModuleSelectionRepository.findAllByStudentIdAndAcademicYearAndYearNo(studentId, academicYear, yearNo);
+            List<StudentModuleSelectionDTO> returnList =  studentModuleSelectionMapper.toDto(studentModuleSelections);
+            return returnList;
+        }
 
 }

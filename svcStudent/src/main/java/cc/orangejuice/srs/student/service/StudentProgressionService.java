@@ -117,14 +117,6 @@ public class StudentProgressionService {
 
     }
 
-    public void calculateQCA(){
-        List<Student> studentList = studentRepository.findAll();
-//        List<Student>
-        for (Student student:studentList ) {
-
-
-        }
-    }
 
     /**
      * resource -> this.calculate qca
@@ -136,7 +128,7 @@ public class StudentProgressionService {
      *  qca calculate function
      *  @params all data needed.
      */
-    private double calculateQca(){
+    private double calculateQca(StudentModuleSelectionDTO studentModuleSelectionDTO){
         return 0;
     }
 

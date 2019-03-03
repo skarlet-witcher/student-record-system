@@ -68,7 +68,7 @@
             "otherEntityField": "name"
         }
     ],
-    "changelogDate": "20190224000014",
+    "changelogDate": "20190301203702",
     "entityTableName": "student_module_selection",
     "dto": "mapstruct",
     "pagination": "pagination",

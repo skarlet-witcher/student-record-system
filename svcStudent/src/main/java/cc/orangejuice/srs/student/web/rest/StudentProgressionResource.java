@@ -162,19 +162,9 @@ public class StudentProgressionResource {
 //                    studentModuleSelectionDTO.getStudentModuleGradeTypeId()
 //            ));
 //        });
-        studentProgressionService.firstDecision();
+        studentProgressionService.firstDecision(studentModuleSelectionDTOS);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "First decision made")).build();
     }
 
-    @GetMapping("/student-progressions/seconddecision")
-    public ResponseEntity<Void> secondDecision(){
-        studentProgressionService.secondDesion();
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "Second decision made")).build();
-    }
-    @GetMapping("/student-progressions/thirddecision")
-    public ResponseEntity<Void> thirdDecision(){
-        studentProgressionService.secondDesion();
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "Second decision made")).build();
-    }
 
 }

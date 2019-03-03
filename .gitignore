@@ -3,7 +3,7 @@
 ######################
 /build/www/**
 /src/test/javascript/coverage/
-
+/playCodeModule
 ######################
 # Node
 ######################

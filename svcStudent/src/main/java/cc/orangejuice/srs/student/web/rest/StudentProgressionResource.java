@@ -1,22 +1,17 @@
 package cc.orangejuice.srs.student.web.rest;
+
 import cc.orangejuice.srs.student.client.StudentModuleSelectionsFeignClient;
+import cc.orangejuice.srs.student.client.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.student.service.StudentProgressionService;
-import cc.orangejuice.srs.student.service.dto.StudentModuleSelectionDTO;
+import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.student.web.rest.util.HeaderUtil;
 import cc.orangejuice.srs.student.web.rest.util.PaginationUtil;
-import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.EurekaClient;
-import com.netflix.discovery.shared.Application;
-import com.netflix.eureka.EurekaServerContextHolder;
-import com.netflix.eureka.registry.PeerAwareInstanceRegistry;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -27,7 +22,6 @@ import org.springframework.web.client.RestTemplate;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;

@@ -1,10 +1,9 @@
-package cc.orangejuice.srs.student.service.dto;
+package cc.orangejuice.srs.student.client.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Comparator;
 import java.util.Objects;
 
 /**

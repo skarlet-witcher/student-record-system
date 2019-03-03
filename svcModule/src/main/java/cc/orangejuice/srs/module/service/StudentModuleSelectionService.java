@@ -3,7 +3,6 @@ package cc.orangejuice.srs.module.service;
 
 import cc.orangejuice.srs.module.client.ProgrammeFeignClient;
 import cc.orangejuice.srs.module.client.dto.ProgrammePropDTO;
-import cc.orangejuice.srs.module.domain.Module;
 import cc.orangejuice.srs.module.domain.ModuleGrade;
 import cc.orangejuice.srs.module.domain.StudentModuleSelection;
 import cc.orangejuice.srs.module.repository.StudentModuleSelectionRepository;
@@ -11,7 +10,6 @@ import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.module.service.mapper.StudentModuleSelectionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -182,12 +180,12 @@ public class StudentModuleSelectionService {
     }
     */
 
-    public List<StudentModuleSelectionDTO> findAllStudentSelectionsByYear(Long studentId, Integer academicYear, Integer yearNo) {
+    public Optional<List<StudentModuleSelectionDTO>> findAllStudentSelectionsByYear(Long studentId, Integer academicYear, Integer yearNo) {
         log.debug("Request to get Year selections for student: {} at academicYear: {}, yearNo: {}",
             studentId, academicYear, yearNo);
-        List<StudentModuleSelection> studentModuleSelections=   studentModuleSelectionRepository.findAllByStudentIdAndAcademicYearAndYearNo(studentId, academicYear, yearNo);
-        List<StudentModuleSelectionDTO> returnList =  studentModuleSelectionMapper.toDto(studentModuleSelections);
-        return returnList;
+        return studentModuleSelectionRepository
+            .findAllByStudentIdAndAcademicYearAndYearNo(studentId, academicYear, yearNo)
+            .map(studentModuleSelectionMapper::toDto);
     }
 
 

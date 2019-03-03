@@ -121,7 +121,7 @@ public class StudentModuleSelectionResource {
 
 
     @PutMapping(value = "/student-module-selections/submit-mark", params={"selectionId", "mark"})
-    public ResponseEntity<StudentModuleSelectionDTO> updateMarks(@RequestParam("selectionId") Long selectionId, @RequestParam("mark") Double mark) {
+    public ResponseEntity<Void> updateMarks(@RequestParam("selectionId") Long selectionId, @RequestParam("mark") Double mark) {
         log.debug("REST request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
         studentModuleSelectionService.updateMarkBySelectionIdAndMark(selectionId, mark);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, selectionId.toString())).build();
@@ -131,14 +131,14 @@ public class StudentModuleSelectionResource {
 
 
     @GetMapping(value = "/student-module-selections/query")
-    public List<StudentModuleSelectionDTO> getStudentModuleSelections(
+    public ResponseEntity<List<StudentModuleSelectionDTO>> getStudentModuleSelections(
         @RequestParam("studentId") Long studentId,
         @RequestParam("academicYear") Integer academicYear,
         @RequestParam("yearNo") Integer yearNo) {
         log.debug("REST request to get studentModuleSelection for the student {} in academicYear : {}, yearNo: {}",
             studentId, academicYear, yearNo);
-        List<StudentModuleSelectionDTO> studentModuleSelectionDTO = studentModuleSelectionService.findAllStudentSelectionsByYear(studentId, academicYear, yearNo);
-        return studentModuleSelectionDTO;
+        Optional<List<StudentModuleSelectionDTO>> studentModuleSelectionDTO = studentModuleSelectionService.findAllStudentSelectionsByYear(studentId, academicYear, yearNo);
+        return ResponseUtil.wrapOrNotFound(studentModuleSelectionDTO);
     }
 
 

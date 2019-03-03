@@ -1,25 +1,20 @@
 package cc.orangejuice.srs.student.service;
 
-import cc.orangejuice.srs.student.domain.Student;
+import cc.orangejuice.srs.student.client.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.student.domain.StudentProgression;
 import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
 import cc.orangejuice.srs.student.repository.StudentProgressionRepository;
 import cc.orangejuice.srs.student.repository.StudentRepository;
-import cc.orangejuice.srs.student.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.service.mapper.StudentProgressionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 /**

@@ -1,13 +1,12 @@
 package cc.orangejuice.srs.module.repository;
 
 
-import cc.orangejuice.srs.module.domain.Module;
 import cc.orangejuice.srs.module.domain.ModuleGrade;
-import org.springframework.data.jpa.repository.*;
-import org.springframework.data.repository.query.Param;
 import cc.orangejuice.srs.module.domain.StudentModuleSelection;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -32,6 +31,6 @@ public interface StudentModuleSelectionRepository extends JpaRepository<StudentM
 
     Optional<StudentModuleSelection> findAllByStudentIdAndAcademicYearAndYearNoAndSemesterNo(@Param("studentId") Long studentId, @Param("academicYear") Integer academicYear, @Param("yearNo") Integer yearNo, @Param("semesterNo") Integer semesterNo);
 
-    List<StudentModuleSelection> findAllByStudentIdAndAcademicYearAndYearNo(@Param("studentId") Long studentId, @Param("academicYear") Integer academicYear, @Param("yearNo") Integer yearNo);
+    Optional<List<StudentModuleSelection>> findAllByStudentIdAndAcademicYearAndYearNo(@Param("studentId") Long studentId, @Param("academicYear") Integer academicYear, @Param("yearNo") Integer yearNo);
 
 }

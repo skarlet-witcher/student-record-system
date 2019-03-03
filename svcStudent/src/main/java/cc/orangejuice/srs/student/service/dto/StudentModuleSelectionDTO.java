@@ -4,12 +4,13 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
  * A DTO for the StudentModuleSelection entity.
  */
-public class StudentModuleSelectionDTO implements Serializable {
+public class StudentModuleSelectionDTO implements Serializable, Comparable {
 
     private Long id;
 
@@ -197,5 +198,10 @@ public class StudentModuleSelectionDTO implements Serializable {
             ", studentModuleGradeType=" + getStudentModuleGradeTypeId() +
             ", studentModuleGradeType='" + getStudentModuleGradeTypeName() + "'" +
             "}";
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

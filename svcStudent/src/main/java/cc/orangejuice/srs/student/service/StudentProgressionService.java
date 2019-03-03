@@ -1,7 +1,10 @@
 package cc.orangejuice.srs.student.service;
 
+import cc.orangejuice.srs.student.domain.Student;
 import cc.orangejuice.srs.student.domain.StudentProgression;
+import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
 import cc.orangejuice.srs.student.repository.StudentProgressionRepository;
+import cc.orangejuice.srs.student.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.service.mapper.StudentProgressionMapper;
 import org.slf4j.Logger;
@@ -12,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -138,7 +142,7 @@ public class StudentProgressionService {
 
     // todo Long
     // make progression decision
-    private void makeProgressionDecision() {
+    private void makeProgressionDecision(double cumulativeQca, StudentModuleSelectionDTO studentModuleSelectionDTO) {
 
     }
 

@@ -1,10 +1,15 @@
 package cc.orangejuice.srs.programme.web.rest;
+import cc.orangejuice.srs.programme.domain.ProgrammeProp;
+import cc.orangejuice.srs.programme.domain.enumeration.ProgrammePropType;
 import cc.orangejuice.srs.programme.service.ProgrammePropService;
 import cc.orangejuice.srs.programme.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.programme.web.rest.util.HeaderUtil;
 import cc.orangejuice.srs.programme.web.rest.util.PaginationUtil;
 import cc.orangejuice.srs.programme.service.dto.ProgrammePropDTO;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -98,7 +103,7 @@ public class ProgrammePropResource {
      * @param id the id of the programmePropDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the programmePropDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/programme-props/{id}")
+    @GetMapping("/programme-props/{id:\\d+}")
     public ResponseEntity<ProgrammePropDTO> getProgrammeProp(@PathVariable Long id) {
         log.debug("REST request to get ProgrammeProp : {}", id);
         Optional<ProgrammePropDTO> programmePropDTO = programmePropService.findOne(id);
@@ -117,4 +122,32 @@ public class ProgrammePropResource {
         programmePropService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "forYearNo", allowEmptyValue = true),
+        @ApiImplicitParam(name = "forSemesterNo", allowEmptyValue = true)
+    })
+    @GetMapping(value = "/programme-props/query")
+    public ResponseEntity<ProgrammePropDTO> getProgrammeProps(
+        @RequestParam(value = "type", defaultValue = "GENERAL") ProgrammePropType type,
+        @RequestParam(value = "forEnrollYear") Integer forEnrollYear,
+        @RequestParam(value = "forYearNo", required = false) Integer forYearNo,
+        @RequestParam(value = "forSemesterNo", required = false) Integer forSemesterNo,
+        @RequestParam("key") String key) {
+
+        log.debug("REST request to get year: {} ,type: {}, semesterNO: {} and key: {} for ProgrammePropDict", forEnrollYear, type, forSemesterNo, key);
+
+        Optional<ProgrammePropDTO> programmePropDTO;
+
+        if (type == ProgrammePropType.YEAR) {
+            programmePropDTO = programmePropService.findOneByYear(type, forEnrollYear, forYearNo, key);
+        } else if (type == ProgrammePropType.SEMESTER) {
+            programmePropDTO = programmePropService.findOneBySemester(type, forEnrollYear, forSemesterNo, key);
+        } else {
+            return null; // for general?
+        }
+        return ResponseUtil.wrapOrNotFound(programmePropDTO);
+    }
+
+
 }

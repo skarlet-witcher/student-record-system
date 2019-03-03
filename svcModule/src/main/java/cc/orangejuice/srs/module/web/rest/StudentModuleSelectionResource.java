@@ -1,4 +1,5 @@
 package cc.orangejuice.srs.module.web.rest;
+import cc.orangejuice.srs.module.domain.Module;
 import cc.orangejuice.srs.module.service.StudentModuleSelectionService;
 import cc.orangejuice.srs.module.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.module.web.rest.util.HeaderUtil;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -117,4 +119,57 @@ public class StudentModuleSelectionResource {
         studentModuleSelectionService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+
+
+    // todo submit mark
+    @PutMapping(value = "/student-module-selections/submit-mark", params={"selectionId", "mark"})
+    public ResponseEntity<StudentModuleSelectionDTO> updateMarks(@RequestParam("selectionId") Long selectionId, @RequestParam("mark") Double mark) {
+        log.debug("REST request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
+        studentModuleSelectionService.updateMarkBySelectionIdAndMark(selectionId, mark);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, selectionId.toString())).build();
+
+    }
+
+
+    // todo get selections by academic_year, yearNo
+    @GetMapping(value = "/student-module-selections/selection-details", params = {"studentId", "academicYear", "yearNo"})
+    public List<StudentModuleSelectionDTO> getStudentModuleSelections(
+        @RequestParam("studentId") Long studentId,
+        @RequestParam("academicYear") Integer academicYear,
+        @RequestParam("yearNo") Integer yearNo) {
+        log.debug("REST request to get studentModuleSelection for the student {} in academicYear : {}, yearNo: {}",
+            studentId, academicYear, yearNo);
+        List<StudentModuleSelectionDTO> studentModuleSelectionDTO = studentModuleSelectionService.findAllStudentSelectionsByYear(studentId, academicYear, yearNo);
+        return studentModuleSelectionDTO;
+    }
+
+
+    /*
+    // todo calculate semester qca
+    @GetMapping(value = "/student-module-selections/semester-qca", params = {"studentId","academicYear", "yearNo", "semesterNo"})
+    public Double getSemesterQCA(
+        @Param("studentId") Long studentId,
+        @Param("academicYear") Integer academicYear,
+        @Param("yearNo") Integer yearNo,
+        @Param("semesterNo") Integer semesterNo) {
+        log.debug("REST request to get Semester QCA for student: {} at academicYear: {}, yearNo: {} and semesterNo {}",
+            studentId, academicYear, yearNo, semesterNo);
+        return studentModuleSelectionService.getSemesterQCA(studentId, academicYear, yearNo, semesterNo);
+    }
+
+    // todo calculate cumulative qca
+    @GetMapping(value = "/student-module-selections/cumulative-qca", params = {"studentId","academicYear", "yearNo"})
+    public Double getCumulativeQCA(
+        @Param("studentId") Long studentId,
+        @Param("academicYear") Integer academicYear,
+        @Param("yearNo") Integer yearNo) {
+        log.debug("REST request to get Cumulative QCA for student: {} at academicYear: {}, yearNo: {}",
+            studentId, academicYear, yearNo);
+        return studentModuleSelectionService.getCumulativeQCA(studentId, academicYear, yearNo);
+    }
+    */
+
+
+
 }

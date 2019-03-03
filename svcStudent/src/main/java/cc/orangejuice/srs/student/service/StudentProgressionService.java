@@ -1,7 +1,10 @@
 package cc.orangejuice.srs.student.service;
 
+import cc.orangejuice.srs.student.domain.Student;
 import cc.orangejuice.srs.student.domain.StudentProgression;
+import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
 import cc.orangejuice.srs.student.repository.StudentProgressionRepository;
+import cc.orangejuice.srs.student.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.service.mapper.StudentProgressionMapper;
 import org.slf4j.Logger;
@@ -12,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -81,4 +85,58 @@ public class StudentProgressionService {
         log.debug("Request to delete StudentProgression : {}", id);
         studentProgressionRepository.deleteById(id);
     }
+
+
+    public void firstDecision() {
+        log.debug("Begin making first decision of transiting state from NO_STATE to PASS/FAIL_CAN_REPEAT/FAIL_NO_REPEAT");
+
+        List<StudentProgression> studentProgressionRepositoryAll = studentProgressionRepository.findAll();
+        for (StudentProgression studentProgression: studentProgressionRepositoryAll) {
+            if(studentProgression.getForAcademicYear() == 1 && studentProgression.getForAcademicSemester() == 2){
+                if(studentProgression.getQca() >= 2){
+                    studentProgression.setProgressDecision(ProgressDecision.PASS);
+                }
+                else {
+                    //need to get QCS to calculate QCA
+//                    if(swap > 2.0 ) -> fail can repeat
+//                    if(swap < 2.0) -> fail no repeat
+                }
+
+            }
+        }
+
+    }
+
+    public void secondDesion() {
+        log.debug("Begin making second decision from FAIL_CAN_REPEAT to PASS or FAIL_NO_REPEAT");
+        List<StudentProgression> studentProgressionRepositoryAll = studentProgressionRepository.findAll();
+        for (StudentProgression studentProgression: studentProgressionRepositoryAll) {
+            if(studentProgression.getProgressDecision().equals(ProgressDecision.FAIL_CAN_REPEAT)){
+
+            }
+        }
+
+    }
+
+
+    /**
+     * resource -> this.calculate qca
+     * qca gotten, then call makeProgressionDecision(cumulativeQca, qcs per module)
+     */
+    // service function
+
+    /**
+     *  qca calculate function
+     *  @params all data needed.
+     */
+    private double calculateQca(StudentModuleSelectionDTO studentModuleSelectionDTO){
+        return 0;
+    }
+
+    // todo Long
+    // make progression decision
+    private void makeProgressionDecision(double originalCumulativeQca, StudentModuleSelectionDTO studentModuleSelectionDTO) {
+
+    }
+
 }

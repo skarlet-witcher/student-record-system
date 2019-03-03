@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -80,5 +81,10 @@ public class ModuleGradeService {
     public void delete(Long id) {
         log.debug("Request to delete ModuleGrade : {}", id);
         moduleGradeRepository.deleteById(id);
+    }
+
+    public List<ModuleGrade> getAllModuleGradewithQcaAffected() {
+        log.debug("Request to get all module grade detail");
+        return moduleGradeRepository.findAllByIsAffectQca(true);
     }
 }

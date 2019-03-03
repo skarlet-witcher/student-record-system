@@ -16,6 +16,11 @@
                   separator=";"
                   tableName="student_enroll">
         </loadData>
+        <loadData file="config/liquibase/student_module_selection.csv"
+                  separator=";"
+                  tableName="student_module_selection">
+        </loadData>
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

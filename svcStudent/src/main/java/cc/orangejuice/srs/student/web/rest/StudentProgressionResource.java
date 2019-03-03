@@ -1,23 +1,34 @@
 package cc.orangejuice.srs.student.web.rest;
+import cc.orangejuice.srs.student.client.StudentModuleSelectionsFeignClient;
 import cc.orangejuice.srs.student.service.StudentProgressionService;
+import cc.orangejuice.srs.student.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.student.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.student.web.rest.util.HeaderUtil;
 import cc.orangejuice.srs.student.web.rest.util.PaginationUtil;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.shared.Application;
+import com.netflix.eureka.EurekaServerContextHolder;
+import com.netflix.eureka.registry.PeerAwareInstanceRegistry;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +44,13 @@ public class StudentProgressionResource {
     private static final String ENTITY_NAME = "svcStudentStudentProgression";
 
     private final StudentProgressionService studentProgressionService;
+
+    @Autowired
+    private StudentModuleSelectionsFeignClient studentModuleSelectionsFeignClient;
+
+    @Autowired
+    @Qualifier("vanillaRestTemplate")
+    private RestTemplate restTemplate;
 
     public StudentProgressionResource(StudentProgressionService studentProgressionService) {
         this.studentProgressionService = studentProgressionService;
@@ -117,4 +135,46 @@ public class StudentProgressionResource {
         studentProgressionService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/student-progressions/firstdecision")
+    public ResponseEntity<Void> firstDecision(){
+//        PeerAwareInstanceRegistry peerAwareInstanceRegistry = EurekaServerContextHolder.getInstance().getServerContext().getRegistry();
+//        Application application = peerAwareInstanceRegistry.getApplication("svcModule");
+//        InstanceInfo  instanceInfo = application.getInstances().get(0);
+//        String url = "http://" + instanceInfo.getIPAddr() + ":" + instanceInfo.getPort() + "/" + "svcmodule/api/student-module-selections" ;
+        String url = "http://localhost:8080/svcmodule/api/student-module-selections";
+        System.out.println("URL" + url);
+//        List<StudentModuleSelectionDTO> studentModuleSelectionDTOS = restTemplate.getForObject(url, List.class);
+        Collection<StudentModuleSelectionDTO> studentModuleSelectionDTOS = studentModuleSelectionsFeignClient.findAll();
+        System.out.printf("Response" + studentModuleSelectionDTOS);
+//        studentModuleSelectionDTOS.forEach(studentModuleSelectionDTO -> {
+//            System.out.println(String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+//                    studentModuleSelectionDTO.getId(),
+//                    studentModuleSelectionDTO.getStudentId(),
+//                    studentModuleSelectionDTO.getAcademicYear(),
+//                    studentModuleSelectionDTO.getAcademicSemester(),
+//                    studentModuleSelectionDTO.getYearNo(),
+//                    studentModuleSelectionDTO.getSemesterNo(),
+//                    studentModuleSelectionDTO.getCreditHour(),
+//                    studentModuleSelectionDTO.getMarks(),
+//                    studentModuleSelectionDTO.getQcs(),
+//                    studentModuleSelectionDTO.getModuleId(),
+//                    studentModuleSelectionDTO.getStudentModuleGradeTypeId()
+//            ));
+//        });
+        studentProgressionService.firstDecision();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "First decision made")).build();
+    }
+
+    @GetMapping("/student-progressions/seconddecision")
+    public ResponseEntity<Void> secondDecision(){
+        studentProgressionService.secondDesion();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "Second decision made")).build();
+    }
+    @GetMapping("/student-progressions/thirddecision")
+    public ResponseEntity<Void> thirdDecision(){
+        studentProgressionService.secondDesion();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "Second decision made")).build();
+    }
+
 }

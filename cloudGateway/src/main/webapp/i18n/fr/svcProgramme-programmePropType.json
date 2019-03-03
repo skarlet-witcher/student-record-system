@@ -1,0 +1,10 @@
+{
+    "cloudGatewayApp": {
+        "ProgrammePropType": {
+            "null": "",
+            "GENERAL": "GENERAL",
+            "YEAR": "YEAR",
+            "SEMESTER": "SEMESTER"
+        }
+    }
+}

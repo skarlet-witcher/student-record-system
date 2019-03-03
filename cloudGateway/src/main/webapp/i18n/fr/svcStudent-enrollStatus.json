@@ -1,0 +1,10 @@
+{
+    "cloudGatewayApp": {
+        "EnrollStatus": {
+            "null": "",
+            "TAKING": "TAKING",
+            "SUSPEND": "SUSPEND",
+            "DONE": "DONE"
+        }
+    }
+}

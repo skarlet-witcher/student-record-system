@@ -1,0 +1,27 @@
+{
+    "cloudGatewayApp": {
+        "svcProgrammeDepartment": {
+            "home": {
+                "title": "Departments",
+                "createLabel": "Créer un nouveau Department",
+                "createOrEditLabel": "Créer ou éditer un Department"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Department {{ id }} ?"
+            },
+            "detail": {
+                "title": "Department"
+            },
+            "name": "Name",
+            "programme": "Programme",
+            "faculty": "Faculty"
+        }
+    },
+    "svcProgrammeApp": {
+        "svcProgrammeDepartment": {
+            "created": "Un nouveau Department a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Department avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Department avec l'identifiant {{ param }} a été supprimé"
+        }
+    }
+}

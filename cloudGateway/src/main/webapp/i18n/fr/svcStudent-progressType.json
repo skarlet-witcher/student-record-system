@@ -1,0 +1,10 @@
+{
+    "cloudGatewayApp": {
+        "ProgressType": {
+            "null": "",
+            "SEMESTER": "SEMESTER",
+            "YEAR": "YEAR",
+            "PART": "PART"
+        }
+    }
+}

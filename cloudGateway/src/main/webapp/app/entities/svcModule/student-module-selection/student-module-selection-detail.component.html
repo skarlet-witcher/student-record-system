@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="studentModuleSelection">
+            <h2><span jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.detail.title">Student Module Selection</span> {{studentModuleSelection.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.studentId">Student Id</span></dt>
+                <dd>
+                    <span>{{studentModuleSelection.studentId}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.academicYear">Academic Year</span></dt>
+                <dd>
+                    <span>{{studentModuleSelection.academicYear}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.academicSemester">Academic Semester</span></dt>
+                <dd>
+                    <span>{{studentModuleSelection.academicSemester}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.yearNo">Year No</span></dt>
+                <dd>
+                    <span>{{studentModuleSelection.yearNo}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.semesterNo">Semester No</span></dt>
+                <dd>
+                    <span>{{studentModuleSelection.semesterNo}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.creditHour" [ngbTooltip]="'cloudGatewayApp.svcModuleStudentModuleSelection.help.creditHour' | translate">Credit Hour</span></dt>
+                <dd>
+                    <span>{{studentModuleSelection.creditHour}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.marks" [ngbTooltip]="'cloudGatewayApp.svcModuleStudentModuleSelection.help.marks' | translate">Marks</span></dt>
+                <dd>
+                    <span>{{studentModuleSelection.marks}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.qcs" [ngbTooltip]="'cloudGatewayApp.svcModuleStudentModuleSelection.help.qcs' | translate">Qcs</span></dt>
+                <dd>
+                    <span>{{studentModuleSelection.qcs}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.module">Module</span></dt>
+                <dd>
+                    <div *ngIf="studentModuleSelection.moduleId">
+                        <a [routerLink]="['/module', studentModuleSelection.moduleId, 'view']">{{studentModuleSelection.moduleName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcModuleStudentModuleSelection.studentModuleGradeType">Student Module Grade Type</span></dt>
+                <dd>
+                    <div *ngIf="studentModuleSelection.studentModuleGradeTypeId">
+                        <a [routerLink]="['/module-grade', studentModuleSelection.studentModuleGradeTypeId, 'view']">{{studentModuleSelection.studentModuleGradeTypeName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/student-module-selection', studentModuleSelection.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

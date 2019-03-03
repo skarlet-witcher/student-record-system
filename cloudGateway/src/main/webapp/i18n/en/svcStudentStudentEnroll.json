@@ -1,0 +1,29 @@
+{
+    "cloudGatewayApp": {
+        "svcStudentStudentEnroll": {
+            "home": {
+                "title": "Student Enrolls",
+                "createLabel": "Create a new Student Enroll",
+                "createOrEditLabel": "Create or edit a Student Enroll"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Student Enroll {{ id }}?"
+            },
+            "detail": {
+                "title": "Student Enroll"
+            },
+            "enrollYear": "Enroll Year",
+            "forProgrammeId": "For Programme Id",
+            "forDegree": "For Degree",
+            "status": "Status",
+            "student": "Student"
+        }
+    },
+    "svcStudentApp": {
+        "svcStudentStudentEnroll": {
+            "created": "A new Student Enroll is created with identifier {{ param }}",
+            "updated": "A Student Enroll is updated with identifier {{ param }}",
+            "deleted": "A Student Enroll is deleted with identifier {{ param }}"
+        }
+    }
+}

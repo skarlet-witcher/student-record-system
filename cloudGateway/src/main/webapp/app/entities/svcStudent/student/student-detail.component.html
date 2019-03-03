@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="student">
+            <h2><span jhiTranslate="cloudGatewayApp.svcStudentStudent.detail.title">Student</span> {{student.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.studentNumber" [ngbTooltip]="'cloudGatewayApp.svcStudentStudent.help.studentNumber' | translate">Student Number</span></dt>
+                <dd>
+                    <span>{{student.studentNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{student.firstName}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{student.lastName}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.gender">Gender</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'cloudGatewayApp.Gender.' + student.gender}}">{{student.gender}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.email">Email</span></dt>
+                <dd>
+                    <span>{{student.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.phone">Phone</span></dt>
+                <dd>
+                    <span>{{student.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.addressLine1">Address Line 1</span></dt>
+                <dd>
+                    <span>{{student.addressLine1}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.addressLine2">Address Line 2</span></dt>
+                <dd>
+                    <span>{{student.addressLine2}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.city">City</span></dt>
+                <dd>
+                    <span>{{student.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.country">Country</span></dt>
+                <dd>
+                    <span>{{student.country}}</span>
+                </dd>
+                <dt><span jhiTranslate="cloudGatewayApp.svcStudentStudent.userId">User Id</span></dt>
+                <dd>
+                    <span>{{student.userId}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/student', student.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

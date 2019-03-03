@@ -147,6 +147,21 @@ public class StudentProgressionResource {
 //        List<StudentModuleSelectionDTO> studentModuleSelectionDTOS = restTemplate.getForObject(url, List.class);
         Collection<StudentModuleSelectionDTO> studentModuleSelectionDTOS = studentModuleSelectionsFeignClient.findAll();
         System.out.printf("Response" + studentModuleSelectionDTOS);
+//        studentModuleSelectionDTOS.forEach(studentModuleSelectionDTO -> {
+//            System.out.println(String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+//                    studentModuleSelectionDTO.getId(),
+//                    studentModuleSelectionDTO.getStudentId(),
+//                    studentModuleSelectionDTO.getAcademicYear(),
+//                    studentModuleSelectionDTO.getAcademicSemester(),
+//                    studentModuleSelectionDTO.getYearNo(),
+//                    studentModuleSelectionDTO.getSemesterNo(),
+//                    studentModuleSelectionDTO.getCreditHour(),
+//                    studentModuleSelectionDTO.getMarks(),
+//                    studentModuleSelectionDTO.getQcs(),
+//                    studentModuleSelectionDTO.getModuleId(),
+//                    studentModuleSelectionDTO.getStudentModuleGradeTypeId()
+//            ));
+//        });
         studentProgressionService.firstDecision();
         return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "First decision made")).build();
     }

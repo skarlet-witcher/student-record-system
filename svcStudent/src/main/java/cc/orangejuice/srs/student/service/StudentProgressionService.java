@@ -91,7 +91,7 @@ public class StudentProgressionService {
 
 
     public void firstDecision() {
-        log.debug("Begin making first decision of transiting state from NO_STATE to PASS/SUSPENSION");
+        log.debug("Begin making first decision of transiting state from NO_STATE to PASS/FAIL_CAN_REPEAT/FAIL_NO_REPEAT");
 
         List<StudentProgression> studentProgressionRepositoryAll = studentProgressionRepository.findAll();
         for (StudentProgression studentProgression: studentProgressionRepositoryAll) {

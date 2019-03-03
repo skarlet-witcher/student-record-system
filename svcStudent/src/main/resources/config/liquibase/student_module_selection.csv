@@ -1,0 +1,11 @@
+id,student_id,academic_year,academic_semester,year_no,semester_no,credit_hour,marks,qcs,module_id,module_grade_id
+1,66,2014,1,1,1,null,null,24.0,1,1
+2,66,2014,1,1,1,null,66.0,19.2,2,3
+3,66,2014,1,1,1,null,null,15.6,3,6
+4,66,2014,1,1,1,null,null,21.6,4,2
+5,66,2014,1,1,1,null,null,12.0,5,8
+6,66,2014,2,1,2,null,null,0.0,6,11
+7,66,2014,2,1,2,null,null,7.2,7,10
+8,66,2014,2,1,2,null,null,12.0,8,8
+9,66,2014,2,1,2,null,null,9.6,9,9
+10,66,2014,2,1,2,null,null,0.0,10,11

@@ -1,6 +1,7 @@
 package cc.orangejuice.srs.student.service;
 
 import cc.orangejuice.srs.student.domain.StudentProgression;
+import cc.orangejuice.srs.student.domain.enumeration.ProgressType;
 import cc.orangejuice.srs.student.repository.StudentProgressionRepository;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.service.mapper.StudentProgressionMapper;
@@ -80,4 +81,25 @@ public class StudentProgressionService {
     public void delete(Long id) {
         log.debug("Request to delete StudentProgression : {}", id);        studentProgressionRepository.deleteById(id);
     }
+
+    /**
+     * resource -> this.calculate qca
+     * qca gotten, then call makeProgressionDecision(cumulativeQca, qcs per module)
+     */
+    // service function
+
+    /**
+     *  qca calculate function
+     *  @params all data needed.
+     */
+    private double calculateQca(){
+        return 0;
+    }
+
+    // todo Long
+    // make progression decision
+    private void makeProgressionDecision() {
+
+    }
+
 }

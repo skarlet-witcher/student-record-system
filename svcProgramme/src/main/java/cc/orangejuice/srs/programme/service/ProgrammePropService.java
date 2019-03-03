@@ -1,6 +1,7 @@
 package cc.orangejuice.srs.programme.service;
 
 import cc.orangejuice.srs.programme.domain.ProgrammeProp;
+import cc.orangejuice.srs.programme.domain.enumeration.ProgrammePropType;
 import cc.orangejuice.srs.programme.repository.ProgrammePropRepository;
 import cc.orangejuice.srs.programme.service.dto.ProgrammePropDTO;
 import cc.orangejuice.srs.programme.service.mapper.ProgrammePropMapper;
@@ -82,17 +83,20 @@ public class ProgrammePropService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<ProgrammePropDTO> findOneByYear(String type, Integer forEnrollYear, Integer forYearNo, String key) {
+    public Optional<ProgrammePropDTO> findOneByYear(ProgrammePropType type, Integer forEnrollYear, Integer forYearNo, String key) {
         log.debug("Request to get ProgrammeProp by Type: {}, forEnrollYear: {}, forYearNo: {} and key {}",
             type, forEnrollYear, forYearNo, key);
         return programmePropRepository.findOneByTypeAndForEnrollYearAndForYearNoAndKey(type, forEnrollYear, forYearNo, key)
             .map(programmePropMapper::toDto);
     }
 
-    public Optional<ProgrammePropDTO> findOneBySemester(String type, Integer forEnrollYear, Integer forSemesterNo, String key) {
+    public Optional<ProgrammePropDTO> findOneBySemester(ProgrammePropType type, Integer forEnrollYear, Integer forSemesterNo, String key) {
         log.debug("Request to get ProgrammeProp by Type: {}, forEnrollYear: {}, forSemesterNo: {} and key {}",
             type, forEnrollYear, forSemesterNo, key);
         return programmePropRepository.findOneByTypeAndForEnrollYearAndForSemesterNoAndKey(type, forEnrollYear, forSemesterNo, key)
             .map(programmePropMapper::toDto);
     }
+
+
+
 }

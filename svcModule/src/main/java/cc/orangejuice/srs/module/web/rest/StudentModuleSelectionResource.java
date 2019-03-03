@@ -123,7 +123,7 @@ public class StudentModuleSelectionResource {
 
 
     // todo submit mark
-    @PostMapping(value = "/student-module-selections/submit-mark", params={"selectionId", "mark"})
+    @PutMapping(value = "/student-module-selections/submit-mark", params={"selectionId", "mark"})
     public ResponseEntity<StudentModuleSelectionDTO> updateMarks(@RequestParam("selectionId") Long selectionId, @RequestParam("mark") Double mark) {
         log.debug("REST request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
         studentModuleSelectionService.updateMarkBySelectionIdAndMark(selectionId, mark);
@@ -131,19 +131,21 @@ public class StudentModuleSelectionResource {
 
     }
 
-    // todo get selctions by academic_year, academic_semester, yearNo, semesterNo and module
-    @GetMapping(value = "/student-module-selections/selection-details", params = {"academicYear", "academicSemester", "yearNo", "semesterNo"})
-    public ResponseEntity<StudentModuleSelectionDTO> getStudentModuleSelections(
+
+    // todo get selections by academic_year, yearNo
+    @GetMapping(value = "/student-module-selections/selection-details", params = {"studentId", "academicYear", "yearNo"})
+    public List<StudentModuleSelectionDTO> getStudentModuleSelections(
+        @RequestParam("studentId") Long studentId,
         @RequestParam("academicYear") Integer academicYear,
-        @RequestParam("academicSemester") Integer academicSemester,
-        @RequestParam("yearNo") Integer yearNo,
-        @RequestParam("semesterNo") Integer semesterNo) {
-        log.debug("REST request to get studentModuleSelection for the student in academicYear : {}, academicSemester: {}, yearNo: {}, semesterNo: {} and module: {} ",
-            academicYear, academicSemester, yearNo, semesterNo);
-        Optional<StudentModuleSelectionDTO> studentModuleSelectionDTO = studentModuleSelectionService.findOneByYearNoAndSemesterNoAndModule(academicYear, academicSemester, yearNo, semesterNo);
-        return ResponseUtil.wrapOrNotFound(studentModuleSelectionDTO);
+        @RequestParam("yearNo") Integer yearNo) {
+        log.debug("REST request to get studentModuleSelection for the student {} in academicYear : {}, yearNo: {}",
+            studentId, academicYear, yearNo);
+        List<StudentModuleSelectionDTO> studentModuleSelectionDTO = studentModuleSelectionService.findAllStudentSelectionsByYear(studentId, academicYear, yearNo);
+        return studentModuleSelectionDTO;
     }
 
+
+    /*
     // todo calculate semester qca
     @GetMapping(value = "/student-module-selections/semester-qca", params = {"studentId","academicYear", "yearNo", "semesterNo"})
     public Double getSemesterQCA(
@@ -166,6 +168,7 @@ public class StudentModuleSelectionResource {
             studentId, academicYear, yearNo);
         return studentModuleSelectionService.getCumulativeQCA(studentId, academicYear, yearNo);
     }
+    */
 
 
 

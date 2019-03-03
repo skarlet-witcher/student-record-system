@@ -134,7 +134,7 @@ public class StudentProgressionService {
 
     // todo Long
     // make progression decision
-    private void makeProgressionDecision(double cumulativeQca, StudentModuleSelectionDTO studentModuleSelectionDTO) {
+    private void makeProgressionDecision(double originalCumulativeQca, StudentModuleSelectionDTO studentModuleSelectionDTO) {
 
     }
 

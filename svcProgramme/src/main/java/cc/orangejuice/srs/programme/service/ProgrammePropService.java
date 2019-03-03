@@ -79,7 +79,8 @@ public class ProgrammePropService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete ProgrammeProp : {}", id);        programmePropRepository.deleteById(id);
+        log.debug("Request to delete ProgrammeProp : {}", id);
+        programmePropRepository.deleteById(id);
     }
 
     @Transactional(readOnly = true)

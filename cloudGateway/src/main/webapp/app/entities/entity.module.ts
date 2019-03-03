@@ -17,22 +17,6 @@ import { RouterModule } from '@angular/router';
                 loadChildren: './svcProgramme/programme/programme.module#SvcProgrammeProgrammeModule'
             },
             {
-                path: 'programme-prop',
-                loadChildren: './svcProgramme/programme-prop/programme-prop.module#SvcProgrammeProgrammePropModule'
-            },
-            {
-                path: 'module',
-                loadChildren: './svcModule/module/module.module#SvcModuleModuleModule'
-            },
-            {
-                path: 'module-grade',
-                loadChildren: './svcModule/module-grade/module-grade.module#SvcModuleModuleGradeModule'
-            },
-            {
-                path: 'student-module-selection',
-                loadChildren: './svcModule/student-module-selection/student-module-selection.module#SvcModuleStudentModuleSelectionModule'
-            },
-            {
                 path: 'student',
                 loadChildren: './svcStudent/student/student.module#SvcStudentStudentModule'
             },
@@ -43,6 +27,22 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'student-progression',
                 loadChildren: './svcStudent/student-progression/student-progression.module#SvcStudentStudentProgressionModule'
+            },
+            {
+                path: 'programme-prop',
+                loadChildren: './svcProgramme/programme-prop/programme-prop.module#SvcProgrammeProgrammePropModule'
+            },
+            {
+                path: 'module',
+                loadChildren: './svcModule/module/module.module#SvcModuleModuleModule'
+            },
+            {
+                path: 'student-module-selection',
+                loadChildren: './svcModule/student-module-selection/student-module-selection.module#SvcModuleStudentModuleSelectionModule'
+            },
+            {
+                path: 'module-grade',
+                loadChildren: './svcModule/module-grade/module-grade.module#SvcModuleModuleGradeModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

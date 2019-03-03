@@ -60,7 +60,7 @@ public class StudentProgression implements Serializable {
     private ProgressDecision progressDecision;
 
     @ManyToOne
-    @JsonIgnoreProperties("students")
+    @JsonIgnoreProperties("studentProgressions")
     private Student student;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

@@ -82,7 +82,8 @@ public class StudentProgressionService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete StudentProgression : {}", id);        studentProgressionRepository.deleteById(id);
+        log.debug("Request to delete StudentProgression : {}", id);
+        studentProgressionRepository.deleteById(id);
     }
 
 

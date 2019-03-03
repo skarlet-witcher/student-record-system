@@ -40,11 +40,11 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
+            "otherEntityName": "department",
+            "otherEntityRelationshipName": "programme",
             "relationshipValidateRules": "required",
             "relationshipName": "department",
-            "otherEntityName": "department",
-            "otherEntityField": "name",
-            "otherEntityRelationshipName": "department"
+            "otherEntityField": "name"
         }
     ],
     "changelogDate": "20190224000011",

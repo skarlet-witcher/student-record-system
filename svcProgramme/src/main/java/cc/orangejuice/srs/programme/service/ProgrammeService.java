@@ -78,6 +78,7 @@ public class ProgrammeService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete Programme : {}", id);        programmeRepository.deleteById(id);
+        log.debug("Request to delete Programme : {}", id);
+        programmeRepository.deleteById(id);
     }
 }

@@ -55,17 +55,17 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "module",
             "otherEntityName": "module",
-            "otherEntityField": "name",
-            "otherEntityRelationshipName": "studentModuleSelection"
+            "otherEntityRelationshipName": "studentModuleSelection",
+            "relationshipName": "module",
+            "otherEntityField": "name"
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "studentModuleGradeType",
             "otherEntityName": "moduleGrade",
-            "otherEntityField": "name",
-            "otherEntityRelationshipName": "studentModuleSelection"
+            "otherEntityRelationshipName": "studentModuleSelection",
+            "relationshipName": "studentModuleGradeType",
+            "otherEntityField": "name"
         }
     ],
     "changelogDate": "20190301203702",

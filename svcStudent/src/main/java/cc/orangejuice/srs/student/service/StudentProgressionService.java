@@ -257,12 +257,14 @@ public class StudentProgressionService {
         log.debug("Request to calculate QCA for student: {}", resultsList.get(resultsList.size() - 1).getStudentId());
 
 
-        // todo check if there is a tuple in the Student progression table for this student
+        // check data existence in Student Progression table
+        // todo variations : how to update qca if one of results is edited?
         log.debug("Request to check student {} results existence in academicYear : {} and academicSemester: {}",
             resultsList.get(resultsList.size() - 1).getStudentId(),resultsList.get(resultsList.size() - 1).getAcademicYear(), resultsList.get(resultsList.size() - 1).getAcademicSemester());
         Optional<StudentDTO> student = studentService.findOne(resultsList.get(resultsList.size() - 1).getStudentId());
         if(studentProgressionRepository.findAllByStudent(studentMapper.toEntity(student.get())).size() > 0) {
-            log.debug("student {} results exist in academicYear : {} and academicSemester: {}",
+            // the result will not be inserted if the result has already existed in the db
+            log.debug("student {} results exist in academicYear : {} and academicSemester: {}. can not insert new record and rollback.",
                 resultsList.get(resultsList.size() - 1).getStudentId(), resultsList.get(resultsList.size() - 1).getAcademicYear(), resultsList.get(resultsList.size() - 1).getAcademicSemester());
             return;
         }

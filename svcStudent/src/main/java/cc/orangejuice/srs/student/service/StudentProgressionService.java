@@ -216,7 +216,6 @@ public class StudentProgressionService {
         StudentProgressionDTO studentProgressionDTO = new StudentProgressionDTO();
         studentProgressionDTO.setForPartNo(partNo);
         studentProgressionDTO.setForAcademicYear(academicYear);
-        studentProgressionDTO.setForAcademicSemester(academicSemester);
         studentProgressionDTO.setQca(cumulativeQCA);
         studentProgressionDTO.setStudentId(studentId);
         studentProgressionDTO.setProgressType(ProgressType.PART);

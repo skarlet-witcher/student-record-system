@@ -65,8 +65,8 @@ public class StudentProgressionResource {
         }
         StudentProgressionDTO result = studentProgressionService.save(studentProgressionDTO);
         return ResponseEntity.created(new URI("/api/student-progressions/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
     }
 
     /**
@@ -86,8 +86,8 @@ public class StudentProgressionResource {
         }
         StudentProgressionDTO result = studentProgressionService.save(studentProgressionDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, studentProgressionDTO.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, studentProgressionDTO.getId().toString()))
+                .body(result);
     }
 
     /**
@@ -132,15 +132,14 @@ public class StudentProgressionResource {
 
     /**
      * @parms moduleslectiondto
-     *
+     * <p>
      * todo calculate qca
      * |
      * service
      * > qca done then
      * |
      * > decision
-     *
-     * */
+     */
     // put results list to the last one of the param list
     @PutMapping("/student-progressions/calculateQCA")
     public ResponseEntity<Void> calculateQCA(@RequestParam("academicYear") Integer academicYear,
@@ -149,39 +148,6 @@ public class StudentProgressionResource {
         log.debug("REST request to calculate the QCA for student: {}", resultsList.get(resultsList.size() - 1).getStudentId());
         studentProgressionService.calculateQCA(resultsList, academicYear, academicSemester);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, "complete")).build();
-    }
-
-
-
-
-    @GetMapping("/student-progressions/firstdecision")
-    public ResponseEntity<Void> firstDecision(){
-//        PeerAwareInstanceRegistry peerAwareInstanceRegistry = EurekaServerContextHolder.getInstance().getServerContext().getRegistry();
-//        Application application = peerAwareInstanceRegistry.getApplication("svcModule");
-//        InstanceInfo  instanceInfo = application.getInstances().get(0);
-//        String url = "http://" + instanceInfo.getIPAddr() + ":" + instanceInfo.getPort() + "/" + "svcmodule/api/student-module-selections" ;
-        String url = "http://localhost:8080/svcmodule/api/student-module-selections";
-        System.out.println("URL" + url);
-//        List<StudentModuleSelectionDTO> studentModuleSelectionDTOS = restTemplate.getForObject(url, List.class);
-        Collection<StudentModuleSelectionDTO> studentModuleSelectionDTOS = studentModuleSelectionsFeignClient.findAll();
-        System.out.printf("Response" + studentModuleSelectionDTOS);
-//        studentModuleSelectionDTOS.forEach(studentModuleSelectionDTO -> {
-//            System.out.println(String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
-//                    studentModuleSelectionDTO.getId(),
-//                    studentModuleSelectionDTO.getStudentId(),
-//                    studentModuleSelectionDTO.getAcademicYear(),
-//                    studentModuleSelectionDTO.getAcademicSemester(),
-//                    studentModuleSelectionDTO.getYearNo(),
-//                    studentModuleSelectionDTO.getSemesterNo(),
-//                    studentModuleSelectionDTO.getCreditHour(),
-//                    studentModuleSelectionDTO.getMarks(),
-//                    studentModuleSelectionDTO.getQcs(),
-//                    studentModuleSelectionDTO.getModuleId(),
-//                    studentModuleSelectionDTO.getStudentModuleGradeTypeId()
-//            ));
-//        });
-        studentProgressionService.firstDecision(studentModuleSelectionDTOS);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "First decision made")).build();
     }
 
 

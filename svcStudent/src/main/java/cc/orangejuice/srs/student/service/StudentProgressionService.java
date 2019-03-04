@@ -90,7 +90,7 @@ public class StudentProgressionService {
     public Page<StudentProgressionDTO> findAll(Pageable pageable) {
         log.debug("Request to get all StudentProgressions");
         return studentProgressionRepository.findAll(pageable)
-            .map(studentProgressionMapper::toDto);
+                .map(studentProgressionMapper::toDto);
     }
 
 
@@ -104,7 +104,7 @@ public class StudentProgressionService {
     public Optional<StudentProgressionDTO> findOne(Long id) {
         log.debug("Request to get StudentProgression : {}", id);
         return studentProgressionRepository.findById(id)
-            .map(studentProgressionMapper::toDto);
+                .map(studentProgressionMapper::toDto);
     }
 
     /**
@@ -115,89 +115,6 @@ public class StudentProgressionService {
     public void delete(Long id) {
         log.debug("Request to delete StudentProgression : {}", id);
         studentProgressionRepository.deleteById(id);
-    }
-
-
-    public void firstDecision(Collection<StudentModuleSelectionDTO> gradeList) {
-        log.debug("Begin making first decision of transiting state from NO_STATE to PASS/FAIL_CAN_REPEAT/FAIL_NO_REPEAT");
-
-        //Get list of QCA
-        List<StudentProgression> studentProgressionRepositoryAll = studentProgressionRepository.findAll();
-        List<StudentProgressionDTO> studentProgressionDTOS = studentProgressionMapper.toDto(studentProgressionRepositoryAll);
-
-        //Check if QCA in the list is in the first part, and >2.0 or <2.0
-        for (StudentProgressionDTO studentProgressionDTO : studentProgressionDTOS) {
-            //If QCA in the first part
-            if (studentProgressionDTO.getForPartNo() == 1 && studentProgressionDTO.getForAcademicSemester() == 2) {
-                //if QCA >2.0
-                if (studentProgressionDTO.getQca() >= 2) {
-                    studentProgressionDTO.setProgressDecision(ProgressDecision.PASS);
-                    StudentProgression modifiedStudentProgression = studentProgressionMapper.toEntity(studentProgressionDTO);
-                    studentProgressionRepository.save(modifiedStudentProgression);
-                }
-
-                //Else QCA <2.0 , Check if his QCA is FAIL_NO_REPEAT or FAIL_CAN_REPEAT after Swap
-                else {
-                    //get all grade of this student in year 1 and store in a list
-                    List<StudentModuleSelectionDTO> gradeOfThisStduent = new ArrayList<>();
-                    boolean isLearning2Semester = false;
-
-                    for (StudentModuleSelectionDTO gradeRecord : gradeList) {
-                        if (gradeRecord.getStudentId().equals(studentProgressionDTO.getStudentId())) {
-                            if (gradeRecord.getYearNo() == 1)
-                                gradeOfThisStduent.add(gradeRecord);
-                            if (isLearning2Semester == false) {
-                                if (gradeRecord.getSemesterNo() == 2) {
-                                    isLearning2Semester = true;
-                                }
-                            }
-                        }
-                    }
-
-                    //Sort to get the worst grades
-                    Collections.sort(gradeOfThisStduent, (o1, o2) -> {
-                        if (o1.getQcs() > o2.getQcs())
-                            return 1;
-                        else return -1;
-                    });
-
-                    double QCAbeforeSwap = calculateQCAafterSwap(gradeOfThisStduent);
-                    System.out.println("QCA before: " +QCAbeforeSwap + studentProgressionDTO.getProgressDecision());
-
-                    //If he only learns in 1 semester
-                    if (isLearning2Semester == false) {
-                        //find 2 worst grades and swap
-                        swapWorstModule(gradeOfThisStduent, 2);
-                    }
-                    //If he learns 2 semesters
-                    else {
-                        //find 4 worst grades and swap
-                        swapWorstModule(gradeOfThisStduent, 4);
-                    }
-                    //calculate QCA again
-                    double QCAafterSwap = calculateQCAafterSwap(gradeOfThisStduent);
-
-                    //if (swap > 2.0) or <2.0
-                    if(QCAafterSwap >= 2.0){
-                        studentProgressionDTO.setProgressDecision(ProgressDecision.FAIL_CAN_REPEAT);
-                        StudentProgression modifiedStudentProgression = studentProgressionMapper.toEntity(studentProgressionDTO);
-                        studentProgressionRepository.save(modifiedStudentProgression);
-                    }
-                    else {
-                        studentProgressionDTO.setProgressDecision(ProgressDecision.FAIL_NO_REPEAT);
-                        StudentProgression modifiedStudentProgression = studentProgressionMapper.toEntity(studentProgressionDTO);
-                        studentProgressionRepository.save(modifiedStudentProgression);
-
-                    }
-
-                    //Decision CAN_REPEAT or NO_REPEAT
-                    System.out.println("QCA after: " +QCAafterSwap + studentProgressionDTO.getProgressDecision());
-
-                }
-
-            }
-        }
-
     }
 
 
@@ -212,46 +129,6 @@ public class StudentProgressionService {
         return 0;
     }
 
-    public static double calculateQCAafterSwap(List<StudentModuleSelectionDTO> gradeOfThisStudent) {
-        double QCA = 0.0;
-        Double totalAttemptHours = 0.0;
-        //Accumulate QCA and attempthours
-        for (StudentModuleSelectionDTO grade : gradeOfThisStudent) {
-            QCA = QCA + grade.getQcs();
-                totalAttemptHours += grade.getCreditHour() - getNQH();
-
-//            int eachAttemptHour = 0;
-//            int credit = moduleRepository.findById(grade.getModuleId()).getCredit;
-//            int factor = programmeproRepositoty.findByEnrollYearandSemesterNoAndKey;
-//            eachAttemptHour = credit* factor;
-//            totalAttemptHours = totalAttemptHours + eachAttemptHour;
-
-        }
-
-        QCA = QCA / totalAttemptHours;
-        return QCA;
-    }
-
-    //(Function not finish) Long will change it later.
-    //Xiangkai is responsible for producing the Student_progression record.
-    // And he will call this function to fill the data into the "Progress Decision" column
-    // he will need to check the condition (studentProgressionDTO.getForPartNo() == 1 && studentProgressionDTO.getForAcademicSemester() == 2)
-
-    /**
-     * Make the decision based on original_QCA and listGradeOfThisStudent
-     * This function does not check the condition whether the student_progression is in Decision Point or not
-     * This function only check if
-     *    QCA > 2.0 : PASS
-     *    QCA < 2.0: then swap 4 worst grades, then calculating QCA again based on listGradeOfThisStudent, then output decison
-     * @param originalCumulativeQca
-     * @param listGradeOfThisStudent: to take 4 worst modules to swap
-     * @return PASS, FAIL_CAN_REPEAT, FAIL_NO_REPEAT
-     */
-    private Enum<ProgressDecision> makeProgressionDecision(double originalCumulativeQca, List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
-        if(originalCumulativeQca > 2.0)
-            return ProgressDecision.PASS;
-        else return ProgressDecision.FAIL_CAN_REPEAT;
-    }
 
     public void calculateQCA(List<StudentModuleSelectionDTO> resultsList, Integer academicYear, Integer academicSemester) {
         log.debug("Request to calculate QCA for student: {}", resultsList.get(resultsList.size() - 1).getStudentId());
@@ -260,26 +137,29 @@ public class StudentProgressionService {
         // check data existence in Student Progression table
         // todo variations : how to update qca if one of results is edited?
         log.debug("Request to check student {} results existence in academicYear : {} and academicSemester: {}",
-            resultsList.get(resultsList.size() - 1).getStudentId(),resultsList.get(resultsList.size() - 1).getAcademicYear(), resultsList.get(resultsList.size() - 1).getAcademicSemester());
+                resultsList.get(resultsList.size() - 1).getStudentId(), resultsList.get(resultsList.size() - 1).getAcademicYear(), resultsList.get(resultsList.size() - 1).getAcademicSemester());
         Optional<StudentDTO> student = studentService.findOne(resultsList.get(resultsList.size() - 1).getStudentId());
-        if(studentProgressionRepository.findAllByStudent(studentMapper.toEntity(student.get())).size() > 0) {
+        if (studentProgressionRepository.findAllByStudent(studentMapper.toEntity(student.get())).size() > 0) {
             // the result will not be inserted if the result has already existed in the db
             log.debug("student {} results exist in academicYear : {} and academicSemester: {}. can not insert new record and rollback.",
-                resultsList.get(resultsList.size() - 1).getStudentId(), resultsList.get(resultsList.size() - 1).getAcademicYear(), resultsList.get(resultsList.size() - 1).getAcademicSemester());
+                    resultsList.get(resultsList.size() - 1).getStudentId(), resultsList.get(resultsList.size() - 1).getAcademicYear(), resultsList.get(resultsList.size() - 1).getAcademicSemester());
             return;
         }
 
 
         // calculate semester QCA
         Double semesterQCA = calculateSemesterQCA(resultsList, academicYear, academicSemester);
-        insertSemesterQCAForStudent(semesterQCA, academicYear, academicSemester, resultsList.get(resultsList.size() - 1).getStudentId());
 
         // if it is the end of the part
-        if(isEndOfPart(resultsList, academicYear)) {
+        if (isEndOfPart(resultsList, academicYear)) {
             // if yes, calculate cumulative QCA and generate progression decision
             Double cumulativeQCA = calculateCumulativeQCA(resultsList);
             log.debug("ready to make progression decision with cumulative QCA: {} and academicYear: {}", cumulativeQCA, academicYear);
-            makeProgressionDecision(cumulativeQCA, resultsList);
+            ProgressDecision progressDecisionEnum = makeProgressionDecision(cumulativeQCA, resultsList);
+            insertSemesterQCAForStudent(semesterQCA, academicYear, academicSemester, resultsList.get(resultsList.size() - 1).getStudentId(), progressDecisionEnum);
+
+        } else {
+            insertSemesterQCAForStudent(semesterQCA, academicYear, academicSemester, resultsList.get(resultsList.size() - 1).getStudentId(), null);
         }
 
         // leave graduation for now
@@ -293,16 +173,16 @@ public class StudentProgressionService {
         List<ProgrammePropDTO> partList = programmeFeignClient.getProgrammeProps("YEAR", academicYear, null, null, "part");
         Boolean isEndOfPart = false;
 
-        for(int i = 0; i < partList.size(); i++) {
+        for (int i = 0; i < partList.size(); i++) {
             // if the results end in the end of semester
-            if(resultsList.get(resultsList.size() - 1).getYearNo() == partList.get(i).getForYearNo() &&
-                resultsList.get(resultsList.size() - 1).getSemesterNo() == 2) {
-                    // if this is the end of the part (if it has multiple parts)
-                if(partList.get(i).getValue() != partList.get(i + 1).getValue()) {
-                        isEndOfPart = true;
-                        log.debug("It is end of part {}. And ready to calculate cumulative QCA", partList.get(i).getValue());
-                        break;
-                    }
+            if (resultsList.get(resultsList.size() - 1).getYearNo() == partList.get(i).getForYearNo() &&
+                    resultsList.get(resultsList.size() - 1).getSemesterNo() == 2) {
+                // if this is the end of the part (if it has multiple parts)
+                if (partList.get(i).getValue() != partList.get(i + 1).getValue()) {
+                    isEndOfPart = true;
+                    log.debug("It is end of part {}. And ready to calculate cumulative QCA", partList.get(i).getValue());
+                    break;
+                }
             }
         }
         return isEndOfPart;
@@ -313,19 +193,19 @@ public class StudentProgressionService {
         log.debug("Request to calculate semester QCA for student: {} in academic semester: {}", resultsList.get(resultsList.size() - 1).getStudentId(), academicSemester);
         Double semesterQCS = 0.00;
         Double attemptedHours = 0.00;
-        for(StudentModuleSelectionDTO oneResult : resultsList) {
-           if(oneResult.getAcademicYear().equals(academicYear)  && oneResult.getAcademicSemester().equals(academicSemester)) {
-               semesterQCS += oneResult.getQcs();
-               attemptedHours += oneResult.getCreditHour() - getNQH();
-           }
+        for (StudentModuleSelectionDTO oneResult : resultsList) {
+            if (oneResult.getAcademicYear().equals(academicYear) && oneResult.getAcademicSemester().equals(academicSemester)) {
+                semesterQCS += oneResult.getQcs();
+                attemptedHours += oneResult.getCreditHour() - getNQH();
+            }
         }
         log.debug("semesterQCS is {} and attemptedHours is {}", semesterQCS, attemptedHours);
-        log.debug("THe semester QCA for student {} at academicYear {} and academicSemester {} is {}", resultsList.get(0).getStudentId(), academicYear, academicSemester, semesterQCS/attemptedHours);
+        log.debug("THe semester QCA for student {} at academicYear {} and academicSemester {} is {}", resultsList.get(0).getStudentId(), academicYear, academicSemester, semesterQCS / attemptedHours);
         DecimalFormat df = new DecimalFormat("#.##");
-        return Double.parseDouble(df.format(semesterQCS/attemptedHours));
+        return Double.parseDouble(df.format(semesterQCS / attemptedHours));
     }
 
-    private void insertSemesterQCAForStudent(Double semesterQCA, Integer academicYear, Integer academicSemester, Long studentId) {
+    private void insertSemesterQCAForStudent(Double semesterQCA, Integer academicYear, Integer academicSemester, Long studentId, ProgressDecision progressDecisionEnum) {
         log.debug("request to insert Semester QCA for student: {} with QCA: {} in academic Year: {} and academic Semester: ", studentId, academicYear, academicSemester);
 
         StudentProgressionDTO studentProgressionDTO = new StudentProgressionDTO();
@@ -333,8 +213,9 @@ public class StudentProgressionService {
         studentProgressionDTO.setForAcademicSemester(academicSemester);
         studentProgressionDTO.setQca(semesterQCA);
         studentProgressionDTO.setStudentId(studentId);
+        if (progressDecisionEnum != null) studentProgressionDTO.setProgressDecision(progressDecisionEnum);
         log.debug("request to save student semester qca to student progression table. studentId: {}, academicYear: {}, academicSemester: {}, semesterQCA: {}",
-            studentId, academicYear, academicSemester, semesterQCA);
+                studentId, academicYear, academicSemester, semesterQCA);
         save(studentProgressionDTO);
     }
 
@@ -342,12 +223,67 @@ public class StudentProgressionService {
         log.debug("request to calculate the cumulative QCA for student: {}", resultsList.get(0).getStudentId());
         Double qcs = 0.00;
         Double attemptedHour = 0.00;
-        for(StudentModuleSelectionDTO studentModuleSelectionDTO : resultsList) {
+        for (StudentModuleSelectionDTO studentModuleSelectionDTO : resultsList) {
             qcs += studentModuleSelectionDTO.getQcs();
             attemptedHour += studentModuleSelectionDTO.getCreditHour() - getNQH();
         }
-        log.debug("The cumulative QCA is {}", qcs/attemptedHour);
+        log.debug("The cumulative QCA is {}", qcs / attemptedHour);
         DecimalFormat df = new DecimalFormat("#.##");
-        return Double.parseDouble(df.format(qcs/attemptedHour));
+        return Double.parseDouble(df.format(qcs / attemptedHour));
+    }
+
+    /**
+     * Make the decision based on original_QCA and listGradeOfThisStudent
+     * This function does not check the condition whether the student_progression is in Decision Point or not
+     * This function only check if
+     * QCA > 2.0 : PASS
+     * QCA < 2.0: then swap 4 worst grades, then calculating QCA again based on listGradeOfThisStudent, then output decison
+     *
+     * @param originalCumulativeQca
+     * @param listGradeOfThisStudent: to take 4 worst modules to swap
+     * @return PASS, FAIL_CAN_REPEAT, FAIL_NO_REPEAT
+     */
+    private ProgressDecision makeProgressionDecision(double originalCumulativeQca, List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
+        log.debug("Begin making first decision of transiting state from NO_STATE to PASS/FAIL_CAN_REPEAT/FAIL_NO_REPEAT");
+        if (originalCumulativeQca > 2.0)
+            return ProgressDecision.PASS;
+        else {
+            //Sort to get 4 worst grades
+            Collections.sort(listGradeOfThisStudent, (o1, o2) -> {
+                if (o1.getQcs() > o2.getQcs())
+                    return 1;
+                else return -1;
+            });
+
+            //Check if he took 1 semester or 2 semesters because it will affect the number of swap grades
+            boolean isLearnedSem1 = false;
+            boolean isLearnedSem2 = false;
+
+            for (StudentModuleSelectionDTO gradeRecord : listGradeOfThisStudent) {
+                if (isLearnedSem1 == false) {
+                    if (gradeRecord.getYearNo() == 1 && gradeRecord.getSemesterNo() == 1)
+                        isLearnedSem1 = true;
+                }
+                if (isLearnedSem2 == false) {
+                    if (gradeRecord.getYearNo() == 1 && gradeRecord.getSemesterNo() == 2)
+                        isLearnedSem2 = true;
+                }
+            }
+            if (isLearnedSem1 == true && isLearnedSem2 == true) {
+                swapWorstModule(listGradeOfThisStudent, 4);
+            } else {
+                swapWorstModule(listGradeOfThisStudent, 2);
+            }
+
+            //Calculate QCA after swap
+            double QCA_AfterSwap = calculateCumulativeQCA(listGradeOfThisStudent);
+            log.debug("QCA_AfterSwap: {}", QCA_AfterSwap);
+
+            if (QCA_AfterSwap >= 2.0) {
+                return ProgressDecision.FAIL_CAN_REPEAT;
+            } else {
+                return ProgressDecision.FAIL_NO_REPEAT;
+            }
+        }
     }
 }

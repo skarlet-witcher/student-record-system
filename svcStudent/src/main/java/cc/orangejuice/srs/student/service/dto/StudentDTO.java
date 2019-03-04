@@ -1,4 +1,5 @@
 package cc.orangejuice.srs.student.service.dto;
+import cc.orangejuice.srs.student.domain.Student;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -47,6 +48,11 @@ public class StudentDTO implements Serializable {
 
     private Long userId;
 
+    public Student _toConvertStudent(){
+        Student entity = new Student();
+        //set entity values here from StudentDTO
+        return entity ;
+    }
 
     public Long getId() {
         return id;

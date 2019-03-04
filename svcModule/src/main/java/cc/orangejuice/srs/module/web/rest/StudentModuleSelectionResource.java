@@ -121,7 +121,10 @@ public class StudentModuleSelectionResource {
 
 
     @PutMapping(value = "/student-module-selections/submit-mark", params={"selectionId", "mark"})
-    public ResponseEntity<StudentModuleSelectionDTO> updateMarks(@RequestParam("selectionId") Long selectionId, @RequestParam("mark") Double mark) {
+    public ResponseEntity<StudentModuleSelectionDTO> updateMarks(
+        @RequestParam("selectionId") Long selectionId,
+        @RequestParam("mark") Double mark) {
+
         log.debug("REST request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
         studentModuleSelectionService.updateMarkBySelectionIdAndMark(selectionId, mark);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, selectionId.toString())).build();

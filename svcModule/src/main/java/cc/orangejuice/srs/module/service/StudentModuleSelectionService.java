@@ -2,6 +2,7 @@ package cc.orangejuice.srs.module.service;
 
 
 import cc.orangejuice.srs.module.client.ProgrammeFeignClient;
+import cc.orangejuice.srs.module.client.StudentFeignClient;
 import cc.orangejuice.srs.module.client.dto.ProgrammePropDTO;
 import cc.orangejuice.srs.module.domain.Module;
 import cc.orangejuice.srs.module.domain.ModuleGrade;
@@ -40,15 +41,19 @@ public class StudentModuleSelectionService {
 
         private final ModuleGradeService moduleGradeService;
 
+        private final StudentFeignClient studentFeignClient;
+
 
         public StudentModuleSelectionService(StudentModuleSelectionRepository studentModuleSelectionRepository,
                                              StudentModuleSelectionMapper studentModuleSelectionMapper,
                                              ProgrammeFeignClient programmeFeignClient,
-                                             ModuleGradeService moduleGradeService) {
+                                             ModuleGradeService moduleGradeService,
+                                             StudentFeignClient studentFeignClient) {
             this.studentModuleSelectionRepository = studentModuleSelectionRepository;
             this.studentModuleSelectionMapper = studentModuleSelectionMapper;
             this.programmeFeignClient = programmeFeignClient;
             this.moduleGradeService = moduleGradeService;
+            this.studentFeignClient = studentFeignClient;
         }
 
         /**
@@ -134,8 +139,11 @@ public class StudentModuleSelectionService {
                 // send all the results that less or equal to this academic semester
                 log.debug("It is the end of semester {}, Request to get all the results that that less or equal to the academic semester {} for student {}", studentModuleSelectionDTO.get().getAcademicSemester(), studentModuleSelectionDTO.get().getAcademicSemester(), studentModuleSelectionDTO.get().getStudentId());
                 List<StudentModuleSelection> allResultsList = studentModuleSelectionRepository.findAllByStudentIdAndSemesterNo(studentModuleSelectionDTO.get().getStudentId(), studentModuleSelectionDTO.get().getAcademicSemester());
-                List<StudentModuleSelectionDTO> allResulstsDTO = studentModuleSelectionMapper.toDto(allResultsList);
+                List<StudentModuleSelectionDTO> allResultsDTO = studentModuleSelectionMapper.toDto(allResultsList);
+                log.debug("Request to calculate QCA in Student micro-service with a list of {} results", allResultsList.size());
                 // todo send to student micro-service for calculating the QCA with resultList, academicYear and academicSemester
+                // studentFeignClient.calculateQCA(allResultsDTO, resultsList.get(0).getAcademicYear(), resultsList.get(0).getAcademicSemester());
+
 
             }
         }

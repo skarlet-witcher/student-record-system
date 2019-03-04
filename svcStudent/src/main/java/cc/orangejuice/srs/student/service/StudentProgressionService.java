@@ -1,11 +1,11 @@
 package cc.orangejuice.srs.student.service;
 
 import cc.orangejuice.srs.student.client.StudentModuleSelectionsFeignClient;
-import cc.orangejuice.srs.student.domain.Student;
 import cc.orangejuice.srs.student.domain.StudentProgression;
 import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
 import cc.orangejuice.srs.student.repository.StudentProgressionRepository;
 import cc.orangejuice.srs.student.repository.StudentRepository;
+import cc.orangejuice.srs.student.service.dto.StudentDTO;
 import cc.orangejuice.srs.student.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.service.mapper.StudentProgressionMapper;
@@ -15,11 +15,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import javax.swing.text.html.Option;
 import java.util.*;
 
 /**
@@ -37,13 +37,19 @@ public class StudentProgressionService {
 
     private final StudentModuleSelectionsFeignClient studentModuleSelectionsFeignClient;
 
+    private final StudentService studentService;
+
     @Autowired
     private StudentRepository studentRepository;
 
-    public StudentProgressionService(StudentProgressionRepository studentProgressionRepository, StudentProgressionMapper studentProgressionMapper, StudentModuleSelectionsFeignClient studentModuleSelectionsFeignClient) {
+    public StudentProgressionService(StudentProgressionRepository studentProgressionRepository,
+                                     StudentProgressionMapper studentProgressionMapper,
+                                     StudentModuleSelectionsFeignClient studentModuleSelectionsFeignClient,
+                                     StudentService studentService) {
         this.studentProgressionRepository = studentProgressionRepository;
         this.studentProgressionMapper = studentProgressionMapper;
         this.studentModuleSelectionsFeignClient = studentModuleSelectionsFeignClient;
+        this.studentService = studentService;
     }
 
     /**
@@ -215,11 +221,56 @@ public class StudentProgressionService {
     }
 
 
-    public void calculateQCA(List<StudentModuleSelectionDTO> resultsList, Integer academicYear, Integer academicSemester) {
-        log.debug("Request to calculate QCA for student: {}", resultsList.get(0).getStudentId());
+    public void calculateQCA(StudentModuleSelectionDTO[] resultsList, Integer academicYear, Integer academicSemester) {
+        log.debug("Request to calculate QCA for student: {}", resultsList[resultsList.length - 1].getStudentId());
+
+        // todo check if there is a tuple in the Student progression table for this student
+        log.debug("Request to check student {} results existence in academicYear : {} and academicSemester: {}",
+            resultsList[resultsList.length - 1].getStudentId(),resultsList[resultsList.length - 1].getAcademicYear(), resultsList[resultsList.length - 1].getAcademicSemester());
+        Optional<StudentDTO> student = studentService.findOne(resultsList[resultsList.length - 1].getStudentId());
+        if(studentProgressionRepository.findOneByStudent(student.get()._toConvertStudent()) != null) {
+            log.debug("student {} results exist in academicYear : {} and academicSemester: {}",
+                resultsList[resultsList.length - 1].getStudentId(), resultsList[resultsList.length - 1].getAcademicYear(), resultsList[resultsList.length - 1].getAcademicSemester());
+            return;
+        }
 
         // todo calculate semester QCA
-        // todo calculate cumulative QCA
-        // todo invoke progression decision if it is the end of the part
+        Double semesterQCA = calculateSemesterQCA(resultsList, academicYear, academicSemester);
+        insertSemesterQCAForStudent(semesterQCA, academicYear, academicSemester, resultsList[resultsList.length - 1].getStudentId());
+
+        // todo if it is the end of the part
+
+
+        // todo if yes, calculate cumulative QCA and generate progression decision
+        // todo how to distinguish part 1 and part 2 ?
+        // todo no need to think about graduation for now
+
+
+    }
+
+    private Double calculateSemesterQCA(StudentModuleSelectionDTO[] resultsList, Integer academicYear, Integer academicSemester) {
+        log.debug("Request to calculate semester QCA for student: {} in academic semester: {}", resultsList[resultsList.length - 1].getStudentId(), academicSemester);
+        Double semesterQCS = 0.00;
+        Double attemptedHours = 0.00;
+        for(StudentModuleSelectionDTO oneResult : resultsList) {
+           if(oneResult.getAcademicYear() == academicYear && oneResult.getAcademicSemester() == academicSemester) {
+               semesterQCS += oneResult.getQcs();
+               attemptedHours += oneResult.getCreditHour() - getNQH();
+           }
+        }
+        return semesterQCS/attemptedHours;
+    }
+
+    private void insertSemesterQCAForStudent(Double semesterQCA, Integer academicYear, Integer academicSemester, Long studentId) {
+        log.debug("request to get student: {}", studentId);
+
+        StudentProgressionDTO studentProgressionDTO = new StudentProgressionDTO();
+        studentProgressionDTO.setForAcademicYear(academicYear);
+        studentProgressionDTO.setForAcademicSemester(academicSemester);
+        studentProgressionDTO.setQca(semesterQCA);
+        studentProgressionDTO.setStudentId(studentId);
+        log.debug("request to save student semester qca to student progression table. studentId: {}, academicYear: {}, academicSemester: {}, semesterQCA: {}",
+            studentId, academicYear, academicSemester, semesterQCA);
+        save(studentProgressionDTO);
     }
 }

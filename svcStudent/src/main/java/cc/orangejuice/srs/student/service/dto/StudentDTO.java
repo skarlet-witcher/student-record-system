@@ -1,10 +1,14 @@
 package cc.orangejuice.srs.student.service.dto;
 import cc.orangejuice.srs.student.domain.Student;
 import io.swagger.annotations.ApiModelProperty;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 import cc.orangejuice.srs.student.domain.enumeration.Gender;
+import org.springframework.beans.BeanUtils;
 
 /**
  * A DTO for the Student entity.
@@ -47,12 +51,6 @@ public class StudentDTO implements Serializable {
     private String country;
 
     private Long userId;
-
-    public Student _toConvertStudent(){
-        Student entity = new Student();
-        //set entity values here from StudentDTO
-        return entity ;
-    }
 
     public Long getId() {
         return id;

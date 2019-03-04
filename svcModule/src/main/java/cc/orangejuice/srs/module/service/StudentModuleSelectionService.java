@@ -121,7 +121,7 @@ public class StudentModuleSelectionService {
 
             Boolean haveAllMarks = true;
 
-            // get a tuple for getting studentId and semesterNo
+            // get a tuple by selectionId for getting studentId and semesterNo
             Optional<StudentModuleSelectionDTO> studentModuleSelectionDTO = findOne(selectionId);
 
             log.debug("Request to get result list for student {} at SemesterNo {}", studentModuleSelectionDTO.get().getStudentId(), studentModuleSelectionDTO.get().getSemesterNo());
@@ -138,11 +138,11 @@ public class StudentModuleSelectionService {
             if(haveAllMarks) {
                 // send all the results that less or equal to this academic semester
                 log.debug("It is the end of semester {}, Request to get all the results that that less or equal to the academic semester {} for student {}", studentModuleSelectionDTO.get().getAcademicSemester(), studentModuleSelectionDTO.get().getAcademicSemester(), studentModuleSelectionDTO.get().getStudentId());
-                List<StudentModuleSelection> allResultsList = studentModuleSelectionRepository.findAllByStudentIdAndSemesterNo(studentModuleSelectionDTO.get().getStudentId(), studentModuleSelectionDTO.get().getAcademicSemester());
+                List<StudentModuleSelection> allResultsList = studentModuleSelectionRepository.findAllByStudentIdAndAcademicSemester(studentModuleSelectionDTO.get().getStudentId(), studentModuleSelectionDTO.get().getAcademicSemester());
                 List<StudentModuleSelectionDTO> allResultsDTO = studentModuleSelectionMapper.toDto(allResultsList);
                 log.debug("Request to calculate QCA in Student micro-service with a list of {} results", allResultsList.size());
                 // todo send to student micro-service for calculating the QCA with resultList, academicYear and academicSemester
-                // studentFeignClient.calculateQCA(allResultsDTO, resultsList.get(0).getAcademicYear(), resultsList.get(0).getAcademicSemester());
+                 studentFeignClient.calculateQCA(resultsList.get(resultsList.size() - 1).getAcademicYear(), resultsList.get(resultsList.size() - 1).getAcademicSemester(), allResultsDTO);
 
 
             }
@@ -162,15 +162,15 @@ public class StudentModuleSelectionService {
                 studentModuleSelection.get().getYearNo(),
                 studentModuleSelection.get().getSemesterNo());
 
-            ResponseEntity programmePropResponse = programmeFeignClient.getProgrammeProps("SEMESTER",
+            List<ProgrammePropDTO> programmePropResponse = programmeFeignClient.getProgrammeProps("SEMESTER",
                 studentModuleSelection.get().getAcademicYear(),
                 studentModuleSelection.get().getYearNo(),
                 studentModuleSelection.get().getSemesterNo(),
                 "factor");
 
-            ProgrammePropDTO programmeProp = (ProgrammePropDTO) programmePropResponse.getBody();
 
-            return Double.parseDouble(programmeProp.getValue());
+
+            return Double.parseDouble(programmePropResponse.get(0).getValue());
 
         }
 

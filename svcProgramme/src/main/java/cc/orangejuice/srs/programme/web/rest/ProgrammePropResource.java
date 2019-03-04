@@ -123,7 +123,7 @@ public class ProgrammePropResource {
 //        @ApiImplicitParam(name = "forSemesterNo", allowEmptyValue = true)
 //    })
     @GetMapping(value = "/programme-props/query")
-    public ResponseEntity<ProgrammePropDTO> getProgrammeProps(
+    public List<ProgrammePropDTO> getProgrammeProps(
         @RequestParam(value = "type", defaultValue = "GENERAL") ProgrammePropType type,
         @RequestParam(value = "forEnrollYear") Integer forEnrollYear,
         @RequestParam(value = "forYearNo", required = false) Integer forYearNo,
@@ -132,16 +132,16 @@ public class ProgrammePropResource {
 
         log.debug("REST request to get year: {} ,type: {}, semesterNO: {} and key: {} for ProgrammePropDict", forEnrollYear, type, forSemesterNo, key);
 
-        Optional<ProgrammePropDTO> programmePropDTO;
+        List<ProgrammePropDTO> programmePropDTOs;
 
         if (type == ProgrammePropType.YEAR) {
-            programmePropDTO = programmePropService.findOneByYear(type, forEnrollYear, forYearNo, key);
+            programmePropDTOs = programmePropService.findOneByYear(type, forEnrollYear, forYearNo, key);
         } else if (type == ProgrammePropType.SEMESTER) {
-            programmePropDTO = programmePropService.findOneBySemester(type, forEnrollYear, forSemesterNo, key);
+            programmePropDTOs = programmePropService.findOneBySemester(type, forEnrollYear, forSemesterNo, key);
         } else {
             return null; // for general?
         }
-        return ResponseUtil.wrapOrNotFound(programmePropDTO);
+        return programmePropDTOs;
     }
 
 

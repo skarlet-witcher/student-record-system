@@ -141,12 +141,12 @@ public class StudentProgressionResource {
      * > decision
      *
      * */
-
+    // put results list to the last one of the param list
     @PutMapping("/student-progressions/calculateQCA")
-    public ResponseEntity<Void> calculateQCA(@RequestParam("resultsList") StudentModuleSelectionDTO[] resultsList,
-                                             @RequestParam("academicYear") Integer academicYear,
-                                             @RequestParam("academicSemester") Integer academicSemester) {
-        log.debug("REST request to calculate the QCA for student: {}", resultsList[resultsList.length - 1].getStudentId());
+    public ResponseEntity<Void> calculateQCA(@RequestParam("academicYear") Integer academicYear,
+                                             @RequestParam("academicSemester") Integer academicSemester,
+                                             @RequestBody List<StudentModuleSelectionDTO> resultsList) {
+        log.debug("REST request to calculate the QCA for student: {}", resultsList.get(resultsList.size() - 1).getStudentId());
         studentProgressionService.calculateQCA(resultsList, academicYear, academicSemester);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, "complete")).build();
     }

@@ -20,7 +20,7 @@ public interface StudentFeignClient {
     */
 
     @PutMapping(value = "/api/student-progressions/calculateQCA")
-    ResponseEntity<Void> calculateQCA(@RequestParam("resultsList") StudentModuleSelectionDTO[] resultsList,
-                                             @RequestParam("academicYear") Integer academicYear,
-                                             @RequestParam("academicSemester") Integer academicSemester);
+    ResponseEntity<Void> calculateQCA(@RequestParam("academicYear") Integer academicYear,
+                                      @RequestParam("academicSemester") Integer academicSemester,
+                                      @RequestBody List<StudentModuleSelectionDTO> resultsList);
 }

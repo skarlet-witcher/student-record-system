@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -15,6 +16,6 @@ import java.util.Optional;
 @SuppressWarnings("unused")
 @Repository
 public interface StudentProgressionRepository extends JpaRepository<StudentProgression, Long> {
-    Optional<StudentProgression> findOneByStudent(@Param("student") Student student);
+    List<StudentProgression> findAllByStudent(@Param("student") Student student);
 
 }

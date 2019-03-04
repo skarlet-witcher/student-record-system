@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -84,18 +85,22 @@ public class ProgrammePropService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<ProgrammePropDTO> findOneByYear(ProgrammePropType type, Integer forEnrollYear, Integer forYearNo, String key) {
+    public List<ProgrammePropDTO> findOneByYear(ProgrammePropType type, Integer forEnrollYear, Integer forYearNo, String key) {
         log.debug("Request to get ProgrammeProp by Type: {}, forEnrollYear: {}, forYearNo: {} and key {}",
             type, forEnrollYear, forYearNo, key);
-        return programmePropRepository.findOneByTypeAndForEnrollYearAndForYearNoAndKey(type, forEnrollYear, forYearNo, key)
-            .map(programmePropMapper::toDto);
+        if(forYearNo == null) {
+            return  programmePropMapper.toDto(programmePropRepository.findAllByTypeAndForEnrollYearAndKey(type, forEnrollYear, key));
+        }
+        return programmePropMapper.toDto(programmePropRepository.findOneByTypeAndForEnrollYearAndForYearNoAndKey(type, forEnrollYear, forYearNo, key));
     }
 
-    public Optional<ProgrammePropDTO> findOneBySemester(ProgrammePropType type, Integer forEnrollYear, Integer forSemesterNo, String key) {
+    public List<ProgrammePropDTO> findOneBySemester(ProgrammePropType type, Integer forEnrollYear, Integer forSemesterNo, String key) {
         log.debug("Request to get ProgrammeProp by Type: {}, forEnrollYear: {}, forSemesterNo: {} and key {}",
             type, forEnrollYear, forSemesterNo, key);
-        return programmePropRepository.findOneByTypeAndForEnrollYearAndForSemesterNoAndKey(type, forEnrollYear, forSemesterNo, key)
-            .map(programmePropMapper::toDto);
+        if(forSemesterNo == null) {
+            return  programmePropMapper.toDto(programmePropRepository.findAllByTypeAndForEnrollYearAndKey(type, forSemesterNo, key));
+        }
+        return programmePropMapper.toDto(programmePropRepository.findOneByTypeAndForEnrollYearAndForSemesterNoAndKey(type, forEnrollYear, forSemesterNo, key));
     }
 
 

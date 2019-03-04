@@ -315,6 +315,7 @@ public class StudentProgressionService {
                     if (gradeRecord.getYearNo() == 1 && gradeRecord.getSemesterNo() == 2)
                         isLearnedSem2 = true;
                 }
+                if(isLearnedSem1 == true && isLearnedSem2 == true) break;
             }
             if (isLearnedSem1 == true && isLearnedSem2 == true) {
                 swapWorstModule(listGradeOfThisStudent, 4);

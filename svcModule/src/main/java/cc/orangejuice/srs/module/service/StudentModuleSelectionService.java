@@ -113,10 +113,10 @@ public class StudentModuleSelectionService {
             studentModuleSelectionRepository.updateMarksById(selectionId, mark);
             creditHour = getCreditHour(selectionId);
             updateQCS(selectionId, mark, creditHour);
-            checkIfSemesterIsEnd(selectionId);
+           // checkIfSemesterIsEnd(selectionId);
         }
 
-        private void checkIfSemesterIsEnd(Long selectionId) {
+        public void checkIfSemesterIsEnd(Long selectionId) {
             log.debug("Request to get Semester No for selection Id: {}", selectionId);
 
             Boolean haveAllMarks = true;
@@ -124,9 +124,8 @@ public class StudentModuleSelectionService {
             // get a tuple by selectionId for getting studentId and semesterNo
             Optional<StudentModuleSelectionDTO> studentModuleSelectionDTO = findOne(selectionId);
 
-            log.debug("Request to get result list for student {} at SemesterNo {}", studentModuleSelectionDTO.get().getStudentId(), studentModuleSelectionDTO.get().getSemesterNo());
+            log.debug("Request to get result list for student {} with qcs : {} at SemesterNo {}", studentModuleSelectionDTO.get().getStudentId(), studentModuleSelectionDTO.get().getQcs(), studentModuleSelectionDTO.get().getSemesterNo());
             List<StudentModuleSelection> resultsList = studentModuleSelectionRepository.findAllByStudentIdAndSemesterNo(studentModuleSelectionDTO.get().getStudentId(), studentModuleSelectionDTO.get().getSemesterNo());
-
             // check if a student has all the marks for a semester
             for(StudentModuleSelection studentModuleSelection : resultsList) {
                 if(studentModuleSelection.getMarks() == null) {
@@ -180,7 +179,6 @@ public class StudentModuleSelectionService {
 
             // get QPV and GradeName
             Double qcs;
-            String gradeName="";
             ModuleGrade moduleGradeResult = null;
 
             List<ModuleGrade> moduleGradeList = moduleGradeService.getAllModuleGradewithQcaAffected();
@@ -196,7 +194,7 @@ public class StudentModuleSelectionService {
             qcs = moduleGradeResult.getQpv() * creditHour;
             DecimalFormat df = new DecimalFormat("#.##");
             qcs = Double.parseDouble(df.format(qcs));
-            log.debug("Request to update student result with selectionId: {}, gradeName: {}, QCS: {}, creditHour: {}", selectionId, gradeName, qcs, creditHour);
+            log.debug("Request to update student result with selectionId: {}, gradeName: {}, QCS: {}, creditHour: {}", selectionId, moduleGradeResult.getName(), qcs, creditHour);
             studentModuleSelectionRepository.updateById(selectionId, moduleGradeResult, qcs, creditHour);
         }
 
@@ -208,4 +206,8 @@ public class StudentModuleSelectionService {
             return returnList;
         }
 
+    public void clearAllMarks() {
+            log.debug("Request to clear all the marks for demo");
+            studentModuleSelectionRepository.updateAllByCreditHourAndMarksAndQcsAAndsAndStudentModuleGradeType();
+    }
 }

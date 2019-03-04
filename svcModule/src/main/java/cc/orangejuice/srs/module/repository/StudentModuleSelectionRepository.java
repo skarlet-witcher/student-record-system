@@ -41,4 +41,8 @@ public interface StudentModuleSelectionRepository extends JpaRepository<StudentM
     @Query(value = "SELECT studentModuleSelection  FROM StudentModuleSelection studentModuleSelection WHERE studentModuleSelection.academicSemester<=:academicSemester AND studentModuleSelection.studentId=:studentId ")
     List<StudentModuleSelection> findAllByStudentIdAndAcademicSemester(@Param("studentId") Long studentId, @Param("academicSemester") Integer academicSemester);
 
+    @Modifying
+    @Query(value = "update StudentModuleSelection studentModuleSelection SET studentModuleSelection.creditHour=null, studentModuleSelection.qcs=null, studentModuleSelection.studentModuleGradeType=null, studentModuleSelection.marks=null")
+    void updateAllByCreditHourAndMarksAndQcsAAndsAndStudentModuleGradeType();
+
 }

@@ -127,7 +127,17 @@ public class StudentModuleSelectionResource {
 
         log.debug("REST request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
         studentModuleSelectionService.updateMarkBySelectionIdAndMark(selectionId, mark);
+        studentModuleSelectionService.checkIfSemesterIsEnd(selectionId);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, selectionId.toString())).build();
+
+    }
+
+    @PutMapping(value = "/student-module-selections/clear-all-marks")
+    public ResponseEntity<StudentModuleSelectionDTO> clearMarks() {
+
+        log.debug("REST request to clear all marks");
+        studentModuleSelectionService.clearAllMarks();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, "data cleared")).build();
 
     }
 

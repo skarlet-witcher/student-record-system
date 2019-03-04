@@ -7,6 +7,7 @@ import cc.orangejuice.srs.student.client.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.student.domain.Student;
 import cc.orangejuice.srs.student.domain.StudentProgression;
 import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
+import cc.orangejuice.srs.student.domain.enumeration.ProgressType;
 import cc.orangejuice.srs.student.repository.StudentProgressionRepository;
 import cc.orangejuice.srs.student.repository.StudentRepository;
 import cc.orangejuice.srs.student.service.dto.StudentDTO;
@@ -134,32 +135,20 @@ public class StudentProgressionService {
         log.debug("Request to calculate QCA for student: {}", resultsList.get(resultsList.size() - 1).getStudentId());
 
 
-        // check data existence in Student Progression table
-        // todo variations : how to update qca if one of results is edited?
-        log.debug("Request to check student {} results existence in academicYear : {} and academicSemester: {}",
-                resultsList.get(resultsList.size() - 1).getStudentId(), resultsList.get(resultsList.size() - 1).getAcademicYear(), resultsList.get(resultsList.size() - 1).getAcademicSemester());
-        Optional<StudentDTO> student = studentService.findOne(resultsList.get(resultsList.size() - 1).getStudentId());
-        if (studentProgressionRepository.findAllByStudent(studentMapper.toEntity(student.get())).size() > 0) {
-            // the result will not be inserted if the result has already existed in the db
-            log.debug("student {} results exist in academicYear : {} and academicSemester: {}. can not insert new record and rollback.",
-                    resultsList.get(resultsList.size() - 1).getStudentId(), resultsList.get(resultsList.size() - 1).getAcademicYear(), resultsList.get(resultsList.size() - 1).getAcademicSemester());
-            return;
-        }
-
-
         // calculate semester QCA
+        if(isDuplicateSemesterQCA(resultsList, academicYear, academicSemester)) return;
         Double semesterQCA = calculateSemesterQCA(resultsList, academicYear, academicSemester);
+        insertSemesterQCAForStudent(semesterQCA, academicYear, academicSemester, resultsList.get(resultsList.size() - 1).getStudentId(), null);
 
         // if it is the end of the part
-        if (isEndOfPart(resultsList, academicYear)) {
+        Integer partNo = isEndOfPart(resultsList, academicYear);
+        if (partNo > 0) {
             // if yes, calculate cumulative QCA and generate progression decision
+            if(isDuplicateCumulativeQCA(resultsList, academicYear, partNo)) return;
             Double cumulativeQCA = calculateCumulativeQCA(resultsList);
             log.debug("ready to make progression decision with cumulative QCA: {} and academicYear: {}", cumulativeQCA, academicYear);
             ProgressDecision progressDecisionEnum = makeProgressionDecision(cumulativeQCA, resultsList);
-            insertSemesterQCAForStudent(semesterQCA, academicYear, academicSemester, resultsList.get(resultsList.size() - 1).getStudentId(), progressDecisionEnum);
-
-        } else {
-            insertSemesterQCAForStudent(semesterQCA, academicYear, academicSemester, resultsList.get(resultsList.size() - 1).getStudentId(), null);
+            insertCumulativeQCAForStudent(cumulativeQCA, partNo, academicYear, academicSemester, resultsList.get(resultsList.size() - 1).getStudentId(), progressDecisionEnum);
         }
 
         // leave graduation for now
@@ -168,10 +157,10 @@ public class StudentProgressionService {
     }
 
     // how to distinguish part 1 and part 2 ?
-    private Boolean isEndOfPart(List<StudentModuleSelectionDTO> resultsList, Integer academicYear) {
+    private Integer isEndOfPart(List<StudentModuleSelectionDTO> resultsList, Integer academicYear) {
         log.debug("Request to check if the result list is at the end of the part for academic Year: {}", academicYear);
         List<ProgrammePropDTO> partList = programmeFeignClient.getProgrammeProps("YEAR", academicYear, null, null, "part");
-        Boolean isEndOfPart = false;
+        Integer isEndOfPart = 0;
 
         for (int i = 0; i < partList.size(); i++) {
             // if the results end in the end of semester
@@ -179,7 +168,7 @@ public class StudentProgressionService {
                     resultsList.get(resultsList.size() - 1).getSemesterNo() == 2) {
                 // if this is the end of the part (if it has multiple parts)
                 if (partList.get(i).getValue() != partList.get(i + 1).getValue()) {
-                    isEndOfPart = true;
+                    isEndOfPart = Integer.parseInt(partList.get(i).getValue());
                     log.debug("It is end of part {}. And ready to calculate cumulative QCA", partList.get(i).getValue());
                     break;
                 }
@@ -191,6 +180,7 @@ public class StudentProgressionService {
 
     private Double calculateSemesterQCA(List<StudentModuleSelectionDTO> resultsList, Integer academicYear, Integer academicSemester) {
         log.debug("Request to calculate semester QCA for student: {} in academic semester: {}", resultsList.get(resultsList.size() - 1).getStudentId(), academicSemester);
+
         Double semesterQCS = 0.00;
         Double attemptedHours = 0.00;
         for (StudentModuleSelectionDTO oneResult : resultsList) {
@@ -213,9 +203,26 @@ public class StudentProgressionService {
         studentProgressionDTO.setForAcademicSemester(academicSemester);
         studentProgressionDTO.setQca(semesterQCA);
         studentProgressionDTO.setStudentId(studentId);
+        studentProgressionDTO.setProgressType(ProgressType.SEMESTER);
         if (progressDecisionEnum != null) studentProgressionDTO.setProgressDecision(progressDecisionEnum);
         log.debug("request to save student semester qca to student progression table. studentId: {}, academicYear: {}, academicSemester: {}, semesterQCA: {}",
                 studentId, academicYear, academicSemester, semesterQCA);
+        save(studentProgressionDTO);
+    }
+
+    private void insertCumulativeQCAForStudent(Double cumulativeQCA, Integer partNo, Integer academicYear, Integer academicSemester, Long studentId, ProgressDecision progressDecisionEnum) {
+        log.debug("request to insert Cumulative QCA for student: {} with QCA: {} in academic Year: {} and academic Semester: ", studentId, academicYear, academicSemester);
+
+        StudentProgressionDTO studentProgressionDTO = new StudentProgressionDTO();
+        studentProgressionDTO.setForPartNo(partNo);
+        studentProgressionDTO.setForAcademicYear(academicYear);
+        studentProgressionDTO.setForAcademicSemester(academicSemester);
+        studentProgressionDTO.setQca(cumulativeQCA);
+        studentProgressionDTO.setStudentId(studentId);
+        studentProgressionDTO.setProgressType(ProgressType.YEAR);
+        if (progressDecisionEnum != null) studentProgressionDTO.setProgressDecision(progressDecisionEnum);
+        log.debug("request to save student cumulative qca to student progression table. studentId: {}, academicYear: {}, academicSemester: {}, semesterQCA: {}",
+            studentId, academicYear, academicSemester, cumulativeQCA);
         save(studentProgressionDTO);
     }
 
@@ -230,6 +237,46 @@ public class StudentProgressionService {
         log.debug("The cumulative QCA is {}", qcs / attemptedHour);
         DecimalFormat df = new DecimalFormat("#.##");
         return Double.parseDouble(df.format(qcs / attemptedHour));
+    }
+
+    private Boolean isDuplicateSemesterQCA(List<StudentModuleSelectionDTO> resultsList, Integer academicYear, Integer academicSemester) {
+        // check data existence in Student Progression table
+        // todo variations : how to update qca if one of results is edited?
+        log.debug("Request to check student {} results existence in academicYear : {} and academicSemester: {}",
+            resultsList.get(resultsList.size() - 1).getStudentId(), academicYear, academicSemester);
+
+        Optional<StudentDTO> student = studentService.findOne(resultsList.get(resultsList.size() - 1).getStudentId());
+        List<StudentProgression> studentProgressionDTOS = studentProgressionRepository.findAllByStudent(studentMapper.toEntity(student.get()));
+
+        for(StudentProgression studentProgression: studentProgressionDTOS) {
+            if (studentProgression.getForAcademicYear() == academicSemester && studentProgression.getForAcademicYear() == academicYear) {
+                // the result will not be inserted if the result has already existed in the db
+                log.debug("student {} semester result exists in academicYear : {} and academicSemester: {}. can not insert new record and rollback.",
+                    resultsList.get(resultsList.size() - 1).getStudentId(), academicYear, academicSemester);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Boolean isDuplicateCumulativeQCA(List<StudentModuleSelectionDTO> resultsList, Integer academicYear, Integer partNo) {
+        // check data existence in Student Progression table
+        // todo variations : how to update qca if one of results is edited?
+        log.debug("Request to check student {} results existence in academicYear : {} and partNo: {}",
+            resultsList.get(resultsList.size() - 1).getStudentId(), academicYear, partNo);
+
+        Optional<StudentDTO> student = studentService.findOne(resultsList.get(resultsList.size() - 1).getStudentId());
+        List<StudentProgression> studentProgressionDTOS = studentProgressionRepository.findAllByStudent(studentMapper.toEntity(student.get()));
+
+        for(StudentProgression studentProgression: studentProgressionDTOS) {
+            if (studentProgression.getForPartNo() == partNo && studentProgression.getForAcademicYear() == academicYear) {
+                // the result will not be inserted if the result has already existed in the db
+                log.debug("student {} cumulative QCA results exist in academicYear : {} and partNo: {}. can not insert new record and rollback.",
+                    resultsList.get(resultsList.size() - 1).getStudentId(),academicYear, partNo);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

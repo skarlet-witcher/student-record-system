@@ -219,7 +219,7 @@ public class StudentProgressionService {
         studentProgressionDTO.setForAcademicSemester(academicSemester);
         studentProgressionDTO.setQca(cumulativeQCA);
         studentProgressionDTO.setStudentId(studentId);
-        studentProgressionDTO.setProgressType(ProgressType.YEAR);
+        studentProgressionDTO.setProgressType(ProgressType.PART);
         if (progressDecisionEnum != null) studentProgressionDTO.setProgressDecision(progressDecisionEnum);
         log.debug("request to save student cumulative qca to student progression table. studentId: {}, academicYear: {}, academicSemester: {}, semesterQCA: {}",
             studentId, academicYear, academicSemester, cumulativeQCA);

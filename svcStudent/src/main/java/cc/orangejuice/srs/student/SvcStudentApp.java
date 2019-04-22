@@ -41,6 +41,7 @@ public class SvcStudentApp {
     }
 
     /**
+     * test commit
      * Initializes svcStudent.
      * <p>
      * Spring profiles can be configured with a program argument --spring.profiles.active=your-active-profile

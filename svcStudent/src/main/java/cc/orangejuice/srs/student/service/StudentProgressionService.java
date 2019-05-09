@@ -127,6 +127,7 @@ public class StudentProgressionService {
 
 
     private static Integer getNQH() {
+        // 0 for non-I grade
         return 0;
     }
 
@@ -141,14 +142,14 @@ public class StudentProgressionService {
         insertSemesterQCAForStudent(semesterQCA, academicYear, academicSemester, resultsList.get(resultsList.size() - 1).getStudentId(), null);
 
         // if it is the end of the part
-        Integer partNo = isEndOfPart(resultsList, academicYear);
-        if (partNo > 0) {
+        Integer checkEndOfPart = isEndOfPart(resultsList, academicYear);
+        if (checkEndOfPart > 0) {
             // if yes, calculate cumulative QCA and generate progression decision
-            if(isDuplicateCumulativeQCA(resultsList, academicYear, partNo)) return;
+            if(isDuplicateCumulativeQCA(resultsList, academicYear, checkEndOfPart)) return;
             Double cumulativeQCA = calculateCumulativeQCA(resultsList);
             log.debug("ready to make progression decision with cumulative QCA: {} and academicYear: {}", cumulativeQCA, academicYear);
             ProgressDecision progressDecisionEnum = makeProgressionDecision(cumulativeQCA, resultsList);
-            insertCumulativeQCAForStudent(cumulativeQCA, partNo, academicYear, academicSemester, resultsList.get(resultsList.size() - 1).getStudentId(), progressDecisionEnum);
+            insertCumulativeQCAForStudent(cumulativeQCA, checkEndOfPart, academicYear, academicSemester, resultsList.get(resultsList.size() - 1).getStudentId(), progressDecisionEnum);
         }
 
         // leave graduation for now
@@ -157,6 +158,7 @@ public class StudentProgressionService {
     }
 
     // how to distinguish part 1 and part 2 ?
+    // strategy for checking part 1 and part 2
     private Integer isEndOfPart(List<StudentModuleSelectionDTO> resultsList, Integer academicYear) {
         log.debug("Request to check if the result list is at the end of the part for academic Year: {}", academicYear);
         List<ProgrammePropDTO> partList = programmeFeignClient.getProgrammeProps("YEAR", academicYear, null, null, "part");
@@ -178,6 +180,7 @@ public class StudentProgressionService {
 
     }
 
+    // strategy for getting NQH
     private Double calculateSemesterQCA(List<StudentModuleSelectionDTO> resultsList, Integer academicYear, Integer academicSemester) {
         log.debug("Request to calculate semester QCA for student: {} in academic semester: {}", resultsList.get(resultsList.size() - 1).getStudentId(), academicSemester);
 
@@ -289,6 +292,7 @@ public class StudentProgressionService {
      * @param listGradeOfThisStudent: to take 4 worst modules to swap
      * @return PASS, FAIL_CAN_REPEAT, FAIL_NO_REPEAT
      */
+    // state for decision handling
     private ProgressDecision makeProgressionDecision(double originalCumulativeQca, List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
         log.debug("Begin making first decision of transiting state from NO_STATE to PASS/FAIL_CAN_REPEAT/FAIL_NO_REPEAT");
         if (originalCumulativeQca > 2.0)
@@ -316,6 +320,7 @@ public class StudentProgressionService {
                 }
                 if(isLearnedSem1 == true && isLearnedSem2 == true) break;
             }
+
             if (isLearnedSem1 == true && isLearnedSem2 == true) {
                 swapWorstModule(listGradeOfThisStudent, 4);
             } else {
@@ -333,4 +338,6 @@ public class StudentProgressionService {
             }
         }
     }
+
+    // print transcript?
 }

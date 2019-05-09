@@ -4,7 +4,6 @@ package cc.orangejuice.srs.module.service;
 import cc.orangejuice.srs.module.client.ProgrammeFeignClient;
 import cc.orangejuice.srs.module.client.StudentFeignClient;
 import cc.orangejuice.srs.module.client.dto.ProgrammePropDTO;
-import cc.orangejuice.srs.module.domain.Module;
 import cc.orangejuice.srs.module.domain.ModuleGrade;
 import cc.orangejuice.srs.module.domain.StudentModuleSelection;
 import cc.orangejuice.srs.module.repository.StudentModuleSelectionRepository;
@@ -15,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -107,12 +105,13 @@ public class StudentModuleSelectionService {
         }
 
 
+        // submit grade
         public void updateMarkBySelectionIdAndMark(Long selectionId, Double mark) {
             log.debug("Request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
-            Double creditHour;
+            Double attemptedHour;
             studentModuleSelectionRepository.updateMarksById(selectionId, mark);
-            creditHour = getCreditHour(selectionId);
-            updateQCS(selectionId, mark, creditHour);
+            attemptedHour = getAttemptedHours(selectionId);
+            updateQCS(selectionId, mark, attemptedHour);
            // checkIfSemesterIsEnd(selectionId);
         }
 
@@ -147,67 +146,65 @@ public class StudentModuleSelectionService {
             }
         }
 
-        private Double getCreditHour(Long selectionId) {
-            log.debug("Request to get credit from a module in the selection {}", selectionId);
-            Optional<StudentModuleSelection> studentModuleSelection = studentModuleSelectionRepository.findById(selectionId);
-            return studentModuleSelection.get().getModule().getCredit() * getFactor(studentModuleSelection);
-        }
-
-
-        private Double getFactor(Optional<StudentModuleSelection> studentModuleSelection) {
-            log.debug("Request to get factor from academicYear: {}, academicSemester: {}, yearNumber: {}, SemesterNumber: {}",
-                studentModuleSelection.get().getAcademicYear(),
-                studentModuleSelection.get().getAcademicSemester(),
-                studentModuleSelection.get().getYearNo(),
-                studentModuleSelection.get().getSemesterNo());
-
-            List<ProgrammePropDTO> programmePropResponse = programmeFeignClient.getProgrammeProps("SEMESTER",
-                studentModuleSelection.get().getAcademicYear(),
-                studentModuleSelection.get().getYearNo(),
-                studentModuleSelection.get().getSemesterNo(),
-                "factor");
-
-
-
-            return Double.parseDouble(programmePropResponse.get(0).getValue());
-
-        }
-
-
-        private void updateQCS(Long selectionId, Double mark, Double creditHour) {
-            log.debug("Request to update QPV and GradeName by Mark: {}, creditHour: {}", mark, creditHour);
-
-            // get QPV and GradeName
-            Double qcs;
-            ModuleGrade moduleGradeResult = null;
-
-            List<ModuleGrade> moduleGradeList = moduleGradeService.getAllModuleGradewithQcaAffected();
-            log.debug("moduleGradeList result: {}", moduleGradeList.size());
-
-            for(ModuleGrade moduleGrade : moduleGradeList) {
-                if(mark >= moduleGrade.getLowMarks()) {
-                    moduleGradeResult = moduleGrade;
-                    break;
-                }
-            }
-
-            qcs = moduleGradeResult.getQpv() * creditHour;
-            DecimalFormat df = new DecimalFormat("#.##");
-            qcs = Double.parseDouble(df.format(qcs));
-            log.debug("Request to update student result with selectionId: {}, gradeName: {}, QCS: {}, creditHour: {}", selectionId, moduleGradeResult.getName(), qcs, creditHour);
-            studentModuleSelectionRepository.updateById(selectionId, moduleGradeResult, qcs, creditHour);
-        }
-
         public List<StudentModuleSelectionDTO> findAllStudentSelectionsByYear(Long studentId, Integer academicYear, Integer yearNo) {
             log.debug("Request to get Year selections for student: {} at academicYear: {}, yearNo: {}",
                 studentId, academicYear, yearNo);
-            List<StudentModuleSelection> studentModuleSelections=   studentModuleSelectionRepository.findAllByStudentIdAndAcademicYearAndYearNo(studentId, academicYear, yearNo);
+            List<StudentModuleSelection> studentModuleSelections=  studentModuleSelectionRepository.findAllByStudentIdAndAcademicYearAndYearNo(studentId, academicYear, yearNo);
             List<StudentModuleSelectionDTO> returnList =  studentModuleSelectionMapper.toDto(studentModuleSelections);
             return returnList;
         }
 
-    public void clearAllMarks() {
+        public void clearAllMarks() {
             log.debug("Request to clear all the marks for demo");
             studentModuleSelectionRepository.updateAllByCreditHourAndMarksAndQcsAAndsAndStudentModuleGradeType();
+    }
+
+        private Double getAttemptedHours(Long selectionId) {
+        log.debug("Request to get credit from a module in the selection {}", selectionId);
+        Optional<StudentModuleSelection> studentModuleSelection = studentModuleSelectionRepository.findById(selectionId);
+        return studentModuleSelection.get().getModule().getCredit() * getFactor(studentModuleSelection);
+    }
+
+        private Double getFactor(Optional<StudentModuleSelection> studentModuleSelection) {
+        log.debug("Request to get factor from academicYear: {}, academicSemester: {}, yearNumber: {}, SemesterNumber: {}",
+            studentModuleSelection.get().getAcademicYear(),
+            studentModuleSelection.get().getAcademicSemester(),
+            studentModuleSelection.get().getYearNo(),
+            studentModuleSelection.get().getSemesterNo());
+
+        List<ProgrammePropDTO> programmePropResponse = programmeFeignClient.getProgrammeProps("SEMESTER",
+            studentModuleSelection.get().getAcademicYear(),
+            studentModuleSelection.get().getYearNo(),
+            studentModuleSelection.get().getSemesterNo(),
+            "factor");
+
+
+
+        return Double.parseDouble(programmePropResponse.get(0).getValue());
+
+    }
+
+        private void updateQCS(Long selectionId, Double mark, Double attemptedHour) {
+        log.debug("Request to update QPV and GradeName by Mark: {}, attemptedHour: {}", mark, attemptedHour);
+
+        // get QPV and GradeName
+        Double qcs;
+        ModuleGrade moduleGradeResult = null;
+
+        List<ModuleGrade> moduleGradeList = moduleGradeService.getAllModuleGradewithQcaAffected();
+        log.debug("moduleGradeList result: {}", moduleGradeList.size());
+
+        for(ModuleGrade moduleGrade : moduleGradeList) {
+            if(mark >= moduleGrade.getLowMarks()) {
+                moduleGradeResult = moduleGrade;
+                break;
+            }
+        }
+
+        qcs = moduleGradeResult.getQpv() * attemptedHour;
+        DecimalFormat df = new DecimalFormat("#.##");
+        qcs = Double.parseDouble(df.format(qcs));
+        log.debug("Request to update student result with selectionId: {}, gradeName: {}, QCS: {}, attemptedHour: {}", selectionId, moduleGradeResult.getName(), qcs, attemptedHour);
+        studentModuleSelectionRepository.updateById(selectionId, moduleGradeResult, qcs, attemptedHour);
     }
 }

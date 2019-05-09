@@ -127,6 +127,7 @@ public class StudentModuleSelectionResource {
 
         log.debug("REST request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
         studentModuleSelectionService.updateMarkBySelectionIdAndMark(selectionId, mark);
+        // check if one semester is finished
         studentModuleSelectionService.checkIfSemesterIsEnd(selectionId);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, selectionId.toString())).build();
 

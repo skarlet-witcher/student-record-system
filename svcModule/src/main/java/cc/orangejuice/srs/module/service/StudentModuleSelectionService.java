@@ -104,6 +104,13 @@ public class StudentModuleSelectionService {
             studentModuleSelectionRepository.deleteById(id);
         }
 
+        public List<StudentModuleSelectionDTO> findAllByStudentIdAcademicYearAcademicSemester(Long studentId, Integer academicYear, Integer academicSemester) {
+            log.debug("Request to get selections for Student: {} at academicYear: {}, academicSemester: {} ",
+                studentId, academicYear, academicSemester);
+            List<StudentModuleSelection> studentModuleSelections = studentModuleSelectionRepository.findAllByStudentIdAndAcademicYearAndAcademicSemester(studentId, academicYear, academicSemester);
+            List<StudentModuleSelectionDTO> studentModuleSelectionDTOS = studentModuleSelectionMapper.toDto(studentModuleSelections);
+            return studentModuleSelectionDTOS;
+        }
 
         // submit grade
         public void updateMarkBySelectionIdAndMark(Long selectionId, Double mark) {

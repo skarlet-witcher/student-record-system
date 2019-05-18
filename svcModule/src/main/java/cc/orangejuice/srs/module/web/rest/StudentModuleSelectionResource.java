@@ -117,9 +117,6 @@ public class StudentModuleSelectionResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-
-
-
     @PutMapping(value = "/student-module-selections/submit-mark", params={"selectionId", "mark"})
     public ResponseEntity<StudentModuleSelectionDTO> updateMarks(
         @RequestParam("selectionId") Long selectionId,
@@ -142,8 +139,6 @@ public class StudentModuleSelectionResource {
 
     }
 
-
-
     @GetMapping(value = "/student-module-selections/query")
     public List<StudentModuleSelectionDTO> getStudentModuleSelections(
         @RequestParam("studentId") Long studentId,
@@ -155,31 +150,18 @@ public class StudentModuleSelectionResource {
         return studentModuleSelectionDTO;
     }
 
+    @GetMapping(value = "/student-module-selections/get-transcript")
+    public List<StudentModuleSelectionDTO> getTransctipt(
+        @RequestParam("studentId") Long studentId,
+        @RequestParam("academicYear") Integer academicYear,
+        @RequestParam("academicSemester") Integer academicSemester) {
 
-    /*
-    // todo calculate semester qca
-    @GetMapping(value = "/student-module-selections/semester-qca", params = {"studentId","academicYear", "yearNo", "semesterNo"})
-    public Double getSemesterQCA(
-        @Param("studentId") Long studentId,
-        @Param("academicYear") Integer academicYear,
-        @Param("yearNo") Integer yearNo,
-        @Param("semesterNo") Integer semesterNo) {
-        log.debug("REST request to get Semester QCA for student: {} at academicYear: {}, yearNo: {} and semesterNo {}",
-            studentId, academicYear, yearNo, semesterNo);
-        return studentModuleSelectionService.getSemesterQCA(studentId, academicYear, yearNo, semesterNo);
+        log.debug("REST request to get transcript for the student {} in academicYear: {}, academicSemester: {} ",
+            studentId, academicYear, academicYear, academicSemester);
+        List<StudentModuleSelectionDTO> studentModuleSelectionDTOS = studentModuleSelectionService.findAllByStudentIdAcademicYearAcademicSemester(studentId, academicYear, academicSemester);
+        return studentModuleSelectionDTOS;
     }
 
-    // todo calculate cumulative qca
-    @GetMapping(value = "/student-module-selections/cumulative-qca")
-    public Double getCumulativeQCA(
-        @Param("studentId") Long studentId,
-        @Param("academicYear") Integer academicYear,
-        @Param("yearNo") Integer yearNo) {
-        log.debug("REST request to get Cumulative QCA for student: {} at academicYear: {}, yearNo: {}",
-            studentId, academicYear, yearNo);
-        return studentModuleSelectionService.getCumulativeQCA(studentId, academicYear, yearNo);
-    }
-    */
 
 
 

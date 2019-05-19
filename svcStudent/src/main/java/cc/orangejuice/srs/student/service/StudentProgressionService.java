@@ -118,19 +118,26 @@ public class StudentProgressionService {
         studentProgressionRepository.deleteById(id);
     }
 
+    // get qca by dto
+    public StudentProgressionDTO getOneByStudentAndAcademicYearAndAcademicSemester(Long studentId, Integer academicYear, Integer academicSemester) {
+        log.debug("request to get progression info for student {} at academicYear {} and academicSemester {}", studentId, academicYear, academicSemester);
+        List<StudentProgression> studentProgressions = studentProgressionRepository.findAllByForAcademicYearAndAndForAcademicSemester(academicYear, academicSemester);
+        StudentProgression studentProgression = new StudentProgression();
+        for(StudentProgression sp : studentProgressions) {
+            if(sp.getStudent().getId() == studentId) {
+                studentProgression = sp;
+                break;
+            }
+        }
+        return studentProgressionMapper.toDto(studentProgression);
+    }
+
 
     public static void swapWorstModule(List<StudentModuleSelectionDTO> gradeOfThisStduent, int numberOfPossibleSwap) {
         for (int i = 0; i < numberOfPossibleSwap; i++) {
             gradeOfThisStduent.get(i).setQcs(12.0);
         }
     }
-
-
-    private static Integer getNQH() {
-        // 0 for non-I grade
-        return 0;
-    }
-
 
     public void calculateQCA(List<StudentModuleSelectionDTO> resultsList, Integer academicYear, Integer academicSemester) {
         log.debug("Request to calculate QCA for student: {}", resultsList.get(resultsList.size() - 1).getStudentId());
@@ -155,6 +162,11 @@ public class StudentProgressionService {
         // leave graduation for now
 
 
+    }
+
+    private static Integer getNQH() {
+        // 0 for non-I grade
+        return 0;
     }
 
     // how to distinguish part 1 and part 2 ?

@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.ws.rs.Path;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -116,5 +117,12 @@ public class StudentResource {
         log.debug("REST request to delete Student : {}", id);
         studentService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/students/student-info/{id}")
+    public Optional<StudentDTO> getStudentById(@PathVariable Long id) {
+        log.debug("REST request to get Student by Id : {}", id);
+        Optional<StudentDTO> studentDTO = studentService.findOne(id);
+        return studentDTO;
     }
 }

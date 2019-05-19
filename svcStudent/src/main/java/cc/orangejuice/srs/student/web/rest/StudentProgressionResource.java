@@ -3,6 +3,7 @@ package cc.orangejuice.srs.student.web.rest;
 import cc.orangejuice.srs.student.client.StudentModuleSelectionsFeignClient;
 import cc.orangejuice.srs.student.client.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.student.service.StudentProgressionService;
+import cc.orangejuice.srs.student.service.dto.StudentDTO;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.web.rest.errors.BadRequestAlertException;
 import cc.orangejuice.srs.student.web.rest.util.HeaderUtil;
@@ -148,6 +149,15 @@ public class StudentProgressionResource {
         log.debug("REST request to calculate the QCA for student: {}", resultsList.get(resultsList.size() - 1).getStudentId());
         studentProgressionService.calculateQCA(resultsList, academicYear, academicSemester);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, "complete")).build();
+    }
+
+    @GetMapping("/student-progressions/progression-info")
+    public StudentProgressionDTO getProgressionInfo(@RequestParam("studentId") Long studentId,
+                                                    @RequestParam("academicYear") Integer academicYear,
+                                                    @RequestParam("academicSemester") Integer academicSemester) {
+        log.debug("REST request to get progression info for student {} at academicYear {} and academicSemester {}", studentId, academicYear, academicSemester);
+        StudentProgressionDTO studentProgressionDTO = studentProgressionService.getOneByStudentAndAcademicYearAndAcademicSemester(studentId, academicYear, academicSemester);
+        return studentProgressionDTO;
     }
 
 

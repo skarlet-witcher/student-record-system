@@ -18,4 +18,5 @@ import java.util.Optional;
 public interface StudentProgressionRepository extends JpaRepository<StudentProgression, Long> {
     List<StudentProgression> findAllByStudent(@Param("student") Student student);
 
+    List<StudentProgression> findAllByForAcademicYearAndAndForAcademicSemester(@Param("academicYear") Integer academicYear, @Param("academicSemester") Integer academicSemester);
 }

@@ -4,11 +4,14 @@ package cc.orangejuice.srs.module.service;
 import cc.orangejuice.srs.module.client.ProgrammeFeignClient;
 import cc.orangejuice.srs.module.client.StudentFeignClient;
 import cc.orangejuice.srs.module.client.dto.ProgrammePropDTO;
+import cc.orangejuice.srs.module.client.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.module.domain.ModuleGrade;
 import cc.orangejuice.srs.module.domain.StudentModuleSelection;
 import cc.orangejuice.srs.module.repository.StudentModuleSelectionRepository;
+import cc.orangejuice.srs.module.service.dto.ModuleDTO;
 import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.module.service.mapper.StudentModuleSelectionMapper;
+import cc.orangejuice.srs.module.client.dto.StudentDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +43,8 @@ public class StudentModuleSelectionService {
 
         private final ModuleGradeService moduleGradeService;
 
+        private final ModuleService moduleService;
+
         private final StudentFeignClient studentFeignClient;
 
 
@@ -46,11 +52,13 @@ public class StudentModuleSelectionService {
                                              StudentModuleSelectionMapper studentModuleSelectionMapper,
                                              ProgrammeFeignClient programmeFeignClient,
                                              ModuleGradeService moduleGradeService,
+                                             ModuleService moduleService,
                                              StudentFeignClient studentFeignClient) {
             this.studentModuleSelectionRepository = studentModuleSelectionRepository;
             this.studentModuleSelectionMapper = studentModuleSelectionMapper;
             this.programmeFeignClient = programmeFeignClient;
             this.moduleGradeService = moduleGradeService;
+            this.moduleService = moduleService;
             this.studentFeignClient = studentFeignClient;
         }
 
@@ -104,13 +112,59 @@ public class StudentModuleSelectionService {
             studentModuleSelectionRepository.deleteById(id);
         }
 
-        public List<StudentModuleSelectionDTO> findAllByStudentIdAcademicYearAcademicSemester(Long studentId, Integer academicYear, Integer academicSemester) {
-            log.debug("Request to get selections for Student: {} at academicYear: {}, academicSemester: {} ",
+        public void getTranscript(Long studentId, Integer academicYear, Integer academicSemester) {
+            // get module selections
+            List<StudentModuleSelectionDTO> studentModuleSelectionDTOS = findAllByStudentIdAcademicYearAcademicSemester(studentId, academicYear, academicSemester);
+            log.debug("Finish getting studentModuleSelectionDTOS with the size of {}", studentModuleSelectionDTOS.size());
+            // get module code (detail) for each module
+            List<ModuleDTO> moduleDTOS = getModuleCodeByModuleName(studentModuleSelectionDTOS);
+            log.debug("Finish getting moduleDTOS with the size of {}", moduleDTOS.size());
+
+            // get student info (student number, student name, address, phone number)
+            StudentDTO studentDTO = studentFeignClient.getStudent(studentId).getBody();
+            log.debug("Finish getting studentSTO with the student name of {}", studentDTO.getFirstName());
+
+
+            // get QCA
+            StudentProgressionDTO studentProgressionDTO = getQCAByStudentAndAcademicYearAndAcademicSemester(studentDTO, academicYear, academicSemester);
+            log.debug("Finish getting QCA with the QCA of {}", studentProgressionDTO.getQca());
+
+
+        }
+
+        private StudentProgressionDTO getQCAByStudentAndAcademicYearAndAcademicSemester(StudentDTO studentDTO, Integer academicYear, Integer academicSemester) {
+            log.debug("request to get qca for forming transcript for student {} at academicYear {} and academicSemester {}", studentDTO.getFirstName(), academicYear, academicSemester);
+            return studentFeignClient.getProgressionInfo(studentDTO.getId(), academicYear, academicSemester);
+        }
+
+        private List<ModuleDTO> getModuleCodeByModuleName(List<StudentModuleSelectionDTO> studentModuleSelectionDTOS) {
+            log.debug("request to get module code from student client for forming transcript");
+            List<Long> moduleIds = getModuleIdByModuleSelections(studentModuleSelectionDTOS);
+            List<ModuleDTO> moduleDTOS = new ArrayList<>();
+
+            for(int i = 0; i < moduleIds.size(); i++) {
+                moduleDTOS.add(moduleService.findOne(moduleIds.get(i)).get());
+            }
+            return moduleDTOS;
+        }
+
+        private List<Long> getModuleIdByModuleSelections(List<StudentModuleSelectionDTO> studentModuleSelectionDTOS) {
+            log.debug("request to get module id for forming the transcript");
+            List<Long> moduleIds = new ArrayList<>();
+            for(int i = 0; i < studentModuleSelectionDTOS.size(); i++) {
+                moduleIds.add(studentModuleSelectionDTOS.get(i).getModuleId());
+            }
+            return moduleIds;
+        }
+
+        private List<StudentModuleSelectionDTO> findAllByStudentIdAcademicYearAcademicSemester(Long studentId, Integer academicYear, Integer academicSemester) {
+            log.debug("Request to get selections for Student: {} at academicYear: {}, academicSemester: {} for forming transcripts ",
                 studentId, academicYear, academicSemester);
             List<StudentModuleSelection> studentModuleSelections = studentModuleSelectionRepository.findAllByStudentIdAndAcademicYearAndAcademicSemester(studentId, academicYear, academicSemester);
             List<StudentModuleSelectionDTO> studentModuleSelectionDTOS = studentModuleSelectionMapper.toDto(studentModuleSelections);
             return studentModuleSelectionDTOS;
         }
+
 
         // submit grade
         public void updateMarkBySelectionIdAndMark(Long selectionId, Double mark) {

@@ -151,15 +151,15 @@ public class StudentModuleSelectionResource {
     }
 
     @GetMapping(value = "/student-module-selections/get-transcript")
-    public List<StudentModuleSelectionDTO> getTransctipt(
+    public ResponseEntity<Void> getTransctipt(
         @RequestParam("studentId") Long studentId,
         @RequestParam("academicYear") Integer academicYear,
         @RequestParam("academicSemester") Integer academicSemester) {
 
         log.debug("REST request to get transcript for the student {} in academicYear: {}, academicSemester: {} ",
             studentId, academicYear, academicYear, academicSemester);
-        List<StudentModuleSelectionDTO> studentModuleSelectionDTOS = studentModuleSelectionService.findAllByStudentIdAcademicYearAcademicSemester(studentId, academicYear, academicSemester);
-        return studentModuleSelectionDTOS;
+        studentModuleSelectionService.getTranscript(studentId, academicYear, academicSemester);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, "transcript generated")).build();
     }
 
 

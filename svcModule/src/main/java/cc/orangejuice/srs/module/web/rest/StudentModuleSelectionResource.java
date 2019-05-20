@@ -119,6 +119,11 @@ public class StudentModuleSelectionResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    /**
+     * @param selectionId
+     * @param mark i.e. A1 A2 B1 B2 B3 C1 C2 C3 F
+     * @return
+     */
     @PutMapping(value = "/student-module-selections/submit-mark", params={"selectionId", "mark"})
     public ResponseEntity<StudentModuleSelectionDTO> updateMarks(
         @RequestParam("selectionId") Long selectionId,

@@ -147,11 +147,23 @@ public class StudentModuleSelectionService {
 
         }
 
+    /**
+     * get qca from svcStudent for transcript
+     * @param studentDTO
+     * @param academicYear
+     * @param academicSemester
+     * @return
+     */
         private StudentProgressionDTO getQCAByStudentAndAcademicYearAndAcademicSemester(StudentDTO studentDTO, Integer academicYear, Integer academicSemester) {
             log.debug("request to get qca for forming transcript for student {} at academicYear {} and academicSemester {}", studentDTO.getFirstName(), academicYear, academicSemester);
             return studentFeignClient.getProgressionInfo(studentDTO.getId(), academicYear, academicSemester);
         }
 
+    /**
+     * get module code from svcModule for transcript
+     * @param studentModuleSelectionDTOS for getting module ids
+     * @return
+     */
         private List<ModuleDTO> getModuleCodeByModuleName(List<StudentModuleSelectionDTO> studentModuleSelectionDTOS) {
             log.debug("request to get module code from student client for forming transcript");
             List<Long> moduleIds = getModuleIdByModuleSelections(studentModuleSelectionDTOS);
@@ -163,6 +175,11 @@ public class StudentModuleSelectionService {
             return moduleDTOS;
         }
 
+    /**
+     * get module ids for getting module code
+     * @param studentModuleSelectionDTOS
+     * @return list of module ids
+     */
         private List<Long> getModuleIdByModuleSelections(List<StudentModuleSelectionDTO> studentModuleSelectionDTOS) {
             log.debug("request to get module id for forming the transcript");
             List<Long> moduleIds = new ArrayList<>();
@@ -172,6 +189,13 @@ public class StudentModuleSelectionService {
             return moduleIds;
         }
 
+    /**
+     * get all results for transcript
+     * @param studentId
+     * @param academicYear
+     * @param academicSemester
+     * @return
+     */
         private List<StudentModuleSelectionDTO> findAllByStudentIdAcademicYearAcademicSemester(Long studentId, Integer academicYear, Integer academicSemester) {
             log.debug("Request to get selections for Student: {} at academicYear: {}, academicSemester: {} for forming transcripts ",
                 studentId, academicYear, academicSemester);
@@ -188,7 +212,6 @@ public class StudentModuleSelectionService {
             studentModuleSelectionRepository.updateMarksById(selectionId, mark);
             attemptedHour = getAttemptedHours(selectionId);
             updateQCS(selectionId, mark, attemptedHour);
-           // checkIfSemesterIsEnd(selectionId);
         }
 
         public void checkIfSemesterIsEnd(Long selectionId) {
@@ -222,6 +245,7 @@ public class StudentModuleSelectionService {
             }
         }
 
+        // get results by acdemic year (2014) and yearNo (1 2 3 4...)
         public List<StudentModuleSelectionDTO> findAllStudentSelectionsByYear(Long studentId, Integer academicYear, Integer yearNo) {
             log.debug("Request to get Year selections for student: {} at academicYear: {}, yearNo: {}",
                 studentId, academicYear, yearNo);

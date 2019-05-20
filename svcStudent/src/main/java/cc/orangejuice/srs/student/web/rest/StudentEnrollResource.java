@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.ws.rs.Path;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -103,6 +104,13 @@ public class StudentEnrollResource {
         log.debug("REST request to get StudentEnroll : {}", id);
         Optional<StudentEnrollDTO> studentEnrollDTO = studentEnrollService.findOne(id);
         return ResponseUtil.wrapOrNotFound(studentEnrollDTO);
+    }
+
+    @GetMapping("/student-enrolls/student-enroll-detail/{studentId}")
+    public StudentEnrollDTO getStudentEnrollDetail(@PathVariable Long studentId) {
+        log.debug("REST request to get student enroll detail by student id: {}", studentId);
+        StudentEnrollDTO studentEnrollDTO = studentEnrollService.getOneByStudentId(studentId);
+        return studentEnrollDTO;
     }
 
     /**

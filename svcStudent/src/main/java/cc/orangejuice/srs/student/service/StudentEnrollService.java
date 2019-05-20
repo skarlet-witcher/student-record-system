@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -80,5 +81,18 @@ public class StudentEnrollService {
     public void delete(Long id) {
         log.debug("Request to delete StudentEnroll : {}", id);
         studentEnrollRepository.deleteById(id);
+    }
+
+    public StudentEnrollDTO getOneByStudentId(Long studentId) {
+        log.debug("Request to get student enroll by student id: {}", studentId);
+        List<StudentEnroll> studentEnrolls = studentEnrollRepository.findAll();
+        StudentEnrollDTO studentEnrollDTO = new StudentEnrollDTO();
+        for(StudentEnroll studentEnroll : studentEnrolls) {
+            if(studentEnroll.getStudent().getId() == studentId) {
+                studentEnrollDTO = studentEnrollMapper.toDto(studentEnroll);
+            }
+        }
+        log.debug("Finish get the student enroll detail with the student number of ", studentEnrollDTO.getStudentStudentNumber());
+        return studentEnrollDTO;
     }
 }

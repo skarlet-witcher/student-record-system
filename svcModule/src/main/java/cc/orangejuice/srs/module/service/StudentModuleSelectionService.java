@@ -3,15 +3,13 @@ package cc.orangejuice.srs.module.service;
 
 import cc.orangejuice.srs.module.client.ProgrammeFeignClient;
 import cc.orangejuice.srs.module.client.StudentFeignClient;
-import cc.orangejuice.srs.module.client.dto.ProgrammePropDTO;
-import cc.orangejuice.srs.module.client.dto.StudentProgressionDTO;
+import cc.orangejuice.srs.module.client.dto.*;
 import cc.orangejuice.srs.module.domain.ModuleGrade;
 import cc.orangejuice.srs.module.domain.StudentModuleSelection;
 import cc.orangejuice.srs.module.repository.StudentModuleSelectionRepository;
 import cc.orangejuice.srs.module.service.dto.ModuleDTO;
 import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.module.service.mapper.StudentModuleSelectionMapper;
-import cc.orangejuice.srs.module.client.dto.StudentDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -116,6 +114,7 @@ public class StudentModuleSelectionService {
             // get module selections
             List<StudentModuleSelectionDTO> studentModuleSelectionDTOS = findAllByStudentIdAcademicYearAcademicSemester(studentId, academicYear, academicSemester);
             log.debug("Finish getting studentModuleSelectionDTOS with the size of {}", studentModuleSelectionDTOS.size());
+
             // get module code (detail) for each module
             List<ModuleDTO> moduleDTOS = getModuleCodeByModuleName(studentModuleSelectionDTOS);
             log.debug("Finish getting moduleDTOS with the size of {}", moduleDTOS.size());
@@ -123,6 +122,14 @@ public class StudentModuleSelectionService {
             // get student info (student number, student name, address, phone number)
             StudentDTO studentDTO = studentFeignClient.getStudent(studentId).getBody();
             log.debug("Finish getting studentSTO with the student name of {}", studentDTO.getFirstName());
+
+            // get enroll detail
+            StudentEnrollDTO studentEnrollDTO = studentFeignClient.getStudentEnrollDetail(studentId);
+            log.debug("Finish getting the studentEnrollDTO with the status of {}", studentEnrollDTO.getStatus());
+
+            // get programme detail
+            ProgrammeDTO programmeDTO = programmeFeignClient.getProgramme(studentEnrollDTO.getForProgrammeId()).getBody();
+            log.debug("finish getting the programme dto with the programme name of {}", programmeDTO.getName());
 
 
             // get QCA

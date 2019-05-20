@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
+
 /**
  * A DTO for the ProgrammeProp entity.
  */

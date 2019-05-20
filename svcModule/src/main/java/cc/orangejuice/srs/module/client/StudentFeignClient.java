@@ -4,6 +4,7 @@ package cc.orangejuice.srs.module.client;
 
 
 
+import cc.orangejuice.srs.module.client.dto.StudentEnrollDTO;
 import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.module.client.dto.StudentDTO;
 import cc.orangejuice.srs.module.client.dto.StudentProgressionDTO;
@@ -31,4 +32,7 @@ public interface StudentFeignClient {
     StudentProgressionDTO getProgressionInfo(@RequestParam("studentId") Long studentId,
                                                     @RequestParam("academicYear") Integer academicYear,
                                                     @RequestParam("academicSemester") Integer academicSemester);
+
+    @GetMapping("/api/student-enrolls/student-enroll-detail/{studentId}")
+    StudentEnrollDTO getStudentEnrollDetail(@PathVariable("studentId") Long studentId);
 }

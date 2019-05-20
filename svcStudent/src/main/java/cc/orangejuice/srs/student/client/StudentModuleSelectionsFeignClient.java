@@ -11,7 +11,7 @@ import java.util.List;
 
 @AuthorizedFeignClient(name = "svcModule")
 @RestController
-public interface StudentModuleSelectionsFeignClient {
+public interface StudentModuleSelectionsFeignClient { // unused
     @RequestMapping("/api/student-module-selections")
     Collection<StudentModuleSelectionDTO> findAll();
 

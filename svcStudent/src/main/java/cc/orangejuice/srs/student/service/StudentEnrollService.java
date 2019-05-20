@@ -83,6 +83,13 @@ public class StudentEnrollService {
         studentEnrollRepository.deleteById(id);
     }
 
+
+    /**
+     *  get student enroll detail by student id
+     *  one of the steps for gathering data for transcript
+     * @param studentId student id (not student number)
+     *
+     */
     public StudentEnrollDTO getOneByStudentId(Long studentId) {
         log.debug("Request to get student enroll by student id: {}", studentId);
         List<StudentEnroll> studentEnrolls = studentEnrollRepository.findAll();

@@ -10,6 +10,8 @@ import cc.orangejuice.srs.module.repository.StudentModuleSelectionRepository;
 import cc.orangejuice.srs.module.service.dto.ModuleDTO;
 import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.module.service.mapper.StudentModuleSelectionMapper;
+import cc.orangejuice.srs.module.utils.TranscriptGenerator;
+import com.itextpdf.text.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -110,7 +113,9 @@ public class StudentModuleSelectionService {
             studentModuleSelectionRepository.deleteById(id);
         }
 
-        public void getTranscript(Long studentId, Integer academicYear, Integer academicSemester) {
+        public void getTranscript(Long studentId, Integer academicYear, Integer academicSemester) throws FileNotFoundException, DocumentException {
+            // step 1: data gathering
+
             // get module selections
             List<StudentModuleSelectionDTO> studentModuleSelectionDTOS = findAllByStudentIdAcademicYearAcademicSemester(studentId, academicYear, academicSemester);
             log.debug("Finish getting studentModuleSelectionDTOS with the size of {}", studentModuleSelectionDTOS.size());
@@ -136,6 +141,9 @@ public class StudentModuleSelectionService {
             StudentProgressionDTO studentProgressionDTO = getQCAByStudentAndAcademicYearAndAcademicSemester(studentDTO, academicYear, academicSemester);
             log.debug("Finish getting QCA with the QCA of {}", studentProgressionDTO.getQca());
 
+            // step 2: generate pdf file
+            TranscriptGenerator tg = new TranscriptGenerator(studentModuleSelectionDTOS, moduleDTOS, studentDTO, studentEnrollDTO, programmeDTO, studentProgressionDTO);
+            tg.generate();
 
         }
 

@@ -254,7 +254,7 @@ dependencies {
     testCompile "com.h2database:h2"
     liquibaseRuntime "com.h2database:h2"
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
-    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.10'
+    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.0.6'
 }
 
 task cleanResources(type: Delete) {

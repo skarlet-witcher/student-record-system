@@ -119,6 +119,11 @@ public class StudentResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    /**
+     * one of the steps for transcript for gathering data
+     * @param id student id
+     * @return student info
+     */
     @GetMapping("/students/student-info/{id}")
     public Optional<StudentDTO> getStudentById(@PathVariable Long id) {
         log.debug("REST request to get Student by Id : {}", id);

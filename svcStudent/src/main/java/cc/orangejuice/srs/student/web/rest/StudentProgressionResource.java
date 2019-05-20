@@ -131,17 +131,14 @@ public class StudentProgressionResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+
     /**
-     * @parms moduleslectiondto
-     * <p>
-     * todo calculate qca
-     * |
-     * service
-     * > qca done then
-     * |
-     * > decision
+     * calculate semester qca (5 or ?) or cumulative qca (10 or ?)
+     * @param academicYear
+     * @param academicSemester
+     * @param resultsList student results coming from studentModuleSelections in svcModule
+     *
      */
-    // put results list to the last one of the param list
     @PutMapping("/student-progressions/calculateQCA")
     public ResponseEntity<Void> calculateQCA(@RequestParam("academicYear") Integer academicYear,
                                              @RequestParam("academicSemester") Integer academicSemester,
@@ -151,6 +148,13 @@ public class StudentProgressionResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, "complete")).build();
     }
 
+    /**
+     * one of steps for transcript for gathering data
+     * @param studentId
+     * @param academicYear
+     * @param academicSemester
+     * @return progression info for the student
+     */
     @GetMapping("/student-progressions/progression-info")
     public StudentProgressionDTO getProgressionInfo(@RequestParam("studentId") Long studentId,
                                                     @RequestParam("academicYear") Integer academicYear,

@@ -106,6 +106,12 @@ public class StudentEnrollResource {
         return ResponseUtil.wrapOrNotFound(studentEnrollDTO);
     }
 
+
+    /**
+     * one of the steps for transcript for gathering data
+     * @param studentId
+     * @return enroll detail i.e. status and programme id
+     */
     @GetMapping("/student-enrolls/student-enroll-detail/{studentId}")
     public StudentEnrollDTO getStudentEnrollDetail(@PathVariable Long studentId) {
         log.debug("REST request to get student enroll detail by student id: {}", studentId);

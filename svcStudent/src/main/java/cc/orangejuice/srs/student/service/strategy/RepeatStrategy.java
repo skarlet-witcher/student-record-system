@@ -11,10 +11,8 @@ public class RepeatStrategy extends ProgressionDecisionStrategy {
     public ProgressDecision action() {
         //Sort to get 4 worst grades
         sortGrades();
-
         //Check if he took 1 semester or 2 semesters because it will affect the number of swap grades
         swapGrades();
-
 
         if (calculateResidualQCA() >= 2.0) {
             return ProgressDecision.FAIL_CAN_REPEAT;

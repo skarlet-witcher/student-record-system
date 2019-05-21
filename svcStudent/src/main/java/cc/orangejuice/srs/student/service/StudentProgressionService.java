@@ -362,7 +362,8 @@ public class StudentProgressionService {
      * @param listGradeOfThisStudent: to take 4 worst modules to swap
      * @return PASS, FAIL_CAN_REPEAT, FAIL_NO_REPEAT
      */
-    // pattern: strategy for decision handling
+    // pattern: strategy for decision handling (finished)
+    // extension point: performance standard for I grade
     private ProgressDecision makeProgressionDecision(double originalCumulativeQca, List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
         log.debug("Begin making first decision of transiting state from NO_STATE to PASS/FAIL_CAN_REPEAT/FAIL_NO_REPEAT");
 

@@ -285,7 +285,7 @@ public class StudentProgressionService {
      * calculate Cumulative QCA. details are in the P30 of the handbook
      *
      */
-    private Double calculateCumulativeQCA(List<StudentModuleSelectionDTO> resultsList) {
+    public Double calculateCumulativeQCA(List<StudentModuleSelectionDTO> resultsList) {
         log.debug("request to calculate the cumulative QCA for student: {}", resultsList.get(0).getStudentId());
         Double qcs = 0.00;
         Double attemptedHour = 0.00;
@@ -357,53 +357,61 @@ public class StudentProgressionService {
      * @param listGradeOfThisStudent: to take 4 worst modules to swap
      * @return PASS, FAIL_CAN_REPEAT, FAIL_NO_REPEAT
      */
-    // pattern: state for decision handling
+    // pattern: strategy for decision handling
     private ProgressDecision makeProgressionDecision(double originalCumulativeQca, List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
         log.debug("Begin making first decision of transiting state from NO_STATE to PASS/FAIL_CAN_REPEAT/FAIL_NO_REPEAT");
         if (originalCumulativeQca > 2.0)
-            return ProgressDecision.PASS;
+            return passAction();
         else {
-            //Sort to get 4 worst grades
-            Collections.sort(listGradeOfThisStudent, (o1, o2) -> {
-                if (o1.getQcs() > o2.getQcs())
-                    return 1;
-                else return -1;
-            });
+            return repeatAction(listGradeOfThisStudent);
+        }
+    }
 
-            //Check if he took 1 semester or 2 semesters because it will affect the number of swap grades
-            boolean isLearnedSem1 = false;
-            boolean isLearnedSem2 = false;
+    private ProgressDecision passAction() {
+        return ProgressDecision.PASS;
+    }
+
+    private ProgressDecision repeatAction(List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
+        //Sort to get 4 worst grades
+        Collections.sort(listGradeOfThisStudent, (o1, o2) -> {
+            if (o1.getQcs() > o2.getQcs())
+                return 1;
+            else return -1;
+        });
+
+        //Check if he took 1 semester or 2 semesters because it will affect the number of swap grades
+        boolean isLearnedSem1 = false;
+        boolean isLearnedSem2 = false;
 
 
-            // semester check (1 or 2 or both)
-            for (StudentModuleSelectionDTO gradeRecord : listGradeOfThisStudent) {
-                if (isLearnedSem1 == false) {
-                    if (gradeRecord.getYearNo() == 1 && gradeRecord.getSemesterNo() == 1)
-                        isLearnedSem1 = true;
-                }
-                if (isLearnedSem2 == false) {
-                    if (gradeRecord.getYearNo() == 1 && gradeRecord.getSemesterNo() == 2)
-                        isLearnedSem2 = true;
-                }
-                if(isLearnedSem1 == true && isLearnedSem2 == true) break;
+        // semester check (1 or 2 or both)
+        for (StudentModuleSelectionDTO gradeRecord : listGradeOfThisStudent) {
+            if (isLearnedSem1 == false) {
+                if (gradeRecord.getYearNo() == 1 && gradeRecord.getSemesterNo() == 1)
+                    isLearnedSem1 = true;
             }
-
-            // swap grades 2 or 4
-            if (isLearnedSem1 == true && isLearnedSem2 == true) {
-                swapWorstModule(listGradeOfThisStudent, 4);
-            } else {
-                swapWorstModule(listGradeOfThisStudent, 2);
+            if (isLearnedSem2 == false) {
+                if (gradeRecord.getYearNo() == 1 && gradeRecord.getSemesterNo() == 2)
+                    isLearnedSem2 = true;
             }
+            if(isLearnedSem1 == true && isLearnedSem2 == true) break;
+        }
 
-            //Calculate QCA after swap
-            double QCA_AfterSwap = calculateCumulativeQCA(listGradeOfThisStudent);
-            log.debug("QCA_AfterSwap: {}", QCA_AfterSwap);
+        // swap grades 2 or 4
+        if (isLearnedSem1 == true && isLearnedSem2 == true) {
+            swapWorstModule(listGradeOfThisStudent, 4);
+        } else {
+            swapWorstModule(listGradeOfThisStudent, 2);
+        }
 
-            if (QCA_AfterSwap >= 2.0) {
-                return ProgressDecision.FAIL_CAN_REPEAT;
-            } else {
-                return ProgressDecision.FAIL_NO_REPEAT;
-            }
+        //Calculate QCA after swap
+        double QCA_AfterSwap = calculateCumulativeQCA(listGradeOfThisStudent);
+        log.debug("QCA_AfterSwap: {}", QCA_AfterSwap);
+
+        if (QCA_AfterSwap >= 2.0) {
+            return ProgressDecision.FAIL_CAN_REPEAT;
+        } else {
+            return ProgressDecision.FAIL_NO_REPEAT;
         }
     }
 

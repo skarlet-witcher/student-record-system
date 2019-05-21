@@ -374,6 +374,8 @@ public class StudentProgressionService {
             boolean isLearnedSem1 = false;
             boolean isLearnedSem2 = false;
 
+
+            // semester check (1 or 2 or both)
             for (StudentModuleSelectionDTO gradeRecord : listGradeOfThisStudent) {
                 if (isLearnedSem1 == false) {
                     if (gradeRecord.getYearNo() == 1 && gradeRecord.getSemesterNo() == 1)
@@ -386,6 +388,7 @@ public class StudentProgressionService {
                 if(isLearnedSem1 == true && isLearnedSem2 == true) break;
             }
 
+            // swap grades 2 or 4
             if (isLearnedSem1 == true && isLearnedSem2 == true) {
                 swapWorstModule(listGradeOfThisStudent, 4);
             } else {
@@ -411,7 +414,7 @@ public class StudentProgressionService {
      */
     private void swapWorstModule(List<StudentModuleSelectionDTO> gradeOfThisStudent, int numberOfPossibleSwap) {
         for (int i = 0; i < numberOfPossibleSwap; i++) {
-            gradeOfThisStudent.get(i).setQcs(12.0);
+            gradeOfThisStudent.get(i).setQcs(12.0); // c3 with the qcs of 12.0
         }
     }
 }

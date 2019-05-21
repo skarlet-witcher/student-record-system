@@ -14,6 +14,9 @@ import cc.orangejuice.srs.student.service.dto.StudentDTO;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.service.mapper.StudentMapper;
 import cc.orangejuice.srs.student.service.mapper.StudentProgressionMapper;
+import cc.orangejuice.srs.student.service.strategy.PassStrategy;
+import cc.orangejuice.srs.student.service.strategy.ProgressionDecisionStrategy;
+import cc.orangejuice.srs.student.service.strategy.RepeatStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,6 +51,8 @@ public class StudentProgressionService {
     private final StudentService studentService;
 
     private final StudentMapper studentMapper;
+
+    private ProgressionDecisionStrategy progressionDecisionStrategy;
 
     public StudentProgressionService(StudentProgressionRepository studentProgressionRepository,
                                      StudentProgressionMapper studentProgressionMapper,
@@ -360,69 +365,14 @@ public class StudentProgressionService {
     // pattern: strategy for decision handling
     private ProgressDecision makeProgressionDecision(double originalCumulativeQca, List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
         log.debug("Begin making first decision of transiting state from NO_STATE to PASS/FAIL_CAN_REPEAT/FAIL_NO_REPEAT");
-        if (originalCumulativeQca > 2.0)
-            return passAction();
-        else {
-            return repeatAction(listGradeOfThisStudent);
-        }
-    }
 
-    private ProgressDecision passAction() {
-        return ProgressDecision.PASS;
-    }
-
-    private ProgressDecision repeatAction(List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
-        //Sort to get 4 worst grades
-        Collections.sort(listGradeOfThisStudent, (o1, o2) -> {
-            if (o1.getQcs() > o2.getQcs())
-                return 1;
-            else return -1;
-        });
-
-        //Check if he took 1 semester or 2 semesters because it will affect the number of swap grades
-        boolean isLearnedSem1 = false;
-        boolean isLearnedSem2 = false;
-
-
-        // semester check (1 or 2 or both)
-        for (StudentModuleSelectionDTO gradeRecord : listGradeOfThisStudent) {
-            if (isLearnedSem1 == false) {
-                if (gradeRecord.getYearNo() == 1 && gradeRecord.getSemesterNo() == 1)
-                    isLearnedSem1 = true;
-            }
-            if (isLearnedSem2 == false) {
-                if (gradeRecord.getYearNo() == 1 && gradeRecord.getSemesterNo() == 2)
-                    isLearnedSem2 = true;
-            }
-            if(isLearnedSem1 == true && isLearnedSem2 == true) break;
-        }
-
-        // swap grades 2 or 4
-        if (isLearnedSem1 == true && isLearnedSem2 == true) {
-            swapWorstModule(listGradeOfThisStudent, 4);
+        if (originalCumulativeQca > 2.0) {
+            progressionDecisionStrategy = new PassStrategy();
+            return progressionDecisionStrategy.action();
         } else {
-            swapWorstModule(listGradeOfThisStudent, 2);
-        }
-
-        //Calculate QCA after swap
-        double QCA_AfterSwap = calculateCumulativeQCA(listGradeOfThisStudent);
-        log.debug("QCA_AfterSwap: {}", QCA_AfterSwap);
-
-        if (QCA_AfterSwap >= 2.0) {
-            return ProgressDecision.FAIL_CAN_REPEAT;
-        } else {
-            return ProgressDecision.FAIL_NO_REPEAT;
+            progressionDecisionStrategy = new RepeatStrategy();
+            return progressionDecisionStrategy.action();
         }
     }
 
-    /**
-     * swap grades for generating progression decision
-     * @param gradeOfThisStudent grade list of this student
-     * @param numberOfPossibleSwap the number of grades needs to be swapped.
-     */
-    private void swapWorstModule(List<StudentModuleSelectionDTO> gradeOfThisStudent, int numberOfPossibleSwap) {
-        for (int i = 0; i < numberOfPossibleSwap; i++) {
-            gradeOfThisStudent.get(i).setQcs(12.0); // c3 with the qcs of 12.0
-        }
-    }
 }

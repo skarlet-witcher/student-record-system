@@ -368,10 +368,10 @@ public class StudentProgressionService {
         log.debug("Begin making first decision of transiting state from NO_STATE to PASS/FAIL_CAN_REPEAT/FAIL_NO_REPEAT");
 
         if (originalCumulativeQca > 2.0) {
-            progressionDecisionStrategy = new PassStrategy();
+            progressionDecisionStrategy = new PassStrategy(listGradeOfThisStudent, this, log);
             return progressionDecisionStrategy.action();
         } else {
-            progressionDecisionStrategy = new RepeatStrategy();
+            progressionDecisionStrategy = new RepeatStrategy(listGradeOfThisStudent, this, log);
             return progressionDecisionStrategy.action();
         }
     }

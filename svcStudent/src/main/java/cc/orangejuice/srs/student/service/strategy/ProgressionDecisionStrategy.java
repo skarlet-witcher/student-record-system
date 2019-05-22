@@ -14,6 +14,12 @@ public abstract class ProgressionDecisionStrategy {
 
     private Logger log;
 
+    public ProgressionDecisionStrategy(List<StudentModuleSelectionDTO> listGradeOfThisStudent, StudentProgressionService studentProgressionService, Logger log) {
+        this.listGradeOfThisStudent = listGradeOfThisStudent;
+        this.studentProgressionService = studentProgressionService;
+        this.log = log;
+    }
+
     public abstract ProgressDecision action();
 
     protected void swapWorstModule(List<StudentModuleSelectionDTO> gradeOfThisStudent, int numberOfPossibleSwap) {

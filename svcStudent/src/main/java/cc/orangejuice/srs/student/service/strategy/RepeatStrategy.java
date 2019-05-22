@@ -2,15 +2,29 @@ package cc.orangejuice.srs.student.service.strategy;
 
 import cc.orangejuice.srs.student.client.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
+import cc.orangejuice.srs.student.service.StudentProgressionService;
+import org.slf4j.Logger;
 
 import java.util.Collections;
+import java.util.List;
 
 public class RepeatStrategy extends ProgressionDecisionStrategy {
+
+    public RepeatStrategy(List<StudentModuleSelectionDTO> listGradeOfThisStudent, StudentProgressionService studentProgressionService, Logger log) {
+        super(listGradeOfThisStudent, studentProgressionService, log);
+    }
 
     @Override
     public ProgressDecision action() {
         //Sort to get 4 worst grades
-        sortGrades();
+        sortWorstGrades();
+        /*
+        Collections.sort(this.getListGradeOfThisStudent(), (o1, o2) -> {
+            if (o1.getQcs() > o2.getQcs())
+                return 1;
+            else return -1;
+        });
+        */
         //Check if he took 1 semester or 2 semesters because it will affect the number of swap grades
         swapGrades();
 
@@ -21,12 +35,28 @@ public class RepeatStrategy extends ProgressionDecisionStrategy {
         }
     }
 
-    private void sortGrades() {
+    private void sortWorstGrades() {
+
         Collections.sort(this.getListGradeOfThisStudent(), (o1, o2) -> {
             if (o1.getQcs() > o2.getQcs())
                 return 1;
             else return -1;
         });
+        /*
+        for (int i = 0; i < this.getListGradeOfThisStudent().size(); i++)
+        {
+            for (int j = 0; j < this.getListGradeOfThisStudent().size() - 1 - i; j++)
+            {
+                if (this.getListGradeOfThisStudent().get(j).getQcs() > this.getListGradeOfThisStudent().get(j + 1).getQcs())
+                {
+                    StudentModuleSelectionDTO studentModuleSelectionDTO;
+                    studentModuleSelectionDTO = this.getListGradeOfThisStudent().get(j);
+                    this.getListGradeOfThisStudent().set(j, this.getListGradeOfThisStudent().get(j + 1));
+                    this.getListGradeOfThisStudent().set(j + 1, studentModuleSelectionDTO);
+                }
+            }
+        }
+        */
     }
 
     private void swapGrades() {

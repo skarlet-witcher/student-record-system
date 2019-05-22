@@ -10,6 +10,7 @@ import cc.orangejuice.srs.module.repository.StudentModuleSelectionRepository;
 import cc.orangejuice.srs.module.service.dto.ModuleDTO;
 import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.module.service.mapper.StudentModuleSelectionMapper;
+import cc.orangejuice.srs.module.utils.SemesterTranscriptGenerator;
 import cc.orangejuice.srs.module.utils.TranscriptGenerator;
 import com.itextpdf.text.DocumentException;
 import org.slf4j.Logger;
@@ -113,7 +114,7 @@ public class StudentModuleSelectionService {
             studentModuleSelectionRepository.deleteById(id);
         }
 
-        public void getTranscript(Long studentId, Integer academicYear, Integer academicSemester) throws FileNotFoundException, DocumentException {
+        public void getSemesterTranscript(Long studentId, Integer academicYear, Integer academicSemester) throws FileNotFoundException, DocumentException {
             // step 1: data gathering
 
             // get module selections
@@ -141,8 +142,8 @@ public class StudentModuleSelectionService {
             StudentProgressionDTO studentProgressionDTO = getQCAByStudentAndAcademicYearAndAcademicSemester(studentDTO, academicYear, academicSemester);
             log.debug("Finish getting QCA with the QCA of {}", studentProgressionDTO.getQca());
 
-            // step 2: generate pdf file
-            TranscriptGenerator tg = new TranscriptGenerator(studentModuleSelectionDTOS, moduleDTOS, studentDTO, studentEnrollDTO, programmeDTO, studentProgressionDTO);
+            // step 2: generate pdf file (semester transcript)
+            TranscriptGenerator tg = new SemesterTranscriptGenerator(studentModuleSelectionDTOS, moduleDTOS, studentDTO, studentEnrollDTO, programmeDTO, studentProgressionDTO);
             tg.generate();
 
         }

@@ -157,15 +157,15 @@ public class StudentModuleSelectionResource {
         return studentModuleSelectionDTO;
     }
 
-    @GetMapping(value = "/student-module-selections/get-transcript")
-    public ResponseEntity<Void> getTransctipt(
+    @GetMapping(value = "/student-module-selections/get-SemesterTranscript")
+    public ResponseEntity<Void> getSemesterTranscript(
         @RequestParam("studentId") Long studentId,
         @RequestParam("academicYear") Integer academicYear,
         @RequestParam("academicSemester") Integer academicSemester) throws FileNotFoundException, DocumentException {
 
         log.debug("REST request to get transcript for the student {} in academicYear: {}, academicSemester: {} ",
             studentId, academicYear, academicYear, academicSemester);
-        studentModuleSelectionService.getTranscript(studentId, academicYear, academicSemester);
+        studentModuleSelectionService.getSemesterTranscript(studentId, academicYear, academicSemester);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, "transcript generated")).build();
     }
 

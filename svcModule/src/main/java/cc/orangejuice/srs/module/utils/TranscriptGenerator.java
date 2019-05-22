@@ -24,7 +24,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.sun.media.jfxmedia.logging.Logger;
 
-public class TranscriptGenerator {
+public class TranscriptGenerator {   // adapter identified supporting semester transcript and year transcript (for the extension point)
+    // data that the generator needs.
     private List<StudentModuleSelectionDTO> studentResults;
     private List<ModuleDTO> moduleInfo;
     private StudentDTO studentPersonalInfo;
@@ -32,6 +33,8 @@ public class TranscriptGenerator {
     private ProgrammeDTO programmeInfo;
     private StudentProgressionDTO studentProgressionInfo;
 
+
+    // basic for generating the pdf file.
     private Font titleFont;
     private Font subTitleFont;
     private Font bodyFont;
@@ -56,7 +59,10 @@ public class TranscriptGenerator {
         table.setSpacingBefore(20);
     }
 
+
+    // the method for generating the file
     public void generate() throws FileNotFoundException, DocumentException {
+
         PdfWriter.getInstance(document, new FileOutputStream(
             "StudentTranscript - " + studentPersonalInfo.getStudentNumber() + ".pdf"));
         document.open();

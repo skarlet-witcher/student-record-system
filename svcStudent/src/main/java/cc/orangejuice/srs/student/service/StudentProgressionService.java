@@ -314,6 +314,8 @@ public class StudentProgressionService {
     private void insertSemesterQCA(Double semesterQCA, Integer academicYear, Integer academicSemester, Long studentId, ProgressDecision progressDecisionEnum) {
         log.debug("request to insert Semester QCA for student: {} with QCA: {} in academic Year: {} and academic Semester: ", studentId, academicYear, academicSemester);
 
+
+        // instantiation identified
         StudentProgressionDTO studentProgressionDTO = new StudentProgressionDTO();
         studentProgressionDTO.setForAcademicYear(academicYear);
         studentProgressionDTO.setForAcademicSemester(academicSemester);
@@ -338,6 +340,8 @@ public class StudentProgressionService {
     private void insertCumulativeQCA(Double cumulativeQCA, Integer partNo, Integer academicYear, Integer academicSemester, Long studentId, ProgressDecision progressDecisionEnum) {
         log.debug("request to insert Cumulative QCA for student: {} with QCA: {} in academic Year: {} and academic Semester: ", studentId, academicYear, academicSemester);
 
+
+        // instantiation identified
         StudentProgressionDTO studentProgressionDTO = new StudentProgressionDTO();
         studentProgressionDTO.setForPartNo(partNo);
         studentProgressionDTO.setForAcademicYear(academicYear);

@@ -43,11 +43,11 @@ public class StudentModuleSelectionService {
 
         private final ProgrammeFeignClient programmeFeignClient;
 
+        private final StudentFeignClient studentFeignClient;
+
         private final ModuleGradeService moduleGradeService;
 
         private final ModuleService moduleService;
-
-        private final StudentFeignClient studentFeignClient;
 
 
         public StudentModuleSelectionService(StudentModuleSelectionRepository studentModuleSelectionRepository,

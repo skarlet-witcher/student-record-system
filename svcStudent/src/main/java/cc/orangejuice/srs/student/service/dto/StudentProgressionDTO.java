@@ -43,6 +43,28 @@ public class StudentProgressionDTO implements Serializable {
 
     private String studentStudentNumber;
 
+    // semster qca
+    public StudentProgressionDTO(Integer forAcademicYear, Integer forAcademicSemester, @NotNull Double qca, ProgressType progressType, Long studentId) {
+        this.forAcademicYear = forAcademicYear;
+        this.forAcademicSemester = forAcademicSemester;
+        this.qca = qca;
+        this.progressType = progressType;
+        this.studentId = studentId;
+    }
+
+    // cumulative qca
+    public StudentProgressionDTO(Integer forPartNo, Integer forAcademicYear, @NotNull Double qca, Long studentId, ProgressType progressType) {
+        this.forPartNo = forPartNo;
+        this.forAcademicYear = forAcademicYear;
+        this.qca = qca;
+        this.studentId = studentId;
+        this.progressType = progressType;
+    }
+
+    public StudentProgressionDTO() {
+
+    }
+
     public Long getId() {
         return id;
     }

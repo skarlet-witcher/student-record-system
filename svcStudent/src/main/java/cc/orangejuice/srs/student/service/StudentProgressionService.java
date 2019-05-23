@@ -12,6 +12,7 @@ import cc.orangejuice.srs.student.repository.StudentProgressionRepository;
 import cc.orangejuice.srs.student.repository.StudentRepository;
 import cc.orangejuice.srs.student.service.dto.StudentDTO;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
+import cc.orangejuice.srs.student.service.dto.factory.DTOFactory;
 import cc.orangejuice.srs.student.service.mapper.StudentMapper;
 import cc.orangejuice.srs.student.service.mapper.StudentProgressionMapper;
 import cc.orangejuice.srs.student.service.strategy.PassStrategy;
@@ -54,6 +55,8 @@ public class StudentProgressionService {
 
     private ProgressionDecisionStrategy progressionDecisionStrategy;
 
+    private DTOFactory dtoFactory;
+
     public StudentProgressionService(StudentProgressionRepository studentProgressionRepository,
                                      StudentProgressionMapper studentProgressionMapper,
                                      ProgrammeFeignClient programmeFeignClient,
@@ -64,6 +67,7 @@ public class StudentProgressionService {
         this.programmeFeignClient = programmeFeignClient;
         this.studentService = studentService;
         this.studentMapper = studentMapper;
+        dtoFactory = new DTOFactory();
     }
 
     /**
@@ -316,12 +320,10 @@ public class StudentProgressionService {
 
 
         // instantiation identified
-        StudentProgressionDTO studentProgressionDTO = new StudentProgressionDTO();
-        studentProgressionDTO.setForAcademicYear(academicYear);
-        studentProgressionDTO.setForAcademicSemester(academicSemester);
-        studentProgressionDTO.setQca(semesterQCA);
-        studentProgressionDTO.setStudentId(studentId);
-        studentProgressionDTO.setProgressType(ProgressType.SEMESTER);
+        StudentProgressionDTO studentProgressionDTO = dtoFactory.createStudentProgressionDTOForSemesterQCA(academicYear, academicSemester, semesterQCA, ProgressType.SEMESTER, studentId);
+
+
+
         if (progressDecisionEnum != null) studentProgressionDTO.setProgressDecision(progressDecisionEnum);
         log.debug("request to save student semester qca to student progression table. studentId: {}, academicYear: {}, academicSemester: {}, semesterQCA: {}",
                 studentId, academicYear, academicSemester, semesterQCA);
@@ -342,12 +344,10 @@ public class StudentProgressionService {
 
 
         // instantiation identified
-        StudentProgressionDTO studentProgressionDTO = new StudentProgressionDTO();
-        studentProgressionDTO.setForPartNo(partNo);
-        studentProgressionDTO.setForAcademicYear(academicYear);
-        studentProgressionDTO.setQca(cumulativeQCA);
-        studentProgressionDTO.setStudentId(studentId);
-        studentProgressionDTO.setProgressType(ProgressType.PART);
+        StudentProgressionDTO studentProgressionDTO = dtoFactory.createStudentProgressionDTOForCumulativeQCA(partNo, academicYear, cumulativeQCA, studentId, ProgressType.PART);
+
+
+
         if (progressDecisionEnum != null) studentProgressionDTO.setProgressDecision(progressDecisionEnum);
         log.debug("request to save student cumulative qca to student progression table. studentId: {}, academicYear: {}, academicSemester: {}, semesterQCA: {}",
             studentId, academicYear, academicSemester, cumulativeQCA);

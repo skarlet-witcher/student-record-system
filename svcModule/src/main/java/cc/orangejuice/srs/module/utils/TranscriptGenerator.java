@@ -25,14 +25,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.sun.media.jfxmedia.logging.Logger;
 
 public abstract class TranscriptGenerator {   // adapter identified supporting semester transcript and year transcript (for the extension point)
-    // data that the generator needs.
-    private List<StudentModuleSelectionDTO> studentResults;
-    private List<ModuleDTO> moduleInfo;
-    private StudentDTO studentPersonalInfo;
-    private StudentEnrollDTO studentEnrollInfo;
-    private ProgrammeDTO programmeInfo;
-    private StudentProgressionDTO studentProgressionInfo;
-
 
     // basic for generating the pdf file.
     private Font titleFont;
@@ -42,14 +34,7 @@ public abstract class TranscriptGenerator {   // adapter identified supporting s
     private Document document;
     private PdfPTable table;
 
-    public TranscriptGenerator(List<StudentModuleSelectionDTO> studentResults, List<ModuleDTO> moduleInfo, StudentDTO studentPersonalInfo, StudentEnrollDTO studentEnrollInfo, ProgrammeDTO programmeInfo, StudentProgressionDTO studentProgressionInfo) {
-        this.studentResults = studentResults;
-        this.moduleInfo = moduleInfo;
-        this.studentPersonalInfo = studentPersonalInfo;
-        this.studentEnrollInfo = studentEnrollInfo;
-        this.programmeInfo = programmeInfo;
-        this.studentProgressionInfo = studentProgressionInfo;
-
+    public TranscriptGenerator() {
         titleFont = FontFactory.getFont(FontFactory.COURIER, 20, BaseColor.BLACK);
         subTitleFont = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
         bodyFont = FontFactory.getFont(FontFactory.COURIER, 11, BaseColor.BLACK);
@@ -65,55 +50,6 @@ public abstract class TranscriptGenerator {   // adapter identified supporting s
 
 
     // getter and setter
-
-    public List<StudentModuleSelectionDTO> getStudentResults() {
-        return studentResults;
-    }
-
-    public void setStudentResults(List<StudentModuleSelectionDTO> studentResults) {
-        this.studentResults = studentResults;
-    }
-
-    public List<ModuleDTO> getModuleInfo() {
-        return moduleInfo;
-    }
-
-    public void setModuleInfo(List<ModuleDTO> moduleInfo) {
-        this.moduleInfo = moduleInfo;
-    }
-
-    public StudentDTO getStudentPersonalInfo() {
-        return studentPersonalInfo;
-    }
-
-    public void setStudentPersonalInfo(StudentDTO studentPersonalInfo) {
-        this.studentPersonalInfo = studentPersonalInfo;
-    }
-
-    public StudentEnrollDTO getStudentEnrollInfo() {
-        return studentEnrollInfo;
-    }
-
-    public void setStudentEnrollInfo(StudentEnrollDTO studentEnrollInfo) {
-        this.studentEnrollInfo = studentEnrollInfo;
-    }
-
-    public ProgrammeDTO getProgrammeInfo() {
-        return programmeInfo;
-    }
-
-    public void setProgrammeInfo(ProgrammeDTO programmeInfo) {
-        this.programmeInfo = programmeInfo;
-    }
-
-    public StudentProgressionDTO getStudentProgressionInfo() {
-        return studentProgressionInfo;
-    }
-
-    public void setStudentProgressionInfo(StudentProgressionDTO studentProgressionInfo) {
-        this.studentProgressionInfo = studentProgressionInfo;
-    }
-
     public Font getTitleFont() {
         return titleFont;
     }

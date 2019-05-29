@@ -22,11 +22,7 @@ public abstract class ProgressionDecisionStrategy {
 
     public abstract ProgressDecision action();
 
-    protected void swapWorstModule(List<StudentModuleSelectionDTO> gradeOfThisStudent, int numberOfPossibleSwap) {
-        for (int i = 0; i < numberOfPossibleSwap; i++) {
-            gradeOfThisStudent.get(i).setQcs(12.0); // c3 with the qcs of 12.0
-        }
-    }
+
 
     public List<StudentModuleSelectionDTO> getListGradeOfThisStudent() {
         return listGradeOfThisStudent;

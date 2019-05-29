@@ -18,13 +18,6 @@ public class RepeatStrategy extends ProgressionDecisionStrategy {
     public ProgressDecision action() {
         //Sort to get 4 worst grades
         sortWorstGrades();
-        /*
-        Collections.sort(this.getListGradeOfThisStudent(), (o1, o2) -> {
-            if (o1.getQcs() > o2.getQcs())
-                return 1;
-            else return -1;
-        });
-        */
         //Check if he took 1 semester or 2 semesters because it will affect the number of swap grades
         swapGrades();
 
@@ -91,6 +84,12 @@ public class RepeatStrategy extends ProgressionDecisionStrategy {
         double QCA_AfterSwap = this.getStudentProgressionService().calculateCumulativeQCA(this.getListGradeOfThisStudent());
         this.getLog().debug("QCA_AfterSwap: {}", QCA_AfterSwap);
         return QCA_AfterSwap;
+    }
+
+    private void swapWorstModule(List<StudentModuleSelectionDTO> gradeOfThisStudent, int numberOfPossibleSwap) {
+        for (int i = 0; i < numberOfPossibleSwap; i++) {
+            gradeOfThisStudent.get(i).setQcs(12.0); // c3 with the qcs of 12.0
+        }
     }
 
 }

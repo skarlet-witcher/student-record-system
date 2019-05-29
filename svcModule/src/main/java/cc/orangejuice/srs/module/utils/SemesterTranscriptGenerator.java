@@ -16,20 +16,33 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class SemesterTranscriptGenerator extends TranscriptGenerator {
+    // data for generating the SemesterTranscript
+    private List<StudentModuleSelectionDTO> studentResults;
+    private List<ModuleDTO> moduleInfo;
+    private StudentDTO studentPersonalInfo;
+    private StudentEnrollDTO studentEnrollInfo;
+    private ProgrammeDTO programmeInfo;
+    private StudentProgressionDTO studentProgressionInfo;
+
+
     public SemesterTranscriptGenerator(List<StudentModuleSelectionDTO> studentResults,
                                        List<ModuleDTO> moduleInfo, StudentDTO studentPersonalInfo,
                                        StudentEnrollDTO studentEnrollInfo,
                                        ProgrammeDTO programmeInfo,
                                        StudentProgressionDTO studentProgressionInfo) {
-        super(studentResults, moduleInfo, studentPersonalInfo, studentEnrollInfo,
-            programmeInfo, studentProgressionInfo);
+        this.studentResults = studentResults;
+        this.moduleInfo = moduleInfo;
+        this.studentPersonalInfo = studentPersonalInfo;
+        this.studentEnrollInfo = studentEnrollInfo;
+        this.programmeInfo = programmeInfo;
+        this.studentProgressionInfo = studentProgressionInfo;
     }
 
     // the method for generating the file
     public void generate() throws FileNotFoundException, DocumentException {
 
         PdfWriter.getInstance(this.getDocument(), new FileOutputStream(
-            "StudentTranscript - " + this.getStudentPersonalInfo().getStudentNumber() + ".pdf"));
+            "SemesterTranscript - " + this.getStudentPersonalInfo().getStudentNumber() + ".pdf"));
         this.getDocument().open();
 
         generateHeader();
@@ -137,5 +150,55 @@ public class SemesterTranscriptGenerator extends TranscriptGenerator {
             // credits
             this.getTable().addCell(this.getStudentResults().get(i).getCreditHour().toString());
         }
+    }
+
+
+    // getter and setter
+    public List<StudentModuleSelectionDTO> getStudentResults() {
+        return studentResults;
+    }
+
+    public void setStudentResults(List<StudentModuleSelectionDTO> studentResults) {
+        this.studentResults = studentResults;
+    }
+
+    public List<ModuleDTO> getModuleInfo() {
+        return moduleInfo;
+    }
+
+    public void setModuleInfo(List<ModuleDTO> moduleInfo) {
+        this.moduleInfo = moduleInfo;
+    }
+
+    public StudentDTO getStudentPersonalInfo() {
+        return studentPersonalInfo;
+    }
+
+    public void setStudentPersonalInfo(StudentDTO studentPersonalInfo) {
+        this.studentPersonalInfo = studentPersonalInfo;
+    }
+
+    public StudentEnrollDTO getStudentEnrollInfo() {
+        return studentEnrollInfo;
+    }
+
+    public void setStudentEnrollInfo(StudentEnrollDTO studentEnrollInfo) {
+        this.studentEnrollInfo = studentEnrollInfo;
+    }
+
+    public ProgrammeDTO getProgrammeInfo() {
+        return programmeInfo;
+    }
+
+    public void setProgrammeInfo(ProgrammeDTO programmeInfo) {
+        this.programmeInfo = programmeInfo;
+    }
+
+    public StudentProgressionDTO getStudentProgressionInfo() {
+        return studentProgressionInfo;
+    }
+
+    public void setStudentProgressionInfo(StudentProgressionDTO studentProgressionInfo) {
+        this.studentProgressionInfo = studentProgressionInfo;
     }
 }

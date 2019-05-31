@@ -9,29 +9,26 @@ import cc.orangejuice.srs.student.domain.StudentProgression;
 import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
 import cc.orangejuice.srs.student.domain.enumeration.ProgressType;
 import cc.orangejuice.srs.student.repository.StudentProgressionRepository;
-import cc.orangejuice.srs.student.repository.StudentRepository;
+import cc.orangejuice.srs.student.service.chain.AbstractProgression;
+import cc.orangejuice.srs.student.service.chain.FailProgression;
+import cc.orangejuice.srs.student.service.chain.PassProgression;
+import cc.orangejuice.srs.student.service.chain.RepeatProgression;
 import cc.orangejuice.srs.student.service.dto.StudentDTO;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.service.dto.factory.DTOFactory;
 import cc.orangejuice.srs.student.service.dto.factory.StudentProgressionDTOFactory;
 import cc.orangejuice.srs.student.service.mapper.StudentMapper;
 import cc.orangejuice.srs.student.service.mapper.StudentProgressionMapper;
-import cc.orangejuice.srs.student.service.strategy.PassStrategy;
 import cc.orangejuice.srs.student.service.strategy.ProgressionDecisionStrategy;
-import cc.orangejuice.srs.student.service.strategy.RepeatStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import javax.activation.ActivationDataFlavor;
-import javax.swing.text.html.Option;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -54,7 +51,7 @@ public class StudentProgressionService {
 
     private final StudentMapper studentMapper;
 
-    private ProgressionDecisionStrategy progressionDecisionStrategy;
+    private AbstractProgression progressionMaker;
 
     private DTOFactory studentProgressionDTOFactory;
 
@@ -69,6 +66,20 @@ public class StudentProgressionService {
         this.studentService = studentService;
         this.studentMapper = studentMapper;
         studentProgressionDTOFactory = new StudentProgressionDTOFactory();
+    }
+
+    private void initProgressionMaker(List<StudentModuleSelectionDTO> listGradeOfThisStudent, StudentProgressionService studentProgressionService, Logger log) {
+
+        AbstractProgression passProgressionMaker = new PassProgression();
+        AbstractProgression repeatProgressionMaker = new RepeatProgression(listGradeOfThisStudent, this, log);
+        AbstractProgression failProgressionMaker = new FailProgression();
+
+
+        passProgressionMaker.setNextProgression(repeatProgressionMaker);
+        repeatProgressionMaker.setNextProgression(failProgressionMaker);
+
+        progressionMaker = passProgressionMaker;
+
     }
 
     /**
@@ -372,13 +383,10 @@ public class StudentProgressionService {
     private ProgressDecision makeProgressionDecision(double originalCumulativeQca, List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
         log.debug("Begin making first decision of transiting state from NO_STATE to PASS/FAIL_CAN_REPEAT/FAIL_NO_REPEAT");
 
-        if (originalCumulativeQca > 2.0) {
-            progressionDecisionStrategy = new PassStrategy(listGradeOfThisStudent, this, log);
-            return progressionDecisionStrategy.action();
-        } else {
-            progressionDecisionStrategy = new RepeatStrategy(listGradeOfThisStudent, this, log);
-            return progressionDecisionStrategy.action();
-        }
+        initProgressionMaker(listGradeOfThisStudent, this, log);
+
+        return progressionMaker.progressionChecker(originalCumulativeQca);
+
     }
 
 }

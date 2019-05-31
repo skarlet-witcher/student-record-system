@@ -19,7 +19,6 @@ import cc.orangejuice.srs.student.service.dto.factory.DTOFactory;
 import cc.orangejuice.srs.student.service.dto.factory.StudentProgressionDTOFactory;
 import cc.orangejuice.srs.student.service.mapper.StudentMapper;
 import cc.orangejuice.srs.student.service.mapper.StudentProgressionMapper;
-import cc.orangejuice.srs.student.service.strategy.ProgressionDecisionStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,11 +69,12 @@ public class StudentProgressionService {
 
     private void initProgressionMaker(List<StudentModuleSelectionDTO> listGradeOfThisStudent, StudentProgressionService studentProgressionService, Logger log) {
 
+        // initialization for each progression maker
         AbstractProgression passProgressionMaker = new PassProgression();
         AbstractProgression repeatProgressionMaker = new RepeatProgression(listGradeOfThisStudent, this, log);
         AbstractProgression failProgressionMaker = new FailProgression();
 
-
+        // add chain to makers
         passProgressionMaker.setNextProgression(repeatProgressionMaker);
         repeatProgressionMaker.setNextProgression(failProgressionMaker);
 

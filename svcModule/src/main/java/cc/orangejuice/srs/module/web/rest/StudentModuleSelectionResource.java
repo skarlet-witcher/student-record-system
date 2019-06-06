@@ -169,6 +169,17 @@ public class StudentModuleSelectionResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, "transcript generated")).build();
     }
 
+    @GetMapping(value = "/student-module-selections/get-PartTranscript")
+    public ResponseEntity<Void> getPartTranscript(
+        @RequestParam("studentId") Long studentId,
+        @RequestParam("academicYear") Integer academicYear,
+        @RequestParam("partNo") String partNo
+    ) throws FileNotFoundException, DocumentException {
+        log.debug("REST request to get transcript for the student {} in academicYear: {], part: {} ", studentId, academicYear, partNo);
+        studentModuleSelectionService.getPartTranscript(studentId, academicYear, partNo);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, "transcript generated")).build();
+    }
+
 
 
 

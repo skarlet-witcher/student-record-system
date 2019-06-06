@@ -153,6 +153,17 @@ public class StudentProgressionService {
         return studentProgressionMapper.toDto(studentProgression);
     }
 
+    public List<StudentProgressionDTO> getOneByStudentAndAcademicYear(Long studentId, Integer academicYear) {
+        log.debug("request to get progression info for student {} at academicYear {}", studentId, academicYear);
+        List<StudentProgressionDTO> studentProgressionsDTOS = new ArrayList<>();
+        for(StudentProgression studentProgression : studentProgressionRepository.findAllByForAcademicYear(academicYear)) {
+            if(studentProgression.getStudent().getId() == studentId) {
+                studentProgressionsDTOS.add(studentProgressionMapper.toDto(studentProgression));
+            }
+        }
+        return studentProgressionsDTOS;
+    }
+
     /**
      * calculate QCA
      * step 1: insert semester qca

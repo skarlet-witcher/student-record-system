@@ -117,33 +117,33 @@ public class StudentModuleSelectionService {
 
         public void getSemesterTranscript(Long studentId, Integer academicYear, Integer academicSemester) throws FileNotFoundException, DocumentException {
             // step 1: data gathering
-            log.debug("request to get transcript for the student {} in academicYear: {}, academicSemester: {} ",
+            log.debug("request to get semester transcript for the student {} in academicYear: {}, academicSemester: {} ",
                 studentId, academicYear, academicYear, academicSemester);
 
             // get module selections
             List<StudentModuleSelectionDTO> studentModuleSelectionDTOS = findAllByStudentIdAcademicYearAcademicSemester(studentId, academicYear, academicSemester);
-            log.debug("Finish getting studentModuleSelectionDTOS with the size of {}", studentModuleSelectionDTOS.size());
+            log.debug("Finish getting studentModuleSelectionDTOS for generating semester transcript with the size of {}", studentModuleSelectionDTOS.size());
 
             // get module code (detail) for each module
             List<ModuleDTO> moduleDTOS = getModuleCodeByModuleName(studentModuleSelectionDTOS);
-            log.debug("Finish getting moduleDTOS with the size of {}", moduleDTOS.size());
+            log.debug("Finish getting moduleDTOS for generating semester transcript with the size of {}", moduleDTOS.size());
 
             // get student info (student number, student name, address, phone number)
             StudentDTO studentDTO = studentFeignClient.getStudent(studentId).getBody();
-            log.debug("Finish getting studentSTO with the student name of {}", studentDTO.getFirstName());
+            log.debug("Finish getting studentSTO for generating semester transcript with the student name of {}", studentDTO.getFirstName());
 
             // get enroll detail
             StudentEnrollDTO studentEnrollDTO = studentFeignClient.getStudentEnrollDetail(studentId);
-            log.debug("Finish getting the studentEnrollDTO with the status of {}", studentEnrollDTO.getStatus());
+            log.debug("Finish getting the studentEnrollDTO for generating semester transcript with the status of {}", studentEnrollDTO.getStatus());
 
             // get programme detail
             ProgrammeDTO programmeDTO = programmeFeignClient.getProgramme(studentEnrollDTO.getForProgrammeId()).getBody();
-            log.debug("finish getting the programme dto with the programme name of {}", programmeDTO.getName());
+            log.debug("finish getting the programme dto for generating semester transcript with the programme name of {}", programmeDTO.getName());
 
 
             // get QCA
             StudentProgressionDTO studentProgressionDTO = getQCAByStudentAndAcademicYearAndAcademicSemester(studentDTO, academicYear, academicSemester);
-            log.debug("Finish getting QCA with the QCA of {}", studentProgressionDTO.getQca());
+            log.debug("Finish getting QCA for generating semester transcript with the QCA of {}", studentProgressionDTO.getQca());
 
             // step 2: generate pdf file (semester transcript)
             TranscriptGenerator tg = new SemesterTranscriptGenerator(studentModuleSelectionDTOS, moduleDTOS, studentDTO, studentEnrollDTO, programmeDTO, studentProgressionDTO);
@@ -152,37 +152,37 @@ public class StudentModuleSelectionService {
         }
 
         public void getPartTranscript(Long studentId, Integer academicYear, String partNo) throws FileNotFoundException, DocumentException {
-            log.debug("REST request to get transcript for the student {} in academicYear: {], part: {} ", studentId, academicYear, partNo);
+            log.debug("REST request to get part transcript for the student {} in academicYear: {], part: {} ", studentId, academicYear, partNo);
 
             // step 1: data gathering
 
-            // get Year No by partNo
+            // get "part" info
             List<ProgrammePropDTO> programmePropDTOS = programmeFeignClient.getProgrammePropsByYearAndPart(academicYear, partNo);
-            log.debug("Finish getting the programmeProps with the size of {}", programmePropDTOS.size());
+            log.debug("Finish getting the programmeProps for generating Part Transcript with the size of {}", programmePropDTOS.size());
 
             //get module selection
             List<StudentModuleSelectionDTO> studentModuleSelectionDTOS = getStudentModulesSelectionsForPart(programmePropDTOS, studentId, academicYear);
-            log.debug("Finish gettin the student result list with the size of {}", studentModuleSelectionDTOS.size());
+            log.debug("Finish gettin the student result lists for generating Part Transcript with the size of {}", studentModuleSelectionDTOS.size());
 
             // get module code (detail) for each module
             List<ModuleDTO> moduleDTOS = getModuleCodeByModuleName(studentModuleSelectionDTOS);
-            log.debug("Finish getting moduleDTOS with the size of {}", moduleDTOS.size());
+            log.debug("Finish getting moduleDTOS for generating Part Transcript with the size of {} for generating Part Transcript", moduleDTOS.size());
 
             // get student info (student number, student name, address, phone number)
             StudentDTO studentDTO = studentFeignClient.getStudent(studentId).getBody();
-            log.debug("Finish getting studentSTO with the student name of {}", studentDTO.getFirstName());
+            log.debug("Finish getting studentSTO for generating Part Transcript with the student name of {}", studentDTO.getFirstName());
 
             // get enroll detail
             StudentEnrollDTO studentEnrollDTO = studentFeignClient.getStudentEnrollDetail(studentId);
-            log.debug("Finish getting the studentEnrollDTO with the status of {}", studentEnrollDTO.getStatus());
+            log.debug("Finish getting the studentEnrollDTO for generating Part Transcript with the status of {}", studentEnrollDTO.getStatus());
 
             // get programme detail
             ProgrammeDTO programmeDTO = programmeFeignClient.getProgramme(studentEnrollDTO.getForProgrammeId()).getBody();
-            log.debug("finish getting the programme dto with the programme name of {}", programmeDTO.getName());
+            log.debug("finish getting the programme dto for generating Part Transcript with the programme name of {}", programmeDTO.getName());
 
             // get QCA
             List<StudentProgressionDTO> studentProgressionDTOS = studentFeignClient.getProgressionInfoByAcademicYear(studentId, academicYear);
-            log.debug("Finish getting QCA with the size of {}",studentProgressionDTOS.size());
+            log.debug("Finish getting QCA for generating Part Transcript with the size of {}",studentProgressionDTOS.size());
 
             // step 2: generate pdf file
             TranscriptGenerator tg = new PartTranscriptGenerator(programmePropDTOS, studentModuleSelectionDTOS, moduleDTOS, studentDTO, studentEnrollDTO, programmeDTO, studentProgressionDTOS);

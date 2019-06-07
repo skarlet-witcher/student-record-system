@@ -5,13 +5,11 @@ import cc.orangejuice.srs.module.client.dto.enumeration.ProgressType;
 import cc.orangejuice.srs.module.service.dto.ModuleDTO;
 import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class PartTranscriptGenerator extends TranscriptGenerator {
 
@@ -39,7 +37,7 @@ public class PartTranscriptGenerator extends TranscriptGenerator {
     public void generate() throws FileNotFoundException, DocumentException {
 
         PdfWriter.getInstance(this.getDocument(), new FileOutputStream(
-            "PartTranscript - part " + partList.get(0).getValue() + " - " + this.getStudentPersonalInfo().getStudentNumber() + ".pdf"));
+            "PartTranscript - part " + partList.get(0).getValue() + " - " + this.studentPersonalInfo.getStudentNumber() + ".pdf"));
         this.getDocument().open();
 
         generateHeader();
@@ -73,11 +71,11 @@ public class PartTranscriptGenerator extends TranscriptGenerator {
     }
 
     private void generatePersonalInfo() throws DocumentException {
-        Chunk studentName = new Chunk("Name: " + this.getStudentPersonalInfo().getFirstName() + " " + this.getStudentPersonalInfo().getLastName(), this.getBodyFont());
-        Chunk studentNumber = new Chunk("Student Number: " + this.getStudentPersonalInfo().getStudentNumber(), this.getBodyFont());
-        Chunk addressLine1 = new Chunk("Address: " + this.getStudentPersonalInfo().getAddressLine1(), this.getBodyFont());
-        Chunk addressLine2 = new Chunk(this.getStudentPersonalInfo().getAddressLine2(), this.getBodyFont());
-        Chunk telephone = new Chunk("Phone Number: " + this.getStudentPersonalInfo().getPhone(), this.getBodyFont());
+        Chunk studentName = new Chunk("Name: " + this.studentPersonalInfo.getFirstName() + " " + this.studentPersonalInfo.getLastName(), this.getBodyFont());
+        Chunk studentNumber = new Chunk("Student Number: " + this.studentPersonalInfo.getStudentNumber(), this.getBodyFont());
+        Chunk addressLine1 = new Chunk("Address: " + this.studentPersonalInfo.getAddressLine1(), this.getBodyFont());
+        Chunk addressLine2 = new Chunk(this.studentPersonalInfo.getAddressLine2(), this.getBodyFont());
+        Chunk telephone = new Chunk("Phone Number: " + this.studentPersonalInfo.getPhone(), this.getBodyFont());
 
         generateParagraph(studentName, Paragraph.ALIGN_LEFT, 5);
         generateParagraph(studentNumber, Paragraph.ALIGN_LEFT, 5);
@@ -90,8 +88,8 @@ public class PartTranscriptGenerator extends TranscriptGenerator {
     }
 
     private void generateProgrammeInfo() throws DocumentException {
-        Chunk programmeName = new Chunk("Course: " + this.getProgrammeInfo().getName(), this.getBodyFont());
-        Chunk enrollStatus = new Chunk("Status: " + this.getStudentEnrollInfo().getStatus().name(), this.getBodyFont());
+        Chunk programmeName = new Chunk("Course: " + this.programmeInfo.getName(), this.getBodyFont());
+        Chunk enrollStatus = new Chunk("Status: " + this.studentEnrollInfo.getStatus().name(), this.getBodyFont());
 
         generateParagraph(programmeName, Paragraph.ALIGN_LEFT, 5);
         generateParagraph(enrollStatus, Paragraph.ALIGN_LEFT, 20);
@@ -104,40 +102,49 @@ public class PartTranscriptGenerator extends TranscriptGenerator {
             generateTableTitle(part, semNum);
             for(int i = 0; i < this.studentResults.size(); i++) {
                 if(studentResults.get(i).getAcademicSemester() == academicSemNum) {
-                    // module
-                    this.getTable().addCell(this.getModuleInfo().get(i).getCode());
-
-                    // title
-                    this.getTable().addCell(this.getStudentResults().get(i).getModuleName());
-
-                    // grade
-                    this.getTable().addCell(this.getStudentResults().get(i).getStudentModuleGradeTypeName());
-
-                    // credits
-                    this.getTable().addCell(this.getStudentResults().get(i).getCreditHour().toString());
-                } else {
-                    // semester changed
-
+                    // add results to table
+                    addResults(i);
+                } else { // semester changed
+                    // render the table
+                    renderTable();
                     // print semester qca
-                    for(StudentProgressionDTO studentProgression : studentProgressionInfo) {
-                        if(studentProgression.getForAcademicSemester() == academicSemNum) {
-                            generateQCAInfo(studentProgression.getQca());
-                            break;
-                        }
-                    }
-                    this.getTable().setSpacingAfter(20);
-                    this.getDocument().add(this.getTable());
+                    generateSemesterQCA(academicSemNum);
+                    // generate title for the next table
                     generateTableTitle(part, switchSemNum(semNum));
                     academicSemNum++;
                 }
             }
+            renderTable();
+            // print semester qca
+            generateSemesterQCA(academicSemNum);
+            // generate progression decision
+            generateProgressionInfo();
         }
+    }
+
+    private void addResults(int index) {
+        // module
+        this.getTable().addCell(this.moduleInfo.get(index).getCode());
+
+        // title
+        this.getTable().addCell(this.studentResults.get(index).getModuleName());
+
+        // grade
+        this.getTable().addCell(this.studentResults.get(index).getStudentModuleGradeTypeName());
+
+        // credits
+        this.getTable().addCell(this.studentResults.get(index).getCreditHour().toString());
+    }
+
+    private void renderTable() throws DocumentException {
         this.getTable().setSpacingAfter(20);
         this.getDocument().add(this.getTable());
-        // generate progression decision
-        for(StudentProgressionDTO studentProgressionDTO : this.studentProgressionInfo) {
-            if(studentProgressionDTO.getProgressType() == ProgressType.PART && studentProgressionDTO.getForPartNo() == Integer.parseInt(partList.get(0).getValue())) {
-                generateProgressionInfo(studentProgressionDTO);
+    }
+
+    private void generateSemesterQCA(int academicSemNum) throws DocumentException {
+        for(StudentProgressionDTO studentProgression : studentProgressionInfo) {
+            if(studentProgression.getForAcademicSemester() == academicSemNum) {
+                generateQCAInfo(studentProgression.getQca());
                 break;
             }
         }
@@ -153,22 +160,21 @@ public class PartTranscriptGenerator extends TranscriptGenerator {
         Chunk tableTitle = new Chunk("Year " + part.getForYearNo()  + "  SEM" + semNum, this.getBodyFont());
         generateParagraph(tableTitle, Paragraph.ALIGN_LEFT, 5);
     }
-
-    private void generateResultTable() throws DocumentException {
-        addTableHeader();
-        generateTableBody();
-        this.getTable().setSpacingAfter(20);
-        this.getDocument().add(this.getTable());
-    }
-
+    
     private void generateQCAInfo(double qca) throws DocumentException {
         Chunk tableTitle = new Chunk("Semester QCA: " + qca , this.getBodyFont());
         generateParagraph(tableTitle, Paragraph.ALIGN_LEFT, 5);
     }
 
-    private void generateProgressionInfo(StudentProgressionDTO studentProgressionDTO) throws DocumentException {
-        Chunk tableTitle = new Chunk("Cumulative QCA: " + studentProgressionDTO.getQca() + " Progression Decision: " + studentProgressionDTO.getProgressDecision() , this.getBodyFont());
-        generateParagraph(tableTitle, Paragraph.ALIGN_LEFT, 5);
+    private void generateProgressionInfo() throws DocumentException {
+        for(StudentProgressionDTO studentProgressionDTO : this.studentProgressionInfo) {
+            if(studentProgressionDTO.getProgressType() == ProgressType.PART && studentProgressionDTO.getForPartNo() == Integer.parseInt(partList.get(0).getValue())) {
+                Chunk tableTitle = new Chunk("Cumulative QCA: " + studentProgressionDTO.getQca() + " Progression Decision: " + studentProgressionDTO.getProgressDecision() , this.getBodyFont());
+                generateParagraph(tableTitle, Paragraph.ALIGN_LEFT, 5);
+                break;
+            }
+        }
+
     }
 
     private void generateParagraph(Chunk content, int alignment, int spacing) throws DocumentException {
@@ -178,57 +184,5 @@ public class PartTranscriptGenerator extends TranscriptGenerator {
         this.getDocument().add(paragraph);
     }
 
-    private void addTableHeader() {
-        Stream.of("Module", "Title", "Grade", "Credits").forEach(columnTitle -> {
-            PdfPCell header = new PdfPCell();
-            header.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            header.setBorderWidth(2);
-            header.setPhrase(new Phrase(columnTitle));
-            this.getTable().addCell(header);
-        });
-    }
-
-    private void generateTableBody() {
-        for(int i = 0; i < this.getStudentResults().size(); i++) {
-            // module
-            this.getTable().addCell(this.getModuleInfo().get(i).getCode());
-
-            // title
-            this.getTable().addCell(this.getStudentResults().get(i).getModuleName());
-
-            // grade
-            this.getTable().addCell(this.getStudentResults().get(i).getStudentModuleGradeTypeName());
-
-            // credits
-            this.getTable().addCell(this.getStudentResults().get(i).getCreditHour().toString());
-        }
-    }
-
-    public List<ProgrammePropDTO> getPartList() {
-        return partList;
-    }
-
-    public List<StudentModuleSelectionDTO> getStudentResults() {
-        return studentResults;
-    }
-
-    public List<ModuleDTO> getModuleInfo() {
-        return moduleInfo;
-    }
-
-    public StudentDTO getStudentPersonalInfo() {
-        return studentPersonalInfo;
-    }
-
-    public StudentEnrollDTO getStudentEnrollInfo() {
-        return studentEnrollInfo;
-    }
-
-    public ProgrammeDTO getProgrammeInfo() {
-        return programmeInfo;
-    }
-
-    public List<StudentProgressionDTO> getStudentProgressionInfo() {
-        return studentProgressionInfo;
-    }
+    
 }

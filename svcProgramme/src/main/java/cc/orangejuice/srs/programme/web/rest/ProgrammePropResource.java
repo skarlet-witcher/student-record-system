@@ -144,6 +144,13 @@ public class ProgrammePropResource {
         return programmePropDTOs;
     }
 
+
+    /**
+     * get "part" information for generating "part" transcripts
+     * @param forEnrollYear
+     * @param partNo
+     * @return "part" info
+     */
     @GetMapping(value = "/programme-props/getByEnrollYearAndPart/")
     public List<ProgrammePropDTO> getProgrammePropsByYearAndPart(
         @RequestParam(value = "enrollYear") Integer forEnrollYear,

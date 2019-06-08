@@ -3,6 +3,7 @@ package cc.orangejuice.srs.student.service;
 import cc.orangejuice.srs.student.domain.StudentEnroll;
 import cc.orangejuice.srs.student.repository.StudentEnrollRepository;
 import cc.orangejuice.srs.student.service.dto.StudentEnrollDTO;
+import cc.orangejuice.srs.student.service.dto.factory.DTOFactory;
 import cc.orangejuice.srs.student.service.mapper.StudentEnrollMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -93,7 +94,7 @@ public class StudentEnrollService {
     public StudentEnrollDTO getOneByStudentId(Long studentId) {
         log.debug("Request to get student enroll by student id: {}", studentId);
         List<StudentEnroll> studentEnrolls = studentEnrollRepository.findAll();
-        StudentEnrollDTO studentEnrollDTO = new StudentEnrollDTO();
+        StudentEnrollDTO studentEnrollDTO = DTOFactory.createStudentEnrollDTO();
         for(StudentEnroll studentEnroll : studentEnrolls) {
             if(studentEnroll.getStudent().getId() == studentId) {
                 studentEnrollDTO = studentEnrollMapper.toDto(studentEnroll);

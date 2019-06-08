@@ -13,7 +13,6 @@ import cc.orangejuice.srs.student.repository.StudentRepository;
 import cc.orangejuice.srs.student.service.dto.StudentDTO;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.service.dto.factory.DTOFactory;
-import cc.orangejuice.srs.student.service.dto.factory.StudentProgressionDTOFactory;
 import cc.orangejuice.srs.student.service.mapper.StudentMapper;
 import cc.orangejuice.srs.student.service.mapper.StudentProgressionMapper;
 import cc.orangejuice.srs.student.service.strategy.PassStrategy;
@@ -56,7 +55,6 @@ public class StudentProgressionService {
 
     private ProgressionDecisionStrategy progressionDecisionStrategy;
 
-    private DTOFactory studentProgressionDTOFactory;
 
     public StudentProgressionService(StudentProgressionRepository studentProgressionRepository,
                                      StudentProgressionMapper studentProgressionMapper,
@@ -68,7 +66,6 @@ public class StudentProgressionService {
         this.programmeFeignClient = programmeFeignClient;
         this.studentService = studentService;
         this.studentMapper = studentMapper;
-        studentProgressionDTOFactory = new StudentProgressionDTOFactory();
     }
 
     /**
@@ -321,7 +318,7 @@ public class StudentProgressionService {
 
 
         // instantiation identified
-        StudentProgressionDTO studentProgressionDTO = studentProgressionDTOFactory.createStudentProgressionDTOForSemesterQCA(academicYear, academicSemester, semesterQCA, ProgressType.SEMESTER, studentId);
+        StudentProgressionDTO studentProgressionDTO = DTOFactory.createStudentProgressionDTOForSemesterQCA(academicYear, academicSemester, semesterQCA, ProgressType.SEMESTER, studentId);
 
 
 
@@ -345,7 +342,7 @@ public class StudentProgressionService {
 
 
         // instantiation identified
-        StudentProgressionDTO studentProgressionDTO = studentProgressionDTOFactory.createStudentProgressionDTOForCumulativeQCA(partNo, academicYear, cumulativeQCA, studentId, ProgressType.PART);
+        StudentProgressionDTO studentProgressionDTO = DTOFactory.createStudentProgressionDTOForCumulativeQCA(partNo, academicYear, cumulativeQCA, studentId, ProgressType.PART);
 
 
 

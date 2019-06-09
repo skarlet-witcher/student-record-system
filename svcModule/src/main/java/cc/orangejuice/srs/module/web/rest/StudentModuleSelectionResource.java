@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.yaml.snakeyaml.error.Mark;
 
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
@@ -121,7 +122,7 @@ public class StudentModuleSelectionResource {
 
     /**
      * @param selectionId
-     * @param mark i.e. A1 A2 B1 B2 B3 C1 C2 C3 F
+     * @param mark i.e. 0-100
      * @return
      */
     @PutMapping(value = "/student-module-selections/submit-mark", params={"selectionId", "mark"})
@@ -136,6 +137,23 @@ public class StudentModuleSelectionResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, selectionId.toString())).build();
 
     }
+
+    /**
+     * @param selectionId
+     * @param grade i.e. A B C D F I
+     * @return
+     */
+    @PutMapping(value = "/student-module-selections/submit-grade", params = {"selectionId", "grade"})
+    public ResponseEntity<StudentModuleSelectionDTO> updateGrades(
+        @RequestParam("selectionId") Long selectionId,
+        @RequestParam("grade") String grade) {
+        log.debug("REST request to update id: {} StudentModuleSelections with grade {}", selectionId, grade);
+        studentModuleSelectionService.updateGradeBySelectionIdAndGrade(selectionId, grade);
+        // check if one semester is finished
+        studentModuleSelectionService.checkIfSemesterIsEnd(selectionId);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, selectionId.toString())).build();
+    }
+
 
     @PutMapping(value = "/student-module-selections/clear-all-marks")
     public ResponseEntity<StudentModuleSelectionDTO> clearMarks() {

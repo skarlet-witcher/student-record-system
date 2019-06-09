@@ -11,6 +11,7 @@ public class PassProgression extends AbstractProgression {
         } else {
             return nextProgression.progressionChecker(originalQCA);
         }
+
     }
 
     @Override

@@ -205,8 +205,35 @@ public class StudentModuleSelectionService {
             return studentModuleSelectionDTOS;
         }
 
+    // submit grade
+    public void updateGradeBySelectionIdAndGrade(Long selectionId, String grade) {
+        log.debug("request to update id: {} StudentModuleSelections with grade {}", selectionId, grade);
+        Double attemptedHour;
+        ModuleGrade moduleGrade = getModuleGrade(grade);
+        attemptedHour = getAttemptedHours(selectionId);
+        updateQCSByGrade(selectionId, moduleGrade, attemptedHour);
+    }
 
-        // submit grade
+    public void updateQCSByGrade(Long selectionId, ModuleGrade moduleGrade, Double attemptedHour) {
+        log.debug("Request to update QPV by grade: {}, attemptedHour: {}", moduleGrade.getName(), attemptedHour);
+        double qcs;
+
+        qcs = moduleGrade.getQpv() * attemptedHour;
+        updateQCS(selectionId, moduleGrade, qcs, attemptedHour);
+    }
+
+    public ModuleGrade getModuleGrade(String grade) {
+        log.debug("request to check grade {}", grade);
+        ModuleGrade moduleGrade = moduleGradeService.getModuleGradeByName(grade);
+        if(moduleGrade != null) {
+            log.debug("Module Grade found !");
+            return moduleGrade;
+        }
+        return null;
+    }
+
+
+        // submit mark
         public void updateMarkBySelectionIdAndMark(Long selectionId, Double mark) {
             log.debug("Request to update id: {} StudentModuleSelections with mark {}", selectionId, mark);
             Double attemptedHour;
@@ -227,7 +254,7 @@ public class StudentModuleSelectionService {
             List<StudentModuleSelection> resultsList = studentModuleSelectionRepository.findAllByStudentIdAndSemesterNo(studentModuleSelectionDTO.get().getStudentId(), studentModuleSelectionDTO.get().getSemesterNo());
             // check if a student has all the marks for a semester
             for(StudentModuleSelection studentModuleSelection : resultsList) {
-                if(studentModuleSelection.getMarks() == null) {
+                if(studentModuleSelection.getQcs() == null) {
                     haveAllMarks = false;
                     break;
                 }
@@ -303,9 +330,13 @@ public class StudentModuleSelectionService {
         }
 
         qcs = moduleGradeResult.getQpv() * attemptedHour;
+        updateQCS(selectionId, moduleGradeResult, qcs, attemptedHour);
+    }
+
+    public void updateQCS(Long selectionId, ModuleGrade moduleGrade, Double qcs, Double attemptedHour) {
         DecimalFormat df = new DecimalFormat("#.##");
         qcs = Double.parseDouble(df.format(qcs));
-        log.debug("Request to update student result with selectionId: {}, gradeName: {}, QCS: {}, attemptedHour: {}", selectionId, moduleGradeResult.getName(), qcs, attemptedHour);
-        studentModuleSelectionRepository.updateById(selectionId, moduleGradeResult, qcs, attemptedHour);
+        log.debug("Request to update student result with selectionId: {}, gradeName: {}, QCS: {}, attemptedHour: {}", selectionId, moduleGrade.getName(), qcs, attemptedHour);
+        studentModuleSelectionRepository.updateById(selectionId, moduleGrade, qcs, attemptedHour);
     }
 }

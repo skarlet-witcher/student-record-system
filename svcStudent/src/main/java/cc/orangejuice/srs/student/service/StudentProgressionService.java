@@ -2,17 +2,14 @@ package cc.orangejuice.srs.student.service;
 
 import cc.orangejuice.srs.student.client.ProgrammeFeignClient;
 import cc.orangejuice.srs.student.client.StudentModuleSelectionsFeignClient;
+import cc.orangejuice.srs.student.client.dto.ModuleGradeDTO;
 import cc.orangejuice.srs.student.client.dto.ProgrammePropDTO;
 import cc.orangejuice.srs.student.client.dto.StudentModuleSelectionDTO;
-import cc.orangejuice.srs.student.domain.Student;
 import cc.orangejuice.srs.student.domain.StudentProgression;
 import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
 import cc.orangejuice.srs.student.domain.enumeration.ProgressType;
 import cc.orangejuice.srs.student.repository.StudentProgressionRepository;
-import cc.orangejuice.srs.student.service.chain.AbstractProgression;
-import cc.orangejuice.srs.student.service.chain.FailProgression;
-import cc.orangejuice.srs.student.service.chain.PassProgression;
-import cc.orangejuice.srs.student.service.chain.RepeatProgression;
+import cc.orangejuice.srs.student.service.chain.*;
 import cc.orangejuice.srs.student.service.dto.StudentDTO;
 import cc.orangejuice.srs.student.service.dto.StudentProgressionDTO;
 import cc.orangejuice.srs.student.service.dto.factory.DTOFactory;
@@ -45,38 +42,54 @@ public class StudentProgressionService {
 
     private final ProgrammeFeignClient programmeFeignClient;
 
+    private final StudentModuleSelectionsFeignClient studentModuleSelectionsFeignClient;
+
     private final StudentService studentService;
 
     private final StudentMapper studentMapper;
 
     private AbstractProgression progressionMaker;
 
-
     public StudentProgressionService(StudentProgressionRepository studentProgressionRepository,
                                      StudentProgressionMapper studentProgressionMapper,
                                      ProgrammeFeignClient programmeFeignClient,
                                      StudentService studentService,
-                                     StudentMapper studentMapper) {
+                                     StudentMapper studentMapper,
+                                     StudentModuleSelectionsFeignClient studentModuleSelectionsFeignClient) {
         this.studentProgressionRepository = studentProgressionRepository;
         this.studentProgressionMapper = studentProgressionMapper;
         this.programmeFeignClient = programmeFeignClient;
         this.studentService = studentService;
         this.studentMapper = studentMapper;
+        this.studentModuleSelectionsFeignClient = studentModuleSelectionsFeignClient;
 
     }
+
+    public List<String> getModuleGradeList() {
+        log.debug("Request to get Grade List from SvcModule");
+        List<ModuleGradeDTO> moduleGradeDTOS = this.studentModuleSelectionsFeignClient.getAllModuleGradeWithQCAAffected();
+        List<String> gradeList = new ArrayList<>();
+        for(ModuleGradeDTO moduleGradeDTO : moduleGradeDTOS) {
+            gradeList.add(moduleGradeDTO.getName());
+        }
+        return gradeList;
+    }
+
 
     private void initProgressionMaker(List<StudentModuleSelectionDTO> listGradeOfThisStudent, StudentProgressionService studentProgressionService, Logger log) {
 
         // initialization for each progression maker
+        AbstractProgression iGradeProgressionMaker = new IGradeProgression(listGradeOfThisStudent, this);
         AbstractProgression passProgressionMaker = new PassProgression();
         AbstractProgression repeatProgressionMaker = new RepeatProgression(listGradeOfThisStudent, this, log);
         AbstractProgression failProgressionMaker = new FailProgression();
 
         // add chain to makers
+        iGradeProgressionMaker.setNextProgression(passProgressionMaker);
         passProgressionMaker.setNextProgression(repeatProgressionMaker);
         repeatProgressionMaker.setNextProgression(failProgressionMaker);
 
-        progressionMaker = passProgressionMaker;
+        progressionMaker = iGradeProgressionMaker;
 
     }
 
@@ -195,10 +208,15 @@ public class StudentProgressionService {
      * for calculating semester QCA and cumulative QCA
      * @return Non-qualified hours
      */
-    private Integer getNQH() {
+    private Integer getNQH(StudentModuleSelectionDTO oneResult) {
         // 0 for non-I grade
-        return 0;
+        if(Arrays.binarySearch(this.getModuleGradeList().toArray(), oneResult.getStudentModuleGradeTypeName()) >= 0) {
+            return 0;
+        } else {
+            return 6;
+        }
     }
+
 
     /**
      * check if it is end of the part for calculating the cumulative QCA
@@ -302,7 +320,7 @@ public class StudentProgressionService {
         for (StudentModuleSelectionDTO oneResult : resultsList) {
             if (oneResult.getAcademicYear().equals(academicYear) && oneResult.getAcademicSemester().equals(academicSemester)) {
                 semesterQCS += oneResult.getQcs();
-                attemptedHours += oneResult.getCreditHour() - getNQH();
+                attemptedHours += oneResult.getCreditHour() - getNQH(oneResult);
             }
         }
         log.debug("semesterQCS is {} and attemptedHours is {}", semesterQCS, attemptedHours);
@@ -321,7 +339,7 @@ public class StudentProgressionService {
         Double attemptedHour = 0.00;
         for (StudentModuleSelectionDTO studentModuleSelectionDTO : resultsList) {
             qcs += studentModuleSelectionDTO.getQcs();
-            attemptedHour += studentModuleSelectionDTO.getCreditHour() - getNQH();
+            attemptedHour += studentModuleSelectionDTO.getCreditHour() - getNQH(studentModuleSelectionDTO);
         }
         log.debug("The cumulative QCA is {}", qcs / attemptedHour);
         DecimalFormat df = new DecimalFormat("#.##");

@@ -5,6 +5,7 @@ import cc.orangejuice.srs.student.domain.enumeration.ProgressDecision;
 import cc.orangejuice.srs.student.service.StudentProgressionService;
 import org.slf4j.Logger;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -81,7 +82,12 @@ public class RepeatProgression extends AbstractProgression {
 
     private void swapWorstModule(List<StudentModuleSelectionDTO> gradeOfThisStudent, int numberOfPossibleSwap) {
         for (int i = 0; i < numberOfPossibleSwap; i++) {
-            gradeOfThisStudent.get(i).setQcs(12.0); // c3 with the qcs of 12.0
+            if (Arrays.binarySearch(studentProgressionService.getModuleGradeList().toArray(),
+                gradeOfThisStudent.get(i).getStudentModuleGradeTypeName()) >= 0) {
+
+                gradeOfThisStudent.get(i).setQcs(12.0); // c3 with the qcs of 12.0
+            }
+
         }
     }
 

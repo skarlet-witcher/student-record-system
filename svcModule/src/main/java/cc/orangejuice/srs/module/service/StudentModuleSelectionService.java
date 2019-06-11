@@ -372,7 +372,7 @@ public class StudentModuleSelectionService {
         Double qcs;
         ModuleGrade moduleGradeResult = null;
 
-        List<ModuleGrade> moduleGradeList = moduleGradeService.getAllModuleGradewithQcaAffected();
+        List<ModuleGrade> moduleGradeList = moduleGradeService.getAllModuleGradeWithQcaAffected();
         log.debug("moduleGradeList result: {}", moduleGradeList.size());
 
         for(ModuleGrade moduleGrade : moduleGradeList) {

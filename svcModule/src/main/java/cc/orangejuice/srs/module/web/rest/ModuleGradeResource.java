@@ -117,4 +117,11 @@ public class ModuleGradeResource {
         moduleGradeService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/module-grades/get-all-module-grades")
+    public List<ModuleGradeDTO> getAllModuleGradeWithQCAAffected() {
+        log.debug("REST request to get all module grades");
+        List<ModuleGradeDTO> moduleGradeDTOS = moduleGradeService.getAllModuleGradeDTOWithQcaAffected();
+        return moduleGradeDTOS;
+    }
 }

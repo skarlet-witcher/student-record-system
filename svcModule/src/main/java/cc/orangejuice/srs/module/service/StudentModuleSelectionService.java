@@ -205,8 +205,8 @@ public class StudentModuleSelectionService {
         }
 
 
-    // submit grade
-    public void updateGradeBySelectionIdAndGrade(Long selectionId, String grade) {
+        // submit grade
+        public void updateGradeBySelectionIdAndGrade(Long selectionId, String grade) {
         log.debug("request to update id: {} StudentModuleSelections with grade {}", selectionId, grade);
         Double attemptedHour;
         ModuleGrade moduleGrade = getModuleGrade(grade);
@@ -214,23 +214,23 @@ public class StudentModuleSelectionService {
         updateQCSByGrade(selectionId, moduleGrade, attemptedHour);
     }
 
-    public void updateQCSByGrade(Long selectionId, ModuleGrade moduleGrade, Double attemptedHour) {
-        log.debug("Request to update QPV by grade: {}, attemptedHour: {}", moduleGrade.getName(), attemptedHour);
-        double qcs;
+        public void updateQCSByGrade(Long selectionId, ModuleGrade moduleGrade, Double attemptedHour) {
+            log.debug("Request to update QPV by grade: {}, attemptedHour: {}", moduleGrade.getName(), attemptedHour);
+            double qcs;
 
-        qcs = moduleGrade.getQpv() * attemptedHour;
-        updateQCSByMark(selectionId, moduleGrade, qcs, attemptedHour);
-    }
-
-    public ModuleGrade getModuleGrade(String grade) {
-        log.debug("request to check grade {}", grade);
-        ModuleGrade moduleGrade = moduleGradeService.getModuleGradeByName(grade);
-        if(moduleGrade != null) {
-            log.debug("Module Grade found !");
-            return moduleGrade;
+            qcs = moduleGrade.getQpv() * attemptedHour;
+            updateQCSByMark(selectionId, moduleGrade, qcs, attemptedHour);
         }
-        return null;
-    }
+
+        public ModuleGrade getModuleGrade(String grade) {
+            log.debug("request to check grade {}", grade);
+            ModuleGrade moduleGrade = moduleGradeService.getModuleGradeByName(grade);
+            if(moduleGrade != null) {
+                log.debug("Module Grade found !");
+                return moduleGrade;
+            }
+            return null;
+        }
 
         // submit grade
         public void updateMarkBySelectionIdAndMark(Long selectionId, Double mark) {
@@ -332,7 +332,7 @@ public class StudentModuleSelectionService {
         updateQCSByMark(selectionId, moduleGradeResult, qcs, attemptedHour);
     }
 
-    public void updateQCSByMark(Long selectionId, ModuleGrade moduleGrade, Double qcs, Double attemptedHour) {
+        public void updateQCSByMark(Long selectionId, ModuleGrade moduleGrade, Double qcs, Double attemptedHour) {
         DecimalFormat df = new DecimalFormat("#.##");
         qcs = Double.parseDouble(df.format(qcs));
         log.debug("Request to update student result with selectionId: {}, gradeName: {}, QCS: {}, attemptedHour: {}", selectionId, moduleGrade.getName(), qcs, attemptedHour);

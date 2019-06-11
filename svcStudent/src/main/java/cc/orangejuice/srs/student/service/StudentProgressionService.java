@@ -2,6 +2,7 @@ package cc.orangejuice.srs.student.service;
 
 import cc.orangejuice.srs.student.client.ProgrammeFeignClient;
 import cc.orangejuice.srs.student.client.StudentModuleSelectionsFeignClient;
+import cc.orangejuice.srs.student.client.dto.ModuleGradeDTO;
 import cc.orangejuice.srs.student.client.dto.ProgrammePropDTO;
 import cc.orangejuice.srs.student.client.dto.StudentModuleSelectionDTO;
 import cc.orangejuice.srs.student.domain.Student;
@@ -45,6 +46,8 @@ public class StudentProgressionService {
 
     private final ProgrammeFeignClient programmeFeignClient;
 
+    private final StudentModuleSelectionsFeignClient studentModuleSelectionsFeignClient;
+
     private final StudentService studentService;
 
     private final StudentMapper studentMapper;
@@ -52,13 +55,25 @@ public class StudentProgressionService {
     public StudentProgressionService(StudentProgressionRepository studentProgressionRepository,
                                      StudentProgressionMapper studentProgressionMapper,
                                      ProgrammeFeignClient programmeFeignClient,
+                                     StudentModuleSelectionsFeignClient studentModuleSelectionsFeignClient,
                                      StudentService studentService,
                                      StudentMapper studentMapper) {
         this.studentProgressionRepository = studentProgressionRepository;
         this.studentProgressionMapper = studentProgressionMapper;
         this.programmeFeignClient = programmeFeignClient;
+        this.studentModuleSelectionsFeignClient = studentModuleSelectionsFeignClient;
         this.studentService = studentService;
         this.studentMapper = studentMapper;
+    }
+
+    private List<String> getModuleGradeList() {
+        log.debug("Request to get Grade List from SvcModule");
+        List<ModuleGradeDTO> moduleGradeDTOS = this.studentModuleSelectionsFeignClient.getAllModuleGradeWithQCAAffected();
+        List<String> gradeList = new ArrayList<>();
+        for(ModuleGradeDTO moduleGradeDTO : moduleGradeDTOS) {
+            gradeList.add(moduleGradeDTO.getName());
+        }
+        return gradeList;
     }
 
     /**
@@ -165,9 +180,13 @@ public class StudentProgressionService {
      * for calculating semester QCA and cumulative QCA
      * @return Non-qualified hours
      */
-    private Integer getNQH() {
+    private Integer getNQH(StudentModuleSelectionDTO oneResult) {
         // 0 for non-I grade
-        return 0;
+        if(Arrays.binarySearch(this.getModuleGradeList().toArray(), oneResult.getStudentModuleGradeTypeName()) >= 0) {
+            return 0;
+        } else {
+            return 6;
+        }
     }
 
     /**
@@ -272,7 +291,7 @@ public class StudentProgressionService {
         for (StudentModuleSelectionDTO oneResult : resultsList) {
             if (oneResult.getAcademicYear().equals(academicYear) && oneResult.getAcademicSemester().equals(academicSemester)) {
                 semesterQCS += oneResult.getQcs();
-                attemptedHours += oneResult.getCreditHour() - getNQH();
+                attemptedHours += oneResult.getCreditHour() - getNQH(oneResult);
             }
         }
         log.debug("semesterQCS is {} and attemptedHours is {}", semesterQCS, attemptedHours);
@@ -291,7 +310,7 @@ public class StudentProgressionService {
         Double attemptedHour = 0.00;
         for (StudentModuleSelectionDTO studentModuleSelectionDTO : resultsList) {
             qcs += studentModuleSelectionDTO.getQcs();
-            attemptedHour += studentModuleSelectionDTO.getCreditHour() - getNQH();
+            attemptedHour += studentModuleSelectionDTO.getCreditHour() - getNQH(studentModuleSelectionDTO);
         }
         log.debug("The cumulative QCA is {}", qcs / attemptedHour);
         DecimalFormat df = new DecimalFormat("#.##");
@@ -360,9 +379,13 @@ public class StudentProgressionService {
     // pattern: state for decision handling
     private ProgressDecision makeProgressionDecision(double originalCumulativeQca, List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
         log.debug("Begin making first decision of transiting state from NO_STATE to PASS/FAIL_CAN_REPEAT/FAIL_NO_REPEAT");
-        if (originalCumulativeQca > 2.0)
-            return ProgressDecision.PASS;
-        else {
+        if (originalCumulativeQca > 2.0) {
+            if(!checkIGrade(listGradeOfThisStudent)) {
+                return ProgressDecision.PASS;
+            } else {
+                return ProgressDecision.REPEAT_I_GRADE;
+            }
+        } else {
             //Sort to get 4 worst grades
             Collections.sort(listGradeOfThisStudent, (o1, o2) -> {
                 if (o1.getQcs() > o2.getQcs())
@@ -416,5 +439,17 @@ public class StudentProgressionService {
         for (int i = 0; i < numberOfPossibleSwap; i++) {
             gradeOfThisStudent.get(i).setQcs(12.0); // c3 with the qcs of 12.0
         }
+    }
+
+    private Boolean checkIGrade(List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
+        Boolean result = false;
+        for(StudentModuleSelectionDTO studentModuleSelectionDTO : listGradeOfThisStudent) {
+            if(Arrays.binarySearch(this.getModuleGradeList().toArray(), studentModuleSelectionDTO.getStudentModuleGradeTypeName()) <= 0) {
+                System.out.println("IGrade found");
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 }

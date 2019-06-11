@@ -88,6 +88,11 @@ public class ModuleGradeService {
         return moduleGradeRepository.findAllByIsAffectQca(true);
     }
 
+    public List<ModuleGradeDTO> getAllModuleGradeDTOWithQcaAffected() {
+        log.debug("Request to get all module grade detail");
+        return moduleGradeMapper.toDto(moduleGradeRepository.findAllByIsAffectQca(true));
+    }
+
     public ModuleGrade getModuleGradeByName(String name) {
         log.debug("Request to get module grade by Name : {}", name);
         return moduleGradeRepository.findByName(name);

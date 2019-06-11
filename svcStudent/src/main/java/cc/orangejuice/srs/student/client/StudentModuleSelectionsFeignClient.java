@@ -1,5 +1,6 @@
 package cc.orangejuice.srs.student.client;
 
+import cc.orangejuice.srs.student.client.dto.ModuleGradeDTO;
 import cc.orangejuice.srs.student.client.dto.StudentModuleSelectionDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,4 +21,7 @@ public interface StudentModuleSelectionsFeignClient { // unused
         @RequestParam("studentId") Long studentId,
         @RequestParam("academicYear") Integer academicYear,
         @RequestParam("yearNo") Integer yearNo);
+
+    @GetMapping("/api/module-grades/get-all-module-grades")
+    List<ModuleGradeDTO> getAllModuleGradeWithQCAAffected();
 }

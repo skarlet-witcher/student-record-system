@@ -113,7 +113,7 @@ public class StudentModuleSelectionService {
             studentModuleSelectionRepository.deleteById(id);
         }
 
-        public void getTranscript(Long studentId, Integer academicYear, Integer academicSemester) throws FileNotFoundException, DocumentException {
+        public void getSemesterTranscript(Long studentId, Integer academicYear, Integer academicSemester) throws FileNotFoundException, DocumentException {
             // step 1: data gathering
 
             // get module selections

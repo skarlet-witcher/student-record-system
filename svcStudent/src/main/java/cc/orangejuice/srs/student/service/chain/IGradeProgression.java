@@ -35,7 +35,7 @@ public class IGradeProgression extends AbstractProgression {
     private Boolean checkIGrade() {
         Boolean result = false;
         for(StudentModuleSelectionDTO studentModuleSelectionDTO : listGradeOfThisStudent) {
-            if(Arrays.binarySearch(this.studentProgressionService.getModuleGradeList().toArray(), studentModuleSelectionDTO.getStudentModuleGradeTypeName()) <= 0) {
+            if(Arrays.binarySearch(this.studentProgressionService.getModuleGradeList().toArray(), studentModuleSelectionDTO.getStudentModuleGradeTypeName()) < 0) {
                 System.out.println("IGrade found");
                 result = true;
                 break;

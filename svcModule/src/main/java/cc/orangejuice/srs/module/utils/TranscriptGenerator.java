@@ -5,10 +5,7 @@ import java.io.FileOutputStream;
 import java.util.List;
 import java.util.stream.Stream;
 
-import cc.orangejuice.srs.module.client.dto.ProgrammeDTO;
-import cc.orangejuice.srs.module.client.dto.StudentDTO;
-import cc.orangejuice.srs.module.client.dto.StudentEnrollDTO;
-import cc.orangejuice.srs.module.client.dto.StudentProgressionDTO;
+import cc.orangejuice.srs.module.client.dto.*;
 import cc.orangejuice.srs.module.service.dto.ModuleDTO;
 import cc.orangejuice.srs.module.service.dto.StudentModuleSelectionDTO;
 import com.itextpdf.text.BaseColor;
@@ -25,20 +22,28 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.sun.media.jfxmedia.logging.Logger;
 
 public class TranscriptGenerator {
+    
+    // semester transcript
     private List<StudentModuleSelectionDTO> studentResults;
     private List<ModuleDTO> moduleInfo;
     private StudentDTO studentPersonalInfo;
     private StudentEnrollDTO studentEnrollInfo;
     private ProgrammeDTO programmeInfo;
     private StudentProgressionDTO studentProgressionInfo;
+    
 
+    
+    
+    // assets for the generator
     private Font titleFont;
     private Font subTitleFont;
     private Font bodyFont;
 
     private Document document;
     private PdfPTable table;
-
+    
+    
+    // semester transcript constructor
     public TranscriptGenerator(List<StudentModuleSelectionDTO> studentResults, List<ModuleDTO> moduleInfo, StudentDTO studentPersonalInfo, StudentEnrollDTO studentEnrollInfo, ProgrammeDTO programmeInfo, StudentProgressionDTO studentProgressionInfo) {
         this.studentResults = studentResults;
         this.moduleInfo = moduleInfo;

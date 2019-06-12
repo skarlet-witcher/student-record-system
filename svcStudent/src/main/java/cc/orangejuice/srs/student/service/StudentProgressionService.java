@@ -417,4 +417,6 @@ public class StudentProgressionService {
             gradeOfThisStudent.get(i).setQcs(12.0); // c3 with the qcs of 12.0
         }
     }
+
+
 }

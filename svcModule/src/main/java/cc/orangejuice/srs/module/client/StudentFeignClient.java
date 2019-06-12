@@ -35,4 +35,7 @@ public interface StudentFeignClient {
 
     @GetMapping("/api/student-enrolls/student-enroll-detail/{studentId}")
     StudentEnrollDTO getStudentEnrollDetail(@PathVariable("studentId") Long studentId);
+
+
+
 }

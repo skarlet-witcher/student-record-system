@@ -173,7 +173,7 @@ public class StudentModuleSelectionResource {
         return studentModuleSelectionDTO;
     }
 
-    @GetMapping(value = "/student-module-selections/get-transcript")
+    @GetMapping(value = "/student-module-selections/get-semesterTranscript")
     public ResponseEntity<Void> getTransctipt(
         @RequestParam("studentId") Long studentId,
         @RequestParam("academicYear") Integer academicYear,
@@ -182,6 +182,17 @@ public class StudentModuleSelectionResource {
         log.debug("REST request to get transcript for the student {} in academicYear: {}, academicSemester: {} ",
             studentId, academicYear, academicYear, academicSemester);
         studentModuleSelectionService.getTranscript(studentId, academicYear, academicSemester);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, "transcript generated")).build();
+    }
+
+    @GetMapping(value = "/student-module-selections/get-partTranscript")
+    public ResponseEntity<Void> getPartTranscript(
+        @RequestParam("studentId") Long studentId,
+        @RequestParam("academicYear") Integer academicYear,
+        @RequestParam("partNo") String partNo
+    ) throws FileNotFoundException, DocumentException {
+        log.debug("REST request to get transcript for the student {} in academicYear: {], part: {} ", studentId, academicYear, partNo);
+        studentModuleSelectionService.getPartTranscript(studentId, academicYear, partNo);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, "transcript generated")).build();
     }
 

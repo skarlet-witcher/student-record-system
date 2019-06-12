@@ -35,4 +35,9 @@ public interface StudentFeignClient {
 
     @GetMapping("/api/student-enrolls/student-enroll-detail/{studentId}")
     StudentEnrollDTO getStudentEnrollDetail(@PathVariable("studentId") Long studentId);
+
+
+    @GetMapping("/api/student-progressions/progression-info-academicYear")
+     List<StudentProgressionDTO> getProgressionInfoByAcademicYear(@RequestParam("studentId") Long studentId,
+                                                                        @RequestParam("academicYear") Integer academicYear);
 }

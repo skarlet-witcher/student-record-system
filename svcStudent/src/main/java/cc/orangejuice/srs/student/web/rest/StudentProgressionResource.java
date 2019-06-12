@@ -164,5 +164,14 @@ public class StudentProgressionResource {
         return studentProgressionDTO;
     }
 
+    @GetMapping("/student-progressions/progression-info-academicYear")
+    public List<StudentProgressionDTO> getProgressionInfoByAcademicYear(@RequestParam("studentId") Long studentId,
+                                                                        @RequestParam("academicYear") Integer academicYear) {
+        log.debug("REST request to get progression info for student {} at academicYear {} ", studentId, academicYear);
+        List<StudentProgressionDTO> studentProgressionDTOS = studentProgressionService.getOneByStudentAndAcademicYear(studentId, academicYear);
+        return studentProgressionDTOS;
+
+    }
+
 
 }

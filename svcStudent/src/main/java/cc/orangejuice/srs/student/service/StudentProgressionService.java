@@ -444,12 +444,23 @@ public class StudentProgressionService {
     private Boolean checkIGrade(List<StudentModuleSelectionDTO> listGradeOfThisStudent) {
         Boolean result = false;
         for(StudentModuleSelectionDTO studentModuleSelectionDTO : listGradeOfThisStudent) {
-            if(Arrays.binarySearch(this.getModuleGradeList().toArray(), studentModuleSelectionDTO.getStudentModuleGradeTypeName()) <= 0) {
+            if(Arrays.binarySearch(this.getModuleGradeList().toArray(), studentModuleSelectionDTO.getStudentModuleGradeTypeName()) < 0) {
                 System.out.println("IGrade found");
                 result = true;
                 break;
             }
         }
         return result;
+    }
+
+    public List<StudentProgressionDTO> getOneByStudentAndAcademicYear(Long studentId, Integer academicYear) {
+        log.debug("request to get progression info for student {} at academicYear {}", studentId, academicYear);
+        List<StudentProgressionDTO> studentProgressionsDTOS = new ArrayList<>();
+        for(StudentProgression studentProgression : studentProgressionRepository.findAllByForAcademicYear(academicYear)) {
+            if(studentProgression.getStudent().getId() == studentId) {
+                studentProgressionsDTOS.add(studentProgressionMapper.toDto(studentProgression));
+            }
+        }
+        return studentProgressionsDTOS;
     }
 }

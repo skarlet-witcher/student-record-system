@@ -24,4 +24,10 @@ public interface ProgrammeFeignClient {
 
     @GetMapping("/api/programmes/{id}")
     ResponseEntity<ProgrammeDTO> getProgramme(@PathVariable("id") Long id);
+
+    @GetMapping(value = "/api/programme-props/getByEnrollYearAndPart/")
+    List<ProgrammePropDTO> getProgrammePropsByYearAndPart(
+        @RequestParam(value = "enrollYear") Integer forEnrollYear,
+        @RequestParam(value = "part") String partNo
+    );
 }

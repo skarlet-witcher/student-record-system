@@ -144,5 +144,15 @@ public class ProgrammePropResource {
         return programmePropDTOs;
     }
 
+    @GetMapping(value = "/programme-props/getByEnrollYearAndPart/")
+    public List<ProgrammePropDTO> getProgrammePropsByYearAndPart(
+        @RequestParam(value = "enrollYear") Integer forEnrollYear,
+        @RequestParam(value = "part") String partNo
+    ) {
+        log.debug("REST request to get ProgrammeProps by enroll year {} and Part {}", forEnrollYear, partNo);
+        List<ProgrammePropDTO> programmePropDTOS = programmePropService.findByEnrollYearAndPartNo(forEnrollYear, partNo);
+        return programmePropDTOS;
+    }
+
 
 }

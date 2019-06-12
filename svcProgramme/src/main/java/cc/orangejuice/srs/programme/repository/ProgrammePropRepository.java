@@ -35,5 +35,12 @@ public interface ProgrammePropRepository extends JpaRepository<ProgrammeProp, Lo
         @Param("forEnrollYear") Integer forEnrollYear,
         @Param("key") String key);
 
+    List<ProgrammeProp> findByForEnrollYearAndKeyAndValue(
+        @Param("forEnrollYear") Integer forEnrollYear,
+        @Param("key") String key,
+        @Param("value") String value);
+
+
+
 
 }

@@ -103,6 +103,11 @@ public class ProgrammePropService {
         return programmePropMapper.toDto(programmePropRepository.findOneByTypeAndForEnrollYearAndForSemesterNoAndKey(type, forEnrollYear, forSemesterNo, key));
     }
 
+    public List<ProgrammePropDTO> findByEnrollYearAndPartNo(Integer forEnrollYear, String partNo) {
+        log.debug("request to get ProgrammeProps by enroll year {} and Part {}", forEnrollYear, partNo);
+        return programmePropMapper.toDto(programmePropRepository.findByForEnrollYearAndKeyAndValue(forEnrollYear, "part", partNo));
+    }
+
 
 
 }
